@@ -30,23 +30,41 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="ltp::client::TitleBar" name="widget" native="true"/>
+       <widget class="ltp::client::TitleBar" name="titleBar_" native="true"/>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
-        <property name="styleSheet">
-         <string notr="true">QLabel{background:rgb(255, 0, 0);}</string>
-        </property>
-        <property name="text">
-         <string>主要功能区域</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
+       <widget class="QWidget" name="mainWidget_" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="margin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="ltp::client::MainContainer" name="mainContainer" native="true"/>
+         </item>
+         <item>
+          <widget class="ltp::client::SelectAxisBar" name="selectAxisBar_" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="ltp::client::HintBar" name="hintBar_" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -58,15 +76,6 @@
           <width>16777215</width>
           <height>30</height>
          </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{background:rgb(85, 0, 255);}</string>
-        </property>
-        <property name="text">
-         <string>提示栏HintBar</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -81,6 +90,24 @@
    <class>ltp::client::TitleBar</class>
    <extends>QWidget</extends>
    <header>titlebar.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ltp::client::HintBar</class>
+   <extends>QWidget</extends>
+   <header>hintbar.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ltp::client::MainContainer</class>
+   <extends>QWidget</extends>
+   <header>maincontainer.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ltp::client::SelectAxisBar</class>
+   <extends>QWidget</extends>
+   <header>selectaxisbar.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

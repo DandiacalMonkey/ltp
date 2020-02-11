@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_TITLEBAR_H_
+﻿#ifndef LTP_CLIENT_TITLEBAR_H_
 #define LTP_CLIENT_TITLEBAR_H_
 
 #include <QtGui/QWidget>
