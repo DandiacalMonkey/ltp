@@ -86,6 +86,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_selectaxisbar.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\base\buttonprocessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_buttonprocessor.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_buttonprocessor.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ltpclient.h">
@@ -121,6 +130,9 @@
     <CustomBuild Include="selectaxisbar.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\base\buttonprocessor.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ltpclient.h">
@@ -140,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_maincontainer.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\globals.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

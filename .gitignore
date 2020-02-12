@@ -3,3 +3,7 @@
 ################################################################################
 
 /client/Debug
+/client/GeneratedFiles
+/ltp/.vs/ltp/v16
+/ltp/ipch/ltpclient-4f12d635
+/ltp/Win32/Debug

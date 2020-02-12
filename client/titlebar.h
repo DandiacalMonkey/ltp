@@ -29,5 +29,4 @@ private slots:
 }
 }
 
-
 #endif // LTP_CLIENT_TITLEBAR_H_
