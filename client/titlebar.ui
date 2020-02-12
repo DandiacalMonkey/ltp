@@ -40,101 +40,239 @@
      <property name="styleSheet">
       <string notr="true">background:#F5F5F5</string>
      </property>
-     <widget class="QLabel" name="m_moduleNameLabel">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>54</width>
-        <height>12</height>
-       </rect>
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0,1,0,0,0">
+      <property name="spacing">
+       <number>0</number>
       </property>
-      <property name="text">
-       <string>加工</string>
+      <property name="leftMargin">
+       <number>7</number>
       </property>
-     </widget>
-     <widget class="QLabel" name="m_modeNameLabel">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>10</y>
-        <width>54</width>
-        <height>12</height>
-       </rect>
+      <property name="topMargin">
+       <number>0</number>
       </property>
-      <property name="text">
-       <string>手轮</string>
+      <property name="rightMargin">
+       <number>10</number>
       </property>
-     </widget>
-     <widget class="QLabel" name="m_modeIconLabel">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>10</y>
-        <width>54</width>
-        <height>12</height>
-       </rect>
+      <property name="bottomMargin">
+       <number>2</number>
       </property>
-      <property name="text">
-       <string>图</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="m_machiningStateLabel">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>10</y>
-        <width>54</width>
-        <height>12</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>就绪</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="m_currentNCNameLabel">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>10</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>XXXXXXXX.NC</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="m_connectStateLabel">
-      <property name="geometry">
-       <rect>
-        <x>460</x>
-        <y>10</y>
-        <width>54</width>
-        <height>12</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>连接</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="m_timeLabel">
-      <property name="geometry">
-       <rect>
-        <x>570</x>
-        <y>10</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>时间</string>
-      </property>
-     </widget>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QLabel" name="moduleNameLabel_">
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 16px SIMHEI</string>
+        </property>
+        <property name="text">
+         <string>加工</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>71</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QLabel" name="modeIconLabel_">
+        <property name="minimumSize">
+         <size>
+          <width>22</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>22</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>图</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>11</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QLabel" name="modeNameLabel_">
+        <property name="minimumSize">
+         <size>
+          <width>63</width>
+          <height>14</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>63</width>
+          <height>14</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14px SIMHEI</string>
+        </property>
+        <property name="text">
+         <string>手轮</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QLabel" name="machiningStateLabel_">
+        <property name="minimumSize">
+         <size>
+          <width>28</width>
+          <height>14</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>28</width>
+          <height>14</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14px SIMHEI</string>
+        </property>
+        <property name="text">
+         <string>就绪</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>36</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QLabel" name="currentNCNameLabel_">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14px Arial</string>
+        </property>
+        <property name="text">
+         <string>XXXXXXXX.NC</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QLabel" name="connectStateLabel_">
+        <property name="minimumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>连接</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>35</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QLabel" name="timeLabel_">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14px Arial</string>
+        </property>
+        <property name="text">
+         <string>时间</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="errorMessageLabel">
+    <widget class="QLabel" name="errorMessageLabel_">
      <property name="styleSheet">
       <string notr="true">QLabel{background:rgb(255, 255, 0);}</string>
      </property>

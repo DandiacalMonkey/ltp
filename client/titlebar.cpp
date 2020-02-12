@@ -1,4 +1,4 @@
-#include "titlebar.h"
+ï»¿#include "titlebar.h"
 
 #include <QDateTime>
 
@@ -8,29 +8,10 @@ TitleBar::TitleBar(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-		 
-	ui.m_moduleNameLabel->setGeometry(7, 13, 32, 16);			// Ä£¿é±êÇ© 
-	ui.m_moduleNameLabel->setStyleSheet("font: 16px SIMHEI");
-	 
-	ui.m_modeIconLabel->setGeometry(108, 8, 22, 22);			// Ä£Ê½Í¼±ê
 
-	ui.m_modeNameLabel->setGeometry(145, 13, 28, 14);			// Ä£Ê½±êÇ©
-	ui.m_modeNameLabel->setStyleSheet("font: 14px SIMHEI");
-
-	ui.m_machiningStateLabel->setGeometry(206, 13, 28, 14);			// ×´Ì¬±êÇ©
-	ui.m_machiningStateLabel->setStyleSheet("font: 14px SIMHEI");
-
-	ui.m_currentNCNameLabel->setGeometry(270, 13, 280, 16);			// ÎÄ¼þÃû±êÇ©
-	ui.m_currentNCNameLabel->setStyleSheet("font: 14px Arial");
-
-	ui.m_connectStateLabel->setGeometry(620, 6, 24, 24);			// Á¬½Ó×´Ì¬±êÇ©
-
-	ui.m_timeLabel->setGeometry(680, 13, 115, 16);			// ÏµÍ³Ê±¼ä±êÇ©
-	ui.m_timeLabel->setStyleSheet("font: 14px Arial");
-
-	m_updateTimer = new QTimer(this);			// ÏµÍ³Ê±¼ä¸üÐÂ
-	connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateTime()));
-	m_updateTimer->start(1000);
+	updateTimeTimer_ = new QTimer(this);			// ç³»ç»Ÿæ—¶é—´æ›´æ–°
+	connect(updateTimeTimer_, SIGNAL(timeout()), this, SLOT(updateTime()));
+	updateTimeTimer_->start(1000);
 }
 
 TitleBar::~TitleBar()
@@ -39,7 +20,7 @@ TitleBar::~TitleBar()
 
 void TitleBar::updateTime()
 {
-	// ÏµÍ³Ê±¼ä¸üÐÂ
+	// ç³»ç»Ÿæ—¶é—´æ›´æ–°
 	QDateTime now(QDateTime::currentDateTime());
-	ui.m_timeLabel->setText(now.toString("yyyy/MM/dd hh:mm"));
+	ui.timeLabel_->setText(now.toString("yyyy/MM/dd hh:mm"));
 }

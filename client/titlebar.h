@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_TITLEBAR_H_
+﻿#ifndef LTP_CLIENT_TITLEBAR_H_
 #define LTP_CLIENT_TITLEBAR_H_
 
 #include <QtGui/QWidget>
@@ -20,7 +20,7 @@ public:
 
 private:
 	Ui::TitleBarClass ui;
-	QTimer* m_updateTimer;
+	QTimer* updateTimeTimer_;
 
 private slots:
 	void updateTime();
