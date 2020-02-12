@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>800</width>
     <height>52</height>
    </rect>
   </property>
@@ -28,7 +28,7 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="32,20">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -36,17 +36,105 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QWidget" name="statesWidget" native="true">
      <property name="styleSheet">
-      <string notr="true">QLabel{background:rgb(170, 255, 0);}</string>
+      <string notr="true">background:#F5F5F5</string>
      </property>
-     <property name="text">
-      <string>TitleBar状态部分</string>
-     </property>
+     <widget class="QLabel" name="m_moduleNameLabel">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>加工</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="m_modeNameLabel">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>10</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>手轮</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="m_modeIconLabel">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>10</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>图</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="m_machiningStateLabel">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>10</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>就绪</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="m_currentNCNameLabel">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>10</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>XXXXXXXX.NC</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="m_connectStateLabel">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>10</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>连接</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="m_timeLabel">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>10</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>时间</string>
+      </property>
+     </widget>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="errorMessageLabel">
      <property name="styleSheet">
       <string notr="true">QLabel{background:rgb(255, 255, 0);}</string>
      </property>
