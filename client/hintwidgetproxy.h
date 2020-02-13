@@ -16,10 +16,12 @@ public:
 		static HintWidgetProxy<T> hintWidgetProxy;
 		return hintWidgetProxy;
 	}
+	//设定代理的控件
 	void setHintWidget(T* hintWidget)
 	{
 		hintWidget_ = hintWidget;
 	}
+	//代理控件显示提示
 	void setHint(const QString& hint)
 	{
 		hintWidget_->setHint(hint);
