@@ -1,6 +1,6 @@
 ﻿#include "ltpclient.h"
 #include "hintwidgetproxy.h"
-#include "base/buttonprocessor.h"
+#include "../base/buttonprocessor.h"
 
 using ltp::client::LtpClient;
 

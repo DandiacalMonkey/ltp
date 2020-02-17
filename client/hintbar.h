@@ -13,7 +13,7 @@ class HintBar : public QWidget
 	Q_OBJECT
 
 public:
-	explict HintBar(QWidget* parent = 0);
+	HintBar(QWidget* parent = 0);
 	~HintBar();
 
 public slots:

@@ -1,4 +1,4 @@
-ï»¿#ifndef LTP_CLIENT_LTPCLIENT_H_
+#ifndef LTP_CLIENT_LTPCLIENT_H_
 #define LTP_CLIENT_LTPCLIENT_H_
 
 #include <QtGui/QWidget>
@@ -19,7 +19,7 @@ public:
 
 private:
 	Ui::LtpClientClass ui;
-	//æ¨¡ä»¿æŒ‰é’®å¤„ç†æŒ‡ä»¤çš„çº¿ç¨‹
+	//Ä£·Â°´Å¥´¦ÀíÖ¸ÁîµÄÏß³Ì
 	QThread buttonProcessorThread_;
 };
 }
