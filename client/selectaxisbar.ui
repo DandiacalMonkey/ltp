@@ -223,7 +223,7 @@ QPushButton:hover{background:#0064C8;}
 </string>
        </property>
        <property name="text">
-        <string>PushButton</string>
+        <string>B</string>
        </property>
        <property name="checkable">
         <bool>true</bool>
