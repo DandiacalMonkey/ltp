@@ -1,4 +1,5 @@
 ﻿#include <vector>
+#include <memory>
 #include <QObject>
 #include <QTimer>
 #include <QMutex>

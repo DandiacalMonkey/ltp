@@ -1,7 +1,7 @@
 ﻿#ifndef LTP_CLIENT_HINTWIDGETPROXY_H_
 #define LTP_CLIENT_HINTWIDGETPROXY_H_
 
-#include <Qstring>
+#include <QString>
 
 namespace ltp
 {

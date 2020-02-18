@@ -7,11 +7,40 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./ltpclient.h \
+HEADERS += ../base/globals.h \
+    ./hintwidgetproxy.h \
+    ./ltpclient.h \
+    ./operationpanel.h \
+    ./axesinformation.h \
+    ../base/textedit.h \
+    ../base/panelbutton.h \
+    ../base/loadbar.h \
+    ../base/buttonprocessor.h \
+    ./processwidget.h \
+    ./selectaxisbar.h \
+    ./maincontainer.h \
+    ./hintbar.h \
     ./titlebar.h
-SOURCES += ./ltpclient.cpp \
+SOURCES += ../base/buttonprocessor.cpp \
+    ../base/loadbar.cpp \
+    ../base/panelbutton.cpp \
+    ../base/textedit.cpp \
+    ./axesinformation.cpp \
+    ./hintbar.cpp \
+    ./ltpclient.cpp \
     ./main.cpp \
+    ./maincontainer.cpp \
+    ./operationpanel.cpp \
+    ./processwidget.cpp \
+    ./selectaxisbar.cpp \
     ./titlebar.cpp
 FORMS += ./ltpclient.ui \
-    ./titlebar.ui
+    ./titlebar.ui \
+    ./hintbar.ui \
+    ./selectaxisbar.ui \
+    ./maincontainer.ui \
+    ./processwidget.ui \
+    ./axesinformation.ui \
+    ./operationpanel.ui \
+    ../base/textedit.ui
 RESOURCES += ltpclient.qrc

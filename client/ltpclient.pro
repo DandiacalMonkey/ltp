@@ -6,15 +6,22 @@ TEMPLATE = app
 TARGET = ltpclient
 DESTDIR = ../ltp/Win32/Debug
 QT += core gui network xml
-CONFIG += debug
+CONFIG += debug_and_release
 DEFINES += QT_DLL QT_XML_LIB QT_NETWORK_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
     ./GeneratedFiles/Debug
 DEPENDPATH += .
+QMAKESPEC = linux-arm-gnueabi-g++
+QMAKE_CC = arm-linux-gnueabihf-gcc
+QMAKE_CXX = arm-linux-gnueabihf-g++
+QMAKE_LINK = arm-linux-gnueabihf-gcc
+QMAKE_AR = arm-linux-gnueabihf-ar
+QMAKE_STRIP = arm-linux-gnueabihf-strip
 QMAKE_CXXFLAGS += -std=c++11
 MOC_DIR += ./GeneratedFiles/debug
 OBJECTS_DIR += debug
 UI_DIR += ./GeneratedFiles
 RCC_DIR += ./GeneratedFiles
+LIBS += -lstdc++
 include(ltpclient.pri)
