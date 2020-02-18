@@ -49,9 +49,11 @@
         <string notr="true">QTextEdit QScrollBar::vertical {margin: 10px 0px 10px 0px;background-color:#E6E6E6; border: 0px; width: 10px;}
 
 QTextEdit QScrollBar::handle:vertical{background:#BEBEBE;}
-QTextEdit QScrollBar::add-line:vertical{height: 10px;	width:10px; 	subcontrol-position: bottom left;	 subcontrol-origin: margin;}
+QTextEdit QScrollBar::add-line:vertical{height: 10px;	width:10px; 	subcontrol-position: bottom left;	 subcontrol-origin: margin; image:url(&quot;../image/bottom.png&quot;);}
+QTextEdit QScrollBar::sub-line:vertical{ image:url(&quot;../image/top.png&quot;);}
 
 QTextEdit{font:13px Arial;} 
+
 </string>
        </property>
        <property name="frameShape">

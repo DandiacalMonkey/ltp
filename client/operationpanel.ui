@@ -45,7 +45,7 @@
           <x>0</x>
           <y>0</y>
           <width>361</width>
-          <height>61</height>
+          <height>63</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="panelButtonsLayout_">
@@ -56,7 +56,7 @@
           <number>20</number>
          </property>
          <property name="topMargin">
-          <number>16</number>
+          <number>10</number>
          </property>
          <property name="rightMargin">
           <number>102</number>
