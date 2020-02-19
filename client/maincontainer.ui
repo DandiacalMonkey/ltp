@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>698</width>
+    <width>770</width>
     <height>537</height>
    </rect>
   </property>
@@ -17,16 +17,7 @@
    <string notr="true"/>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="leftMargin">
-    <number>80</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
+   <property name="margin">
     <number>0</number>
    </property>
    <item>
@@ -34,25 +25,49 @@
      <property name="styleSheet">
       <string notr="true">background:white;</string>
      </property>
-     <widget class="ltp::client::ProcessWidget" name="processWidget_" native="true">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>680</width>
-        <height>519</height>
-       </rect>
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">
+      <property name="spacing">
+       <number>0</number>
       </property>
-      <property name="minimumSize">
-       <size>
-        <width>680</width>
-        <height>519</height>
-       </size>
+      <property name="margin">
+       <number>0</number>
       </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-     </widget>
+      <item>
+       <widget class="ltp::client::ModuleButtonsWidget" name="widget" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::client::ProcessWidget" name="processWidget_" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>680</width>
+          <height>519</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
@@ -62,6 +77,12 @@
    <class>ltp::client::ProcessWidget</class>
    <extends>QWidget</extends>
    <header>processwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ltp::client::ModuleButtonsWidget</class>
+   <extends>QWidget</extends>
+   <header>modulebuttonswidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

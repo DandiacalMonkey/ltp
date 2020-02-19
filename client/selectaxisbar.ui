@@ -40,7 +40,7 @@
     </spacer>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <layout class="QVBoxLayout" name="verticalLayout_">
      <property name="spacing">
       <number>12</number>
      </property>
@@ -60,8 +60,8 @@
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;}
-QPushButton:hover{background:#0064C8;}
+QPushButton:checked{background:#0064C8;color:white;}
+QPushButton:hover{background:#0064C8;color:white;}
 
 
 </string>
@@ -90,8 +90,8 @@ QPushButton:hover{background:#0064C8;}
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;}
-QPushButton:hover{background:#0064C8;}
+QPushButton:checked{background:#0064C8; color:white;}
+QPushButton:hover{background:#0064C8; color:white;}
 
 
 </string>
@@ -120,8 +120,8 @@ QPushButton:hover{background:#0064C8;}
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;}
-QPushButton:hover{background:#0064C8;}
+QPushButton:checked{background:#0064C8; color:white;}
+QPushButton:hover{background:#0064C8; color:white;}
 
 
 </string>
@@ -150,11 +150,8 @@ QPushButton:hover{background:#0064C8;}
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;}
-QPushButton:hover{background:#0064C8;}
-
-
-</string>
+QPushButton:checked{background:#0064C8; color:white;}
+QPushButton:hover{background:#0064C8; color:white;}</string>
        </property>
        <property name="text">
         <string>A</string>
@@ -186,11 +183,8 @@ QPushButton:hover{background:#0064C8;}
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;}
-QPushButton:hover{background:#0064C8;}
-
-
-</string>
+QPushButton:checked{background:#0064C8; color:white;}
+QPushButton:hover{background:#0064C8; color:white;}</string>
        </property>
        <property name="text">
         <string>C</string>
@@ -216,11 +210,8 @@ QPushButton:hover{background:#0064C8;}
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;}
-QPushButton:hover{background:#0064C8;}
-
-
-</string>
+QPushButton:checked{background:#0064C8; color:white;}
+QPushButton:hover{background:#0064C8; color:white;}</string>
        </property>
        <property name="text">
         <string>B</string>

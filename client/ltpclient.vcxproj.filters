@@ -149,6 +149,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_buttonprocessor.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\base\modulebuttons.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_modulebuttons.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_modulebuttons.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_modulebuttonswidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_modulebuttonswidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="modulebuttonswidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ltpclient.h">
@@ -217,6 +235,15 @@
     <CustomBuild Include="..\base\buttonprocessor.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\base\modulebuttons.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="modulebuttonswidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="modulebuttonswidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ltpclient.h">
@@ -251,6 +278,9 @@
     </ClInclude>
     <ClInclude Include="..\base\globals.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_modulebuttonswidget.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

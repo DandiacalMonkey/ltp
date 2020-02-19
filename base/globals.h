@@ -1,4 +1,7 @@
-﻿namespace ltp
+﻿#ifndef LTP_BASE_GLOBALS_H_
+#define LTP_BASE_GLOBALS_H_
+
+namespace ltp
 {
 	namespace base
 	{
@@ -46,3 +49,5 @@
 		};
 	}
 }
+
+#endif // LTP_BASE_GLOBALS_H_

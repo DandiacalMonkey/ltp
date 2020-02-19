@@ -250,7 +250,7 @@
   <customwidget>
    <class>ltp::base::PanelButton</class>
    <extends>QPushButton</extends>
-   <header>../base/panelbutton.h</header>
+   <header>base/panelbutton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -3,6 +3,7 @@
 
 #include <QtGui/QWidget>
 #include "ui_axesinformation.h"
+#include "base/globals.h"
 
 namespace ltp
 {
@@ -15,6 +16,8 @@ namespace ltp
 		public:
 			AxesInformation(QWidget *parent = 0);
 			~AxesInformation();  
+
+			void setValidAxes(const std::vector<ltp::base::Axis> &validAxes);
 
 		private:
 			Ui::AxesInformationClass ui;

@@ -9,12 +9,12 @@ PanelButton::PanelButton(QWidget *parent)
 {
     picture_ = new QLabel();			// 按钮上图片
     picture_->setStyleSheet(QString("background:transparent;"));
-	picture_->setPixmap(QPixmap("../image/skip.png"));
+	picture_->setPixmap(QPixmap(":/LtpClient/image/skip_rest.png"));
 	picture_->setAlignment(Qt::AlignHCenter);
 
 	text_ = new QLabel();				// 按钮上文字
     text_->setStyleSheet(QString("font:12px SIMHEI;background:transparent;"));
-    text_->setText("跳过");
+    text_->setText(tr("跳过"));
 	text_->setAlignment(Qt::AlignHCenter);
 
     QVBoxLayout* myLayout = new QVBoxLayout();		// 按钮内嵌布局
@@ -26,8 +26,8 @@ PanelButton::PanelButton(QWidget *parent)
     this->setLayout(myLayout);
 	this->setCheckable(true);
 	this->setStyleSheet("QPushButton{background:#F0F0F0; font:12px SIMHEI; width:52px; height:46px; border-style:none;} \
-								   QPushButton:hover{background:yellow; font:12px SIMHEI; width:52px; height:46px; border-style:none;} \
-								   QPushButton:checked{background:yellow; font:12px SIMHEI; width:52px; height:46px; border-style:none;}");
+								   QPushButton:hover{background:#0064C8; font:12px SIMHEI; width:52px; height:46px; border-style:none;} \
+								   QPushButton:checked{background:#0064C8; font:12px SIMHEI; width:52px; height:46px; border-style:none;}");
 }
 
 PanelButton::~PanelButton()

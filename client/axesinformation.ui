@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>680</width>
-    <height>228</height>
+    <height>268</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,615 +26,633 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background:transparent;</string>
+   <string notr="true">background:transparent;
+QFrame{border: 2px solid red;}</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
+  <layout class="QGridLayout" name="gridLayout" columnstretch="74,137,137,137,148">
+   <property name="leftMargin">
+    <number>35</number>
+   </property>
+   <property name="topMargin">
+    <number>9</number>
+   </property>
+   <property name="horizontalSpacing">
     <number>0</number>
    </property>
-   <property name="margin">
-    <number>0</number>
+   <property name="verticalSpacing">
+    <number>6</number>
    </property>
-   <item>
-    <layout class="QGridLayout" name="mainLayout_" rowstretch="0,1,1,1,1,1,1,1,1,0" columnstretch="62,137,137,137,194" columnminimumwidth="0,0,0,0,0">
-     <property name="leftMargin">
-      <number>35</number>
+   <item row="0" column="1">
+    <widget class="QLabel" name="machineCoordinateHeader_">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>25</height>
+      </size>
      </property>
-     <property name="topMargin">
-      <number>11</number>
+     <property name="styleSheet">
+      <string notr="true">font:14px SIMHEI;</string>
      </property>
-     <property name="rightMargin">
-      <number>14</number>
+     <property name="text">
+      <string>  机械坐标</string>
      </property>
-     <property name="bottomMargin">
-      <number>2</number>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
-     <property name="horizontalSpacing">
-      <number>0</number>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetNoConstraint</enum>
      </property>
-     <property name="verticalSpacing">
-      <number>1</number>
-     </property>
-     <item row="4" column="0">
-      <widget class="QLabel" name="labelAxes4_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>A</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="2">
-      <widget class="QLabel" name="workpieceCoordinateAxes3_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelAxes2_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>Y</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="2">
-      <widget class="QLabel" name="workpieceCoordinateAxes4_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="motorLoadHeader_">
-       <property name="styleSheet">
-        <string notr="true">font:14px SIMHEI;</string>
-       </property>
-       <property name="text">
-        <string>     马达负载</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="machineCoordinateAxes1_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLabel" name="machineCoordinateAxes5_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="machineCoordinateAxes3_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="labelAxes5_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>C</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
-       <item>
-        <widget class="QLabel" name="currentWorkpieceCoordinate_">
-         <property name="styleSheet">
-          <string notr="true">font:14px Arial;color:#0064C8;</string>
-         </property>
-         <property name="text">
-          <string>G54 </string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="workpieceCoordinateHeader_">
-         <property name="styleSheet">
-          <string notr="true">font:14px SIMHEI;</string>
-         </property>
-         <property name="text">
-          <string>工件坐标</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="machiningRemainHeader_">
-       <property name="styleSheet">
-        <string notr="true">font:14px SIMHEI;</string>
-       </property>
-       <property name="text">
-        <string>  加工余量</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="labelAxes3_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>Z</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelAxes1_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>X</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="machineCoordinateAxes4_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="labelAxes6_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>B</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="machineCoordinateHeader_">
-       <property name="styleSheet">
-        <string notr="true">font:14px SIMHEI;</string>
-       </property>
-       <property name="text">
-        <string>  机械坐标</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="3">
-      <widget class="QLabel" name="machiningRemainAxes4_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="3">
-      <widget class="QLabel" name="machiningRemainAxes5_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="3">
-      <widget class="QLabel" name="machiningRemainAxes6_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="3">
-      <widget class="QLabel" name="machiningRemainAxes3_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="machineCoordinateAxes2_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QLabel" name="workpieceCoordinateAxes2_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QLabel" name="machineCoordinateAxes6_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QLabel" name="machiningRemainAxes1_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="2">
-      <widget class="QLabel" name="workpieceCoordinateAxes6_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="2">
-      <widget class="QLabel" name="workpieceCoordinateAxes5_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLabel" name="workpieceCoordinateAxes1_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="4">
-      <widget class="ltp::base::LoadBar" name="motorLoadAxes3_">
-       <property name="value">
-        <number>50</number>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="4">
-      <widget class="ltp::base::LoadBar" name="motorLoadAxes4_">
-       <property name="value">
-        <number>60</number>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QLabel" name="machiningRemainAxes2_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="4">
-      <widget class="ltp::base::LoadBar" name="motorLoadAxes2_">
-       <property name="value">
-        <number>30</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="4">
-      <widget class="ltp::base::LoadBar" name="motorLoadAxes1_">
-       <property name="minimumSize">
+     <item>
+      <widget class="QLabel" name="currentWorkpieceCoordinate_">
+       <property name="maximumSize">
         <size>
-         <width>100</width>
-         <height>8</height>
+         <width>16777215</width>
+         <height>25</height>
         </size>
        </property>
-       <property name="value">
-        <number>24</number>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="4">
-      <widget class="ltp::base::LoadBar" name="motorLoadAxes5_">
-       <property name="value">
-        <number>80</number>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="4">
-      <widget class="ltp::base::LoadBar" name="motorLoadAxes6_">
-       <property name="value">
-        <number>100</number>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="0">
-      <widget class="QLabel" name="labelAxes8_">
        <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
+        <string notr="true">font:14px Arial;color:#0064C8;</string>
        </property>
        <property name="text">
-        <string>V</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="1">
-      <widget class="QLabel" name="machineCoordinateAxes9_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
+        <string>G54</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
-     <item row="7" column="3">
-      <widget class="QLabel" name="machiningRemainAxes7_">
+     <item>
+      <widget class="QLabel" name="workpieceCoordinateHeader_">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>25</height>
+        </size>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
+        <string notr="true">font:14px SIMHEI;</string>
        </property>
        <property name="text">
-        <string>-1234.123</string>
+        <string>工件坐标</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="labelAxes7_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>U</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="2">
-      <widget class="QLabel" name="workpieceCoordinateAxes9_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="0">
-      <widget class="QLabel" name="labelAxes9_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>W</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <widget class="QLabel" name="machineCoordinateAxes8_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="2">
-      <widget class="QLabel" name="workpieceCoordinateAxes7_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="2">
-      <widget class="QLabel" name="workpieceCoordinateAxes8_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="3">
-      <widget class="QLabel" name="machiningRemainAxes9_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QLabel" name="machineCoordinateAxes7_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="3">
-      <widget class="QLabel" name="machiningRemainAxes8_">
-       <property name="styleSheet">
-        <string notr="true">font:18px Arial Bold;</string>
-       </property>
-       <property name="text">
-        <string>-1234.123</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="4">
-      <widget class="ltp::base::LoadBar" name="motorLoadAxes7_">
-       <property name="value">
-        <number>100</number>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="4">
-      <widget class="ltp::base::LoadBar" name="motorLoadAxes8_">
-       <property name="value">
-        <number>100</number>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="4">
-      <widget class="ltp::base::LoadBar" name="motorLoadAxes9_">
-       <property name="value">
-        <number>100</number>
        </property>
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="machiningRemainHeader_">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font:14px SIMHEI;</string>
+     </property>
+     <property name="text">
+      <string>  加工余量</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QLabel" name="motorLoadHeader_">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font:14px SIMHEI;</string>
+     </property>
+     <property name="text">
+      <string>     马达负载</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelAxesX_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="machineCoordinateAxesX_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="workpieceCoordinateAxesX_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QLabel" name="machiningRemainAxesX_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="ltp::base::LoadBar" name="motorLoadAxesX_">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelAxesY_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>Y</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLabel" name="machineCoordinateAxesY_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="workpieceCoordinateAxesY_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QLabel" name="machiningRemainAxesY_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="ltp::base::LoadBar" name="motorLoadAxesY_">
+     <property name="value">
+      <number>30</number>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="labelAxesZ_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>Z</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLabel" name="machineCoordinateAxesZ_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QLabel" name="workpieceCoordinateAxesZ_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QLabel" name="machiningRemainAxesZ_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4">
+    <widget class="ltp::base::LoadBar" name="motorLoadAxesZ_">
+     <property name="value">
+      <number>50</number>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="labelAxesA_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>A</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLabel" name="machineCoordinateAxesA_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QLabel" name="workpieceCoordinateAxesA_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="3">
+    <widget class="QLabel" name="machiningRemainAxesA_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="4">
+    <widget class="ltp::base::LoadBar" name="motorLoadAxesA_">
+     <property name="value">
+      <number>60</number>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="labelAxesB_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>B</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLabel" name="machineCoordinateAxesB_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QLabel" name="workpieceCoordinateAxesB_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="3">
+    <widget class="QLabel" name="machiningRemainAxesB_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="4">
+    <widget class="ltp::base::LoadBar" name="motorLoadAxesB_">
+     <property name="value">
+      <number>80</number>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="labelAxesC_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>C</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLabel" name="machineCoordinateAxesC_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QLabel" name="workpieceCoordinateAxesC_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="3">
+    <widget class="QLabel" name="machiningRemainAxesC_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="4">
+    <widget class="ltp::base::LoadBar" name="motorLoadAxesC_">
+     <property name="value">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QLabel" name="labelAxesU_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>U</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QLabel" name="machineCoordinateAxesU_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QLabel" name="workpieceCoordinateAxesU_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="3">
+    <widget class="QLabel" name="machiningRemainAxesU_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="4">
+    <widget class="ltp::base::LoadBar" name="motorLoadAxesU_">
+     <property name="value">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="labelAxesV_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>V</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLabel" name="machineCoordinateAxesV_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
+    <widget class="QLabel" name="workpieceCoordinateAxesV_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="3">
+    <widget class="QLabel" name="machiningRemainAxesV_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="4">
+    <widget class="ltp::base::LoadBar" name="motorLoadAxesV_">
+     <property name="value">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="labelAxesW_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>W</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QLabel" name="machineCoordinateAxesW_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="2">
+    <widget class="QLabel" name="workpieceCoordinateAxesW_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="3">
+    <widget class="QLabel" name="machiningRemainAxesW_">
+     <property name="styleSheet">
+      <string notr="true">font:18px Arial Bold;</string>
+     </property>
+     <property name="text">
+      <string>-1234.123</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="4">
+    <widget class="ltp::base::LoadBar" name="motorLoadAxesW_">
+     <property name="value">
+      <number>100</number>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

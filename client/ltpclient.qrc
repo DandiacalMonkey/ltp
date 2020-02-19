@@ -1,4 +1,21 @@
 <RCC>
-    <qresource prefix="LtpClient">
+    <qresource prefix="/LtpClient">
+        <file>image/net_connected.png</file>
+        <file>image/mode_auto.png</file>
+        <file>image/mode_handwheel.png</file>
+        <file>image/mode_JOG.png</file>
+        <file>image/mode_MDI.png</file>
+        <file>image/mode_reference_point.png</file>
+        <file>image/handwheel_simulation_disabled.png</file>
+        <file>image/handwheel_simulation_pressed.png</file>
+        <file>image/handwheel_simulation_rest.png</file>
+        <file>image/single_block.png</file>
+        <file>image/single_block_disabled.png</file>
+        <file>image/single_block_pressed.png</file>
+        <file>image/skip_pressed.png</file>
+        <file>image/skip_rest.png</file>
+        <file>image/skip_rest_disable.png</file>
+        <file>image/Back_pressed.png</file>
+        <file>image/Back_rest.png</file>
     </qresource>
 </RCC>
