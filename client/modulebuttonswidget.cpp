@@ -68,3 +68,31 @@ void ModuleButtonsWidget::setReturnButtonEnabled(bool enabled)
 {
 	ui.returnButton_->setEnabled(enabled);
 }
+
+void ModuleButtonsWidget::setCommandButtonName(int id, QString name)
+{
+	if (id == BUTTON1)
+	{
+		ui.moduleButton1_->setText(name);
+	} 
+	else if (id == BUTTON2)
+	{
+		ui.moduleButton2_->setText(name);
+	}
+	else if (id == BUTTON3)
+	{
+		ui.moduleButton3_->setText(name);
+	}
+	else if (id == BUTTON4)
+	{
+		ui.moduleButton4_->setText(name);
+	}
+	else if (id == BUTTON5)
+	{
+		ui.moduleButton5_->setText(name);
+	}
+	else if (id == BUTTON6)
+	{
+		ui.moduleButton6_->setText(name);
+	}
+}

@@ -71,9 +71,6 @@ AxesInformation::AxesInformation(QWidget *parent)
 	tempAxis.push_back(ltp::base::V_AXIS);
 	tempAxis.push_back(ltp::base::W_AXIS);
 	setValidAxes(tempAxis);
-
-
-
 	ui.gridLayout->update();
 }
 

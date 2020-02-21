@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProcessWidgetClass</class>
- <widget class="QWidget" name="ProcessWidgetClass">
+ <class>ProgramEditWidgetClass</class>
+ <widget class="QWidget" name="ProgramEditWidgetClass">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>682</width>
+    <width>838</width>
     <height>519</height>
    </rect>
   </property>
@@ -36,24 +36,24 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="ltp::client::ModuleButtonsWidget" name="processModuleButtonWidget_" native="true"/>
+    <widget class="ltp::client::ModuleButtonsWidget" name="editModuleButtonWidget_" native="true"/>
    </item>
    <item>
-    <widget class="ltp::client::ProcessBar" name="processBar_" native="true"/>
+    <widget class="ltp::client::ProgramEditBar" name="programEditBar_" native="true"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ltp::client::ProcessBar</class>
-   <extends>QWidget</extends>
-   <header>processbar.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ltp::client::ModuleButtonsWidget</class>
    <extends>QWidget</extends>
    <header>modulebuttonswidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ltp::client::ProgramEditBar</class>
+   <extends>QWidget</extends>
+   <header>programeditbar.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

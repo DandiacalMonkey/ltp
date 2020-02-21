@@ -19,6 +19,20 @@ namespace ltp
 		private:
 			Ui::TextEditClass ui;
 
+		private slots:
+			void onCurrentLineHighLight();
+			void cursorChanged();
+			void focusLine(int lineNum);
+
+		public slots:
+			void save();
+			void saveAs(const QString& fileName);
+			void removeLine();
+			void copyText();
+			void pasteText();
+			void cutText();
+			void recoverText();
+			void repealText();
 		};
 	}
 }

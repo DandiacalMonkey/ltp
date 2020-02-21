@@ -17,5 +17,9 @@
         <file>image/skip_rest_disable.png</file>
         <file>image/Back_pressed.png</file>
         <file>image/Back_rest.png</file>
+        <file>image/add_pressed.png</file>
+        <file>image/add_rest.png</file>
+        <file>image/sub_pressed.png</file>
+        <file>image/sub_rest.png</file>
     </qresource>
 </RCC>

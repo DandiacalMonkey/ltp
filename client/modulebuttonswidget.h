@@ -29,6 +29,7 @@ namespace ltp
 
 			void setButtonEnabled(bool enabled);
 			void setReturnButtonEnabled(bool enabled);
+			void setCommandButtonName(int id, QString name);
 
 		private:
 			Ui::ModuleButtonsWidgetClass ui;
