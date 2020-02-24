@@ -1,8 +1,12 @@
-﻿#include <vector>
+﻿#ifndef LTP_CLIENT_BUTTON_PROCESSOR_H_
+#define LTP_CLIENT_BUTTON_PROCESSOR_H_
+
+#include <vector>
 #include <memory>
 #include <QObject>
 #include <QTimer>
 #include <QMutex>
+#include "base/singleton.hpp"
 
 namespace ltp
 {
@@ -11,7 +15,8 @@ namespace ltp
 		class ButtonProcessor : public QObject
 		{
 			Q_OBJECT
-
+			//添加单例模板函数作为友元函数
+			friend ButtonProcessor& getInstance<ButtonProcessor>();
 		public:
 			class ButtonInterface
 			{
@@ -39,12 +44,11 @@ namespace ltp
 				mutable QMutex mutex_;
 				State state_;
 			};
-
-			static ButtonProcessor& getInstance();
-			ButtonProcessor();
 			~ButtonProcessor() {};
 
 		private:
+			//构造函数私有
+			ButtonProcessor();
 			//处理的调用时间间隔
 			const double kProcessInterval_;
 			//添加按钮
@@ -62,3 +66,5 @@ namespace ltp
 		};
 	}
 }
+
+#endif // LTP_CLIENT_BUTTON_PROCESSOR_H_

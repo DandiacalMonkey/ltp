@@ -47,6 +47,12 @@ namespace ltp
 			ABSOLUTE,
 			INBREMENTAL
 		};
+		enum MacroAddress
+		{
+			AXIS_INTERVAL = 50,
+			MECHANICAL_COORDINATE = 30128,
+			CHANNEL_INTERVAL = 100000
+		};
 	}
 }
 

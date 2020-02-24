@@ -13,12 +13,6 @@ bool ButtonProcessor::ButtonInterface::isFinished() const
 	return state_ == RELEASED;
 }
 
-ButtonProcessor& ButtonProcessor::getInstance()
-{
-	static ButtonProcessor buttonProcessor;
-	return buttonProcessor;
-}
-
 ButtonProcessor::ButtonProcessor()
 	: kProcessInterval_(20)
 {
