@@ -18,19 +18,18 @@ LoadBar::~LoadBar()
 
 void LoadBar::colorChanged(int value)
 {
+	QString styleSheet = "QProgressBar{text-align:right; margin-right:40px; margin-top:3px; margin-bottom:3px; font:14px Arial;} \
+						  QProgressBar::chunk {background-color:%0}";
 	if (value < 40)			// 绿色范围
 	{
-		this->setStyleSheet("QProgressBar{text-align:right; margin-right:40px; margin-top:3px; margin-bottom:3px; font:14px Arial;} \
-							 QProgressBar::chunk { background-color: #00AA3C }");
+		this->setStyleSheet(styleSheet.arg("#00AA3C"));
 	} 
 	else if (value >= 40 && value < 70)			// 黄色范围
 	{
-		this->setStyleSheet("QProgressBar{text-align:right; margin-right:40px; margin-top:3px; margin-bottom:3px; font:14px Arial;} \
-							 QProgressBar::chunk { background-color: #FFD524 }");
+		this->setStyleSheet(styleSheet.arg("#FFD524"));
 	}
 	else				// 红色警示范围
 	{
-		this->setStyleSheet("QProgressBar{text-align:right; margin-right:40px; margin-top:3px; margin-bottom:3px; font:14px Arial;} \
-							 QProgressBar::chunk { background-color: #FA3200 }");
+		this->setStyleSheet(styleSheet.arg("#FA3200"));
 	}
 }

@@ -68,6 +68,41 @@ extern "C" DLL_DECLARE int remote_get_open_file_name(int nHandle, char* chFileNa
 extern "C" DLL_DECLARE int remote_get_exe_file_md5sum(int nHandle, int nPath, char *buf);
 
 /*
+*描  述：设定除ftp相关接口以外接口（宏变量读写等）的socket接收超时时间
+*参  数：nHandle:句柄  nMillisecond:超时时间(ms)
+*返回值：0：成功  -1：失败
+*/
+extern "C" DLL_DECLARE int remote_set_receive_timeout(int nHandle, int nMillisecond);
+
+/*
+*描  述：设定除ftp相关接口以外接口（宏变量读写等）的socket发送超时时间
+*参  数：nHandle:句柄  nMillisecond:超时时间(ms)
+*返回值：0：成功  -1：失败
+*/
+extern "C" DLL_DECLARE int remote_set_send_timeout(int nHandle, int nMillisecond);
+
+/*
+*描  述：获取PLC变量
+*参  数：nHandle:句柄  nName:PLC变量对应的枚举值
+*返回值：无符号PLC变量
+*/
+extern "C" DLL_DECLARE unsigned long remote_read_plc_variable(int nHandle, int nName);
+
+/*
+*描  述：获取PLC变量
+*参  数：nHandle:句柄  nName:PLC变量对应的枚举值 val:储存变量
+*返回值：0：成功  -1：失败
+*/
+extern "C" DLL_DECLARE int remote_read_plc_variable_p(int nHandle, int nName, unsigned long* val);
+
+/*
+*描  述：修改PLC变量
+*参  数：nHandle:句柄  nName:PLC变量对应的枚举值 val:目标值
+*返回值：0：成功  -1：失败
+*/
+extern "C" DLL_DECLARE int remote_write_plc_variable(int nHandle, int nName, unsigned long val);
+
+/*
 *描  述：远程执行NC指令
 *参  数：nHandle:句柄  buf:存储需要执行的指令 nLength:buffer的大小
 *返回值：0：成功  -1：失败
@@ -87,7 +122,7 @@ extern "C" DLL_DECLARE int remote_get_file_line(int nHandle, int nLine, char* ch
 *返回值：int：0：传输成功   -1：传输失败
 *说明：	因为文件名包含大写字母，这个函数将被废弃
 */
-extern "C" DLL_DECLARE int remote_upLoad_file(int nHandle, char* chFileName);
+extern "C" DLL_DECLARE int remote_upLoad_file(int nHandle, const char* chFileName);
 
 /*
 *描  述：上传文件到控制器用户盘（该接口执行传输文件过程，需要一定时间，需要放到线程中去执行，否则会卡顿）
@@ -104,7 +139,7 @@ extern "C" DLL_DECLARE int remote_upLoad_file(int nHandle, char* chFileName);
 *返回值：int：0：传输成功   -1：传输失败
 *说明  : 增加了路径选择
 */
-extern "C" DLL_DECLARE int remote_upload_file(int nHandle, char* chFileName, int nPath);
+extern "C" DLL_DECLARE int remote_upload_file(int nHandle, const char* chFileName, int nPath);
 
 /*
 *描  述：删除控制器用户盘上的文件
@@ -121,7 +156,7 @@ extern "C" DLL_DECLARE int remote_upload_file(int nHandle, char* chFileName, int
 *返回值：int：0：传输成功   -1：传输失败
 *说明  : 增加了路径选择
 */
-extern "C" DLL_DECLARE int remote_delete_file(int nHandle, char* chFileName, int nPath);
+extern "C" DLL_DECLARE int remote_delete_file(int nHandle, const char* chFileName, int nPath);
 
 /*
 *描  述：文件传输进度

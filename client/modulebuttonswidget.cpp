@@ -26,35 +26,14 @@ ModuleButtonsWidget::ModuleButtonsWidget(QWidget* parent)
 	buttonGroup_->addButton(ui.moduleButton6_, BUTTON6);
 
 	// buttonGroup_信号槽
-	connect(buttonGroup_, SIGNAL(buttonClicked(int)), this, SLOT(buttonClicked(int)));
-	connect(buttonGroup_, SIGNAL(buttonPressed(int)), this, SLOT(buttonPressed(int)));
-	connect(buttonGroup_, SIGNAL(buttonReleased(int)), this, SLOT(buttonReleased(int)));
+	connect(buttonGroup_, SIGNAL(buttonClicked(int)), SIGNAL(buttonClicked(int)));
+	connect(buttonGroup_, SIGNAL(buttonPressed(int)), SIGNAL(buttonPressed(int)));
+	connect(buttonGroup_, SIGNAL(buttonReleased(int)), SIGNAL(buttonReleased(int)));
 	// 返回按钮信号槽
-	connect(ui.returnButton_, SIGNAL(buttonClicked(int)), this, SLOT(returnButtonClicked(int)));
+	connect(ui.returnButton_, SIGNAL(buttonClicked(int)), SIGNAL(returnButtonClicked(int)));
 }
 
 ModuleButtonsWidget::~ModuleButtonsWidget()
-{
-
-}
-
-
-void ModuleButtonsWidget::buttonClicked(int id)
-{
-	
-}
-
-void ModuleButtonsWidget::buttonPressed(int id)
-{
-
-}
-
-void ModuleButtonsWidget::buttonReleased(int id)
-{
-
-}
-
-void ModuleButtonsWidget::returnButtonClicked()
 {
 
 }

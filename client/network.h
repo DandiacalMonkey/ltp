@@ -3,6 +3,7 @@
 
 #include <string>
 #include "base/singleton.hpp"
+#include "common/rmi/globals.h"
 
 namespace ltp
 {
@@ -12,6 +13,13 @@ namespace ltp
 		{
 			friend Network& ltp::base::getInstance<Network>();
 		public:
+			enum ConnectState
+			{
+				CONNECTED,
+				DISCONNECTED,
+				CONNECTING,
+				CONTROLER_EXCEPTION
+			};
 			~Network();
 			//返回服务器ip
 			const std::string& host() const
@@ -26,8 +34,12 @@ namespace ltp
 			void connect();
 			void disconnect();
 			void reconnect();
+			//读写宏变量
 			double macroVariable(int address) const;
 			void setMacroVariable(int address, double value);
+			//读写PLC变量
+			unsigned long plcVariable(rmi::PlcVariableName name) const;
+			void setPlcVariable(rmi::PlcVariableName name, unsigned long value);
 		private:
 			Network();
 			//服务器ip

@@ -22,6 +22,16 @@ namespace ltp
 			{
 				base::getInstance<Network>().setMacroVariable(address, value);
 			}
+			//获取PLC变量
+			unsigned long plcVariable(rmi::PlcVariableName name) const
+			{
+				return base::getInstance<Network>().plcVariable(name);
+			}
+			//写PLC变量
+			void setPlcVariable(rmi::PlcVariableName name, unsigned long value)
+			{
+				base::getInstance<Network>().setPlcVariable(name, value);
+			}
 		};
 	}
 }

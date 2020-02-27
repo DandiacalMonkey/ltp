@@ -31,15 +31,17 @@ namespace ltp
 			void setReturnButtonEnabled(bool enabled);
 			void setCommandButtonName(int id, QString name);
 
-		private:
-			Ui::ModuleButtonsWidgetClass ui;
-			QButtonGroup *buttonGroup_;
-
-		private slots:
+		signals:
 			void buttonClicked(int id);
 			void buttonPressed(int id);
 			void buttonReleased(int id);
 			void returnButtonClicked();
+
+		private:
+			Ui::ModuleButtonsWidgetClass ui;
+			QButtonGroup *buttonGroup_;
+
+		
 		};
 	}
 }
