@@ -165,4 +165,11 @@ extern "C" DLL_DECLARE int remote_delete_file(int nHandle, const char* chFileNam
 */
 extern "C" DLL_DECLARE int remote_get_process(int nHandle);
 
+/*
+*描  述：连接状态
+*参  数：nHandle:句柄
+*返回值：int：已连接返回：0  连接断开返回-1
+*/
+extern "C" DLL_DECLARE int remote_connect_status(int nHandle);
+
 #endif // RMI_REMOTE_COMM_H_

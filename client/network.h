@@ -2,6 +2,8 @@
 #define LTP_CLIENT_NETWORK_H_
 
 #include <string>
+#include <QObject>
+#include <QTimer>
 #include "base/singleton.hpp"
 #include "common/rmi/globals.h"
 
@@ -9,16 +11,19 @@ namespace ltp
 {
 	namespace client
 	{
-		class Network
+		class Network : public QObject
 		{
+			Q_OBJECT
 			friend Network& ltp::base::getInstance<Network>();
 		public:
 			enum ConnectState
 			{
+				//通信正常
 				CONNECTED,
-				DISCONNECTED,
-				CONNECTING,
-				CONTROLER_EXCEPTION
+				//网络未连接
+				UNCONNECTED,
+				//网络已连接，又被断开
+				DISCONNECTED
 			};
 			~Network();
 			//返回服务器ip
@@ -40,12 +45,25 @@ namespace ltp
 			//读写PLC变量
 			unsigned long plcVariable(rmi::PlcVariableName name) const;
 			void setPlcVariable(rmi::PlcVariableName name, unsigned long value);
+		signals:
+			//由未连接或连接断开状态成功连接
+			void connected();
+			//主动断开连接
+			void unconnected();
+			//网络不通、服务端出错导致的连接断开
+			void disconnected();
 		private:
 			Network();
 			//服务器ip
 			std::string host_;
 			//连接到控制器的句柄
 			int handle_;
+			//连接状态
+			ConnectState connectState_;
+			//检查连接状态定时器
+			QTimer checkConnectionTimer_;
+		private slots:
+			void checkConnection();
 		};
 	}
 }
