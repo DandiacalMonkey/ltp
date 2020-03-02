@@ -73,6 +73,9 @@ void ltp::client::Network::setPlcVariable(rmi::PlcVariableName name, unsigned lo
 Network::Network()
 	:connectState_(UNCONNECTED)
 {
+	const int kCheckConnectionInterval = 200;
+	checkConnectionTimer_.start(kCheckConnectionInterval);
+	QObject::connect(&checkConnectionTimer_, SIGNAL(timeout()), SLOT(checkConnection()));
 }
 
 Network::~Network()
