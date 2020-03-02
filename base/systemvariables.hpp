@@ -27,12 +27,12 @@ namespace ltp
 				syncVariables_.setMacroVariable(int address, double value);
 			}
 			//获取PLC变量
-			unsigned long plcVariable(rmi::PlcVariableName name) const
+			unsigned long plcVariable(rmi::PlcReadOnlyVariableName name) const
 			{
 				return syncVariables_.plcVariable(name);
 			}
 			//写PLC变量
-			void setPlcVariable(rmi::PlcVariableName name, unsigned long value)
+			void setPlcVariable(rmi::PlcWriteOnlyVariableName name, unsigned long value)
 			{
 				syncVariables_.setPlcVariable(name, value);
 			}

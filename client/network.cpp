@@ -50,7 +50,7 @@ void ltp::client::Network::setMacroVariable(int address, double value)
 	}
 }
 
-unsigned long ltp::client::Network::plcVariable(rmi::PlcVariableName name) const
+unsigned long ltp::client::Network::plcVariable(rmi::PlcReadOnlyVariableName name) const
 {
 	unsigned long value = 0;
 	//处于连接状态才执行，防止超时次数过多卡顿
@@ -61,7 +61,7 @@ unsigned long ltp::client::Network::plcVariable(rmi::PlcVariableName name) const
 	return value;
 }
 
-void ltp::client::Network::setPlcVariable(rmi::PlcVariableName name, unsigned long value)
+void ltp::client::Network::setPlcVariable(rmi::PlcWriteOnlyVariableName name, unsigned long value)
 {
 	//处于连接状态才执行，防止超时次数过多卡顿
 	if (remote_connect_status(handle_) == 0)

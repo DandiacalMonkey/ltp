@@ -43,8 +43,8 @@ namespace ltp
 			double macroVariable(int address) const;
 			void setMacroVariable(int address, double value);
 			//读写PLC变量
-			unsigned long plcVariable(rmi::PlcVariableName name) const;
-			void setPlcVariable(rmi::PlcVariableName name, unsigned long value);
+			unsigned long plcVariable(rmi::PlcReadOnlyVariableName name) const;
+			void setPlcVariable(rmi::PlcWriteOnlyVariableName name, unsigned long value);
 		signals:
 			//由未连接或连接断开状态成功连接
 			void connected();

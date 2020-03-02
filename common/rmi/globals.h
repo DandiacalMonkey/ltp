@@ -3,8 +3,8 @@
 
 namespace rmi
 {
-	/* 定义PLC变量名 */
-	enum PlcVariableName
+	/* 定义PLC只写变量名 */
+	enum PlcWriteOnlyVariableName
 	{
 		G_CHAN1,
 		G_CHAN2,
@@ -48,8 +48,12 @@ namespace rmi
 		G_JMMINUS,
 
 		G_JMPLUS2,
-		G_JMMINUS2,
+		G_JMMINUS2
+	};
 
+	//定义PLC只读变量名
+	enum PlcReadOnlyVariableName
+	{
 		F_CHAN1,
 		F_CHAN2,
 		F_SYSREADY,
