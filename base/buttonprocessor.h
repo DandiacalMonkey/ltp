@@ -52,7 +52,7 @@ namespace ltp
 			//处理的调用时间间隔
 			const double kProcessInterval_;
 			//添加按钮
-			void  addButton(const std::shared_ptr<ButtonInterface>& button);
+			void addButton(const std::shared_ptr<ButtonInterface>& button);
 			//触发处理函数的定时器
 			QTimer processTimer_;
 			//防止添加按钮和处理函数冲突

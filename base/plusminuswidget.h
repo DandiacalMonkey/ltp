@@ -16,7 +16,7 @@ namespace ltp
 			PlusMinusWidget(QWidget* parent = 0);
 			~PlusMinusWidget();
 
-			void setValue(int value);
+			void setValue(int value);			// 数值改变
 		private:
 			Ui::PlusMinusWidgetClass ui;
 		};

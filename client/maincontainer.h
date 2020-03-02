@@ -18,6 +18,17 @@ namespace ltp
 
 		private:
 			Ui::MainContainerClass ui;
+
+		signals:
+			void signalTips(QString);						// 提示栏信息
+			void signalChangeProcessFileName(QString);		// 当前加工文件名改变
+			void signalChangeModules(QString);				// 切换模块，菜单栏信息修改
+
+		private slots:
+			void onModule(int);								// 切换模块
+			void onHome();									// 返回主页
+			void onEditModule();							// 切到程序编辑模块
+			void onProcessModule(QString);					// 切到加工模块
 		};
 	}
 }

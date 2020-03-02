@@ -20,19 +20,17 @@ namespace ltp
 			TitleBar(QWidget *parent = 0);
 			~TitleBar();  
 
-			void setMode(ltp::base::Mode modeType);
-			void setModuleName(const QString &name);
-			void setMachiningState(ltp::base::MachiningState state);
-			void setCurrentNCName(const QString &name);
-			void setErrorMessages(const std::vector<std::string> &errorMessages);
-
 		private:
 			Ui::TitleBarClass ui;
 			QTimer* updateTimeTimer_;
 
 		private slots:
-			void updateTime();
-
+			void updateTime();									// 更新时间
+			void setMode(ltp::base::Mode modeType);				// 设置模式信息
+			void setModuleName(const QString &name);			// 设置模块信息
+			void setMachiningState(ltp::base::MachiningState state);	// 设置加工状态
+			void setCurrentNCName(const QString &name);					// 设置当前加工文件
+			void setErrorMessages(const std::vector<std::string> &errorMessages);	// 设置报错信息
 		};
 	}
 }

@@ -8,7 +8,8 @@ ReturnButton::ReturnButton(QWidget *parent)
 {
 	this->setStyleSheet("QPushButton{background:transparent; border-image:url(:/LtpClient/image/Back_rest.png)0 25 0 0;} \
 						QPushButton:checked{background:#0064C8; border-image:url(:/LtpClient/image/Back_pressed.png)0 25 0 0;} \
-						QPushButton:hover{background:#0064C8; border-image:url(:/LtpClient/image/Back_pressed.png)0 25 0 0;}");
+						QPushButton:hover{background:#0064C8; border-image:url(:/LtpClient/image/Back_pressed.png)0 25 0 0;} \
+						QPushButton:!enabled{background:transparent; border-image:none;}");
 	
 }
 

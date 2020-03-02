@@ -16,7 +16,7 @@ namespace ltp
 			~LoadBar(); 
 
 		private slots:
-			void colorChanged(int);
+			void colorChanged(int);				// 改变颜色范围设置
 		};
 	}
 }

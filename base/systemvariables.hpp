@@ -4,6 +4,7 @@
 #include <array>
 #include "globals.h"
 #include "singleton.hpp"
+#include "common/rmi/globals.h"
 
 namespace ltp
 {
@@ -48,6 +49,51 @@ namespace ltp
 					coordinates[i] = macroVariable(MECHANICAL_COORDINATE + i * AXIS_INTERVAL + channelInterval);
 				}
 				return coordinates;
+			}
+
+			//获取当前工件坐标
+			std::array<double, AXIS_MAX> workpieceCoordinates(int channel) const
+			{
+				//储存结果
+				std::array<double, AXIS_MAX> coordinates;
+				//通道偏移
+				int channelInterval = (channel - 1) * CHANNEL_INTERVAL;
+				//调用宏变量接口获取工件坐标
+				for (int i = 0; i < AXIS_MAX; ++i)
+				{
+					coordinates[i] = macroVariable(WORKPIECE_COORDINATE + i * AXIS_INTERVAL + channelInterval);
+				}
+				return coordinates;
+			}
+
+			//获取当前加工余量
+			std::array<double, AXIS_MAX> machiningRemains(int channel) const
+			{
+				//储存结果
+				std::array<double, AXIS_MAX> remains;
+				//通道偏移
+				int channelInterval = (channel - 1) * CHANNEL_INTERVAL;
+				//调用宏变量接口获取加工余量
+				for (int i = 0; i < AXIS_MAX; ++i)
+				{
+					remains[i] = macroVariable(MACHINING_REMAIN + i * AXIS_INTERVAL + channelInterval);
+				}
+				return remains;
+			}
+
+			//获取当前马达负载
+			std::array<double, AXIS_MAX> motorLoads(int channel) const
+			{
+				//储存结果
+				std::array<double, AXIS_MAX> loads;
+				//通道偏移
+				int channelInterval = (channel - 1) * CHANNEL_INTERVAL;
+				//调用宏变量接口获取马达负载
+				for (int i = 0; i < AXIS_MAX; ++i)
+				{
+					loads[i] = macroVariable(MOTOR_LOAD + i * AXIS_INTERVAL + channelInterval);
+				}
+				return loads;
 			}
 
 		private:
