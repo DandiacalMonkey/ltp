@@ -20,6 +20,9 @@ namespace ltp
 		private:
 			Ui::ProcessBarClass ui;
 
+		private slots:
+			void onProcessFile(QString);
+
 		};
 	}
 }

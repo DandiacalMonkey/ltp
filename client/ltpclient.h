@@ -21,6 +21,10 @@ private:
 	Ui::LtpClientClass ui;
 	//模仿按钮处理指令的线程
 	QThread buttonProcessorThread_;
+
+private slots:
+	void setHintText(QString);
+	void setErrorText(std::vector<std::string>);
 };
 }
 }

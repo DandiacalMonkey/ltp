@@ -10,4 +10,10 @@ ProcessBar::ProcessBar(QWidget *parent)
 
 ProcessBar::~ProcessBar()
 {
+
+}
+
+void ProcessBar::onProcessFile(QString fileName)
+{
+	ui.filePreview_->openFile(fileName);
 }

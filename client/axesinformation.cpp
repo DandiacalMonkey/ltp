@@ -1,4 +1,6 @@
 ﻿#include "axesinformation.h"
+#include "base/systemvariables.hpp"
+#include "remotevariables.hpp"
 
 using ltp::client::AxesInformation;
 
@@ -70,8 +72,14 @@ AxesInformation::AxesInformation(QWidget *parent)
 	tempAxis.push_back(ltp::base::U_AXIS);
 	tempAxis.push_back(ltp::base::V_AXIS);
 	tempAxis.push_back(ltp::base::W_AXIS);
+	shownAxis = tempAxis;
 	setValidAxes(tempAxis);
 	ui.gridLayout->update();
+	
+	// 定时器每0.5s更新一次数据
+	QTimer *timer_ = new QTimer();
+	connect(timer_, SIGNAL(timeout()), this, SLOT(onTimer()));
+	timer_->start(500);
 }
 
 AxesInformation::~AxesInformation()
@@ -156,4 +164,68 @@ void AxesInformation::setValidAxes(const std::vector<ltp::base::Axis> &validAxes
 			ui.workpieceCoordinateAxesC_->show();
 		}
 	}
+}
+
+void AxesInformation::onTimer()
+{
+	// 机械坐标
+	auto machineCoord = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().mechanicalCoordinates(1);
+	// 工件坐标
+	auto workpieceCoord = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().workpieceCoordinates(1);
+	// 加工余量
+	auto machiningRemain = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().machiningRemains(1);
+	// 马达负载
+	auto motorLoad = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().motorLoads(1);
+	// 当前坐标系
+	double coord = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(ltp::base::COORDINATE);
+
+	// X轴
+	ui.machineCoordinateAxesX_->setText(QString::number(machineCoord[0]));
+	ui.workpieceCoordinateAxesX_->setText(QString::number(workpieceCoord[0]));
+	ui.machiningRemainAxesX_->setText(QString::number(machiningRemain[0]));
+	ui.motorLoadAxesX_->setValue(motorLoad[0]);
+	// Y轴
+	ui.machineCoordinateAxesY_->setText(QString::number(machineCoord[1]));
+	ui.workpieceCoordinateAxesY_->setText(QString::number(workpieceCoord[1]));
+	ui.machiningRemainAxesY_->setText(QString::number(machiningRemain[1]));
+	ui.motorLoadAxesY_->setValue(motorLoad[1]);
+	// Z轴
+	ui.machineCoordinateAxesZ_->setText(QString::number(machineCoord[2]));
+	ui.workpieceCoordinateAxesZ_->setText(QString::number(workpieceCoord[2]));
+	ui.machiningRemainAxesZ_->setText(QString::number(machiningRemain[2]));
+	ui.motorLoadAxesZ_->setValue(motorLoad[2]);
+	// A轴
+	ui.machineCoordinateAxesA_->setText(QString::number(machineCoord[3]));
+	ui.workpieceCoordinateAxesA_->setText(QString::number(workpieceCoord[3]));
+	ui.machiningRemainAxesA_->setText(QString::number(machiningRemain[3]));
+	ui.motorLoadAxesA_->setValue(motorLoad[3]);
+	// B轴
+	ui.machineCoordinateAxesB_->setText(QString::number(machineCoord[4]));
+	ui.workpieceCoordinateAxesB_->setText(QString::number(workpieceCoord[4]));
+	ui.machiningRemainAxesB_->setText(QString::number(machiningRemain[4]));
+	ui.motorLoadAxesB_->setValue(motorLoad[4]);
+	// C轴
+	ui.machineCoordinateAxesC_->setText(QString::number(machineCoord[5]));
+	ui.workpieceCoordinateAxesC_->setText(QString::number(workpieceCoord[5]));
+	ui.machiningRemainAxesC_->setText(QString::number(machiningRemain[5]));
+	ui.motorLoadAxesC_->setValue(motorLoad[5]);
+	// U轴
+	ui.machineCoordinateAxesU_->setText(QString::number(machineCoord[6]));
+	ui.workpieceCoordinateAxesU_->setText(QString::number(workpieceCoord[6]));
+	ui.machiningRemainAxesU_->setText(QString::number(machiningRemain[6]));
+	ui.motorLoadAxesU_->setValue(motorLoad[6]);
+	// V轴
+	ui.machineCoordinateAxesV_->setText(QString::number(machineCoord[7]));
+	ui.workpieceCoordinateAxesV_->setText(QString::number(workpieceCoord[7]));
+	ui.machiningRemainAxesV_->setText(QString::number(machiningRemain[7]));
+	ui.motorLoadAxesV_->setValue(motorLoad[7]);
+	// W轴
+	ui.machineCoordinateAxesW_->setText(QString::number(machineCoord[8]));
+	ui.workpieceCoordinateAxesW_->setText(QString::number(workpieceCoord[8]));
+	ui.machiningRemainAxesW_->setText(QString::number(machiningRemain[8]));
+	ui.motorLoadAxesW_->setValue(motorLoad[8]);
+
+	// 当前坐标系
+	QString str = "G" + QString::number(coord);
+	ui.currentWorkpieceCoordinate_->setText(str);
 }

@@ -27,21 +27,22 @@ namespace ltp
 			ModuleButtonsWidget(QWidget* parent = 0);
 			~ModuleButtonsWidget();
 
-			void setButtonEnabled(bool enabled);
+			void setButtonEnabled(int id, bool enabled);
 			void setReturnButtonEnabled(bool enabled);
 			void setCommandButtonName(int id, QString name);
+			void setCheckedButton(int id, bool checked);
+			void setExclusive(bool);
+			void setCheckableButton(bool);
 
 		signals:
-			void buttonClicked(int id);
-			void buttonPressed(int id);
-			void buttonReleased(int id);
-			void returnButtonClicked();
+			void signalButtonClicked(int id);
+			void signalButtonPressed(int id);
+			void signalButtonReleased(int id);
+			void signalReturnButtonClicked();
 
 		private:
 			Ui::ModuleButtonsWidgetClass ui;
 			QButtonGroup *buttonGroup_;
-
-		
 		};
 	}
 }

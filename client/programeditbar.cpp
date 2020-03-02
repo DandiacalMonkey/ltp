@@ -49,6 +49,11 @@ ProgramEditBar::ProgramEditBar(QWidget *parent)
 	connect(ui.recoverButton_, SIGNAL(clicked()), ui.textEdit_, SLOT(recoverText()));
 	// 恢复
 	connect(ui.repealButton_, SIGNAL(clicked()), ui.textEdit_, SLOT(repealText()));
+	// 保存
+	connect(ui.saveButton_, SIGNAL(clicked()), ui.textEdit_, SLOT(save()));
+	// 提示信息
+	connect(ui.textEdit_, SIGNAL(signalTips(QString)), this, SIGNAL(signalTips(QString)));
+
 }
 
 ProgramEditBar::~ProgramEditBar()
@@ -105,5 +110,91 @@ void ProgramEditBar::setValidAxes(const std::vector<ltp::base::Axis> &validAxes)
 			ui.axesLabelC_->show();
 			ui.workpieceCoordinateAxesC_->show();
 		}
+	}
+}
+
+void ProgramEditBar::onProgrameEdit()
+{
+	// 程序编程
+	ui.sideBarWidget_->hide();
+	ui.buttonWidget_->show();
+}
+
+void ProgramEditBar::onTeachEdit()
+{
+	// 示教编程
+	ui.sideBarWidget_->show();
+	ui.buttonWidget_->hide();
+}
+
+void ProgramEditBar::onEditTeach()
+{
+	// 编辑示教
+}
+
+void ProgramEditBar::onEditBarModule(int nModule)
+{
+	switch(nModule)
+	{
+	case 0:
+		onProgrameEdit();	// 程序编程
+		break;
+	case 1:
+		onTeachEdit();		// 示教编程
+		break;
+	case 2:
+		onEditTeach();		// 编辑示教
+		break;
+	default:
+		break;
+	}
+}
+
+void ProgramEditBar::onOpenFile(QString fileName)
+{
+	// 打开文件
+	ui.textEdit_->openFile(fileName);
+	// 更新当前打开文件名
+	updateFileName();
+}
+
+void ProgramEditBar::closeFile()
+{
+	ui.textEdit_->closeFile();
+	// 更新当前打开文件名
+	updateFileName();
+}
+
+void ProgramEditBar::updateFileName()
+{
+	// 更新当前打开文件名
+	QString currentFileName = ui.textEdit_->getCurrentFileName();
+	QString str = QString(tr("本地存储器：")) + currentFileName;
+	ui.programTitleLabel_->setText(str);
+}
+
+void ProgramEditBar::onTeachEditModule(int editModule)
+{
+	switch (editModule)
+	{
+	case 0:						// G114
+		ui.teachTitle_->setText(QString("G114"));
+		//ui.teachSchematicDiagram_->
+		break;
+	case 1:						// G00
+		ui.teachTitle_->setText(QString("G00"));
+		//ui.teachSchematicDiagram_->setPixmap(QPixmap((":/LtpClient/image/skip_rest.png")));
+		break;
+	case 2:						// G01
+		ui.teachTitle_->setText(QString("G01"));
+		break;
+	case 3:						// G02
+		ui.teachTitle_->setText(QString("G02"));
+		break;
+	case 4:						// G102
+		ui.teachTitle_->setText(QString("G102"));
+		break;
+	default:
+		break;
 	}
 }

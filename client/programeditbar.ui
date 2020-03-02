@@ -36,144 +36,146 @@
     <number>0</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" name="buttonLayout_">
-     <property name="spacing">
-      <number>10</number>
-     </property>
-     <property name="leftMargin">
-      <number>10</number>
-     </property>
-     <property name="topMargin">
-      <number>8</number>
-     </property>
-     <property name="rightMargin">
-      <number>36</number>
-     </property>
-     <property name="bottomMargin">
-      <number>8</number>
-     </property>
-     <item>
-      <widget class="ltp::base::PushButton" name="saveButton_">
-       <property name="text">
-        <string>保存</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="Line" name="line_3">
-       <property name="styleSheet">
-        <string notr="true">border-left: 1px solid #D2D2D2;</string>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="ltp::base::PushButton" name="repealButton_">
-       <property name="text">
-        <string>撤销</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="ltp::base::PushButton" name="recoverButton_">
-       <property name="text">
-        <string>恢复</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="Line" name="line_4">
-       <property name="styleSheet">
-        <string notr="true">border-left: 1px solid #D2D2D2;</string>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="ltp::base::PushButton" name="copyButton_">
-       <property name="text">
-        <string>复制</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="ltp::base::PushButton" name="cutButton_">
-       <property name="text">
-        <string>剪切</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="ltp::base::PushButton" name="pasteButton_">
-       <property name="text">
-        <string>粘贴</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="Line" name="line_5">
-       <property name="styleSheet">
-        <string notr="true">border-left: 1px solid #D2D2D2;</string>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="ltp::base::PushButton" name="removeLineButton_">
-       <property name="minimumSize">
-        <size>
-         <width>65</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>行删除</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="Line" name="line_6">
-       <property name="styleSheet">
-        <string notr="true">border-left: 1px solid #D2D2D2;</string>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="ltp::base::PushButton" name="fineLineButton_">
-       <property name="minimumSize">
-        <size>
-         <width>65</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>行查找</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="ltp::base::PushButton" name="findAndReplaceButton_">
-       <property name="minimumSize">
-        <size>
-         <width>80</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>查找替换</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QWidget" name="buttonWidget_" native="true">
+     <layout class="QHBoxLayout" name="buttonLayout_">
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>8</number>
+      </property>
+      <property name="rightMargin">
+       <number>36</number>
+      </property>
+      <property name="bottomMargin">
+       <number>8</number>
+      </property>
+      <item>
+       <widget class="ltp::base::PushButton" name="saveButton_">
+        <property name="text">
+         <string>保存</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_3">
+        <property name="styleSheet">
+         <string notr="true">border-left: 1px solid #D2D2D2;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="repealButton_">
+        <property name="text">
+         <string>撤销</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="recoverButton_">
+        <property name="text">
+         <string>恢复</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_4">
+        <property name="styleSheet">
+         <string notr="true">border-left: 1px solid #D2D2D2;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="copyButton_">
+        <property name="text">
+         <string>复制</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="cutButton_">
+        <property name="text">
+         <string>剪切</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="pasteButton_">
+        <property name="text">
+         <string>粘贴</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_5">
+        <property name="styleSheet">
+         <string notr="true">border-left: 1px solid #D2D2D2;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="removeLineButton_">
+        <property name="minimumSize">
+         <size>
+          <width>65</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>行删除</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_6">
+        <property name="styleSheet">
+         <string notr="true">border-left: 1px solid #D2D2D2;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="fineLineButton_">
+        <property name="minimumSize">
+         <size>
+          <width>65</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>行查找</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="findAndReplaceButton_">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>查找替换</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item>
     <widget class="Line" name="line">
@@ -191,7 +193,7 @@
       <string notr="true">font:13px SIMHEI;</string>
      </property>
      <property name="text">
-      <string>本地存储器：........</string>
+      <string/>
      </property>
     </widget>
    </item>
@@ -465,14 +467,14 @@
 background:#F5F5F5;</string>
              </property>
              <property name="text">
-              <string>快速定位 (G00)</string>
+              <string/>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QLabel" name="teachSchematicDiagram_">
              <property name="text">
-              <string>TextLabel</string>
+              <string/>
              </property>
             </widget>
            </item>

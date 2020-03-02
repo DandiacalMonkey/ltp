@@ -12,15 +12,6 @@ TitleBar::TitleBar(QWidget *parent)
 
 	ui.connectStateLabel_->setPixmap(QPixmap(":/LtpClient/image/net_connected.png"));
 
-	// 设置模式
-	setMode(ltp::base::MDI);
-	// 设置模块
-	setModuleName(QString("模块"));
-	// 设置加工状态
-	setMachiningState(ltp::base::HOLD);
-	// 设置当前加工文件名
-	setCurrentNCName(QString("TEST.NC"));
-
 	updateTimeTimer_ = new QTimer(this);			// 系统时间更新
 	connect(updateTimeTimer_, SIGNAL(timeout()), this, SLOT(updateTime()));
 	updateTimeTimer_->start(1000);
@@ -41,7 +32,7 @@ void TitleBar::setMode(ltp::base::Mode modeType)
 {
 	switch (modeType)
 	{
-	case ltp::base::HANDLE:		// 手轮
+	case ltp::base::HANDLE:			// 手轮
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_handwheel.png"));
 		ui.modeNameLabel_->setText(tr("手轮"));
 		break;
@@ -49,15 +40,15 @@ void TitleBar::setMode(ltp::base::Mode modeType)
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_auto.png"));
 		ui.modeNameLabel_->setText(tr("自动"));
 		break;
-	case ltp::base::JOG:		// JOG
+	case ltp::base::JOG:			// JOG
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_JOG.png"));
 		ui.modeNameLabel_->setText(tr("JOG"));
 		break;
-	case ltp::base::MEMORY:		// 参考点
+	case ltp::base::MEMORY:			// 参考点
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_reference_point.png"));
 		ui.modeNameLabel_->setText(tr("参考点"));
 		break;
-	case ltp::base::MDI:		// MDI
+	case ltp::base::MDI:			// MDI
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_MDI.png"));
 		ui.modeNameLabel_->setText(tr("MDI"));
 		break;
