@@ -3,9 +3,11 @@
 
 #include <vector>
 #include <memory>
+#include <functional>
 #include <QObject>
 #include <QTimer>
 #include <QMutex>
+#include <QAtomicInt>
 #include "base/singleton.hpp"
 
 namespace ltp
@@ -34,31 +36,42 @@ namespace ltp
 				//设定按钮状态
 				void setState(State state)
 				{
-					QMutexLocker locker(&mutex_);
 					state_ = state;
 				}
 				//判定按钮是否完成，从列表中删除
 				virtual bool isFinished() const;
 
+			protected:
+				QAtomicInt state_;
+			};
+			class FunctionalButton : public ButtonInterface
+			{
+			public:
+				FunctionalButton(const std::function<void (ButtonInterface* buttonInterface)>& trigger1, 
+					const std::function<void (ButtonInterface * buttonInterface)>& trigger2,
+					const std::function<void (ButtonInterface * buttonInterface)>& trigger3);
+				virtual void trigger();
 			private:
-				mutable QMutex mutex_;
-				State state_;
+				//分别为按下，持续，松开触发的不同函数
+				std::function<void (ButtonInterface * buttonInterface)> trigger1_;
+				std::function<void (ButtonInterface * buttonInterface)> trigger2_;
+				std::function<void (ButtonInterface * buttonInterface)> trigger3_;
 			};
 			~ButtonProcessor() {};
+			//添加按钮
+			void addButton(std::shared_ptr<ButtonInterface>& button);
 
 		private:
-			//构造函数私有
-			ButtonProcessor();
 			//处理的调用时间间隔
 			const double kProcessInterval_;
-			//添加按钮
-			void addButton(const std::shared_ptr<ButtonInterface>& button);
 			//触发处理函数的定时器
 			QTimer processTimer_;
 			//防止添加按钮和处理函数冲突
 			mutable QMutex mutex_;
 			//储存当前按钮列表
 			std::vector<std::shared_ptr<ButtonInterface>> buttonsList_;
+			//构造函数私有
+			ButtonProcessor();
 		
 		private slots:
 			//处理函数

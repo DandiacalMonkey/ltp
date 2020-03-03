@@ -2,6 +2,7 @@
 #define LTP_CLIENT_HINTWIDGETPROXY_H_
 
 #include <QString>
+#include <base/singleton.hpp>
 
 namespace ltp
 {
@@ -10,12 +11,9 @@ namespace client
 template<typename T>
 class HintWidgetProxy
 {
+	friend HintWidgetProxy<T>& base::getInstance<HintWidgetProxy<T>>();
+
 public:
-	static HintWidgetProxy<T>& getInstance()
-	{
-		static HintWidgetProxy<T> hintWidgetProxy;
-		return hintWidgetProxy;
-	}
 	//设定代理的控件
 	void setHintWidget(T* hintWidget)
 	{

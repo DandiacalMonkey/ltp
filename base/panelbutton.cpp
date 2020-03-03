@@ -5,7 +5,7 @@
 using ltp::base::PanelButton;
 
 PanelButton::PanelButton(QWidget *parent)
-	: QPushButton(parent)
+	: ClickDelayCheckButton(parent)
 {
     picture_ = new QLabel();			// 按钮上图片
     picture_->setStyleSheet(QString("background:transparent;"));

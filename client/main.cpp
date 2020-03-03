@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 
 	//TODO:需要修改，界面启动前，先初始化网络接口
-	ltp::base::getInstance<ltp::client::Network>().setHost("192.168.6.205");
+	ltp::base::getInstance<ltp::client::Network>().setHost("192.168.6.194");
 	ltp::base::getInstance<ltp::client::Network>().connect();
 	//TODO:测试代码
 	int tmp = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(7408);

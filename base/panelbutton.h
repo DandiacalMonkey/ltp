@@ -1,14 +1,14 @@
 ﻿#ifndef LTP_BASE_PANELBUTTON_H_
 #define LTP_BASE_PANELBUTTON_H_
 
-#include <QtGui/QPushButton>
-#include <QtGui/QLabel>
+#include <QLabel>
+#include "base/clickdelaycheckbutton.h"
 
 namespace ltp
 {
 	namespace base
 	{
-		class PanelButton : public QPushButton
+		class PanelButton : public ClickDelayCheckButton
 		{
 			Q_OBJECT
 		 
@@ -21,7 +21,6 @@ namespace ltp
 		private:
 			QLabel *text_;
 			QLabel *picture_;
-
 		};
 	}
 }
