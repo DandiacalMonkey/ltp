@@ -62,15 +62,15 @@ OperationPanel::~OperationPanel()
 void OperationPanel::onTimer()
 {
 	// 获取进给速度F
-	double dSpeedF = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(ltp::base::FEEDSPEED);
+	double dSpeedF = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(ltp::base::FEED_SPEED);
 	ui.speedF_->setText(QString::number(dSpeedF, 'f', 1));
 	// 获取进给速率
-	double dRateF = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(ltp::base::FEEDRATE);
+	double dRateF = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(ltp::base::FEED_RATE);
 	ui.speedFButton_->setValue(dRateF);
 }
 
 void OperationPanel::changeFeedRate(int value)
 {
 	double rate = double(value);
-	ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().setMacroVariable(ltp::base::FEEDRATE, rate);
+	ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().setMacroVariable(ltp::base::FEED_RATE, rate);
 }

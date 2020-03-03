@@ -2,6 +2,7 @@
 #define LTP_BASE_SYSTEM_VARIABLES_H_
 
 #include <array>
+#include <unordered_set>
 #include "globals.h"
 #include "singleton.hpp"
 #include "common/rmi/globals.h"
@@ -46,7 +47,7 @@ namespace ltp
 				//调用宏变量接口获取机械坐标
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
-					coordinates[i] = macroVariable(MECHANICAL_COORDINATE + i * AXIS_INTERVAL + channelInterval);
+					coordinates[i] = macroVariable(MECHANICAL_COORDINATE + i * AXIS_CONTROL_INTERVAL + channelInterval);
 				}
 				return coordinates;
 			}
@@ -61,7 +62,7 @@ namespace ltp
 				//调用宏变量接口获取工件坐标
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
-					coordinates[i] = macroVariable(WORKPIECE_COORDINATE + i * AXIS_INTERVAL + channelInterval);
+					coordinates[i] = macroVariable(WORKPIECE_COORDINATE + i * AXIS_CONTROL_INTERVAL + channelInterval);
 				}
 				return coordinates;
 			}
@@ -76,7 +77,7 @@ namespace ltp
 				//调用宏变量接口获取加工余量
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
-					remains[i] = macroVariable(MACHINING_REMAIN + i * AXIS_INTERVAL + channelInterval);
+					remains[i] = macroVariable(MACHINING_REMAIN + i * AXIS_CONTROL_INTERVAL + channelInterval);
 				}
 				return remains;
 			}
@@ -91,9 +92,47 @@ namespace ltp
 				//调用宏变量接口获取马达负载
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
-					loads[i] = macroVariable(MOTOR_LOAD + i * AXIS_INTERVAL + channelInterval);
+					loads[i] = macroVariable(MOTOR_LOAD + i * AXIS_CONTROL_INTERVAL + channelInterval);
 				}
 				return loads;
+			}
+
+			std::vector<char> validFeedAxes()
+			{
+				/*有效轴列表*/
+				std::unordered_set<char> validFeedAxes;
+				/*所有可能的轴字符顺序*/
+				char axesChar[] = { 'X', 'Y', 'Z', 'A', 'B', 'C', 'U', 'V', 'W' };
+				std::vector<char> feedAxes(axesChar, axesChar + sizeof(axesChar));
+				/*临时变量*/
+				double tempData;
+				for (int i = 0; i < 16; ++i)
+				{
+					/*轴有效检查*/
+					tempData = macroVariable(FEED_AXIS_VALID + i * AXIS_SETTING_INTERVAL);
+					/*轴有效*/
+					if (tempData > 1e-3)
+					{
+						/*轴字符*/
+						tempData = macroVariable(FEED_AXIS_CHARACTER + i * AXIS_SETTING_INTERVAL);
+						/*转换为字符串保存*/
+						validFeedAxes.insert(static_cast<char>(tempData));
+					}
+				}
+				/*按顺序进行轴的排序*/
+				for (auto pr = feedAxes.begin(); pr != feedAxes.end();)
+				{
+					/*移除未找到的轴*/
+					if (validFeedAxes.find(*pr) == validFeedAxes.end())
+					{
+						pr = feedAxes.erase(pr);
+					}
+					else
+					{
+						pr++;
+					}
+				}
+				return std::move(feedAxes);
 			}
 
 		private:

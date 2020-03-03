@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 	//TODO:测试代码
 	int tmp = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(7408);
 	auto coord = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().mechanicalCoordinates(1);
+	auto validAxes = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().validFeedAxes();
 
 	ltp::client::LtpClient w(nullptr);
 	w.resize(800, 600);
