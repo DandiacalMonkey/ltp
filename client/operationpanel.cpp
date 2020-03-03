@@ -16,7 +16,7 @@ OperationPanel::OperationPanel(QWidget *parent)
 
 	//单节按钮
 	auto singleSection = ui.singleSection_;
-	static unsigned long targetValue;
+	static unsigned long singleSectionValue;
 	ui.singleSection_->setCheckFunction(
 		[]()
 		{
@@ -25,14 +25,14 @@ OperationPanel::OperationPanel(QWidget *parent)
 	ui.singleSection_->setClickDelayCheck(
 		[singleSection]()
 		{
-			targetValue = singleSection->isChecked() ? 0 : 1;
-			base::getInstance<Network>().setPlcVariable(rmi::G_SINGLE, targetValue);
+			singleSectionValue = singleSection->isChecked() ? 0 : 1;
+			base::getInstance<Network>().setPlcVariable(rmi::G_SINGLE, singleSectionValue);
 		}, 50,
 		[singleSection]()
 		{
-			if (base::getInstance<Network>().plcVariable(rmi::F_SINGLE) == targetValue)
+			if (base::getInstance<Network>().plcVariable(rmi::F_SINGLE) == singleSectionValue)
 			{
-				singleSection->setChecked(targetValue == 1);
+				singleSection->setChecked(singleSectionValue == 1);
 			}
 			else
 			{
