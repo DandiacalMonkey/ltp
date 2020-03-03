@@ -14,7 +14,7 @@ ClickDelayCheckButton::~ClickDelayCheckButton()
 {
 }
 
-void ClickDelayCheckButton::setCheckFunction(const std::function<bool()>& function, int milliseconds)
+void ClickDelayCheckButton::setCheckFunction(const std::function<void ()>& function, int milliseconds)
 {
 	isAutoChecked_ = false;
 	checkFunction_ = function;
@@ -57,5 +57,5 @@ void ClickDelayCheckButton::checkClick()
 
 void ClickDelayCheckButton::checkState()
 {
-	setChecked(checkFunction_());
+	checkFunction_();
 }
