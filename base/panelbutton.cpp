@@ -9,12 +9,10 @@ PanelButton::PanelButton(QWidget *parent)
 {
     picture_ = new QLabel();			// 按钮上图片
     picture_->setStyleSheet(QString("background:transparent;"));
-	picture_->setPixmap(QPixmap(":/LtpClient/image/skip_rest.png"));
 	picture_->setAlignment(Qt::AlignHCenter);
 
 	text_ = new QLabel();				// 按钮上文字
     text_->setStyleSheet(QString("font:12px SIMHEI;background:transparent;"));
-    text_->setText(tr("跳过"));
 	text_->setAlignment(Qt::AlignHCenter);
 
     QVBoxLayout* myLayout = new QVBoxLayout();		// 按钮内嵌布局

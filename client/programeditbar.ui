@@ -193,7 +193,7 @@
       <string notr="true">font:13px SIMHEI;</string>
      </property>
      <property name="text">
-      <string/>
+      <string>本地存储器：</string>
      </property>
     </widget>
    </item>

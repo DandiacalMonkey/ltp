@@ -3,6 +3,7 @@
 
 #include <QtGui/QWidget>
 #include "ui_operationpanel.h"
+#include <QTimer>
 
 namespace ltp
 {
@@ -18,7 +19,11 @@ namespace ltp
 
 		private:
 			Ui::OperationPanelClass ui;
+			QTimer *timer_;
 
+		private slots:
+			void onTimer();
+			void changeFeedRate(int);
 		};
 	}
 }

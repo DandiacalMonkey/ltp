@@ -22,9 +22,9 @@ namespace ltp
 				return syncVariables_.macroVariable(address);
 			}
 			//写宏变量
-			double setMacroVariable(int address, double value)
+			void setMacroVariable(int address, double value)
 			{
-				syncVariables_.setMacroVariable(int address, double value);
+				syncVariables_.setMacroVariable(address, value);
 			}
 			//获取PLC变量
 			unsigned long plcVariable(rmi::PlcReadOnlyVariableName name) const
