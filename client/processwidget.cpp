@@ -21,6 +21,11 @@ ProcessWidget::ProcessWidget(QWidget *parent)
 	ui.mainModuleButtonWidget_->setCommandButtonName(ltp::client::BUTTON4, QString(tr("设置")));
 	ui.mainModuleButtonWidget_->setCheckableButton(false);
 
+	// disable现未做的设置,起始行和坐标系
+	ui.processModuleButtonWidget_->setButtonEnabled(ltp::client::BUTTON2, false);
+	ui.processModuleButtonWidget_->setButtonEnabled(ltp::client::BUTTON6, false);
+	ui.mainModuleButtonWidget_->setButtonEnabled(ltp::client::BUTTON4, false);
+
 	// 主界面切换
 	connect(ui.mainModuleButtonWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(mainModuleWidgetChanged(int)));
 	// 返回主界面

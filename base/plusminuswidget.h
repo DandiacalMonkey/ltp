@@ -19,6 +19,13 @@ namespace ltp
 			void setValue(int value);			// 数值改变
 		private:
 			Ui::PlusMinusWidgetClass ui;
+
+		private slots:
+			void plusClicked();
+			void minusClicked();
+
+		signals:
+			void valueChanged(int value);
 		};
 	}
 }

@@ -6,8 +6,8 @@ using ltp::base::LoadBar;
 LoadBar::LoadBar(QWidget *parent)
 	: QProgressBar(parent)
 {
-	this->setStyleSheet("QProgressBar{text-align:right; margin-right:40px; margin-top:3px; margin-bottom:3px; font:14px Arial;}");
-	this->setFixedSize(146, 14);
+	this->setStyleSheet("QProgressBar{text-align:right; margin-right:30px; margin-left:40px; margin-top:3px; margin-bottom:3px; font:14px Arial;}");
+	this->setFixedSize(186, 14);
 
 	connect(this, SIGNAL(valueChanged(int)), this, SLOT(colorChanged(int)));
 }
@@ -18,9 +18,9 @@ LoadBar::~LoadBar()
 
 void LoadBar::colorChanged(int value)
 {
-	QString styleSheet = "QProgressBar{text-align:right; margin-right:40px; margin-top:3px; margin-bottom:3px; font:14px Arial;} \
+	QString styleSheet = "QProgressBar{text-align:right; margin-right:30px; margin-left:40px; margin-top:3px; margin-bottom:3px; font:14px Arial;} \
 						  QProgressBar::chunk {background-color:%0}";
-	if (value < 40)			// 绿色范围
+	if (value < 40)								// 绿色范围
 	{
 		this->setStyleSheet(styleSheet.arg("#00AA3C"));
 	} 
@@ -28,7 +28,7 @@ void LoadBar::colorChanged(int value)
 	{
 		this->setStyleSheet(styleSheet.arg("#FFD524"));
 	}
-	else				// 红色警示范围
+	else										// 红色警示范围
 	{
 		this->setStyleSheet(styleSheet.arg("#FA3200"));
 	}

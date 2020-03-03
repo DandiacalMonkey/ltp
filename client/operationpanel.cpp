@@ -43,4 +43,21 @@ OperationPanel::OperationPanel(QWidget *parent)
 
 OperationPanel::~OperationPanel()
 {
+
+}
+
+void OperationPanel::onTimer()
+{
+	// 获取进给速度F
+	double dSpeedF = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(ltp::base::FEEDSPEED);
+	ui.speedF_->setText(QString::number(dSpeedF, 'f', 1));
+	// 获取进给速率
+	double dRateF = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(ltp::base::FEEDRATE);
+	ui.speedFButton_->setValue(dRateF);
+}
+
+void OperationPanel::changeFeedRate(int value)
+{
+	double rate = double(value);
+	ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().setMacroVariable(ltp::base::FEEDRATE, rate);
 }
