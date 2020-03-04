@@ -94,6 +94,7 @@ bool TextEdit::save()
     ui.insideTextEdit_->document()->setModified(false);
 	// 提示保存成功
 	emit signalTips(QString(tr("文件%1保存成功！").arg(curFileName_)));
+	emit signalSaved(curFileName_);
 	return true;
 }
 

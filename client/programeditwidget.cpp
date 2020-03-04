@@ -22,6 +22,9 @@ ProgramEditWidget::ProgramEditWidget(QWidget *parent)
 	ui.teachEditModuleButtonWidget_->setCommandButtonName(ltp::client::BUTTON4, QString(tr("G02")));
 	ui.teachEditModuleButtonWidget_->setCommandButtonName(ltp::client::BUTTON5, QString(tr("G102")));
 
+	// disable现未做的编辑示教
+	ui.editModuleButtonWidget_->setButtonEnabled(ltp::client::BUTTON3, false);
+
 	// 返回主界面
 	connect(ui.editModuleButtonWidget_, SIGNAL(signalReturnButtonClicked()), this, SIGNAL(onHome()));
 	// 编辑界面切换
@@ -30,8 +33,8 @@ ProgramEditWidget::ProgramEditWidget(QWidget *parent)
 	connect(ui.teachEditModuleButtonWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(returnProgrameEdit()));
 	// 打开文件
 	connect(this, SIGNAL(openFile(QString)), ui.programEditBar_, SLOT(onOpenFile(QString)));
-	// 提示信息
-	connect(ui.programEditBar_, SIGNAL(signalTips(QString)), this, SIGNAL(signalTips(QString)));
+	// 文件已保存信号
+	connect(ui.programEditBar_, SIGNAL(signalSaved(QString)), this, SIGNAL(signalSaved(QString)));
 	// 示教编辑模块切换
 	connect(ui.teachEditModuleButtonWidget_, SIGNAL(signalButtonClicked(int)), ui.programEditBar_, SLOT(onTeachEditModule(int)));
 }

@@ -35,10 +35,10 @@ namespace ltp
 			void setValidAxes(const std::vector<ltp::base::Axis> &validAxes);
 			void onTeachEditModule(int);			// 切换示教编辑模块
 			void onOpenFile(QString fileName);		// 打开文件
+			void onHint(QString);
 
 		signals:
-			void signalTips(QString);
-			
+			void signalSaved(QString);
 		};
 	}
 }

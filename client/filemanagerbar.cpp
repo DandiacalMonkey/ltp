@@ -1,5 +1,7 @@
 ﻿#include "filemanagerbar.h"
 #include <QtNetwork>
+#include "hintwidgetproxy.h"
+#include "hintbar.h"
 
 using ltp::client::FileManagerBar;
 
@@ -15,23 +17,15 @@ FileManagerBar::FileManagerBar(QWidget *parent)
 	ui.tableWidget_->horizontalHeader()->resizeSection(3, 50);
 	ui.tableWidget_->horizontalHeader()->resizeSection(4, 125);
 
-	// 显示桌面文件信息
-	//ui.tableWidget_->showAllFiles("C:/Users/huaguolin/Desktop");
-	//ui.informationLabel_->setText("文件数：XX个 | XXMB | 总剩余空间：888.8MB ");
-
-	// 提示信息：请输入ftp连接项
-	emit signalTips(QString(tr("请输入ftp连接地址")));
-
 	// 未连接前禁用tablewidget,cdToParentButton,downLoadButton
 	ui.tableWidget_->setEnabled(false);
 	ui.cdToParentButton_->setEnabled(false);
-	ui.downLoadButton_->setEnabled(false);
+	emit downloadEnable(false);
 
-	progressDialog = new QProgressDialog(this);
-
+	progressDialog = new QDialog(this);
+	progressDialog->setModal(true);
 	// tableWidget_
 	connect(ui.tableWidget_, SIGNAL(itemActivated(QTableWidgetItem*)), this, SLOT(processItem(QTableWidgetItem*)));
-	//connect(ui.tableWidget_->horizontalHeader(), SIGNAL(sectionClicked()), this, SLOT(headerClicked(int)));
 	// 使能downLoadButton
 	connect(ui.tableWidget_, SIGNAL(currentItemChanged(QTableWidgetItem*, QTableWidgetItem*)), this, SLOT(enableDownloadButton()));
 	// 是否连接
@@ -40,8 +34,6 @@ FileManagerBar::FileManagerBar(QWidget *parent)
 	connect(progressDialog, SIGNAL(canceled()), this, SLOT(cancelDownload()));
 	// 返回上一级目录
 	connect(ui.cdToParentButton_, SIGNAL(clicked()), this, SLOT(cdToParent()));
-	// 下载文件
-	connect(ui.downLoadButton_, SIGNAL(clicked()), this, SLOT(downloadCurrentFile()));
 }
 
 FileManagerBar::~FileManagerBar()
@@ -71,7 +63,7 @@ void FileManagerBar::enableConnectButton()
 	// 使能连接按钮
 	ui.connectButton_->setEnabled(true);
 	// 提示信息：请输入连接地址
-	emit signalTips(QString(tr("请输入连接地址")));
+	base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("请输入ftp连接地址"));
 }
 
 void FileManagerBar::enableDownloadButton()
@@ -82,11 +74,11 @@ void FileManagerBar::enableDownloadButton()
 	{
 		QTableWidgetItem *tempItem = ui.tableWidget_->item(current->row(), 0);
 		QString currentFile = tempItem->text();
-		ui.downLoadButton_->setEnabled(!isDirectory.value(currentFile));
+		emit downloadEnable(!isDirectory.value(currentFile));
 	} 
 	else 
 	{
-		ui.downLoadButton_->setEnabled(false);
+		emit downloadEnable(false);
 	}
 }
 
@@ -123,14 +115,14 @@ void FileManagerBar::connectOrDisconnect()
 		// 禁用tablewidget,cdToParentButton,downLoadButton，改变连接按钮
 		ui.tableWidget_->setEnabled(false);
 		ui.cdToParentButton_->setEnabled(false);
-		ui.downLoadButton_->setEnabled(false);
+		emit downloadEnable(false);
 		ui.connectButton_->setEnabled(true);
 		ui.connectButton_->setText(tr("连接"));
 #ifndef QT_NO_CURSOR
 		setCursor(Qt::ArrowCursor);
 #endif
 		// 提示信息：请输入连接地址
-		emit signalTips(QString(tr("请输入连接地址")));
+		base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("请输入ftp连接地址"));
 		return;
 	}
 
@@ -165,7 +157,7 @@ void FileManagerBar::connectOrDisconnect()
 			ui.connectButton_->setEnabled(false);
 
 			// 提示：正在打开对话
-			emit signalTips(QString(tr("正在打开对话")));
+			base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("请输入正在打开对话连接地址"));
 			networkSession->open();		// 打开对话
 			return;
 		}
@@ -216,7 +208,7 @@ void FileManagerBar::connectToFtp()
 	ui.connectButton_->setText(tr("断开"));
 
 	// 提示信息：正在连接%1...
-	emit signalTips(QString(tr("正在连接%1...").arg(ui.ftpServerLineEdit_->text())));
+	base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("正在连接%1...").arg(ui.ftpServerLineEdit_->text()));
 }
 
 void FileManagerBar::ftpCommandFinished(int, bool error)
@@ -230,14 +222,13 @@ void FileManagerBar::ftpCommandFinished(int, bool error)
 		if (error)					// 报错
 		{
 			// error报警提示：连接ui.ftpServerLineEdit_->text()失败
-			emit signalTips(QString(tr("错误：连接%1失败").arg(ui.ftpServerLineEdit_->text())));
+			base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("错误：连接%1失败").arg(ui.ftpServerLineEdit_->text()));
 			connectOrDisconnect();
 			return;
 		}
 		// 提示信息：连接ui.ftpServerLineEdit_->text()成功
-		emit signalTips(QString(tr("连接%1成功").arg(ui.ftpServerLineEdit_->text())));
+		base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("连接%1成功").arg(ui.ftpServerLineEdit_->text()));
 		ui.tableWidget_->setFocus();
-		ui.downLoadButton_->setDefault(true);
 		ui.connectButton_->setEnabled(true);
 		return;
 	}
@@ -250,7 +241,7 @@ void FileManagerBar::ftpCommandFinished(int, bool error)
 		if (error)										// 获取失败
 		{
 			// 提示信息：取消下载
-			emit signalTips(QString(tr("取消下载%1...").arg(file->fileName())));
+			base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("取消下载%1...").arg(file->fileName()));
 			// 文件关闭，移除
 			file->close();
 			file->remove();
@@ -258,7 +249,7 @@ void FileManagerBar::ftpCommandFinished(int, bool error)
 		else 
 		{
 			// 提示信息：已下载
-			emit signalTips(QString(tr("已下载%1...").arg(file->fileName())));
+			base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("已下载%1...").arg(file->fileName()));
 			file->close();
 		}
 		delete file;
@@ -354,8 +345,8 @@ void FileManagerBar::addToList(const QUrlInfo &urlInfo)
 
 void FileManagerBar::updateDataTransferProgress(qint64 readBytes, qint64 totalBytes)
 {
-	progressDialog->setMaximum(totalBytes);
-	progressDialog->setValue(readBytes);
+	//progressDialog->setMaximum(totalBytes);
+	//progressDialog->setValue(readBytes);
 }
 
 void FileManagerBar::cdToParent()
@@ -391,25 +382,18 @@ void FileManagerBar::downloadCurrentFile()
 
 bool FileManagerBar::downloadFile(QString fileName)
 {
-	if (QFile::exists(fileName))			// 当前已存在此文件
-	{
-		// error报错信息：fileName文件已存在！
-		emit signalTips(QString(tr("错误：%1文件已存在！").arg(fileName)));
-		return false;
-	}
-
 	file = new QFile(fileName);
 	if (!file->open(QIODevice::WriteOnly))	// 非只读删除文件
 	{
 		// error报错信息
-		emit signalTips(QString(tr("错误：%1文件不可保存！%2").arg(fileName).arg(file->errorString())));
+		base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("错误：%1文件不可保存！%2").arg(fileName).arg(file->errorString()));
 		delete file;
 		return false;
 	}
 
 	ftp->get(fileName, file);				// 获取文件
-	progressDialog->setLabelText(tr("Downloading %1...").arg(fileName));
-	ui.downLoadButton_->setEnabled(false);
+	//progressDialog->setLabelText(tr("Downloading %1...").arg(fileName));
+	emit downloadEnable(false);
 	progressDialog->exec();
 	return true;
 }
@@ -434,12 +418,20 @@ QString FileManagerBar::getCurrentFileName()
 
 bool FileManagerBar::checkDownload(QString fileName)
 {
-	if (QFile::exists(fileName))				// 当前已存在此文件
-	{
-		return true;
-	}
-	else
-	{
-		return downloadFile(fileName);			// 文件未下载先下载
-	}
+	return downloadFile(fileName);			// 文件未下载先下载
+}
+
+void FileManagerBar::uploadCurrentFile()
+{
+	// 获取所在行第一列name，即文件名
+	QTableWidgetItem *tempItem = ui.tableWidget_->item(ui.tableWidget_->currentItem()->row(), 0);
+	QString fileName = tempItem->text();
+	uploadFile(fileName);
+}
+
+bool FileManagerBar::uploadFile(QString fileName)
+{
+	QFile* file = new QFile(fileName);
+	ftp->put(file, fileName);
+	return true;
 }

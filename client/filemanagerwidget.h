@@ -23,12 +23,13 @@ namespace ltp
 
 		private slots:
 			void onFileManagerModule(int);
+			void enableButton(bool);
 
 		signals:
-			void signalTips(QString);					// 提示栏信息
 			void onHome();								// 返回主页
 			void onProcessFile(QString filename);
-			void onOpenFile(QString filename);
+			void onOpenFile(QString);
+			void signalSaved(QString);					// 文件已保存, 需要同步上载ftp
 		};
 	}
 }

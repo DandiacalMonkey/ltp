@@ -23,7 +23,6 @@ private:
 	QThread buttonProcessorThread_;
 
 private slots:
-	void setHintText(QString);
 	void setErrorText(std::vector<std::string>);
 };
 }

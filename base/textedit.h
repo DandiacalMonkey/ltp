@@ -45,6 +45,7 @@ namespace ltp
 
 		signals:
 			void signalTips(QString);
+			void signalSaved(QString);
 		};
 	}
 }
