@@ -1,4 +1,6 @@
 ﻿#include "programeditbar.h"
+#include "hintwidgetproxy.h"
+#include "hintbar.h"
 
 using ltp::client::ProgramEditBar;
 
@@ -56,7 +58,7 @@ ProgramEditBar::ProgramEditBar(QWidget *parent)
 	// 保存
 	connect(ui.saveButton_, SIGNAL(clicked()), ui.textEdit_, SLOT(save()));
 	// 提示信息
-	connect(ui.textEdit_, SIGNAL(signalTips(QString)), this, SIGNAL(signalTips(QString)));
+	connect(ui.textEdit_, SIGNAL(signalTips(QString)), this, SLOT(onHint(QString)));
 	// 文件已经保存
 	connect(ui.textEdit_, SIGNAL(signalSaved(QString)), this, SIGNAL(signalSaved(QString)));
 }
@@ -64,6 +66,11 @@ ProgramEditBar::ProgramEditBar(QWidget *parent)
 ProgramEditBar::~ProgramEditBar()
 {
 
+}
+
+void ProgramEditBar::onHint(QString str)
+{
+	base::getInstance<HintWidgetProxy<HintBar>>().setHint(str);
 }
 
 void ProgramEditBar::setValidAxes(const std::vector<ltp::base::Axis> &validAxes)

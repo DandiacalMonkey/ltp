@@ -12,8 +12,6 @@ FileManagerWidget::FileManagerWidget(QWidget *parent)
 	ui.fileManagerButtonWidget_->setCommandButtonName(ltp::client::BUTTON5, QString(tr("执行")));
 	ui.fileManagerButtonWidget_->setCommandButtonName(ltp::client::BUTTON6, QString(tr("打开")));
 	enableButton(false);		// 初始禁用执行和打开功能，在选择文件后启用
-	// 提示信息
-	connect(ui.fileManagerBar_, SIGNAL(signalTips(QString)), this, SIGNAL(signalTips(QString)));
 	// 返回主界面
 	connect(ui.fileManagerButtonWidget_, SIGNAL(signalReturnButtonClicked()), this, SIGNAL(onHome()));
 	connect(ui.fileManagerButtonWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onFileManagerModule(int)));

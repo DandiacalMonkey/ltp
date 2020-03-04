@@ -6,9 +6,6 @@ MainContainer::MainContainer(QWidget* parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	// 提示信息
-	connect(ui.fileManagerWidget_, SIGNAL(signalTips(QString)), this, SIGNAL(signalTips(QString)));
-	connect(ui.programEditWidget_, SIGNAL(signalTips(QString)), this, SIGNAL(signalTips(QString)));
 	// 主菜单切换
 	connect(ui.processWidget_, SIGNAL(onModule(int)), this, SLOT(onModule(int)));
 	// 其他界面切到主界面

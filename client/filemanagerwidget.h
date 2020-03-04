@@ -26,7 +26,6 @@ namespace ltp
 			void enableButton(bool);
 
 		signals:
-			void signalTips(QString);					// 提示栏信息
 			void onHome();								// 返回主页
 			void onProcessFile(QString filename);
 			void onOpenFile(QString);

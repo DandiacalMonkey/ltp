@@ -55,7 +55,6 @@ namespace ltp
 			bool uploadFile(QString);					// 上载文件
 
 		signals:
-			void signalTips(QString);
 			void downloadEnable(bool);
 		};
 	}

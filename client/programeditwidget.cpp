@@ -33,8 +33,6 @@ ProgramEditWidget::ProgramEditWidget(QWidget *parent)
 	connect(ui.teachEditModuleButtonWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(returnProgrameEdit()));
 	// 打开文件
 	connect(this, SIGNAL(openFile(QString)), ui.programEditBar_, SLOT(onOpenFile(QString)));
-	// 提示信息
-	connect(ui.programEditBar_, SIGNAL(signalTips(QString)), this, SIGNAL(signalTips(QString)));
 	// 文件已保存信号
 	connect(ui.programEditBar_, SIGNAL(signalSaved(QString)), this, SIGNAL(signalSaved(QString)));
 	// 示教编辑模块切换

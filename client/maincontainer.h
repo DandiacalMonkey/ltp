@@ -20,7 +20,6 @@ namespace ltp
 			Ui::MainContainerClass ui;
 
 		signals:
-			void signalTips(QString);						// 提示栏信息
 			void signalChangeProcessFileName(QString);		// 当前加工文件名改变
 			void signalChangeModules(QString);				// 切换模块，菜单栏信息修改
 
