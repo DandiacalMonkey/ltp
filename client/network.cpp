@@ -70,6 +70,32 @@ void ltp::client::Network::setPlcVariable(rmi::PlcWriteOnlyVariableName name, un
 	}
 }
 
+int ltp::client::Network::openFile(int channel, const std::string& fileName)
+{
+	return remote_open_file(handle_, channel, fileName.c_str());
+}
+
+std::string ltp::client::Network::openedFileName() const
+{
+	char fileName[256];
+	remote_get_open_file_name(handle_, fileName);
+	return std::move(std::string(fileName));
+}
+
+std::string ltp::client::Network::openedFilePath() const
+{
+	char filePath[1024];
+	remote_get_open_file_path(handle_, filePath);
+	return std::move(std::string(filePath));
+}
+
+std::string ltp::client::Network::openedFileMD5(int channel) const
+{
+	char md5[256];
+	remote_get_exe_file_md5sum(handle_, channel, md5);
+	return std::string(md5);
+}
+
 Network::Network()
 	:connectState_(UNCONNECTED)
 {

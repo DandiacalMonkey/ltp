@@ -257,6 +257,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_clickdelaycheckbutton.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="machiningstates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_machiningstates.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_machiningstates.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ltpclient.h">
@@ -382,6 +391,9 @@
     <CustomBuild Include="..\base\clickdelaycheckbutton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="machiningstates.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ltpclient.h">
@@ -441,9 +453,6 @@
     <ClInclude Include="..\base\systemvariables.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\RemoteComm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_filemanagerbar.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -451,6 +460,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="..\common\rmi\globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\rmi\RemoteComm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

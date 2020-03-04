@@ -15,6 +15,7 @@ namespace ltp
 		{
 			Q_OBJECT
 			friend Network& ltp::base::getInstance<Network>();
+
 		public:
 			enum ConnectState
 			{
@@ -45,6 +46,15 @@ namespace ltp
 			//读写PLC变量
 			unsigned long plcVariable(rmi::PlcReadOnlyVariableName name) const;
 			void setPlcVariable(rmi::PlcWriteOnlyVariableName name, unsigned long value);
+			//远程打开文件
+			int openFile(int channel, const std::string& fileName);
+			//远程打开文件名（不带路径）
+			std::string openedFileName() const;
+			//远程打开文件名（带路径）
+			std::string openedFilePath() const;
+			//远程文件MD5
+			std::string openedFileMD5(int channel) const;
+			
 		signals:
 			//由未连接或连接断开状态成功连接
 			void connected();
@@ -52,6 +62,7 @@ namespace ltp
 			void unconnected();
 			//网络不通、服务端出错导致的连接断开
 			void disconnected();
+
 		private:
 			Network();
 			//服务器ip
@@ -62,6 +73,7 @@ namespace ltp
 			ConnectState connectState_;
 			//检查连接状态定时器
 			QTimer checkConnectionTimer_;
+
 		private slots:
 			void checkConnection();
 		};

@@ -61,6 +61,13 @@ extern "C" DLL_DECLARE int remote_open_file(int nHandle, int nChannel, const cha
 extern "C" DLL_DECLARE int remote_get_open_file_name(int nHandle, char* chFileName);
 
 /*
+*描  述：获取控制器端打开的当前文件的文件名
+*参  数：nHandle:句柄  chFileName:存储获取到的文件名
+*返回值：0：成功  -1：失败
+*/
+extern "C" DLL_DECLARE int remote_get_open_file_path(int nHandle, char* chFilePath);
+
+/*
 *描  述：获取控制器端打开的当前文件的md5
 *参  数：nHandle:句柄  buf:存储获取到的md5
 *返回值：0：成功  -1：失败

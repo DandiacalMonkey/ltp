@@ -47,6 +47,7 @@ namespace ltp
 			ABSOLUTE,
 			INBREMENTAL
 		};
+		//宏变量地址
 		enum MacroAddress
 		{
 			AXIS_CONTROL_INTERVAL = 50,//轴控制数据的间隔
@@ -58,11 +59,18 @@ namespace ltp
 			MOTOR_LOAD = 30132,//马达负载
 			FEED_SPEED = 31064,//进给速度
 			FEED_RATE = 31054,//进给倍率
+			SYSTEM_MODE = 50000,//模式
 			FEED_AXIS_VALID = 74100,//轴有效
 			FEED_AXIS_CHARACTER = 74113,//轴对应的字符
 			CHANNEL_INTERVAL = 100000//通道1通道2数据间隔
 		};
-		
+		//报警等级
+		enum ErrorLevel
+		{
+			NO_ERROR,
+			WARNNING,
+			ERROR
+		};
 	}
 }
 
