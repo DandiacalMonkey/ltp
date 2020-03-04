@@ -36,7 +36,7 @@ namespace ltp
 
 			QNetworkSession *networkSession;
 			QNetworkConfigurationManager manager;
-			QProgressDialog *progressDialog;
+			QDialog *progressDialog;
 
 		private slots:
 			void enableDownloadButton();				// 使能下载按钮
@@ -57,7 +57,6 @@ namespace ltp
 		signals:
 			void signalTips(QString);
 			void downloadEnable(bool);
-			void isDownload(QString);
 		};
 	}
 }

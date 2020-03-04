@@ -63,10 +63,10 @@ void FileManagerWidget::onFileManagerModule(int nModule)
 	case ltp::client::BUTTON1:
 		break;
 	case ltp::client::BUTTON5:			// 执行
-		connect(ui.fileManagerBar_, SIGNAL(isDownload(QString)), this, SIGNAL(onProcessFile(QString)));
+		emit onProcessFile(filename);
 		break;
 	case ltp::client::BUTTON6:			// 打开
-		connect(ui.fileManagerBar_, SIGNAL(isDownload(QString)), this, SIGNAL(onOpenFile(QString)));
+		emit onOpenFile(filename);
 		break;
 	default:
 		break;

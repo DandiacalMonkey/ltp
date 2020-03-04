@@ -27,8 +27,8 @@ FileManagerBar::FileManagerBar(QWidget *parent)
 	ui.cdToParentButton_->setEnabled(false);
 	emit downloadEnable(false);
 
-	progressDialog = new QProgressDialog(this);
-
+	progressDialog = new QDialog(this);
+	progressDialog->setModal(true);
 	// tableWidget_
 	connect(ui.tableWidget_, SIGNAL(itemActivated(QTableWidgetItem*)), this, SLOT(processItem(QTableWidgetItem*)));
 	//connect(ui.tableWidget_->horizontalHeader(), SIGNAL(sectionClicked()), this, SLOT(headerClicked(int)));
@@ -257,7 +257,6 @@ void FileManagerBar::ftpCommandFinished(int, bool error)
 			// 提示信息：已下载
 			emit signalTips(QString(tr("已下载%1...").arg(file->fileName())));
 			file->close();
-			emit isDownload(file->fileName());
 		}
 		delete file;
 		enableDownloadButton();
@@ -352,8 +351,8 @@ void FileManagerBar::addToList(const QUrlInfo &urlInfo)
 
 void FileManagerBar::updateDataTransferProgress(qint64 readBytes, qint64 totalBytes)
 {
-	progressDialog->setMaximum(totalBytes);
-	progressDialog->setValue(readBytes);
+	//progressDialog->setMaximum(totalBytes);
+	//progressDialog->setValue(readBytes);
 }
 
 void FileManagerBar::cdToParent()
@@ -399,7 +398,7 @@ bool FileManagerBar::downloadFile(QString fileName)
 	}
 
 	ftp->get(fileName, file);				// 获取文件
-	progressDialog->setLabelText(tr("Downloading %1...").arg(fileName));
+	//progressDialog->setLabelText(tr("Downloading %1...").arg(fileName));
 	emit downloadEnable(false);
 	progressDialog->exec();
 	return true;

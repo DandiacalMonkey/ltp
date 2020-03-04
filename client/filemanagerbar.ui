@@ -72,13 +72,6 @@
        </spacer>
       </item>
       <item>
-       <widget class="ltp::base::PushButton" name="downLoadButton_">
-        <property name="text">
-         <string>下载</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="ltp::base::PushButton" name="cdToParentButton_">
         <property name="text">
          <string>上级目录</string>
