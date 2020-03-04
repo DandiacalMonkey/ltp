@@ -19,20 +19,19 @@ PanelButton::PanelButton(QWidget *parent)
     myLayout->addWidget(picture_);
     myLayout->addWidget(text_);
     myLayout->addStretch(0);
-    myLayout->setMargin(3);
+    myLayout->setMargin(1);
     myLayout->setSpacing(3);
     this->setLayout(myLayout);
 	this->setCheckable(true);
 	this->setStyleSheet("QPushButton{background:#F0F0F0; font:12px SIMHEI; width:52px; height:46px; border-style:none;} \
-								   QPushButton:hover{background:#0064C8; font:12px SIMHEI; width:52px; height:46px; border-style:none;} \
-								   QPushButton:checked{background:#0064C8; font:12px SIMHEI; width:52px; height:46px; border-style:none;}");
+						 QPushButton:hover{background:#0064C8; font:12px SIMHEI; width:52px; height:46px; border-style:none;} \
+						 QPushButton:checked{background:#0064C8; font:12px SIMHEI; width:52px; height:46px; border-style:none;}");
 }
 
 PanelButton::~PanelButton()
 {
 
 }
-
 
 void PanelButton::setButtonPicture(const QPixmap &pixmap)
 {

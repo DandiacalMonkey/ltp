@@ -26,7 +26,8 @@ MainContainer::MainContainer(QWidget* parent)
 	connect(ui.fileManagerWidget_, SIGNAL(onOpenFile(QString)), ui.programEditWidget_, SIGNAL(openFile(QString)));
 	connect(ui.fileManagerWidget_, SIGNAL(onOpenFile(QString)), this, SLOT(onEditModule()));
 
-
+	// 编辑界面保存，同时上载到ftp客户端
+	connect(ui.programEditWidget_, SIGNAL(signalSaved(QString)), ui.fileManagerWidget_, SIGNAL(signalSaved(QString)));
 }
 
 MainContainer::~MainContainer()

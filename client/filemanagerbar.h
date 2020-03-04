@@ -17,7 +17,6 @@ namespace ltp
 {
 	namespace client
 	{
-
 		class FileManagerBar : public QWidget
 		{
 			Q_OBJECT
@@ -52,9 +51,13 @@ namespace ltp
 			bool downloadFile(QString);					// 下载文件
 			void downloadCurrentFile();					// 下载当前选中文件
 			void cancelDownload();						// 取消下载
+			void uploadCurrentFile();					// 上载当前选中文件
+			bool uploadFile(QString);					// 上载文件
 
 		signals:
 			void signalTips(QString);
+			void downloadEnable(bool);
+			void isDownload(QString);
 		};
 	}
 }

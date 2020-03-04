@@ -26,6 +26,7 @@ namespace ltp
 			void openFile(QString filename);	// 打开文件
 			void signalTips(QString);			// 提示栏信息显示
 			void processFile(QString);			// 加工文件
+			void signalSaved(QString);			// 文件已保存
 
 		private slots:
 			void onEditModule(int);

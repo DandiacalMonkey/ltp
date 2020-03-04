@@ -11,16 +11,37 @@ FileManagerWidget::FileManagerWidget(QWidget *parent)
 	ui.fileManagerButtonWidget_->setCommandButtonName(ltp::client::BUTTON1, QString(tr("用户盘")));
 	ui.fileManagerButtonWidget_->setCommandButtonName(ltp::client::BUTTON5, QString(tr("执行")));
 	ui.fileManagerButtonWidget_->setCommandButtonName(ltp::client::BUTTON6, QString(tr("打开")));
+	enableButton(false);		// 初始禁用执行和打开功能，在选择文件后启用
 	// 提示信息
 	connect(ui.fileManagerBar_, SIGNAL(signalTips(QString)), this, SIGNAL(signalTips(QString)));
 	// 返回主界面
 	connect(ui.fileManagerButtonWidget_, SIGNAL(signalReturnButtonClicked()), this, SIGNAL(onHome()));
 	connect(ui.fileManagerButtonWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onFileManagerModule(int)));
+	// 上载文件
+	connect(this, SIGNAL(signalSaved(QString)), ui.fileManagerBar_, SLOT(uploadFile(QString)));
+
+	// 可以加载文件，即执行、打开功能是否使用
+	connect(ui.fileManagerBar_, SIGNAL(downloadEnable(bool)), this, SLOT(enableButton(bool)));
 }
 
 FileManagerWidget::~FileManagerWidget()
 {
 
+}
+
+void FileManagerWidget::enableButton(bool enable)
+{
+	// 初始禁用执行和打开功能，在选择文件后启用
+	if (enable)
+	{
+		ui.fileManagerButtonWidget_->setButtonEnabled(ltp::client::BUTTON5, true);
+		ui.fileManagerButtonWidget_->setButtonEnabled(ltp::client::BUTTON6, true);
+	} 
+	else
+	{
+		ui.fileManagerButtonWidget_->setButtonEnabled(ltp::client::BUTTON5, false);
+		ui.fileManagerButtonWidget_->setButtonEnabled(ltp::client::BUTTON6, false);
+	}
 }
 
 void FileManagerWidget::onFileManagerModule(int nModule)
@@ -41,11 +62,11 @@ void FileManagerWidget::onFileManagerModule(int nModule)
 	{
 	case ltp::client::BUTTON1:
 		break;
-	case ltp::client::BUTTON5:
-		emit onProcessFile(filename);
+	case ltp::client::BUTTON5:			// 执行
+		connect(ui.fileManagerBar_, SIGNAL(isDownload(QString)), this, SIGNAL(onProcessFile(QString)));
 		break;
-	case ltp::client::BUTTON6:
-		emit onOpenFile(filename);
+	case ltp::client::BUTTON6:			// 打开
+		connect(ui.fileManagerBar_, SIGNAL(isDownload(QString)), this, SIGNAL(onOpenFile(QString)));
 		break;
 	default:
 		break;

@@ -37,6 +37,10 @@ ProgramEditBar::ProgramEditBar(QWidget *parent)
 	tempAxis.push_back(ltp::base::W_AXIS);
 	setValidAxes(tempAxis);
 
+	// 未实现的行查找，查找替换先disable
+	ui.findAndReplaceButton_->setEnabled(false);
+	ui.fineLineButton_->setEnabled(false);
+
 	// 删除行
 	connect(ui.removeLineButton_, SIGNAL(clicked()), ui.textEdit_, SLOT(removeLine()));
 	// 复制
@@ -53,7 +57,8 @@ ProgramEditBar::ProgramEditBar(QWidget *parent)
 	connect(ui.saveButton_, SIGNAL(clicked()), ui.textEdit_, SLOT(save()));
 	// 提示信息
 	connect(ui.textEdit_, SIGNAL(signalTips(QString)), this, SIGNAL(signalTips(QString)));
-
+	// 文件已经保存
+	connect(ui.textEdit_, SIGNAL(signalSaved(QString)), this, SIGNAL(signalSaved(QString)));
 }
 
 ProgramEditBar::~ProgramEditBar()
