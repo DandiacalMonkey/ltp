@@ -38,14 +38,15 @@ OperationPanel::OperationPanel(QWidget *parent)
 	ui.singleSection_->setClickDelayCheck(
 		[singleSection]()
 		{
-			singleSectionValue = singleSection->isChecked() ? 0 : 1;
-			base::getInstance<Network>().setPlcVariable(rmi::G_SINGLE, singleSectionValue);
+			singleSectionValue = base::getInstance<Network>().plcVariable(rmi::F_SINGLE);
+			base::getInstance<Network>().setPlcVariable(rmi::G_SINGLE, 1);
 		}, kInitaltiveUpdateInterval,
 		[singleSection]()
 		{
-			if (base::getInstance<Network>().plcVariable(rmi::F_SINGLE) == singleSectionValue)
+			base::getInstance<Network>().setPlcVariable(rmi::G_SINGLE, 0);
+			if (base::getInstance<Network>().plcVariable(rmi::F_SINGLE) != singleSectionValue)
 			{
-				singleSection->setChecked(singleSectionValue == 1);
+				singleSection->setChecked(singleSectionValue == 0);
 			}
 			else
 			{
