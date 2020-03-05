@@ -17,6 +17,26 @@ MachiningStates::MachiningStates(QObject* parent)
 	connect(&timer_, SIGNAL(timeout()), SLOT(updateState()));
 	//网络连接时，确认有效轴
 	connect(&base::getInstance<Network>(), SIGNAL(connected()), SLOT(checkValidAxes()));
+	//初始化轴枚举到轴字符映射关系
+	axisEnumAxisCharacterMap_[base::X_AXIS] = 'X';
+	axisEnumAxisCharacterMap_[base::Y_AXIS] = 'Y';
+	axisEnumAxisCharacterMap_[base::Z_AXIS] = 'Z';
+	axisEnumAxisCharacterMap_[base::A_AXIS] = 'A';
+	axisEnumAxisCharacterMap_[base::B_AXIS] = 'B';
+	axisEnumAxisCharacterMap_[base::C_AXIS] = 'C';
+	axisEnumAxisCharacterMap_[base::U_AXIS] = 'U';
+	axisEnumAxisCharacterMap_[base::V_AXIS] = 'V';
+	axisEnumAxisCharacterMap_[base::W_AXIS] = 'W';
+	//初始化轴字符到轴枚举映射关系
+	axisCharacterAxisEnumMap_['X'] = base::X_AXIS;
+	axisCharacterAxisEnumMap_['Y'] = base::Y_AXIS;
+	axisCharacterAxisEnumMap_['Z'] = base::Z_AXIS;
+	axisCharacterAxisEnumMap_['A'] = base::A_AXIS;
+	axisCharacterAxisEnumMap_['B'] = base::B_AXIS;
+	axisCharacterAxisEnumMap_['C'] = base::C_AXIS;
+	axisCharacterAxisEnumMap_['U'] = base::U_AXIS;
+	axisCharacterAxisEnumMap_['V'] = base::V_AXIS;
+	axisCharacterAxisEnumMap_['W'] = base::W_AXIS;
 }
 
 MachiningStates::~MachiningStates()
@@ -79,9 +99,39 @@ ltp::base::ErrorLevel MachiningStates::errorLevel() const
 	return base::NO_ERROR;
 }
 
-const std::vector<char>& ltp::client::MachiningStates::validAxes() const
+const std::vector<ltp::base::Axis>& ltp::client::MachiningStates::validAxes() const
 {
 	return validAxes_;
+}
+
+char MachiningStates::axisEnumToAxisCharacter(ltp::base::Axis axisEnum) const
+{
+	return axisEnumAxisCharacterMap_.at(axisEnum);
+}
+
+std::vector<char> ltp::client::MachiningStates::axesEnumToAxesCharacter(const std::vector<base::Axis>& axesEnum) const
+{
+	std::vector<char> result;
+	for each (auto x in axesEnum)
+	{
+		result.push_back(axisEnumToAxisCharacter(x));
+	}
+	return std::move(result);
+}
+
+ltp::base::Axis ltp::client::MachiningStates::axisCharacterToAxisEnum(char axisCharacter) const
+{
+	return axisCharacterAxisEnumMap_.at(axisCharacter);
+}
+
+std::vector<ltp::base::Axis> ltp::client::MachiningStates::axesCharacterToAxesEnum(const std::vector<char>& axesCharacter) const
+{
+	std::vector<base::Axis> result;
+	for each (auto x in axesCharacter)
+	{
+		result.push_back(axisCharacterToAxisEnum(x));
+	}
+	return std::move(result);
 }
 
 void MachiningStates::updateState()
@@ -112,7 +162,7 @@ void MachiningStates::updateState()
 void MachiningStates::checkValidAxes()
 {
 	auto& systemVariables = base::getInstance<base::SystemVariables<RemoteVariables>>();
-	auto remoteValidAxes = systemVariables.validFeedAxes();
+	auto remoteValidAxes = axesCharacterToAxesEnum(systemVariables.validFeedAxes());
 	if (validAxes_ != remoteValidAxes)
 	{
 		validAxes_ = std::move(remoteValidAxes);

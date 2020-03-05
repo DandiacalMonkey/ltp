@@ -45,7 +45,7 @@
       <number>12</number>
      </property>
      <item>
-      <widget class="QPushButton" name="axisButton1_">
+      <widget class="ltp::base::ClickDelayCheckButton" name="axisButton1_">
        <property name="minimumSize">
         <size>
          <width>40</width>
@@ -75,7 +75,7 @@ QPushButton:hover{background:#0064C8;color:white;}
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="axisButton2_">
+      <widget class="ltp::base::ClickDelayCheckButton" name="axisButton2_">
        <property name="minimumSize">
         <size>
          <width>40</width>
@@ -105,7 +105,7 @@ QPushButton:hover{background:#0064C8; color:white;}
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="axisButton3_">
+      <widget class="ltp::base::ClickDelayCheckButton" name="axisButton3_">
        <property name="minimumSize">
         <size>
          <width>40</width>
@@ -135,7 +135,7 @@ QPushButton:hover{background:#0064C8; color:white;}
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="axisButton4_">
+      <widget class="ltp::base::ClickDelayCheckButton" name="axisButton4_">
        <property name="minimumSize">
         <size>
          <width>40</width>
@@ -162,7 +162,7 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="axisButton5_">
+      <widget class="ltp::base::ClickDelayCheckButton" name="axisButton5_">
        <property name="minimumSize">
         <size>
          <width>40</width>
@@ -283,6 +283,13 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ltp::base::ClickDelayCheckButton</class>
+   <extends>QPushButton</extends>
+   <header>base/clickdelaycheckbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

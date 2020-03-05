@@ -2,6 +2,7 @@
 #define LTP_CLIENT_MACHININGSTATES_H_
 
 #include <vector>
+#include <unordered_map>
 #include <QString>
 #include <QObject>
 #include <QTimer>
@@ -29,7 +30,13 @@ namespace ltp
 			//获取报警等级
 			base::ErrorLevel errorLevel() const;
 			//获取有效轴
-			const std::vector<char>& validAxes() const;
+			const std::vector<base::Axis>& validAxes() const;
+			//将轴枚举转换为轴字符
+			char axisEnumToAxisCharacter(base::Axis axisEnum) const;
+			std::vector<char> axesEnumToAxesCharacter(const std::vector<base::Axis>& axesEnum) const;
+			//将轴字符转换为轴枚举
+			base::Axis axisCharacterToAxisEnum(char axisCharacter) const;
+			std::vector<base::Axis> axesCharacterToAxesEnum(const std::vector<char>& axesCharacter) const;
 
 		signals:
 			//检测到模式切换时发出信号
@@ -43,7 +50,7 @@ namespace ltp
 			//检测到正在加工的文件名(不含路径)变化，仅路径变化时不发送
 			void machiningFileNameChanged(QString filePath);
 			//有效轴变化信号
-			void validAxesChanged(const std::vector<char>& validAxes);
+			void validAxesChanged(const std::vector<base::Axis>& validAxes);
 
 		private:
 			base::Mode mode_;
@@ -52,9 +59,13 @@ namespace ltp
 			QString filePath_;
 			QString fileName_;
 			//有效轴
-			std::vector<char> validAxes_;
+			std::vector<base::Axis> validAxes_;
 			//更新状态使用的定时器
 			QTimer timer_;
+			//轴枚举到轴字符的映射
+			std::unordered_map<base::Axis, char> axisEnumAxisCharacterMap_;
+			//轴字符到轴枚举的映射
+			std::unordered_map<char, base::Axis> axisCharacterAxisEnumMap_;
 			//作为单例使用
 			MachiningStates(QObject* parent = nullptr);
 			~MachiningStates();
