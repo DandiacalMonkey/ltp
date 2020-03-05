@@ -7,25 +7,8 @@ using ltp::base::PanelButton;
 PanelButton::PanelButton(QWidget *parent)
 	: ClickDelayCheckButton(parent)
 {
-    picture_ = new QLabel();			// 按钮上图片
-    picture_->setStyleSheet(QString("background:transparent;"));
-	picture_->setAlignment(Qt::AlignHCenter);
-
-	text_ = new QLabel();				// 按钮上文字
-    text_->setStyleSheet(QString("font:12px SIMHEI;background:transparent;"));
-	text_->setAlignment(Qt::AlignHCenter);
-
-    QVBoxLayout* myLayout = new QVBoxLayout();		// 按钮内嵌布局
-    myLayout->addWidget(picture_);
-    myLayout->addWidget(text_);
-    myLayout->addStretch(0);
-    myLayout->setMargin(1);
-    myLayout->setSpacing(3);
-    this->setLayout(myLayout);
 	this->setCheckable(true);
-	this->setStyleSheet("QPushButton{background:#F0F0F0; font:12px SIMHEI; width:52px; height:46px; border-style:none;} \
-						 QPushButton:hover{background:#0064C8; font:12px SIMHEI; width:52px; height:46px; border-style:none;} \
-						 QPushButton:checked{background:#0064C8; font:12px SIMHEI; width:52px; height:46px; border-style:none;}");
+
 }
 
 PanelButton::~PanelButton()
@@ -33,12 +16,14 @@ PanelButton::~PanelButton()
 
 }
 
-void PanelButton::setButtonPicture(const QPixmap &pixmap)
+void PanelButton::setButtonPicture(const QString& defaultPix, const QString& hoverPix, const QString& checkedPix, const QString& pressedPix)
 {
-    picture_->setPixmap(pixmap);		// 设置按钮图片
+    // 设置按钮图片
+	this->setStyleSheet(QString("QPushButton:active{background:#F0F0F0; font:12px SIMHEI; border-style:none; padding-bottom:3px; color:black;} \
+						QPushButton:active{background-image:url(%1);background-repeat:no-repeat; background-position:top; text-align:bottom;}\
+						QPushButton:hover{background:#0064C8; background-image:url(%2); background-repeat:no-repeat; background-position:top; text-align:bottom; color:white;} \
+						QPushButton:checked{background:#0064C8; background-image:url(%3);background-repeat:no-repeat; background-position:top; text-align:bottom; color:white;} \
+						QPushButton:pressed{background:#0064C8; background-image:url(%4);background-repeat:no-repeat; background-position:top; text-align:bottom; color:white;}")
+						.arg(defaultPix).arg(hoverPix).arg(checkedPix).arg(pressedPix));
 }
- 
-void PanelButton::setButtonText(const QString &text)
-{
-    text_->setText(text);				// 设置按钮文字
-}
+
