@@ -43,4 +43,5 @@ namespace ltp
 	}
 }
 
-#endif // LTP_CLIENT_SELECTAXISBAR_H_
+
+#endif // LTP_CLIENT_SELECTAXISBAR_H

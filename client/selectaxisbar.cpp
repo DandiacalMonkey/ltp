@@ -18,10 +18,13 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 	axisButtons_[4] = ui.axisButton5_;
 	//法向轴
 	normalDirectionAxisButton_ = ui.axisButton6_;
+	//按钮建立互斥性
+	for each (auto var in axisButtons_)
 	//按钮初始化
 	const int checkDelay = 50;
 	for each (auto x in axisButtons_)
 	{
+		var->setAutoExclusive(true);
 		//默认为disable
 		x->setEnabled(false);
 		//按钮按下和延迟确认
@@ -39,6 +42,8 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 				updateInformation();
 			});
 	}
+	normalDirectionAxisButton_->setAutoExclusive(true);
+
 	normalDirectionAxisButton_->setEnabled(false);
 	//设定有效轴
 	connect(&base::getInstance<MachiningStates>(),
@@ -54,6 +59,8 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 
 SelectAxisBar::~SelectAxisBar()
 {
+
+
 
 }
 
@@ -129,4 +136,3 @@ void SelectAxisBar::updateInformation()
 		ui.modeLabel_->setText("");
 		ui.overrideLabel_->setText("");
 	}
-}

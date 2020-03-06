@@ -56,8 +56,8 @@ namespace ltp
 			MACHINING_REMAIN = 30122,//加工余量
 			MECHANICAL_COORDINATE = 30128,//机械坐标基地址
 			MOTOR_LOAD = 30132,//马达负载
-			FEED_SPEED = 31064,//进给速度
-			FEED_RATE = 31054,//进给倍率
+			FEED_SPEED = 33563,//进给速度
+			FEED_RATE = 33554,//进给倍率
 			HANDWHEEL_OVERRIDE = 33517,//手轮倍率
 			SPINDLE_OVERRIDE = 33518,//主轴倍率
 			JOG_OVERRIDE = 33520,//jog倍率

@@ -21,8 +21,7 @@ PlusMinusWidget::~PlusMinusWidget()
 void PlusMinusWidget::setValue(int value)
 {
 	// 修改数值
-	QString text = QString::number(value) + QString("%");
-	ui.valueLabel_->setText(text);
+	ui.valueLabel_->setText(QString::number(value));
 }
 
 void PlusMinusWidget::plusClicked()

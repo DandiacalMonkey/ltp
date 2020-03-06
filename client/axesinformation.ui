@@ -33,6 +33,9 @@ QFrame{border: 2px solid red;}</string>
    <property name="leftMargin">
     <number>30</number>
    </property>
+   <property name="topMargin">
+    <number>16</number>
+   </property>
    <property name="rightMargin">
     <number>13</number>
    </property>
@@ -44,7 +47,7 @@ QFrame{border: 2px solid red;}</string>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>25</height>
+       <height>40</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -68,7 +71,7 @@ QFrame{border: 2px solid red;}</string>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>25</height>
+         <height>40</height>
         </size>
        </property>
        <property name="styleSheet">
@@ -87,7 +90,7 @@ QFrame{border: 2px solid red;}</string>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>25</height>
+         <height>40</height>
         </size>
        </property>
        <property name="styleSheet">
@@ -108,7 +111,7 @@ QFrame{border: 2px solid red;}</string>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>25</height>
+       <height>40</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -127,7 +130,7 @@ QFrame{border: 2px solid red;}</string>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>25</height>
+       <height>40</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -144,7 +147,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="1" column="0">
     <widget class="QLabel" name="labelAxesX_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>X</string>
@@ -153,6 +156,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="1" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolX_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -164,7 +170,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="1" column="2">
     <widget class="QLabel" name="machineCoordinateAxesX_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -176,6 +182,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="1" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolX_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -187,7 +196,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="1" column="4">
     <widget class="QLabel" name="workpieceCoordinateAxesX_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -199,6 +208,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="1" column="5">
     <widget class="QLabel" name="machiningRemainSymbolX_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -210,7 +222,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="1" column="6">
     <widget class="QLabel" name="machiningRemainAxesX_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -246,7 +258,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="3" column="0">
     <widget class="QLabel" name="labelAxesY_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>Y</string>
@@ -255,6 +267,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="3" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolY_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -266,7 +281,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="3" column="2">
     <widget class="QLabel" name="machineCoordinateAxesY_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -278,6 +293,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="3" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolY_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -289,7 +307,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="3" column="4">
     <widget class="QLabel" name="workpieceCoordinateAxesY_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -301,6 +319,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="3" column="5">
     <widget class="QLabel" name="machiningRemainSymbolY_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -312,7 +333,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="3" column="6">
     <widget class="QLabel" name="machiningRemainAxesY_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -342,7 +363,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="5" column="0">
     <widget class="QLabel" name="labelAxesZ_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>Z</string>
@@ -351,6 +372,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="5" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolZ_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -362,7 +386,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="5" column="2">
     <widget class="QLabel" name="machineCoordinateAxesZ_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -374,6 +398,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="5" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolZ_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -385,7 +412,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="5" column="4">
     <widget class="QLabel" name="workpieceCoordinateAxesZ_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -397,6 +424,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="5" column="5">
     <widget class="QLabel" name="machiningRemainSymbolZ_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -408,7 +438,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="5" column="6">
     <widget class="QLabel" name="machiningRemainAxesZ_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -438,7 +468,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="7" column="0">
     <widget class="QLabel" name="labelAxesA_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>A</string>
@@ -447,6 +477,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="7" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolA_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -458,7 +491,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="7" column="2">
     <widget class="QLabel" name="machineCoordinateAxesA_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -470,6 +503,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="7" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolA_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -481,7 +517,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="7" column="4">
     <widget class="QLabel" name="workpieceCoordinateAxesA_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -493,6 +529,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="7" column="5">
     <widget class="QLabel" name="machiningRemainSymbolA_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -504,7 +543,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="7" column="6">
     <widget class="QLabel" name="machiningRemainAxesA_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -534,7 +573,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="9" column="0">
     <widget class="QLabel" name="labelAxesB_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>B</string>
@@ -543,6 +582,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="9" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolB_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -554,7 +596,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="9" column="2">
     <widget class="QLabel" name="machineCoordinateAxesB_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -566,6 +608,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="9" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolB_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -577,7 +622,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="9" column="4">
     <widget class="QLabel" name="workpieceCoordinateAxesB_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -589,6 +634,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="9" column="5">
     <widget class="QLabel" name="machiningRemainSymbolB_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -600,7 +648,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="9" column="6">
     <widget class="QLabel" name="machiningRemainAxesB_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -630,7 +678,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="11" column="0">
     <widget class="QLabel" name="labelAxesC_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>C</string>
@@ -639,6 +687,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="11" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolC_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -650,7 +701,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="11" column="2">
     <widget class="QLabel" name="machineCoordinateAxesC_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -662,6 +713,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="11" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolC_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -673,7 +727,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="11" column="4">
     <widget class="QLabel" name="workpieceCoordinateAxesC_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -685,6 +739,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="11" column="5">
     <widget class="QLabel" name="machiningRemainSymbolC_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -696,7 +753,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="11" column="6">
     <widget class="QLabel" name="machiningRemainAxesC_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -726,7 +783,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="13" column="0">
     <widget class="QLabel" name="labelAxesU_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>U</string>
@@ -735,6 +792,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="13" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolU_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -746,7 +806,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="13" column="2">
     <widget class="QLabel" name="machineCoordinateAxesU_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -758,6 +818,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="13" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolU_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -769,7 +832,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="13" column="4">
     <widget class="QLabel" name="workpieceCoordinateAxesU_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -781,6 +844,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="13" column="5">
     <widget class="QLabel" name="machiningRemainSymbolU_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -792,7 +858,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="13" column="6">
     <widget class="QLabel" name="machiningRemainAxesU_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -822,7 +888,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="15" column="0">
     <widget class="QLabel" name="labelAxesV_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>V</string>
@@ -831,6 +897,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="15" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolV_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -842,7 +911,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="15" column="2">
     <widget class="QLabel" name="machineCoordinateAxesV_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -854,6 +923,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="15" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolV_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -865,7 +937,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="15" column="4">
     <widget class="QLabel" name="workpieceCoordinateAxesV_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -877,6 +949,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="15" column="5">
     <widget class="QLabel" name="machiningRemainSymbolV_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -888,7 +963,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="15" column="6">
     <widget class="QLabel" name="machiningRemainAxesV_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -918,7 +993,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="17" column="0">
     <widget class="QLabel" name="labelAxesW_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>W</string>
@@ -927,6 +1002,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="17" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolW_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -938,7 +1016,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="17" column="2">
     <widget class="QLabel" name="machineCoordinateAxesW_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -950,6 +1028,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="17" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolW_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -961,7 +1042,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="17" column="4">
     <widget class="QLabel" name="workpieceCoordinateAxesW_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
@@ -973,6 +1054,9 @@ QFrame{border: 2px solid red;}</string>
    </item>
    <item row="17" column="5">
     <widget class="QLabel" name="machiningRemainSymbolW_">
+     <property name="styleSheet">
+      <string notr="true">font:Bold 18px Arial;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -984,7 +1068,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="17" column="6">
     <widget class="QLabel" name="machiningRemainAxesW_">
      <property name="styleSheet">
-      <string notr="true">font:18px Arial Bold;</string>
+      <string notr="true">font:Bold 18px Arial;</string>
      </property>
      <property name="text">
       <string>1234.123</string>
