@@ -15,12 +15,7 @@ namespace ltp
 		public:
 			PanelButton(QWidget *parent = 0);
 			~PanelButton(); 
-			void setButtonText(const QString &text);			// 添加按钮文字
-			void setButtonPicture(const QPixmap &picture);		// 添加按钮图片
-
-		private:
-			QLabel *text_;
-			QLabel *picture_;
+			void setButtonPicture(const QString&, const QString&, const QString&, const QString&);
 		};
 	}
 }
