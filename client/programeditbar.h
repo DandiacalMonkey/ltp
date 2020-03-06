@@ -2,6 +2,7 @@
 #define LTP_CLIENT_PROGRAMEDITBAR_H_
 
 #include <QtGui/QWidget>
+#include <QTimer>
 #include "ui_programeditbar.h"
 #include "base/globals.h"
 
@@ -24,6 +25,7 @@ namespace ltp
 
 		private:
 			Ui::ProgramEditBarClass ui;
+			QTimer timer_;
 
 		private:
 			void onProgrameEdit();			// 程序编辑
@@ -32,10 +34,11 @@ namespace ltp
 			void updateFileName();			// 更新打开文件名
 
 		private slots:
-			void setValidAxes(const std::vector<ltp::base::Axis> &validAxes);
+			void setValidAxes(const std::vector<base::Axis> &validAxes);
 			void onTeachEditModule(int);			// 切换示教编辑模块
 			void onOpenFile(QString fileName);		// 打开文件
 			void onHint(QString);
+			void onTimer();
 
 		signals:
 			void signalSaved(QString);

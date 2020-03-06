@@ -49,7 +49,7 @@ void TitleBar::setMode(ltp::base::Mode modeType)
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_handwheel.png"));
 		ui.modeNameLabel_->setText(tr("手轮"));
 		break;
-	case ltp::base::CODELESS:		// 快捷
+	case ltp::base::CODELESS:		// 快捷（少图）
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_auto.png"));
 		ui.modeNameLabel_->setText(tr("CODELESS"));
 		break;
@@ -57,9 +57,13 @@ void TitleBar::setMode(ltp::base::Mode modeType)
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_JOG.png"));
 		ui.modeNameLabel_->setText(tr("JOG"));
 		break;
-	case ltp::base::MEMORY:			// 参考点
+	case ltp::base::MEMORY:			// 自动
+		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_auto.png"));
+		ui.modeNameLabel_->setText(tr("自动"));
+		break;
+	case ltp::base::HOME:			// 回原点
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_reference_point.png"));
-		ui.modeNameLabel_->setText(tr("参考点"));
+		ui.modeNameLabel_->setText(tr("原点复归"));
 		break;
 	case ltp::base::MDI:			// MDI
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_MDI.png"));
