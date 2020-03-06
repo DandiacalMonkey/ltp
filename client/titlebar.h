@@ -31,6 +31,7 @@ namespace ltp
 			void setMachiningState(base::MachiningState state);	// 设置加工状态
 			void setCurrentNCName(const QString &name);			// 设置当前加工文件
 			void setErrorMessages(base::ErrorLevel errlevel);	// 设置报错信息
+			void setConnectState(bool isConnect);				// 设置连接状态
 		};
 	}
 }
