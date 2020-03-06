@@ -67,7 +67,6 @@ QPushButton:hover{background:#0064C8;color:white;}
 </string>
        </property>
        <property name="text">
-        <string>X</string>
         <string/>
        </property>
        <property name="checkable">
@@ -98,7 +97,6 @@ QPushButton:hover{background:#0064C8; color:white;}
 </string>
        </property>
        <property name="text">
-        <string>Y</string>
         <string/>
        </property>
        <property name="checkable">
@@ -129,7 +127,6 @@ QPushButton:hover{background:#0064C8; color:white;}
 </string>
        </property>
        <property name="text">
-        <string>Z</string>
         <string/>
        </property>
        <property name="checkable">
@@ -157,7 +154,6 @@ QPushButton:checked{background:#0064C8; color:white;}
 QPushButton:hover{background:#0064C8; color:white;}</string>
        </property>
        <property name="text">
-        <string>A</string>
         <string/>
        </property>
        <property name="checkable">
@@ -191,7 +187,6 @@ QPushButton:checked{background:#0064C8; color:white;}
 QPushButton:hover{background:#0064C8; color:white;}</string>
        </property>
        <property name="text">
-        <string>C</string>
         <string/>
        </property>
        <property name="checkable">
@@ -219,7 +214,6 @@ QPushButton:checked{background:#0064C8; color:white;}
 QPushButton:hover{background:#0064C8; color:white;}</string>
        </property>
        <property name="text">
-        <string>B</string>
         <string/>
        </property>
        <property name="checkable">
@@ -243,7 +237,6 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
     </spacer>
    </item>
    <item>
-    <widget class="Line" name="line">
     <widget class="Line" name="line_">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -251,7 +244,6 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label">
     <widget class="QLabel" name="modeLabel_">
      <property name="minimumSize">
       <size>
@@ -271,7 +263,6 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
     <widget class="QLabel" name="overrideLabel_">
      <property name="minimumSize">
       <size>
@@ -301,4 +292,4 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
  </customwidgets>
  <resources/>
  <connections/>
-</ui
+</ui>
