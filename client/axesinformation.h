@@ -18,15 +18,13 @@ namespace ltp
 			AxesInformation(QWidget *parent = 0);
 			~AxesInformation();  
 
-			void setValidAxes(const std::vector<ltp::base::Axis> &validAxes);		// 设置需要显示的轴
-
 		private:
 			Ui::AxesInformationClass ui;
 			QTimer timer_;
-			std::vector<ltp::base::Axis> shownAxis;		// 显示轴
 
 		private slots:
 			void onTimer();
+			void setValidAxes(const std::vector<base::Axis> &validAxes);		// 设置需要显示的轴
 
 		};
 	}

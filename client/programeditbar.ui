@@ -245,26 +245,6 @@
            <property name="verticalSpacing">
             <number>10</number>
            </property>
-           <item row="1" column="1">
-            <widget class="QLabel" name="workpieceCoordinateAxesX_">
-             <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
-             </property>
-             <property name="text">
-              <string>-1234.123</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="axesLabelX_">
-             <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
-             </property>
-             <property name="text">
-              <string>X</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="currentWorkpieceCoordinate_">
              <property name="styleSheet">
@@ -275,7 +255,50 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
+           <item row="1" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesX_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="axesLabelX_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>X</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="axesLabelC_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="axesLabelU_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>U</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
             <widget class="QLabel" name="label_3">
              <property name="styleSheet">
               <string notr="true">font:14px SIMHEI;</string>
@@ -285,163 +308,284 @@
              </property>
             </widget>
            </item>
-           <item row="7" column="0">
-            <widget class="QLabel" name="axesLabelU_">
-             <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
-             </property>
-             <property name="text">
-              <string>U</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="axesLabelC_">
-             <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
-             </property>
-             <property name="text">
-              <string>C</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="0">
-            <widget class="QLabel" name="axesLabelV_">
-             <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
-             </property>
-             <property name="text">
-              <string>V</string>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="0">
             <widget class="QLabel" name="axesLabelY_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
               <string>Y</string>
              </property>
             </widget>
            </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="axesLabelB_">
+           <item row="8" column="0">
+            <widget class="QLabel" name="axesLabelV_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
-              <string>B</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="axesLabelA_">
-             <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
-             </property>
-             <property name="text">
-              <string>A</string>
+              <string>V</string>
              </property>
             </widget>
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="axesLabelZ_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
               <string>Z</string>
              </property>
             </widget>
            </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="axesLabelA_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="axesLabelB_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesY_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesZ_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
            <item row="9" column="0">
             <widget class="QLabel" name="axesLabelW_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
               <string>W</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="QLabel" name="workpieceCoordinateAxesY_">
+           <item row="6" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesC_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
-              <string>-1234.123</string>
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesA_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesB_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesV_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesU_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesW_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolX_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolY_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QLabel" name="workpieceCoordinateAxesZ_">
+            <widget class="QLabel" name="workpieceCoordinateSymbolZ_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
-              <string>-1234.123</string>
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QLabel" name="workpieceCoordinateAxesA_">
+            <widget class="QLabel" name="workpieceCoordinateSymbolA_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
-              <string>-1234.123</string>
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QLabel" name="workpieceCoordinateAxesB_">
+            <widget class="QLabel" name="workpieceCoordinateSymbolB_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
-              <string>-1234.123</string>
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="QLabel" name="workpieceCoordinateAxesC_">
+            <widget class="QLabel" name="workpieceCoordinateSymbolC_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
-              <string>-1234.123</string>
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
            <item row="7" column="1">
-            <widget class="QLabel" name="workpieceCoordinateAxesU_">
+            <widget class="QLabel" name="workpieceCoordinateSymbolU_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
-              <string>-1234.123</string>
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
            <item row="8" column="1">
-            <widget class="QLabel" name="workpieceCoordinateAxesV_">
+            <widget class="QLabel" name="workpieceCoordinateSymbolV_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
-              <string>-1234.123</string>
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
            <item row="9" column="1">
-            <widget class="QLabel" name="workpieceCoordinateAxesW_">
+            <widget class="QLabel" name="workpieceCoordinateSymbolW_">
              <property name="styleSheet">
-              <string notr="true">font:14px Arial Bold;</string>
+              <string notr="true">font:Bold 14px Arial;</string>
              </property>
              <property name="text">
-              <string>-1234.123</string>
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>

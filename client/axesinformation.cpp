@@ -1,6 +1,7 @@
 ﻿#include "axesinformation.h"
 #include "base/systemvariables.hpp"
 #include "remotevariables.hpp"
+#include "machiningstates.h"
 
 using ltp::client::AxesInformation;
 
@@ -100,16 +101,8 @@ AxesInformation::AxesInformation(QWidget *parent)
 	ui.workpieceCoordinateSymbolW_->hide();
 	ui.lineW_->hide();
 
-	// 根据连接一起判断需要显示的轴信息
-	std::vector<base::Axis> tempAxis;
-	tempAxis.push_back(ltp::base::X_AXIS);
-	tempAxis.push_back(ltp::base::Y_AXIS);
-	tempAxis.push_back(ltp::base::Z_AXIS);
-	tempAxis.push_back(ltp::base::U_AXIS);
-	tempAxis.push_back(ltp::base::V_AXIS);
-	shownAxis = tempAxis;
-	setValidAxes(tempAxis);
-	ui.gridLayout->update();
+	// 根据连接控制器判断需要显示的轴信息
+	connect(&base::getInstance<MachiningStates>(), SIGNAL(validAxesChanged(std::vector<base::Axis>)), this, SLOT(setValidAxes(std::vector<base::Axis>)));
 	
 	// 定时器每0.5s更新一次数据
 	QTimer *timer_ = new QTimer();
