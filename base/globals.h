@@ -57,8 +57,8 @@ namespace ltp
 			MACHINING_REMAIN = 30122,//加工余量
 			MECHANICAL_COORDINATE = 30128,//机械坐标基地址
 			MOTOR_LOAD = 30132,//马达负载
-			FEED_SPEED = 31064,//进给速度
-			FEED_RATE = 31054,//进给倍率
+			FEED_SPEED = 33563,//进给速度
+			FEED_RATE = 33554,//进给倍率
 			SYSTEM_MODE = 50000,//模式
 			FEED_AXIS_VALID = 74100,//轴有效
 			AXIS_ADDRESS = 74112,//轴地址

@@ -71,7 +71,8 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 16px SIMHEI</string>
+         <string notr="true">font:Bold 16px SIMHEI;
+</string>
         </property>
         <property name="text">
          <string>主页</string>
@@ -107,6 +108,9 @@
           <width>30</width>
           <height>30</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">padding:0px;</string>
         </property>
         <property name="text">
          <string>图</string>
@@ -155,14 +159,14 @@
        <widget class="QLabel" name="machiningStateLabel_">
         <property name="minimumSize">
          <size>
-          <width>28</width>
+          <width>52</width>
           <height>14</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>28</width>
-          <height>14</height>
+          <width>52</width>
+          <height>20</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -274,7 +278,7 @@
    <item>
     <widget class="QLabel" name="errorMessageLabel_">
      <property name="styleSheet">
-      <string notr="true">QLabel{background:rgb(255, 255, 0);}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>TitleBar报警部分</string>

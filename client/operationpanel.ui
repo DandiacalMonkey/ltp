@@ -147,7 +147,7 @@
          <item>
           <widget class="QLabel" name="speedFSymbol_">
            <property name="styleSheet">
-            <string notr="true">font:24px Arial Bold;</string>
+            <string notr="true">font:Bold 24px Arial;</string>
            </property>
            <property name="text">
             <string>F</string>
@@ -160,7 +160,7 @@
          <item>
           <widget class="QLabel" name="speedF_">
            <property name="styleSheet">
-            <string notr="true">font:16px Arial Bold;</string>
+            <string notr="true">font:Bold 16px Arial;</string>
            </property>
            <property name="text">
             <string>123456.0</string>

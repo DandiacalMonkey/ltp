@@ -238,13 +238,16 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
    </item>
    <item>
     <widget class="Line" name="line">
+     <property name="styleSheet">
+      <string notr="true">border-top: 1px solid #E6E6E6;</string>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="modeLabel_">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -252,7 +255,7 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 12px Arial Bold;color:#0064C8</string>
+      <string notr="true">font:Bold 12px Arial;color:#0064C8; background:transparent;</string>
      </property>
      <property name="text">
       <string>手轮</string>
@@ -263,7 +266,7 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="rateLabel_">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -271,7 +274,7 @@ QPushButton:hover{background:#0064C8; color:white;}</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">font:12px Arial Bold;color:#0064C8</string>
+      <string notr="true">font:Bold 12px Arial;color:#0064C8;background:transparent;</string>
      </property>
      <property name="text">
       <string>100%</string>

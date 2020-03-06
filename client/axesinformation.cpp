@@ -102,12 +102,11 @@ AxesInformation::AxesInformation(QWidget *parent)
 
 	// 根据连接一起判断需要显示的轴信息
 	std::vector<base::Axis> tempAxis;
-	tempAxis.push_back(base::X_AXIS);
+	tempAxis.push_back(ltp::base::X_AXIS);
 	tempAxis.push_back(ltp::base::Y_AXIS);
 	tempAxis.push_back(ltp::base::Z_AXIS);
 	tempAxis.push_back(ltp::base::U_AXIS);
 	tempAxis.push_back(ltp::base::V_AXIS);
-	tempAxis.push_back(ltp::base::W_AXIS);
 	shownAxis = tempAxis;
 	setValidAxes(tempAxis);
 	ui.gridLayout->update();

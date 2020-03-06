@@ -4,6 +4,7 @@
 #include <array>
 #include <QtGui/QWidget>
 #include "ui_selectaxisbar.h"
+#include "base/globals.h"
 
 namespace ltp
 {
@@ -25,6 +26,10 @@ namespace ltp
 			std::array<base::ClickDelayCheckButton*, kMaxFeedAxes> axisButtons_;
 			//法向轴按钮
 			QPushButton* normalDirectionAxisButton_;
+
+		private slots:
+			void setMode(base::Mode);			// 设置模式变化 手轮/JOG
+			void setRate(int);					// 倍率变化
 		};
 	}
 }
