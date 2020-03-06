@@ -3,6 +3,7 @@
 
 #include <array>
 #include <unordered_set>
+#include <unordered_map>
 #include "globals.h"
 #include "singleton.hpp"
 #include "common/rmi/globals.h"
@@ -106,7 +107,7 @@ namespace ltp
 				std::vector<char> feedAxes(axesChar, axesChar + sizeof(axesChar));
 				/*临时变量*/
 				double tempData;
-				for (int i = 0; i < 16; ++i)
+				for (int i = 0; i < AXIS_MAX; ++i)
 				{
 					/*轴有效检查*/
 					tempData = macroVariable(FEED_AXIS_VALID + i * AXIS_SETTING_INTERVAL);
@@ -133,6 +134,28 @@ namespace ltp
 					}
 				}
 				return std::move(feedAxes);
+			}
+
+			std::unordered_map<char, int> axesAddress()
+			{
+				std::unordered_map<char, int> result;
+				/*临时变量*/
+				double tempData;
+				for (int i = 0; i < AXIS_MAX; ++i)
+				{
+					/*轴有效检查*/
+					tempData = macroVariable(FEED_AXIS_VALID + i * AXIS_SETTING_INTERVAL);
+					/*轴有效*/
+					if (tempData > 1e-3)
+					{
+						/*轴字符*/
+						tempData = macroVariable(FEED_AXIS_CHARACTER + i * AXIS_SETTING_INTERVAL);
+						/*保存轴字符和轴地址映射*/
+						result[static_cast<char>(tempData)] = 
+							static_cast<int>(macroVariable(base::AXIS_ADDRESS + i * AXIS_SETTING_INTERVAL));
+					}
+				}
+				return std::move(result);
 			}
 
 		private:

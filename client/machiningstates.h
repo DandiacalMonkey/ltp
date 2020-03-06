@@ -37,6 +37,8 @@ namespace ltp
 			//将轴字符转换为轴枚举
 			base::Axis axisCharacterToAxisEnum(char axisCharacter) const;
 			std::vector<base::Axis> axesCharacterToAxesEnum(const std::vector<char>& axesCharacter) const;
+			//根据轴枚举获取轴地址
+			int axisEnumToAxisAddress(base::Axis axisEnum) const;
 
 		signals:
 			//检测到模式切换时发出信号
@@ -66,6 +68,8 @@ namespace ltp
 			std::unordered_map<base::Axis, char> axisEnumAxisCharacterMap_;
 			//轴字符到轴枚举的映射
 			std::unordered_map<char, base::Axis> axisCharacterAxisEnumMap_;
+			//轴枚举到轴地址的映射
+			std::unordered_map<base::Axis, int> axesAddress_;
 			//作为单例使用
 			MachiningStates(QObject* parent = nullptr);
 			~MachiningStates();
@@ -73,8 +77,8 @@ namespace ltp
 		private slots:
 			//更新状态，确定是否变化，发送相应信号
 			void updateState();
-			//确认有效轴
-			void checkValidAxes();
+			//网络连接成功，更新轴信息
+			void updateAxesInformation();
 		};
 	}
 }

@@ -16,7 +16,7 @@ MachiningStates::MachiningStates(QObject* parent)
 	timer_.start(kInterval);
 	connect(&timer_, SIGNAL(timeout()), SLOT(updateState()));
 	//网络连接时，确认有效轴
-	connect(&base::getInstance<Network>(), SIGNAL(connected()), SLOT(checkValidAxes()));
+	connect(&base::getInstance<Network>(), SIGNAL(connected()), SLOT(updateAxesInformation()));
 	//初始化轴枚举到轴字符映射关系
 	axisEnumAxisCharacterMap_[base::X_AXIS] = 'X';
 	axisEnumAxisCharacterMap_[base::Y_AXIS] = 'Y';
@@ -28,15 +28,10 @@ MachiningStates::MachiningStates(QObject* parent)
 	axisEnumAxisCharacterMap_[base::V_AXIS] = 'V';
 	axisEnumAxisCharacterMap_[base::W_AXIS] = 'W';
 	//初始化轴字符到轴枚举映射关系
-	axisCharacterAxisEnumMap_['X'] = base::X_AXIS;
-	axisCharacterAxisEnumMap_['Y'] = base::Y_AXIS;
-	axisCharacterAxisEnumMap_['Z'] = base::Z_AXIS;
-	axisCharacterAxisEnumMap_['A'] = base::A_AXIS;
-	axisCharacterAxisEnumMap_['B'] = base::B_AXIS;
-	axisCharacterAxisEnumMap_['C'] = base::C_AXIS;
-	axisCharacterAxisEnumMap_['U'] = base::U_AXIS;
-	axisCharacterAxisEnumMap_['V'] = base::V_AXIS;
-	axisCharacterAxisEnumMap_['W'] = base::W_AXIS;
+	for each (auto x in axisEnumAxisCharacterMap_)
+	{
+		axisCharacterAxisEnumMap_[x.second] = x.first;
+	}
 }
 
 MachiningStates::~MachiningStates()
@@ -134,6 +129,11 @@ std::vector<ltp::base::Axis> ltp::client::MachiningStates::axesCharacterToAxesEn
 	return std::move(result);
 }
 
+int ltp::client::MachiningStates::axisEnumToAxisAddress(base::Axis axisEnum) const
+{
+	return axesAddress_.at(axisEnum);
+}
+
 void MachiningStates::updateState()
 {
 	//模式
@@ -159,13 +159,22 @@ void MachiningStates::updateState()
 	}
 }
 
-void MachiningStates::checkValidAxes()
+void MachiningStates::updateAxesInformation()
 {
 	auto& systemVariables = base::getInstance<base::SystemVariables<RemoteVariables>>();
+	//控制器上的有效轴
 	auto remoteValidAxes = axesCharacterToAxesEnum(systemVariables.validFeedAxes());
+	//对比有效轴
 	if (validAxes_ != remoteValidAxes)
 	{
 		validAxes_ = std::move(remoteValidAxes);
 		emit validAxesChanged(validAxes_);
+	}
+	//更新轴地址
+	auto remoteAxesAddress = systemVariables.axesAddress();
+	axesAddress_.clear();
+	for each (auto x in remoteAxesAddress)
+	{
+		axesAddress_[axisCharacterToAxisEnum(x.first)] = x.second;
 	}
 }

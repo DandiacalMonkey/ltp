@@ -1,6 +1,6 @@
 ﻿#include "ltpclient.h"
 #include <QTextCodec>
-#include <QtGui/QApplication>
+#include "application.h"
 #include "network.h"
 #include "remotevariables.hpp"
 #include "base/systemvariables.hpp"
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());
 	QTextCodec::setCodecForTr(QTextCodec::codecForLocale());
 
-	QApplication a(argc, argv);
+	ltp::client::Application a(argc, argv);
 
 	//TODO:需要修改，界面启动前，先初始化网络接口
 	ltp::base::getInstance<ltp::client::Network>().setHost("192.168.6.194");

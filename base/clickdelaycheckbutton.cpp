@@ -36,6 +36,11 @@ void ClickDelayCheckButton::setClickDelayCheck(const std::function<void()>& clic
 	connect(this, SIGNAL(clicked()), SLOT(onClick()));
 }
 
+void ltp::base::ClickDelayCheckButton::setAutoChecked(bool isAutoChecked)
+{
+	isAutoChecked_ = isAutoChecked;
+}
+
 void ClickDelayCheckButton::nextCheckState()
 {
 	if (isAutoChecked_ && isCheckable())

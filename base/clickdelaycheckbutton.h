@@ -22,6 +22,8 @@ namespace ltp
 			//设定触发函数和延时时间、延时检查函数
 			void setClickDelayCheck(const std::function<void()>& clickFunction, 
 				int miliseconds, const std::function<void()>& delayCheckFunction);
+			//设定是否点击后变更checked状态
+			void setAutoChecked(bool isAutoChecked);
 
 		protected:
 			virtual void nextCheckState();

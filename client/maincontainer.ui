@@ -25,16 +25,7 @@
      <property name="styleSheet">
       <string notr="true">background:white;</string>
      </property>
-     <widget class="ltp::client::ProcessWidget" name="processWidget_">
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <property name="margin">
-        <number>0</number>
-       </property>
-      </layout>
-     </widget>
+     <widget class="ltp::client::ProcessWidget" name="processWidget_"/>
      <widget class="ltp::client::FileManagerWidget" name="fileManagerWidget_"/>
      <widget class="ltp::client::ProgramEditWidget" name="programEditWidget_"/>
     </widget>
