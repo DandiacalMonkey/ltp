@@ -2,6 +2,7 @@
 
 #include <QDateTime>
 #include "machiningstates.h"
+#include "network.h"
 
 using ltp::client::TitleBar;
 
@@ -23,6 +24,9 @@ TitleBar::TitleBar(QWidget *parent)
 	connect(&base::getInstance<MachiningStates>(), SIGNAL(errorLevelChanged(base::ErrorLevel)), this, SLOT(setErrorMessages(base::ErrorLevel)));
 	// 文件名更新
 	connect(&base::getInstance<MachiningStates>(), SIGNAL(machiningFileNameChanged(QString)), this, SLOT(setCurrentNCName(QString)));
+	// 网络连接更新
+	connect(&base::getInstance<Network>(), SIGNAL(connected()), this, SLOT(setConnected()));
+	connect(&base::getInstance<Network>(), SIGNAL(disconnected()), this, SLOT(setDisconnected()));
 
 	updateTimeTimer_ = new QTimer(this);			// 系统时间更新
 	connect(updateTimeTimer_, SIGNAL(timeout()), this, SLOT(updateTime()));
@@ -130,6 +134,16 @@ void TitleBar::setErrorMessages(ltp::base::ErrorLevel errlevel)
 	default:
 		break;
 	}
+}
+
+void TitleBar::setDisconnected()
+{
+	setConnectState(false);
+}
+
+void TitleBar::setConnected()
+{
+	setConnectState(true);
 }
 
 void TitleBar::setConnectState(bool isConnect)
