@@ -8,17 +8,6 @@ namespace ltp
 {
 	namespace client
 	{
-		//°´Å¥Ã¶¾Ù
-		enum BUTTONID
-		{
-			BUTTON1,
-			BUTTON2,
-			BUTTON3,
-			BUTTON4,
-			BUTTON5,
-			BUTTON6
-		};
-
 		class ModuleButtonsWidget : public QWidget
 		{
 			Q_OBJECT

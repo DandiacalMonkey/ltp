@@ -86,15 +86,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_selectaxisbar.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="processwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_processwidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_processwidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_axesinformation.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -185,24 +176,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_pushbutton.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="processbar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_processbar.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_processbar.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="programeditbar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_programeditbar.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_programeditbar.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="programeditwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -214,15 +187,6 @@
     </ClCompile>
     <ClCompile Include="network.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="filemanagerbar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_filemanagerbar.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_filemanagerbar.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="filemanagerwidget.cpp">
       <Filter>Source Files</Filter>
@@ -284,6 +248,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_physicalbuttonsprocessor.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_processwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_processwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="processwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ltpclient.h">
@@ -318,12 +291,6 @@
     </CustomBuild>
     <CustomBuild Include="selectaxisbar.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="processwidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="processwidget.ui">
-      <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="axesinformation.ui">
       <Filter>Form Files</Filter>
@@ -370,28 +337,10 @@
     <CustomBuild Include="..\base\pushbutton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="processbar.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="processbar.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="programeditbar.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="programeditbar.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="programeditwidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="programeditwidget.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="filemanagerbar.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="filemanagerbar.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="filemanagerwidget.h">
@@ -418,6 +367,12 @@
     <CustomBuild Include="physicalbuttonsprocessor.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="processwidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="processwidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ltpclient.h">
@@ -438,9 +393,6 @@
     <ClInclude Include="GeneratedFiles\ui_maincontainer.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_processwidget.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_axesinformation.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -459,12 +411,6 @@
     <ClInclude Include="GeneratedFiles\ui_plusminuswidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_processbar.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_programeditbar.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_programeditwidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -477,9 +423,6 @@
     <ClInclude Include="..\base\systemvariables.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_filemanagerbar.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_filemanagerwidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -488,6 +431,9 @@
     </ClInclude>
     <ClInclude Include="..\common\rmi\RemoteComm.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_processwidget.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

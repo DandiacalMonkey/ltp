@@ -28,7 +28,7 @@
   <property name="styleSheet">
    <string notr="true">background:#FFFFFF;</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,30,0,448">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -36,66 +36,613 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="ltp::client::ModuleButtonsWidget" name="editModuleButtonWidget_" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>80</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QWidget" name="buttonWidget_" native="true">
+     <layout class="QHBoxLayout" name="buttonLayout_">
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>8</number>
+      </property>
+      <property name="rightMargin">
+       <number>36</number>
+      </property>
+      <property name="bottomMargin">
+       <number>8</number>
+      </property>
+      <item>
+       <widget class="ltp::base::PushButton" name="saveButton_">
+        <property name="text">
+         <string>保存</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_3">
+        <property name="styleSheet">
+         <string notr="true">border-left: 1px solid #D2D2D2;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="repealButton_">
+        <property name="text">
+         <string>撤销</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="recoverButton_">
+        <property name="text">
+         <string>恢复</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_4">
+        <property name="styleSheet">
+         <string notr="true">border-left: 1px solid #D2D2D2;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="copyButton_">
+        <property name="text">
+         <string>复制</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="cutButton_">
+        <property name="text">
+         <string>剪切</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="pasteButton_">
+        <property name="text">
+         <string>粘贴</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_5">
+        <property name="styleSheet">
+         <string notr="true">border-left: 1px solid #D2D2D2;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="removeLineButton_">
+        <property name="minimumSize">
+         <size>
+          <width>65</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>行删除</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_6">
+        <property name="styleSheet">
+         <string notr="true">border-left: 1px solid #D2D2D2;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="fineLineButton_">
+        <property name="minimumSize">
+         <size>
+          <width>65</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>行查找</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ltp::base::PushButton" name="findAndReplaceButton_">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>查找替换</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="styleSheet">
+      <string notr="true">border-top: 1px solid #D2D2D2;</string>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>80</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>80</width>
-       <height>16777215</height>
-      </size>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="ltp::client::ModuleButtonsWidget" name="teachEditModuleButtonWidget_" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>80</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QLabel" name="programTitleLabel_">
+     <property name="styleSheet">
+      <string notr="true">font:13px SIMHEI;</string>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>80</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>80</width>
-       <height>16777215</height>
-      </size>
+     <property name="text">
+      <string>本地存储器：</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="ltp::client::ProgramEditBar" name="programEditBar_" native="true"/>
+    <widget class="Line" name="line_2">
+     <property name="styleSheet">
+      <string notr="true">border-top: 1px solid #D2D2D2;</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="mainContainerLayout_" stretch="420,259">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="ltp::base::TextEdit" name="textEdit_" native="true"/>
+     </item>
+     <item>
+      <widget class="QWidget" name="sideBarWidget_" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="186,300">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QWidget" name="commandPanelWidget_" native="true">
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>45</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="rightMargin">
+            <number>80</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>10</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="currentWorkpieceCoordinate_">
+             <property name="styleSheet">
+              <string notr="true">font: 14px Arial; color:#0064C8;</string>
+             </property>
+             <property name="text">
+              <string>G54</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesX_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="axesLabelX_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>X</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="axesLabelC_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="axesLabelU_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>U</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_3">
+             <property name="styleSheet">
+              <string notr="true">font:14px SIMHEI;</string>
+             </property>
+             <property name="text">
+              <string>工件坐标</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="axesLabelY_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>Y</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="axesLabelV_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="axesLabelZ_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>Z</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="axesLabelA_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="axesLabelB_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesY_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesZ_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="axesLabelW_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>W</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesC_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesA_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesB_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesV_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesU_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="2">
+            <widget class="QLabel" name="workpieceCoordinateAxesW_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>1234.123</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolX_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolY_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolZ_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolA_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolB_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolC_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolU_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolV_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1">
+            <widget class="QLabel" name="workpieceCoordinateSymbolW_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 14px Arial;</string>
+             </property>
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="teachSideBarWidget_" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_3" stretch="24,277">
+           <property name="margin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="teachTitle_">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font:14px SIMHEI;
+background:#F5F5F5;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="teachSchematicDiagram_">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ltp::client::ModuleButtonsWidget</class>
+   <class>ltp::base::TextEdit</class>
    <extends>QWidget</extends>
-   <header>modulebuttonswidget.h</header>
+   <header>../base/textedit.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ltp::client::ProgramEditBar</class>
-   <extends>QWidget</extends>
-   <header>programeditbar.h</header>
-   <container>1</container>
+   <class>ltp::base::PushButton</class>
+   <extends>QPushButton</extends>
+   <header>base/pushbutton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>770</width>
+    <width>721</width>
     <height>537</height>
    </rect>
   </property>
@@ -17,11 +17,44 @@
    <string notr="true"/>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <property name="margin">
     <number>0</number>
    </property>
    <item>
-    <widget class="QStackedWidget" name="mainContainerClassStackedWidget_">
+    <widget class="QStackedWidget" name="moduleButtonsWidget_">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>80</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>80</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>80</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:white;</string>
+     </property>
+     <widget class="ltp::client::ModuleButtonsWidget" name="homeModuleButtonsWidget_"/>
+     <widget class="ltp::client::ModuleButtonsWidget" name="processModuleButtonsWidget_"/>
+     <widget class="ltp::client::ModuleButtonsWidget" name="fileManagerModuleButtonsWidget_"/>
+     <widget class="ltp::client::ModuleButtonsWidget" name="programEditModuleButtonsWidget_"/>
+     <widget class="ltp::client::ModuleButtonsWidget" name="teachEditModuleButtonsWidget_"/>
+    </widget>
+   </item>
+   <item>
+    <widget class="QStackedWidget" name="mainContainerWidget_">
      <property name="styleSheet">
       <string notr="true">background:white;</string>
      </property>
@@ -49,6 +82,12 @@
    <class>ltp::client::ProcessWidget</class>
    <extends>QWidget</extends>
    <header>processwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ltp::client::ModuleButtonsWidget</class>
+   <extends>QWidget</extends>
+   <header>modulebuttonswidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
