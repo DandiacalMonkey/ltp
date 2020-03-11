@@ -23,6 +23,7 @@ namespace ltp
 			QString getCurrentFileName(){return ui.textEdit_->getCurrentFileName();}	// 获取当前文件名
 			void checkCurrentFileModified(){ui.textEdit_->checkModified();}				// 检查文件是否修改
 			void onOpenFile(QString fileName);		// 打开文件
+			void onTeachEditModule(int);			// 切换示教编辑模块
 
 		private:
 			Ui::ProgramEditWidgetClass ui;
@@ -36,7 +37,6 @@ namespace ltp
 
 		private slots:
 			void setValidAxes(const std::vector<base::Axis> &validAxes);
-			void onTeachEditModule(int);			// 切换示教编辑模块
 			void onHint(QString);
 			void onTimer();
 

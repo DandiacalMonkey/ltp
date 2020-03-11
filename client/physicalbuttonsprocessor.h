@@ -5,30 +5,42 @@
 #include <QKeyEvent>
 #include <unordered_map>
 #include <functional>
+#include "base/singleton.hpp"
 
-class PhysicalButtonsProcessor : public QObject
+namespace ltp
 {
-	Q_OBJECT
+	namespace client
+	{
+		class PhysicalButtonsProcessor : public QObject
+		{
+			Q_OBJECT
+			friend PhysicalButtonsProcessor& base::getInstance<PhysicalButtonsProcessor>();
 
-public:
-	PhysicalButtonsProcessor(QObject *parent);
-	~PhysicalButtonsProcessor();
+		public:	
+			bool isPhysicalButtonsProcessor(QKeyEvent* event) const;
+			void getMapFunction(QKeyEvent* event);
 
-	bool isPhysicalButtonsProcessor(QKeyEvent* event) const;
+		signals:
+			// 左边
+			void returnButtonClicked();
+			void leftButtonClicked(int key);
+			// 下边
+			void bottomButtonModeClicked(int key);
+			void bottomButtonRateClicked(int key);
+			// 右边
+			void rightButtonPlus(int key);
+			void rightButtonMinus(int key);
+			void rightButtonStart();
+			void rightButtonStop();
+			void rightButtonReset();
 
-signals:
-	//左边
-	void leftButton1Clicked();
-	void leftButton2Clicked();
-	void leftButton3Clicked();
-	void leftButton4Clicked();
-	void leftButton5Clicked();
-	void leftButton6Clicked();
-	void leftButton7Clicked();
-
-private:
-	//按钮键值和相关事件的映射
-	std::unordered_map<int, std::function<void()>> keyValueSignalMap_;
-};
-
+		private:
+			PhysicalButtonsProcessor(QObject *parent = nullptr);
+			~PhysicalButtonsProcessor();
+			// 按钮键值和相关事件的映射
+			std::unordered_map<int, std::function<void()>> keyValueSignalMap_;
+			void initKeyMap();
+		};
+	}
+}
 #endif // LTP_CLIENT_PHYSICALBUTTONSPROCESSOR_H_

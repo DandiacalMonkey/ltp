@@ -40,7 +40,7 @@
      <property name="styleSheet">
       <string notr="true">background:#F5F5F5</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0,1,0,0,0">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0,0,1,0,0,0">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -60,13 +60,13 @@
        <widget class="QLabel" name="moduleNameLabel_">
         <property name="minimumSize">
          <size>
-          <width>32</width>
+          <width>68</width>
           <height>16</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>32</width>
+          <width>68</width>
           <height>16</height>
          </size>
         </property>
@@ -89,7 +89,7 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>71</width>
+          <width>35</width>
           <height>20</height>
          </size>
         </property>
@@ -138,39 +138,55 @@
         <property name="minimumSize">
          <size>
           <width>63</width>
-          <height>14</height>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>63</width>
-          <height>14</height>
+          <height>30</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 14px SIMHEI</string>
+         <string notr="true">background:transparent; font:14px SIMHEI; color:black; padding:0px 0px 0px 0px; margin-bottom:1px; margin-left:0px; margin-top:14px; margin-right:0px;</string>
         </property>
         <property name="text">
          <string>手轮</string>
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignBottom">
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>11</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <widget class="QLabel" name="machiningStateLabel_">
         <property name="minimumSize">
          <size>
-          <width>52</width>
-          <height>14</height>
+          <width>60</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>52</width>
-          <height>20</height>
+          <width>60</width>
+          <height>30</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 14px SIMHEI</string>
+         <string notr="true">background:transparent; font:14px SIMHEI; color:black; padding:0px 0px 0px 0px; margin-bottom:1px; margin-left:13px; margin-top:14px; margin-right:15px;</string>
         </property>
         <property name="text">
          <string>就绪</string>
@@ -187,7 +203,7 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>36</width>
+          <width>25</width>
           <height>20</height>
          </size>
         </property>
@@ -198,17 +214,17 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>16</height>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>16</height>
+          <height>30</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 14px Arial</string>
+         <string notr="true">background:transparent; font:14px Arial; color:black; padding:0px 0px 0px 0px; margin-bottom:1px; margin-left:0px; margin-top:14px; margin-right:0px;</string>
         </property>
         <property name="text">
          <string>XXXXXXXX.NC</string>

@@ -1,5 +1,6 @@
 #include "maincontainer.h"
 #include "base/globals.h"
+#include "physicalbuttonsprocessor.h"
 
 using ltp::client::MainContainer;
 
@@ -8,31 +9,78 @@ MainContainer::MainContainer(QWidget* parent)
 {
 	ui.setupUi(this);
 	initModuleButtonsWidget();
-	// 主菜单切换new
+	// 主菜单切换
 	connect(ui.homeModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onModule(int)));
 	// 其他界面切到主界面
 	connect(ui.fileManagerModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(onHome()));
 	connect(ui.programEditModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(onHome()));
 	connect(ui.processModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(onHome()));
-
-	// 切到加工界面, 执行文件
-
+	connect(ui.setModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(onHome()));
 	// 文件管理界面，左侧按钮切换
 	connect(ui.fileManagerModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onFileWidgetModule(int)));
 	// 文件管理界面，执行、打开按钮是否enable
 	connect(ui.fileManagerWidget_, SIGNAL(downloadEnable(bool)), this, SLOT(enableFileButtons(bool)));
 	// 编辑界面保存，同时上载到ftp客户端
 	connect(ui.programEditWidget_, SIGNAL(signalSaved(QString)), ui.fileManagerWidget_, SLOT(uploadFile(QString)));
-	// 编辑界面，左侧按钮切换new
+	// 加工界面，左侧按钮切换
+	connect(ui.processModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProcessWidgetModule(int)));
+	// 编辑界面，左侧按钮切换
 	connect(ui.programEditModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgrameEditWidgetModule(int)));
-	// 示教编辑界面，左侧按钮切换new
-	connect(ui.teachEditModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), ui.programEditWidget_, SLOT(onTeachEditModule(int)));
+	// 示教编辑界面，左侧按钮切换
+	connect(ui.teachEditModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgramTeachEditModule(int)));
 	connect(ui.teachEditModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backProgrameModule()));
+	// 外设按钮响应
+	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(returnButtonClicked()), this, SLOT(returnButtonClicked()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(leftButtonClicked(int)), this, SLOT(leftButtonClicked(int)));
 }
 
 MainContainer::~MainContainer()
 {
 	
+}
+
+void MainContainer::leftButtonClicked(int key)
+{
+	// 外设按键切换当前界面
+	auto tempWidget = ui.moduleButtonsWidget_->currentWidget();
+	if (ui.moduleButtonsWidget_->currentIndex() == HOME_BUTTONS_WIDGET)				// 主界面
+	{
+		onModule(key);
+	}
+	else if (ui.moduleButtonsWidget_->currentIndex() == PROCESS_BUTTONS_WIDGET)		// 加工界面
+	{
+		onProcessWidgetModule(key);
+	}
+	else if (ui.moduleButtonsWidget_->currentIndex() == FILEMANAGER_BUTTONS_WIDGET)	// 文件管理界面
+	{
+		onFileWidgetModule(key);
+	}
+	else if (ui.moduleButtonsWidget_->currentIndex() == PROGRAMEDIT_BUTTONS_WIDGET)	// 编辑界面
+	{
+		onProgrameEditWidgetModule(key);
+	}
+	else if (ui.moduleButtonsWidget_->currentIndex() == TEACHEDIT_BUTTONS_WIDGET)	// 示教编辑界面
+	{
+		onProgramTeachEditModule(key);
+	}
+}
+
+void MainContainer::returnButtonClicked()
+{
+	auto tempWidget = ui.moduleButtonsWidget_->currentWidget();
+	// 主界面、加工界面、文件管理界面、编辑界面、设置界面
+	if (ui.moduleButtonsWidget_->currentIndex() == HOME_BUTTONS_WIDGET ||
+		ui.moduleButtonsWidget_->currentIndex() == PROCESS_BUTTONS_WIDGET ||
+		ui.moduleButtonsWidget_->currentIndex() == FILEMANAGER_BUTTONS_WIDGET ||
+		ui.moduleButtonsWidget_->currentIndex() == PROGRAMEDIT_BUTTONS_WIDGET ||
+		ui.moduleButtonsWidget_->currentIndex() == SET_BUTTONS_WIDGET)				
+	{
+		onHome();					// 返回主页面
+	}
+	else if (ui.moduleButtonsWidget_->currentIndex() == TEACHEDIT_BUTTONS_WIDGET)	// 示教编辑界面
+	{
+		backProgrameModule();		// 返回程序编程界面
+	}
 }
 
 void MainContainer::initModuleButtonsWidget()
@@ -51,7 +99,6 @@ void MainContainer::initModuleButtonsWidget()
 	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("设置")));
 	ui.homeModuleButtonsWidget_->setCheckableButton(false);
 	ui.homeModuleButtonsWidget_->setReturnButtonEnabled(false);
-	ui.homeModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON4, false);
 
 	// 编辑界面左侧按钮栏设置
 	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("程序编辑")));
@@ -73,6 +120,9 @@ void MainContainer::initModuleButtonsWidget()
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("G01")));
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("G02")));
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("G102")));
+
+	// 设置界面左侧按钮栏设置
+	ui.setModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("连接设置")));
 }
 
 void MainContainer::backProgrameModule()
@@ -80,6 +130,22 @@ void MainContainer::backProgrameModule()
 	// 返回程序编辑界面
 	onProgrameEditWidgetModule(base::LEFTBUTTON1);
 	ui.programEditModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
+}
+
+void MainContainer::onProcessWidgetModule(int module)
+{
+	// 加工界面切换
+	switch (module)
+	{
+	case base::LEFTBUTTON1:					// 加工状态
+		break;
+	case base::LEFTBUTTON2:					// 坐标系
+		break;
+	case base::LEFTBUTTON6:					// 起始行
+		break;
+	default:
+		break;
+	}
 }
 
 void MainContainer::onProgrameEditWidgetModule(int module)
@@ -108,6 +174,12 @@ void MainContainer::onProgrameEditWidgetModule(int module)
 	default:
 		break;
 	}
+}
+
+void MainContainer::onProgramTeachEditModule(int module)
+{
+	// 切换编辑模块
+	ui.programEditWidget_->onTeachEditModule(module);
 }
 
 void MainContainer::onFileWidgetModule(int module)
@@ -185,6 +257,10 @@ void MainContainer::onModule(int moduleIndex)
 		emit signalChangeModules(QString(tr("编辑")));
 		break;
 	case base::LEFTBUTTON4:					// 设置界面
+		ui.mainContainerWidget_->setCurrentWidget(ui.setWidget_);
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.setModuleButtonsWidget_);	
+		ui.setModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
+		emit signalChangeModules(QString(tr("设置")));
 		break;
 	default:
 		break;

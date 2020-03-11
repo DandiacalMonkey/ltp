@@ -39,6 +39,12 @@ namespace ltp
 		private slots:
 			//更新轴选栏状态
 			void updateInformation();
+			// 右侧外设按键响应
+			void plusButtonClicked(int);
+			void minusButtonClicked(int);
+			void startButtonClicked();
+			void stopButtonClicked();
+			void resetButtonClicked();
 		};
 	}
 }

@@ -51,6 +51,7 @@
      <widget class="ltp::client::ModuleButtonsWidget" name="fileManagerModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="programEditModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="teachEditModuleButtonsWidget_"/>
+     <widget class="ltp::client::ModuleButtonsWidget" name="setModuleButtonsWidget_"/>
     </widget>
    </item>
    <item>
@@ -61,6 +62,7 @@
      <widget class="ltp::client::ProcessWidget" name="processWidget_"/>
      <widget class="ltp::client::FileManagerWidget" name="fileManagerWidget_"/>
      <widget class="ltp::client::ProgramEditWidget" name="programEditWidget_"/>
+     <widget class="ltp::client::SetWidget" name="setWidget_"/>
     </widget>
    </item>
   </layout>
@@ -88,6 +90,12 @@
    <class>ltp::client::ModuleButtonsWidget</class>
    <extends>QWidget</extends>
    <header>modulebuttonswidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ltp::client::SetWidget</class>
+   <extends>QWidget</extends>
+   <header>setwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -79,6 +79,10 @@ namespace ltp
 			void updateState();
 			//网络连接成功，更新轴信息
 			void updateAxesInformation();
+			// 模式切换
+			void modeChanged(int);
+			// 倍率切换
+			void rateChanged(int);
 		};
 	}
 }

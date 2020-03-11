@@ -2,6 +2,8 @@
 #include "network.h"
 #include "base/systemvariables.hpp"
 #include "remotevariables.hpp"
+#include "physicalbuttonsprocessor.h"
+#include "base/globals.h"
 
 using ltp::client::MachiningStates;
 
@@ -17,6 +19,9 @@ MachiningStates::MachiningStates(QObject* parent)
 	connect(&timer_, SIGNAL(timeout()), SLOT(updateState()));
 	//网络连接时，确认有效轴
 	connect(&base::getInstance<Network>(), SIGNAL(connected()), SLOT(updateAxesInformation()));
+	// 下排外设按钮响应
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(bottomButtonModeClicked(int)), this, SLOT(modeChanged(int)));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(bottomButtonRateClicked(int)), this, SLOT(rateChanged(int)));
 	//初始化轴枚举到轴字符映射关系
 	axisEnumAxisCharacterMap_[base::X_AXIS] = 'X';
 	axisEnumAxisCharacterMap_[base::Y_AXIS] = 'Y';
@@ -37,6 +42,38 @@ MachiningStates::MachiningStates(QObject* parent)
 MachiningStates::~MachiningStates()
 {
 
+}
+
+void MachiningStates::rateChanged(int buttonID)
+{
+	switch (buttonID)
+	{
+	case base::BOTTOMBUTTON6:			// X1 5%
+		break;
+	case base::BOTTOMBUTTON7:			// X10 25%
+		break;
+	case base::BOTTOMBUTTON8:			// X100 50%
+		break;
+	case base::BOTTOMBUTTON9:			// X200 100%
+		break;
+	default:
+		break;
+	}
+}
+
+void MachiningStates::modeChanged(int buttonID)
+{
+	switch (buttonID)
+	{
+	case base::BOTTOMBUTTON1:			// 自动
+		break;
+	case base::BOTTOMBUTTON2:			// JOG
+		break;
+	case base::BOTTOMBUTTON3:			// 手轮
+		break;
+	default:
+		break;
+	}
 }
 
 ltp::base::Mode MachiningStates::mode() const

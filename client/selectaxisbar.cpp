@@ -3,6 +3,8 @@
 #include "base/systemvariables.hpp"
 #include "remotevariables.hpp"
 #include "common/rmi/globals.h"
+#include "physicalbuttonsprocessor.h"
+#include "base/globals.h"
 
 using ltp::client::SelectAxisBar;
 
@@ -50,11 +52,74 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 	connect(&timer, SIGNAL(timeout()), SLOT(updateInformation()));
 	connect(&base::getInstance<MachiningStates>(),
 		SIGNAL(modeChanged(base::Mode)), SLOT(updateInformation()));
+	// 外设按钮响应
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonPlus(int)), this, SLOT(plusButtonClicked(int)));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonMinus(int)), this, SLOT(minusButtonClicked(int)));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStart()), this, SLOT(startButtonClicked()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStop()), this, SLOT(stopButtonClicked()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonReset()), this, SLOT(resetButtonClicked()));
 }
 
 SelectAxisBar::~SelectAxisBar()
 {
 
+}
+
+void SelectAxisBar::plusButtonClicked(int key)
+{
+	switch (key)
+	{
+	case base::RIGHTBUTTON1:
+		break;
+	case base::RIGHTBUTTON2:
+		break;
+	case base::RIGHTBUTTON3:
+		break;
+	case base::RIGHTBUTTON4:
+		break;
+	case base::RIGHTBUTTON5:
+		break;
+	case base::RIGHTBUTTON6:
+		break;
+	default:
+		break;
+	}
+}
+
+void SelectAxisBar::minusButtonClicked(int key)
+{
+	switch (key)
+	{
+	case base::RIGHTBUTTON1:
+		break;
+	case base::RIGHTBUTTON2:
+		break;
+	case base::RIGHTBUTTON3:
+		break;
+	case base::RIGHTBUTTON4:
+		break;
+	case base::RIGHTBUTTON5:
+		break;
+	case base::RIGHTBUTTON6:
+		break;
+	default:
+		break;
+	}
+}
+
+void SelectAxisBar::startButtonClicked()
+{
+	// 启动按钮按下
+}
+
+void SelectAxisBar::stopButtonClicked()
+{
+	// 停止按钮按下
+}
+
+void SelectAxisBar::resetButtonClicked()
+{
+	// 重置按钮按下
 }
 
 void SelectAxisBar::setValidAxes(const std::vector<ltp::base::Axis> validAxes)
