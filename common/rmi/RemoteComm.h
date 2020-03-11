@@ -68,6 +68,13 @@ extern "C" DLL_DECLARE int remote_get_open_file_name(int nHandle, char* chFileNa
 extern "C" DLL_DECLARE int remote_get_open_file_path(int nHandle, char* chFilePath);
 
 /*
+*描  述：获取控制器端文件最后修改时间
+*参  数：nHandle:句柄  chFilePath:文件路径  nLastModifiedTime:最后修改时间(UNIX时间戳)
+*返回值：0：成功  -1：失败
+*/
+extern "C" DLL_DECLARE int remote_get_file_last_modified_time(int nHandle, const char* chFilePath, int* nLastModifiedTime);
+
+/*
 *描  述：获取控制器端打开的当前文件的md5
 *参  数：nHandle:句柄  buf:存储获取到的md5
 *返回值：0：成功  -1：失败

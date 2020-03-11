@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_MAINCONTAINER_H_
+ï»¿#ifndef LTP_CLIENT_MAINCONTAINER_H_
 #define LTP_CLIENT_MAINCONTAINER_H_
 
 #include <QtGui/QWidget>
@@ -20,14 +20,14 @@ namespace ltp
 			Ui::MainContainerClass ui;
 
 		signals:
-			void signalChangeProcessFileName(QString);		// µ±Ç°¼Ó¹¤ÎÄ¼şÃû¸Ä±ä
-			void signalChangeModules(QString);				// ÇĞ»»Ä£¿é£¬²Ëµ¥À¸ĞÅÏ¢ĞŞ¸Ä
+			void signalChangeProcessFileName(QString);		// å½“å‰åŠ å·¥æ–‡ä»¶åæ”¹å˜
+			void signalChangeModules(QString);				// åˆ‡æ¢æ¨¡å—ï¼Œèœå•æ ä¿¡æ¯ä¿®æ”¹
 
 		private slots:
-			void onModule(int);								// ÇĞ»»Ä£¿é
-			void onHome();									// ·µ»ØÖ÷Ò³
-			void onEditModule();							// ÇĞµ½³ÌĞò±à¼­Ä£¿é
-			void onProcessModule(QString);					// ÇĞµ½¼Ó¹¤Ä£¿é
+			void onModule(int);								// åˆ‡æ¢æ¨¡å—
+			void onHome();									// è¿”å›ä¸»é¡µ
+			void onEditModule();							// åˆ‡åˆ°ç¨‹åºç¼–è¾‘æ¨¡å—
+			void onProcessModule(QString);					// åˆ‡åˆ°åŠ å·¥æ¨¡å—
 		};
 	}
 }

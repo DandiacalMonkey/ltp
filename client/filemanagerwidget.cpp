@@ -12,14 +12,16 @@ FileManagerWidget::FileManagerWidget(QWidget *parent)
 	ui.fileManagerButtonWidget_->setCommandButtonName(ltp::client::BUTTON5, QString(tr("执行")));
 	ui.fileManagerButtonWidget_->setCommandButtonName(ltp::client::BUTTON6, QString(tr("打开")));
 	enableButton(false);		// 初始禁用执行和打开功能，在选择文件后启用
+	//设定ftp地址，连接控制器
+	ui.fileManager_->setFtpHost("192.168.6.194");
+	ui.fileManager_->connectToFtp();
 	// 返回主界面
 	connect(ui.fileManagerButtonWidget_, SIGNAL(signalReturnButtonClicked()), this, SIGNAL(onHome()));
 	connect(ui.fileManagerButtonWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onFileManagerModule(int)));
 	// 上载文件
-	connect(this, SIGNAL(signalSaved(QString)), ui.fileManagerBar_, SLOT(uploadFile(QString)));
-
+	connect(this, SIGNAL(signalSaved(QString)), ui.fileManager_, SLOT(uploadFile(QString)));
 	// 可以加载文件，即执行、打开功能是否使用
-	connect(ui.fileManagerBar_, SIGNAL(downloadEnable(bool)), this, SLOT(enableButton(bool)));
+	connect(ui.fileManager_, SIGNAL(downloadEnable(bool)), this, SLOT(enableButton(bool)));
 }
 
 FileManagerWidget::~FileManagerWidget()
@@ -47,13 +49,7 @@ void FileManagerWidget::onFileManagerModule(int nModule)
 	QString filename = "";
 	if (nModule == BUTTON6 || nModule == BUTTON5)
 	{
-		// 获取当前选中文件名
-		filename = ui.fileManagerBar_->getCurrentFileName();
-		// 检查否下载，未下载需要先下载
-		if(!ui.fileManagerBar_->checkDownload(filename))
-		{
-			return;
-		}
+		//TODO:打开或执行文件
 	}	
 
 	switch(nModule)

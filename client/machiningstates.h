@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_MACHININGSTATES_H_
+ï»¿#ifndef LTP_CLIENT_MACHININGSTATES_H_
 #define LTP_CLIENT_MACHININGSTATES_H_
 
 #include <vector>
@@ -19,39 +19,39 @@ namespace ltp
 			friend MachiningStates& base::getInstance<MachiningStates>();
 
 		public:
-			//»ñÈ¡Ô¶³ÌÄ£Ê½
+			//è·å–è¿œç¨‹æ¨¡å¼
 			base::Mode mode() const;
-			//»ñÈ¡Ô¶³Ì¼Ó¹¤×´Ì¬
+			//è·å–è¿œç¨‹åŠ å·¥çŠ¶æ€
 			base::MachiningState machiningState() const;
-			//»ñÈ¡Ô¶³Ì¼ÓÔØµÄÎÄ¼şÃû(°üº¬Â·¾¶)
+			//è·å–è¿œç¨‹åŠ è½½çš„æ–‡ä»¶å(åŒ…å«è·¯å¾„)
 			QString machiningFilePath() const;
-			//»ñÈ¡Ô¶³Ì¼ÓÔØµÄÎÄ¼şÃû(²»°üº¬Â·¾¶)
+			//è·å–è¿œç¨‹åŠ è½½çš„æ–‡ä»¶å(ä¸åŒ…å«è·¯å¾„)
 			QString machiningFileName() const;
-			//»ñÈ¡±¨¾¯µÈ¼¶
+			//è·å–æŠ¥è­¦ç­‰çº§
 			base::ErrorLevel errorLevel() const;
-			//»ñÈ¡ÓĞĞ§Öá
+			//è·å–æœ‰æ•ˆè½´
 			const std::vector<base::Axis>& validAxes() const;
-			//½«ÖáÃ¶¾Ù×ª»»ÎªÖá×Ö·û
+			//å°†è½´æšä¸¾è½¬æ¢ä¸ºè½´å­—ç¬¦
 			char axisEnumToAxisCharacter(base::Axis axisEnum) const;
 			std::vector<char> axesEnumToAxesCharacter(const std::vector<base::Axis>& axesEnum) const;
-			//½«Öá×Ö·û×ª»»ÎªÖáÃ¶¾Ù
+			//å°†è½´å­—ç¬¦è½¬æ¢ä¸ºè½´æšä¸¾
 			base::Axis axisCharacterToAxisEnum(char axisCharacter) const;
 			std::vector<base::Axis> axesCharacterToAxesEnum(const std::vector<char>& axesCharacter) const;
-			//¸ù¾İÖáÃ¶¾Ù»ñÈ¡ÖáµØÖ·
+			//æ ¹æ®è½´æšä¸¾è·å–è½´åœ°å€
 			int axisEnumToAxisAddress(base::Axis axisEnum) const;
 
 		signals:
-			//¼ì²âµ½Ä£Ê½ÇĞ»»Ê±·¢³öĞÅºÅ
+			//æ£€æµ‹åˆ°æ¨¡å¼åˆ‡æ¢æ—¶å‘å‡ºä¿¡å·
 			void modeChanged(base::Mode mode);
-			//¼ì²âµ½¼Ó¹¤×´Ì¬ÇĞ»»·¢³öĞÅºÅ
+			//æ£€æµ‹åˆ°åŠ å·¥çŠ¶æ€åˆ‡æ¢å‘å‡ºä¿¡å·
 			void machiningStateChanged(base::MachiningState machiningState);
-			//±¨´íµÈ¼¶±ä»¯ĞÅºÅ
+			//æŠ¥é”™ç­‰çº§å˜åŒ–ä¿¡å·
 			void errorLevelChanged(base::ErrorLevel errorLevel);
-			//¼ì²âµ½ÕıÔÚ¼Ó¹¤µÄÎÄ¼şÃû(º¬Â·¾¶)±ä»¯
+			//æ£€æµ‹åˆ°æ­£åœ¨åŠ å·¥çš„æ–‡ä»¶å(å«è·¯å¾„)å˜åŒ–
 			void machiningFilePathChanged(QString filePath);
-			//¼ì²âµ½ÕıÔÚ¼Ó¹¤µÄÎÄ¼şÃû(²»º¬Â·¾¶)±ä»¯£¬½öÂ·¾¶±ä»¯Ê±²»·¢ËÍ
+			//æ£€æµ‹åˆ°æ­£åœ¨åŠ å·¥çš„æ–‡ä»¶å(ä¸å«è·¯å¾„)å˜åŒ–ï¼Œä»…è·¯å¾„å˜åŒ–æ—¶ä¸å‘é€
 			void machiningFileNameChanged(QString filePath);
-			//ÓĞĞ§Öá±ä»¯ĞÅºÅ
+			//æœ‰æ•ˆè½´å˜åŒ–ä¿¡å·
 			void validAxesChanged(const std::vector<base::Axis>& validAxes);
 
 		private:
@@ -60,24 +60,24 @@ namespace ltp
 			base::ErrorLevel errorLevel_;
 			QString filePath_;
 			QString fileName_;
-			//ÓĞĞ§Öá
+			//æœ‰æ•ˆè½´
 			std::vector<base::Axis> validAxes_;
-			//¸üĞÂ×´Ì¬Ê¹ÓÃµÄ¶¨Ê±Æ÷
+			//æ›´æ–°çŠ¶æ€ä½¿ç”¨çš„å®šæ—¶å™¨
 			QTimer timer_;
-			//ÖáÃ¶¾Ùµ½Öá×Ö·ûµÄÓ³Éä
+			//è½´æšä¸¾åˆ°è½´å­—ç¬¦çš„æ˜ å°„
 			std::unordered_map<base::Axis, char> axisEnumAxisCharacterMap_;
-			//Öá×Ö·ûµ½ÖáÃ¶¾ÙµÄÓ³Éä
+			//è½´å­—ç¬¦åˆ°è½´æšä¸¾çš„æ˜ å°„
 			std::unordered_map<char, base::Axis> axisCharacterAxisEnumMap_;
-			//ÖáÃ¶¾Ùµ½ÖáµØÖ·µÄÓ³Éä
+			//è½´æšä¸¾åˆ°è½´åœ°å€çš„æ˜ å°„
 			std::unordered_map<base::Axis, int> axesAddress_;
-			//×÷Îªµ¥ÀıÊ¹ÓÃ
+			//ä½œä¸ºå•ä¾‹ä½¿ç”¨
 			MachiningStates(QObject* parent = nullptr);
 			~MachiningStates();
 
 		private slots:
-			//¸üĞÂ×´Ì¬£¬È·¶¨ÊÇ·ñ±ä»¯£¬·¢ËÍÏàÓ¦ĞÅºÅ
+			//æ›´æ–°çŠ¶æ€ï¼Œç¡®å®šæ˜¯å¦å˜åŒ–ï¼Œå‘é€ç›¸åº”ä¿¡å·
 			void updateState();
-			//ÍøÂçÁ¬½Ó³É¹¦£¬¸üĞÂÖáĞÅÏ¢
+			//ç½‘ç»œè¿æ¥æˆåŠŸï¼Œæ›´æ–°è½´ä¿¡æ¯
 			void updateAxesInformation();
 		};
 	}
