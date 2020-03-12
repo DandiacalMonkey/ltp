@@ -1,4 +1,4 @@
-#include "physicalbuttonsprocessor.h"
+ï»¿#include "physicalbuttonsprocessor.h"
 #include <utility>
 #include "base/globals.h"
 
@@ -6,7 +6,7 @@ using ltp::client::PhysicalButtonsProcessor;
 PhysicalButtonsProcessor::PhysicalButtonsProcessor(QObject *parent)
 	: QObject(parent)
 {
-	initKeyMap();		// ³õÊ¼»¯ÍâÉè¼üÖµ
+	initKeyMap();		// åˆå§‹åŒ–å¤–è®¾é”®å€¼
 }
 
 PhysicalButtonsProcessor::~PhysicalButtonsProcessor()
@@ -15,7 +15,7 @@ PhysicalButtonsProcessor::~PhysicalButtonsProcessor()
 
 void PhysicalButtonsProcessor::initKeyMap()
 {
-	// ²åÈë¼üÖµºÍÐÅºÅµÄ¶ÔÓ¦¹ØÏµ
+	// æ’å…¥é”®å€¼å’Œä¿¡å·çš„å¯¹åº”å…³ç³»
 	keyValueSignalMap_.insert(std::make_pair(Qt::Key_1, [this](){emit returnButtonClicked();}));
 	keyValueSignalMap_.insert(std::make_pair(Qt::Key_2, [this](){emit leftButtonClicked(base::LEFTBUTTON1);}));
 	keyValueSignalMap_.insert(std::make_pair(Qt::Key_9, [this](){emit leftButtonClicked(base::LEFTBUTTON2);}));
@@ -41,7 +41,7 @@ void PhysicalButtonsProcessor::initKeyMap()
 	keyValueSignalMap_.insert(std::make_pair(Qt::Key_P, [this](){emit bottomButtonModeClicked(base::BOTTOMBUTTON1);}));
 	keyValueSignalMap_.insert(std::make_pair(Qt::Key_Q, [this](){emit bottomButtonModeClicked(base::BOTTOMBUTTON2);}));
 	keyValueSignalMap_.insert(std::make_pair(Qt::Key_R, [this](){emit bottomButtonModeClicked(base::BOTTOMBUTTON3);}));
-	keyValueSignalMap_.insert(std::make_pair(Qt::Key_S, [this](){emit bottomButtonModeClicked(base::BOTTOMBUTTON4);}));		// BOTTOMBUTTON4£¬5ÔÝÊ±Î´ÓÃ
+	keyValueSignalMap_.insert(std::make_pair(Qt::Key_S, [this](){emit bottomButtonModeClicked(base::BOTTOMBUTTON4);}));		// BOTTOMBUTTON4ï¼Œ5æš‚æ—¶æœªç”¨
 	keyValueSignalMap_.insert(std::make_pair(Qt::Key_T, [this](){emit bottomButtonModeClicked(base::BOTTOMBUTTON5);}));
 	keyValueSignalMap_.insert(std::make_pair(Qt::Key_U, [this](){emit bottomButtonRateClicked(base::BOTTOMBUTTON6);}));
 	keyValueSignalMap_.insert(std::make_pair(Qt::Key_V, [this](){emit bottomButtonRateClicked(base::BOTTOMBUTTON7);}));
@@ -51,7 +51,7 @@ void PhysicalButtonsProcessor::initKeyMap()
 
 bool PhysicalButtonsProcessor::isPhysicalButtonsProcessor(QKeyEvent* event) const
 {
-	// ¼ì²âÊäÈë¼üÖµÊÇ·ñÎªÍâÉè¼üÖµ
+	// æ£€æµ‹è¾“å…¥é”®å€¼æ˜¯å¦ä¸ºå¤–è®¾é”®å€¼
 	if (event->modifiers() == Qt::ControlModifier && 
 		keyValueSignalMap_.find(event->key()) != keyValueSignalMap_.end())
 	{
@@ -62,11 +62,11 @@ bool PhysicalButtonsProcessor::isPhysicalButtonsProcessor(QKeyEvent* event) cons
 
 void PhysicalButtonsProcessor::getMapFunction(QKeyEvent* event)
 {
-	int key = event->key();							// ÊäÈë¼üÖµ
-	auto element = keyValueSignalMap_.find(key);	// ²éÑ¯ÊäÈë¼üÖµ¶ÔÓ¦µÄÍâÉè¼üÖµ
-	if (element != keyValueSignalMap_.end())		// ²éÑ¯µ½ÍâÉè¼üÖµ
+	int key = event->key();							// è¾“å…¥é”®å€¼
+	auto element = keyValueSignalMap_.find(key);	// æŸ¥è¯¢è¾“å…¥é”®å€¼å¯¹åº”çš„å¤–è®¾é”®å€¼
+	if (element != keyValueSignalMap_.end())		// æŸ¥è¯¢åˆ°å¤–è®¾é”®å€¼
 	{
 		auto function = element->second;
-		function();									// Ö´ÐÐ¶ÔÓ¦º¯Êý
+		function();									// æ‰§è¡Œå¯¹åº”å‡½æ•°
 	}
 }

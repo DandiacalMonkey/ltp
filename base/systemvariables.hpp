@@ -1,4 +1,4 @@
-#ifndef LTP_BASE_SYSTEM_VARIABLES_H_
+ï»¿#ifndef LTP_BASE_SYSTEM_VARIABLES_H_
 #define LTP_BASE_SYSTEM_VARIABLES_H_
 
 #include <array>
@@ -18,34 +18,34 @@ namespace ltp
 			friend SystemVariables<SyncVariables>& getInstance<SystemVariables<SyncVariables>>();
 		public:
 			~SystemVariables() {};
-			//»ñÈ¡ºê±äÁ¿
+			//è·å–å®å˜é‡
 			double macroVariable(int address) const
 			{
 				return syncVariables_.macroVariable(address);
 			}
-			//Ğ´ºê±äÁ¿
+			//å†™å®å˜é‡
 			void setMacroVariable(int address, double value)
 			{
 				syncVariables_.setMacroVariable(address, value);
 			}
-			//»ñÈ¡PLC±äÁ¿
+			//è·å–PLCå˜é‡
 			unsigned long plcVariable(rmi::PlcReadOnlyVariableName name) const
 			{
 				return syncVariables_.plcVariable(name);
 			}
-			//Ğ´PLC±äÁ¿
+			//å†™PLCå˜é‡
 			void setPlcVariable(rmi::PlcWriteOnlyVariableName name, unsigned long value)
 			{
 				syncVariables_.setPlcVariable(name, value);
 			}
-			//»ñÈ¡µ±Ç°»úĞµ×ø±ê
+			//è·å–å½“å‰æœºæ¢°åæ ‡
 			std::array<double, AXIS_MAX> mechanicalCoordinates(int channel) const
 			{
-				//´¢´æ½á¹û
+				//å‚¨å­˜ç»“æœ
 				std::array<double, AXIS_MAX> coordinates;
-				//Í¨µÀÆ«ÒÆ
+				//é€šé“åç§»
 				int channelInterval = (channel - 1) * CHANNEL_INTERVAL;
-				//µ÷ÓÃºê±äÁ¿½Ó¿Ú»ñÈ¡»úĞµ×ø±ê
+				//è°ƒç”¨å®å˜é‡æ¥å£è·å–æœºæ¢°åæ ‡
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
 					coordinates[i] = macroVariable(MECHANICAL_COORDINATE + i * AXIS_CONTROL_INTERVAL + channelInterval);
@@ -53,14 +53,14 @@ namespace ltp
 				return coordinates;
 			}
 
-			//»ñÈ¡µ±Ç°¹¤¼ş×ø±ê
+			//è·å–å½“å‰å·¥ä»¶åæ ‡
 			std::array<double, AXIS_MAX> workpieceCoordinates(int channel) const
 			{
-				//´¢´æ½á¹û
+				//å‚¨å­˜ç»“æœ
 				std::array<double, AXIS_MAX> coordinates;
-				//Í¨µÀÆ«ÒÆ
+				//é€šé“åç§»
 				int channelInterval = (channel - 1) * CHANNEL_INTERVAL;
-				//µ÷ÓÃºê±äÁ¿½Ó¿Ú»ñÈ¡¹¤¼ş×ø±ê
+				//è°ƒç”¨å®å˜é‡æ¥å£è·å–å·¥ä»¶åæ ‡
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
 					coordinates[i] = macroVariable(WORKPIECE_COORDINATE + i * AXIS_CONTROL_INTERVAL + channelInterval);
@@ -68,14 +68,14 @@ namespace ltp
 				return coordinates;
 			}
 
-			//»ñÈ¡µ±Ç°¼Ó¹¤ÓàÁ¿
+			//è·å–å½“å‰åŠ å·¥ä½™é‡
 			std::array<double, AXIS_MAX> machiningRemains(int channel) const
 			{
-				//´¢´æ½á¹û
+				//å‚¨å­˜ç»“æœ
 				std::array<double, AXIS_MAX> remains;
-				//Í¨µÀÆ«ÒÆ
+				//é€šé“åç§»
 				int channelInterval = (channel - 1) * CHANNEL_INTERVAL;
-				//µ÷ÓÃºê±äÁ¿½Ó¿Ú»ñÈ¡¼Ó¹¤ÓàÁ¿
+				//è°ƒç”¨å®å˜é‡æ¥å£è·å–åŠ å·¥ä½™é‡
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
 					remains[i] = macroVariable(MACHINING_REMAIN + i * AXIS_CONTROL_INTERVAL + channelInterval);
@@ -83,14 +83,14 @@ namespace ltp
 				return remains;
 			}
 
-			//»ñÈ¡µ±Ç°Âí´ï¸ºÔØ
+			//è·å–å½“å‰é©¬è¾¾è´Ÿè½½
 			std::array<double, AXIS_MAX> motorLoads(int channel) const
 			{
-				//´¢´æ½á¹û
+				//å‚¨å­˜ç»“æœ
 				std::array<double, AXIS_MAX> loads;
-				//Í¨µÀÆ«ÒÆ
+				//é€šé“åç§»
 				int channelInterval = (channel - 1) * CHANNEL_INTERVAL;
-				//µ÷ÓÃºê±äÁ¿½Ó¿Ú»ñÈ¡Âí´ï¸ºÔØ
+				//è°ƒç”¨å®å˜é‡æ¥å£è·å–é©¬è¾¾è´Ÿè½½
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
 					loads[i] = macroVariable(MOTOR_LOAD + i * AXIS_CONTROL_INTERVAL + channelInterval);
@@ -100,30 +100,30 @@ namespace ltp
 
 			std::vector<char> validFeedAxes()
 			{
-				/*ÓĞĞ§ÖáÁĞ±í*/
+				/*æœ‰æ•ˆè½´åˆ—è¡¨*/
 				std::unordered_set<char> validFeedAxes;
-				/*ËùÓĞ¿ÉÄÜµÄÖá×Ö·ûË³Ğò*/
+				/*æ‰€æœ‰å¯èƒ½çš„è½´å­—ç¬¦é¡ºåº*/
 				char axesChar[] = { 'X', 'Y', 'Z', 'A', 'B', 'C', 'U', 'V', 'W' };
 				std::vector<char> feedAxes(axesChar, axesChar + sizeof(axesChar));
-				/*ÁÙÊ±±äÁ¿*/
+				/*ä¸´æ—¶å˜é‡*/
 				double tempData;
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
-					/*ÖáÓĞĞ§¼ì²é*/
+					/*è½´æœ‰æ•ˆæ£€æŸ¥*/
 					tempData = macroVariable(FEED_AXIS_VALID + i * AXIS_SETTING_INTERVAL);
-					/*ÖáÓĞĞ§*/
+					/*è½´æœ‰æ•ˆ*/
 					if (tempData > 1e-3)
 					{
-						/*Öá×Ö·û*/
+						/*è½´å­—ç¬¦*/
 						tempData = macroVariable(FEED_AXIS_CHARACTER + i * AXIS_SETTING_INTERVAL);
-						/*×ª»»Îª×Ö·û´®±£´æ*/
+						/*è½¬æ¢ä¸ºå­—ç¬¦ä¸²ä¿å­˜*/
 						validFeedAxes.insert(static_cast<char>(tempData));
 					}
 				}
-				/*°´Ë³Ğò½øĞĞÖáµÄÅÅĞò*/
+				/*æŒ‰é¡ºåºè¿›è¡Œè½´çš„æ’åº*/
 				for (auto pr = feedAxes.begin(); pr != feedAxes.end();)
 				{
-					/*ÒÆ³ıÎ´ÕÒµ½µÄÖá*/
+					/*ç§»é™¤æœªæ‰¾åˆ°çš„è½´*/
 					if (validFeedAxes.find(*pr) == validFeedAxes.end())
 					{
 						pr = feedAxes.erase(pr);
@@ -139,18 +139,18 @@ namespace ltp
 			std::unordered_map<char, int> axesAddress()
 			{
 				std::unordered_map<char, int> result;
-				/*ÁÙÊ±±äÁ¿*/
+				/*ä¸´æ—¶å˜é‡*/
 				double tempData;
 				for (int i = 0; i < AXIS_MAX; ++i)
 				{
-					/*ÖáÓĞĞ§¼ì²é*/
+					/*è½´æœ‰æ•ˆæ£€æŸ¥*/
 					tempData = macroVariable(FEED_AXIS_VALID + i * AXIS_SETTING_INTERVAL);
-					/*ÖáÓĞĞ§*/
+					/*è½´æœ‰æ•ˆ*/
 					if (tempData > 1e-3)
 					{
-						/*Öá×Ö·û*/
+						/*è½´å­—ç¬¦*/
 						tempData = macroVariable(FEED_AXIS_CHARACTER + i * AXIS_SETTING_INTERVAL);
-						/*±£´æÖá×Ö·ûºÍÖáµØÖ·Ó³Éä*/
+						/*ä¿å­˜è½´å­—ç¬¦å’Œè½´åœ°å€æ˜ å°„*/
 						result[static_cast<char>(tempData)] = 
 							static_cast<int>(macroVariable(base::AXIS_ADDRESS + i * AXIS_SETTING_INTERVAL));
 					}

@@ -1,4 +1,4 @@
-#include "network.h"
+ï»¿#include "network.h"
 #include "common/rmi/RemoteComm.h"
 
 using ltp::client::Network;
@@ -6,7 +6,7 @@ using ltp::client::Network;
 void ltp::client::Network::connect()
 {
 	handle_ = remote_new_connect(host_.c_str());
-	//ÅĞ¶¨ÊÇ·ñÁ¬½Ó³É¹¦
+	//åˆ¤å®šæ˜¯å¦è¿æ¥æˆåŠŸ
 	if (handle_ >= 0)
 	{
 		remote_set_send_timeout(handle_, 20);
@@ -18,7 +18,7 @@ void ltp::client::Network::connect()
 
 void ltp::client::Network::disconnect()
 {
-	//Ö÷¶¯¹Ø±ÕÁ¬½Ó
+	//ä¸»åŠ¨å…³é—­è¿æ¥
 	remote_close(handle_);
 	connectState_ = UNCONNECTED;
 	emit unconnected();
@@ -33,7 +33,7 @@ void ltp::client::Network::reconnect()
 double ltp::client::Network::macroVariable(int address) const
 {
 	double value = 0;
-	//´¦ÓÚÁ¬½Ó×´Ì¬²ÅÖ´ĞĞ£¬·ÀÖ¹³¬Ê±´ÎÊı¹ı¶à¿¨¶Ù
+	//å¤„äºè¿æ¥çŠ¶æ€æ‰æ‰§è¡Œï¼Œé˜²æ­¢è¶…æ—¶æ¬¡æ•°è¿‡å¤šå¡é¡¿
 	if (remote_connect_status(handle_) == 0)
 	{
 		remote_read_macro_p(handle_, address, &value);
@@ -43,7 +43,7 @@ double ltp::client::Network::macroVariable(int address) const
 
 void ltp::client::Network::setMacroVariable(int address, double value)
 {
-	//´¦ÓÚÁ¬½Ó×´Ì¬²ÅÖ´ĞĞ£¬·ÀÖ¹³¬Ê±´ÎÊı¹ı¶à¿¨¶Ù
+	//å¤„äºè¿æ¥çŠ¶æ€æ‰æ‰§è¡Œï¼Œé˜²æ­¢è¶…æ—¶æ¬¡æ•°è¿‡å¤šå¡é¡¿
 	if (remote_connect_status(handle_) == 0)
 	{
 		remote_write_macro(handle_, address, value);
@@ -53,7 +53,7 @@ void ltp::client::Network::setMacroVariable(int address, double value)
 unsigned long ltp::client::Network::plcVariable(rmi::PlcReadOnlyVariableName name) const
 {
 	unsigned long value = 0;
-	//´¦ÓÚÁ¬½Ó×´Ì¬²ÅÖ´ĞĞ£¬·ÀÖ¹³¬Ê±´ÎÊı¹ı¶à¿¨¶Ù
+	//å¤„äºè¿æ¥çŠ¶æ€æ‰æ‰§è¡Œï¼Œé˜²æ­¢è¶…æ—¶æ¬¡æ•°è¿‡å¤šå¡é¡¿
 	if (remote_connect_status(handle_) == 0)
 	{
 		remote_read_plc_variable_p(handle_, name, &value);
@@ -63,7 +63,7 @@ unsigned long ltp::client::Network::plcVariable(rmi::PlcReadOnlyVariableName nam
 
 void ltp::client::Network::setPlcVariable(rmi::PlcWriteOnlyVariableName name, unsigned long value)
 {
-	//´¦ÓÚÁ¬½Ó×´Ì¬²ÅÖ´ĞĞ£¬·ÀÖ¹³¬Ê±´ÎÊı¹ı¶à¿¨¶Ù
+	//å¤„äºè¿æ¥çŠ¶æ€æ‰æ‰§è¡Œï¼Œé˜²æ­¢è¶…æ—¶æ¬¡æ•°è¿‡å¤šå¡é¡¿
 	if (remote_connect_status(handle_) == 0)
 	{
 		remote_write_plc_variable(handle_, name, value);
@@ -121,7 +121,7 @@ void Network::checkConnection()
 		}
 		break;
 	case ltp::client::Network::UNCONNECTED:
-		//ÍøÂçÎ´Á¬½ÓÊ±²»ÓÃ¼ì²é
+		//ç½‘ç»œæœªè¿æ¥æ—¶ä¸ç”¨æ£€æŸ¥
 		break;
 	case ltp::client::Network::DISCONNECTED:
 		if (remote_connect_status(handle_) == 0)

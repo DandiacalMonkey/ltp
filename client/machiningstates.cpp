@@ -1,4 +1,4 @@
-#include "machiningstates.h"
+ï»¿#include "machiningstates.h"
 #include "network.h"
 #include "base/systemvariables.hpp"
 #include "remotevariables.hpp"
@@ -13,16 +13,16 @@ MachiningStates::MachiningStates(QObject* parent)
 	  machiningState_(base::READY),
 	  errorLevel_(base::NO_ERROR)
 {
-	//×´Ì¬Ë¢ĞÂ
+	//çŠ¶æ€åˆ·æ–°
 	const int kInterval = 200;
 	timer_.start(kInterval);
 	connect(&timer_, SIGNAL(timeout()), SLOT(updateState()));
-	//ÍøÂçÁ¬½ÓÊ±£¬È·ÈÏÓĞĞ§Öá
+	//ç½‘ç»œè¿æ¥æ—¶ï¼Œç¡®è®¤æœ‰æ•ˆè½´
 	connect(&base::getInstance<Network>(), SIGNAL(connected()), SLOT(updateAxesInformation()));
-	// ÏÂÅÅÍâÉè°´Å¥ÏìÓ¦
+	// ä¸‹æ’å¤–è®¾æŒ‰é’®å“åº”
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(bottomButtonModeClicked(int)), this, SLOT(modeChanged(int)));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(bottomButtonRateClicked(int)), this, SLOT(rateChanged(int)));
-	//³õÊ¼»¯ÖáÃ¶¾Ùµ½Öá×Ö·ûÓ³Éä¹ØÏµ
+	//åˆå§‹åŒ–è½´æšä¸¾åˆ°è½´å­—ç¬¦æ˜ å°„å…³ç³»
 	axisEnumAxisCharacterMap_[base::X_AXIS] = 'X';
 	axisEnumAxisCharacterMap_[base::Y_AXIS] = 'Y';
 	axisEnumAxisCharacterMap_[base::Z_AXIS] = 'Z';
@@ -32,7 +32,7 @@ MachiningStates::MachiningStates(QObject* parent)
 	axisEnumAxisCharacterMap_[base::U_AXIS] = 'U';
 	axisEnumAxisCharacterMap_[base::V_AXIS] = 'V';
 	axisEnumAxisCharacterMap_[base::W_AXIS] = 'W';
-	//³õÊ¼»¯Öá×Ö·ûµ½ÖáÃ¶¾ÙÓ³Éä¹ØÏµ
+	//åˆå§‹åŒ–è½´å­—ç¬¦åˆ°è½´æšä¸¾æ˜ å°„å…³ç³»
 	for each (auto x in axisEnumAxisCharacterMap_)
 	{
 		axisCharacterAxisEnumMap_[x.second] = x.first;
@@ -65,11 +65,11 @@ void MachiningStates::modeChanged(int buttonID)
 {
 	switch (buttonID)
 	{
-	case base::BOTTOMBUTTON1:			// ×Ô¶¯
+	case base::BOTTOMBUTTON1:			// è‡ªåŠ¨
 		break;
 	case base::BOTTOMBUTTON2:			// JOG
 		break;
-	case base::BOTTOMBUTTON3:			// ÊÖÂÖ
+	case base::BOTTOMBUTTON3:			// æ‰‹è½®
 		break;
 	default:
 		break;
@@ -85,22 +85,22 @@ ltp::base::Mode MachiningStates::mode() const
 ltp::base::MachiningState MachiningStates::machiningState() const
 {
 	auto& systemVariables = base::getInstance<base::SystemVariables<RemoteVariables>>();
-	//PLCÖĞ¾ÍĞ÷±êÖ¾
+	//PLCä¸­å°±ç»ªæ ‡å¿—
 	if (systemVariables.plcVariable(rmi::F_READY) != 0)
 	{
 		return base::READY;
 	}
-	//PLCÖĞ¾¯¸æ±êÖ¾
+	//PLCä¸­è­¦å‘Šæ ‡å¿—
 	if (systemVariables.plcVariable(rmi::F_HOLDING) != 0)
 	{
 		return base::HOLD;
 	}
-	//PLCÖĞÔËĞĞ±êÖ¾
+	//PLCä¸­è¿è¡Œæ ‡å¿—
 	if (systemVariables.plcVariable(rmi::F_RUNNING) != 0)
 	{
 		return base::BUSY;
 	}
-	//Ä¬ÈÏÎªÍ£Ö¹×´Ì¬
+	//é»˜è®¤ä¸ºåœæ­¢çŠ¶æ€
 	return base::STOP;
 }
 
@@ -117,13 +117,13 @@ QString MachiningStates::machiningFileName() const
 ltp::base::ErrorLevel MachiningStates::errorLevel() const
 {
 	auto& systemVariables = base::getInstance<base::SystemVariables<RemoteVariables>>();
-	//CI´íÎóºÍÖÂÃü´íÎó£¬±íÊ¾ÓĞ±¨´í
+	//CIé”™è¯¯å’Œè‡´å‘½é”™è¯¯ï¼Œè¡¨ç¤ºæœ‰æŠ¥é”™
 	if (systemVariables.plcVariable(rmi::F_CIERR) != 0 | 
 		systemVariables.plcVariable(rmi::F_FATALERR) != 0)
 	{
 		return base::ERROR;
 	}
-	//PLCµÄ¾¯¸æ±êÖ¾Î»
+	//PLCçš„è­¦å‘Šæ ‡å¿—ä½
 	else if (systemVariables.plcVariable(rmi::F_WARN) != 0)
 	{
 		return base::WARNNING;
@@ -173,21 +173,21 @@ int ltp::client::MachiningStates::axisEnumToAxisAddress(base::Axis axisEnum) con
 
 void MachiningStates::updateState()
 {
-	//Ä£Ê½
+	//æ¨¡å¼
 	auto remoteMode = mode();
 	if (mode_ != remoteMode)
 	{
 		mode_ = remoteMode;
 		emit modeChanged(mode_);
 	}
-	//×´Ì¬
+	//çŠ¶æ€
 	auto remoteMachiningState = machiningState();
 	if (machiningState_ != remoteMachiningState)
 	{
 		machiningState_ = remoteMachiningState;
 		emit machiningStateChanged(machiningState_);
 	}
-	//±¨´íµÈ¼¶
+	//æŠ¥é”™ç­‰çº§
 	auto remoteErrorLevel = errorLevel();
 	if (errorLevel_ != remoteErrorLevel)
 	{
@@ -199,15 +199,15 @@ void MachiningStates::updateState()
 void MachiningStates::updateAxesInformation()
 {
 	auto& systemVariables = base::getInstance<base::SystemVariables<RemoteVariables>>();
-	//¿ØÖÆÆ÷ÉÏµÄÓĞĞ§Öá
+	//æ§åˆ¶å™¨ä¸Šçš„æœ‰æ•ˆè½´
 	auto remoteValidAxes = axesCharacterToAxesEnum(systemVariables.validFeedAxes());
-	//¶Ô±ÈÓĞĞ§Öá
+	//å¯¹æ¯”æœ‰æ•ˆè½´
 	if (validAxes_ != remoteValidAxes)
 	{
 		validAxes_ = std::move(remoteValidAxes);
 		emit validAxesChanged(validAxes_);
 	}
-	//¸üĞÂÖáµØÖ·
+	//æ›´æ–°è½´åœ°å€
 	auto remoteAxesAddress = systemVariables.axesAddress();
 	axesAddress_.clear();
 	for each (auto x in remoteAxesAddress)

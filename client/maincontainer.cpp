@@ -1,4 +1,4 @@
-#include "maincontainer.h"
+ï»¿#include "maincontainer.h"
 #include "base/globals.h"
 #include "physicalbuttonsprocessor.h"
 #include "network.h"
@@ -10,35 +10,35 @@ MainContainer::MainContainer(QWidget* parent)
 {
 	ui.setupUi(this);
 	initModuleButtonsWidget();
-	//TODO:ipµØÖ·ĞèÒª¸ÄÎªÉè¶¨
+	//TODO:ipåœ°å€éœ€è¦æ”¹ä¸ºè®¾å®š
 	ui.fileManagerWidget_->setFtpHost("192.168.6.195");
-	//ÍøÂçÁªÍ¨ºó£¬³¢ÊÔÁ¬½Óftp
+	//ç½‘ç»œè”é€šåï¼Œå°è¯•è¿æ¥ftp
 	connect(&base::getInstance<Network>(), SIGNAL(connected()), ui.fileManagerWidget_, SLOT(connectToFtp()));
-	// Ö÷²Ëµ¥ÇĞ»»new
+	// ä¸»èœå•åˆ‡æ¢new
 	connect(ui.homeModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onModule(int)));
-	// ÆäËû½çÃæÇĞµ½Ö÷½çÃæ
+	// å…¶ä»–ç•Œé¢åˆ‡åˆ°ä¸»ç•Œé¢
 	connect(ui.fileManagerModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(onHome()));
 	connect(ui.programEditModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(onHome()));
 	connect(ui.processModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(onHome()));
 	connect(ui.setModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(onHome()));
-	// ÎÄ¼ş¹ÜÀí½çÃæ£¬×ó²à°´Å¥ÇĞ»»
+	// æ–‡ä»¶ç®¡ç†ç•Œé¢ï¼Œå·¦ä¾§æŒ‰é’®åˆ‡æ¢
 	connect(ui.fileManagerModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onFileWidgetModule(int)));
-	// ÎÄ¼ş¹ÜÀí½çÃæ£¬Ö´ĞĞ¡¢´ò¿ª°´Å¥ÊÇ·ñenable
+	// æ–‡ä»¶ç®¡ç†ç•Œé¢ï¼Œæ‰§è¡Œã€æ‰“å¼€æŒ‰é’®æ˜¯å¦enable
 	connect(ui.fileManagerWidget_, SIGNAL(selectedFile()), SLOT(selectedFile()));
 	connect(ui.fileManagerWidget_, SIGNAL(selectedFolder()), SLOT(selectedFolder()));
 	connect(ui.fileManagerWidget_, SIGNAL(selectedNone()), SLOT(selectedNone()));
-	// ÎÄ¼ş´ò¿ª
+	// æ–‡ä»¶æ‰“å¼€
 	connect(ui.fileManagerWidget_, SIGNAL(openFile(const QString&, const QString&)), SLOT(openEditFile(const QString&, const QString&)));
-	// ±à¼­½çÃæ±£´æ£¬Í¬Ê±ÉÏÔØµ½ftp¿Í»§¶Ë
+	// ç¼–è¾‘ç•Œé¢ä¿å­˜ï¼ŒåŒæ—¶ä¸Šè½½åˆ°ftpå®¢æˆ·ç«¯
 	connect(ui.programEditWidget_, SIGNAL(signalSaved(QString)), ui.fileManagerWidget_, SLOT(uploadFile(QString)));
-	// ¼Ó¹¤½çÃæ£¬×ó²à°´Å¥ÇĞ»»
+	// åŠ å·¥ç•Œé¢ï¼Œå·¦ä¾§æŒ‰é’®åˆ‡æ¢
 	connect(ui.processModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProcessWidgetModule(int)));
-	// ±à¼­½çÃæ£¬×ó²à°´Å¥ÇĞ»»
+	// ç¼–è¾‘ç•Œé¢ï¼Œå·¦ä¾§æŒ‰é’®åˆ‡æ¢
 	connect(ui.programEditModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgrameEditWidgetModule(int)));
-	// Ê¾½Ì±à¼­½çÃæ£¬×ó²à°´Å¥ÇĞ»»
+	// ç¤ºæ•™ç¼–è¾‘ç•Œé¢ï¼Œå·¦ä¾§æŒ‰é’®åˆ‡æ¢
 	connect(ui.teachEditModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgramTeachEditModule(int)));
 	connect(ui.teachEditModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backProgrameModule()));
-	// ÍâÉè°´Å¥ÏìÓ¦
+	// å¤–è®¾æŒ‰é’®å“åº”
 	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(returnButtonClicked()), this, SLOT(returnButtonClicked()));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(leftButtonClicked(int)), this, SLOT(leftButtonClicked(int)));
 }
@@ -50,25 +50,25 @@ MainContainer::~MainContainer()
 
 void MainContainer::leftButtonClicked(int key)
 {
-	// ÍâÉè°´¼üÇĞ»»µ±Ç°½çÃæ
+	// å¤–è®¾æŒ‰é”®åˆ‡æ¢å½“å‰ç•Œé¢
 	auto tempWidget = ui.moduleButtonsWidget_->currentWidget();
-	if (ui.moduleButtonsWidget_->currentIndex() == HOME_BUTTONS_WIDGET)				// Ö÷½çÃæ
+	if (ui.moduleButtonsWidget_->currentIndex() == HOME_BUTTONS_WIDGET)				// ä¸»ç•Œé¢
 	{
 		onModule(key);
 	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == PROCESS_BUTTONS_WIDGET)		// ¼Ó¹¤½çÃæ
+	else if (ui.moduleButtonsWidget_->currentIndex() == PROCESS_BUTTONS_WIDGET)		// åŠ å·¥ç•Œé¢
 	{
 		onProcessWidgetModule(key);
 	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == FILEMANAGER_BUTTONS_WIDGET)	// ÎÄ¼ş¹ÜÀí½çÃæ
+	else if (ui.moduleButtonsWidget_->currentIndex() == FILEMANAGER_BUTTONS_WIDGET)	// æ–‡ä»¶ç®¡ç†ç•Œé¢
 	{
 		onFileWidgetModule(key);
 	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == PROGRAMEDIT_BUTTONS_WIDGET)	// ±à¼­½çÃæ
+	else if (ui.moduleButtonsWidget_->currentIndex() == PROGRAMEDIT_BUTTONS_WIDGET)	// ç¼–è¾‘ç•Œé¢
 	{
 		onProgrameEditWidgetModule(key);
 	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == TEACHEDIT_BUTTONS_WIDGET)	// Ê¾½Ì±à¼­½çÃæ
+	else if (ui.moduleButtonsWidget_->currentIndex() == TEACHEDIT_BUTTONS_WIDGET)	// ç¤ºæ•™ç¼–è¾‘ç•Œé¢
 	{
 		onProgramTeachEditModule(key);
 	}
@@ -77,91 +77,91 @@ void MainContainer::leftButtonClicked(int key)
 void MainContainer::returnButtonClicked()
 {
 	auto tempWidget = ui.moduleButtonsWidget_->currentWidget();
-	// Ö÷½çÃæ¡¢¼Ó¹¤½çÃæ¡¢ÎÄ¼ş¹ÜÀí½çÃæ¡¢±à¼­½çÃæ¡¢ÉèÖÃ½çÃæ
+	// ä¸»ç•Œé¢ã€åŠ å·¥ç•Œé¢ã€æ–‡ä»¶ç®¡ç†ç•Œé¢ã€ç¼–è¾‘ç•Œé¢ã€è®¾ç½®ç•Œé¢
 	if (ui.moduleButtonsWidget_->currentIndex() == HOME_BUTTONS_WIDGET ||
 		ui.moduleButtonsWidget_->currentIndex() == PROCESS_BUTTONS_WIDGET ||
 		ui.moduleButtonsWidget_->currentIndex() == FILEMANAGER_BUTTONS_WIDGET ||
 		ui.moduleButtonsWidget_->currentIndex() == PROGRAMEDIT_BUTTONS_WIDGET ||
 		ui.moduleButtonsWidget_->currentIndex() == SET_BUTTONS_WIDGET)				
 	{
-		onHome();					// ·µ»ØÖ÷Ò³Ãæ
+		onHome();					// è¿”å›ä¸»é¡µé¢
 	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == TEACHEDIT_BUTTONS_WIDGET)	// Ê¾½Ì±à¼­½çÃæ
+	else if (ui.moduleButtonsWidget_->currentIndex() == TEACHEDIT_BUTTONS_WIDGET)	// ç¤ºæ•™ç¼–è¾‘ç•Œé¢
 	{
-		backProgrameModule();		// ·µ»Ø³ÌĞò±à³Ì½çÃæ
+		backProgrameModule();		// è¿”å›ç¨‹åºç¼–ç¨‹ç•Œé¢
 	}
 }
 
 void ltp::client::MainContainer::openEditFile(const QString& localFilePath, const QString& remoteFilePath)
 {
-	//ÇĞ»»µ½±à¼­½çÃæ
+	//åˆ‡æ¢åˆ°ç¼–è¾‘ç•Œé¢
 	onModule(base::LEFTBUTTON3);
-	//´ò¿ªÎÄ¼ş
+	//æ‰“å¼€æ–‡ä»¶
 	ui.programEditWidget_->onOpenFile(localFilePath);
-	//½«ÎÄ¼şÃûĞŞ¸ÄÎªÔ¶³ÌÎÄ¼şÃû
+	//å°†æ–‡ä»¶åä¿®æ”¹ä¸ºè¿œç¨‹æ–‡ä»¶å
 	ui.programEditWidget_->setRemoteFilePath(remoteFilePath);
 }
 
 void MainContainer::initModuleButtonsWidget()
 {
-	// ¼Ó¹¤½çÃæ×ó²à°´Å¥À¸ÉèÖÃ
-	ui.processModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("¼Ó¹¤×´Ì¬")));
-	ui.processModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("×ø±êÏµ")));
-	ui.processModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("ÆğÊ¼ĞĞ")));
+	// åŠ å·¥ç•Œé¢å·¦ä¾§æŒ‰é’®æ è®¾ç½®
+	ui.processModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("åŠ å·¥çŠ¶æ€")));
+	ui.processModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("åæ ‡ç³»")));
+	ui.processModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("èµ·å§‹è¡Œ")));
 	ui.processModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON2, false);
 	ui.processModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON6, false);
 
-	// Ö÷½çÃæ×ó²à°´Å¥À¸ÉèÖÃ
-	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("¼Ó¹¤")));
-	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("ÎÄ¼ş¹ÜÀí")));
-	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("±à¼­")));
-	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("ÉèÖÃ")));
+	// ä¸»ç•Œé¢å·¦ä¾§æŒ‰é’®æ è®¾ç½®
+	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("åŠ å·¥")));
+	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("æ–‡ä»¶ç®¡ç†")));
+	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("ç¼–è¾‘")));
+	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("è®¾ç½®")));
 	ui.homeModuleButtonsWidget_->setCheckableButton(false);
 	ui.homeModuleButtonsWidget_->setReturnButtonEnabled(false);
 
-	// ±à¼­½çÃæ×ó²à°´Å¥À¸ÉèÖÃ
-	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("³ÌĞò±à¼­")));
-	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("Ê¾½Ì±à¼­")));
-	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("±à¼­Ê¾½Ì")));
-	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("Ö´ĞĞ")));
-	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("¹Ø±Õ")));
+	// ç¼–è¾‘ç•Œé¢å·¦ä¾§æŒ‰é’®æ è®¾ç½®
+	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("ç¨‹åºç¼–è¾‘")));
+	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("ç¤ºæ•™ç¼–è¾‘")));
+	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("ç¼–è¾‘ç¤ºæ•™")));
+	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("æ‰§è¡Œ")));
+	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("å…³é—­")));
 	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON3, false);
 
-	// ÎÄ¼ş¹ÜÀí½çÃæ×ó²à°´Å¥À¸ÉèÖÃ
-	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("ÓÃ»§ÅÌ")));
-	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("Ö´ĞĞ")));
-	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("´ò¿ª")));
+	// æ–‡ä»¶ç®¡ç†ç•Œé¢å·¦ä¾§æŒ‰é’®æ è®¾ç½®
+	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("ç”¨æˆ·ç›˜")));
+	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("æ‰§è¡Œ")));
+	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("æ‰“å¼€")));
 	ui.fileManagerModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON5, false);
 	ui.fileManagerModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON6, false);
 
-	// ±à¼­½çÃæ×ó²à°´Å¥À¸ÉèÖÃ
+	// ç¼–è¾‘ç•Œé¢å·¦ä¾§æŒ‰é’®æ è®¾ç½®
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("G114")));
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("G00")));
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("G01")));
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("G02")));
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("G102")));
 
-	// ÉèÖÃ½çÃæ×ó²à°´Å¥À¸ÉèÖÃ
-	ui.setModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("Á¬½ÓÉèÖÃ")));
+	// è®¾ç½®ç•Œé¢å·¦ä¾§æŒ‰é’®æ è®¾ç½®
+	ui.setModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("è¿æ¥è®¾ç½®")));
 }
 
 void MainContainer::backProgrameModule()
 {
-	// ·µ»Ø³ÌĞò±à¼­½çÃæ
+	// è¿”å›ç¨‹åºç¼–è¾‘ç•Œé¢
 	onProgrameEditWidgetModule(base::LEFTBUTTON1);
 	ui.programEditModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
 }
 
 void MainContainer::onProcessWidgetModule(int module)
 {
-	// ¼Ó¹¤½çÃæÇĞ»»
+	// åŠ å·¥ç•Œé¢åˆ‡æ¢
 	switch (module)
 	{
-	case base::LEFTBUTTON1:					// ¼Ó¹¤×´Ì¬
+	case base::LEFTBUTTON1:					// åŠ å·¥çŠ¶æ€
 		break;
-	case base::LEFTBUTTON2:					// ×ø±êÏµ
+	case base::LEFTBUTTON2:					// åæ ‡ç³»
 		break;
-	case base::LEFTBUTTON6:					// ÆğÊ¼ĞĞ
+	case base::LEFTBUTTON6:					// èµ·å§‹è¡Œ
 		break;
 	default:
 		break;
@@ -170,25 +170,25 @@ void MainContainer::onProcessWidgetModule(int module)
 
 void MainContainer::onProgrameEditWidgetModule(int module)
 {
-	// ±à¼­½çÃæÇĞ»»
+	// ç¼–è¾‘ç•Œé¢åˆ‡æ¢
 	switch (module)
 	{
-	case base::LEFTBUTTON1:					// ³ÌĞò±à¼­
+	case base::LEFTBUTTON1:					// ç¨‹åºç¼–è¾‘
 		ui.programEditWidget_->onEditBarModule(module);
 		ui.moduleButtonsWidget_->setCurrentWidget(ui.programEditModuleButtonsWidget_);
 		break;
-	case base::LEFTBUTTON2:					// Ê¾½Ì±à¼­
+	case base::LEFTBUTTON2:					// ç¤ºæ•™ç¼–è¾‘
 		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditModuleButtonsWidget_);
 		ui.teachEditModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
 		ui.programEditWidget_->onEditBarModule(module);
 		break;
-	case base::LEFTBUTTON3:					// ±à¼­Ê¾½Ì
+	case base::LEFTBUTTON3:					// ç¼–è¾‘ç¤ºæ•™
 		ui.programEditWidget_->onEditBarModule(module);
 		break;
-	case base::LEFTBUTTON5:					// Ö´ĞĞ
+	case base::LEFTBUTTON5:					// æ‰§è¡Œ
 		// todo
 		break;
-	case base::LEFTBUTTON6:					// ¹Ø±Õ
+	case base::LEFTBUTTON6:					// å…³é—­
 		ui.programEditWidget_->closeFile();
 		break;
 	default:
@@ -198,23 +198,23 @@ void MainContainer::onProgrameEditWidgetModule(int module)
 
 void MainContainer::onProgramTeachEditModule(int module)
 {
-	// ÇĞ»»±à¼­Ä£¿é
+	// åˆ‡æ¢ç¼–è¾‘æ¨¡å—
 	ui.programEditWidget_->onTeachEditModule(module);
 }
 
 void MainContainer::onFileWidgetModule(int module)
 {
-	// ÎÄ¼ş¹ÜÀí½çÃæÇĞ»»
+	// æ–‡ä»¶ç®¡ç†ç•Œé¢åˆ‡æ¢
 	switch (module)
 	{
-	case base::LEFTBUTTON1:					// ÓÃ»§ÅÌ
+	case base::LEFTBUTTON1:					// ç”¨æˆ·ç›˜
 		break;
-	case base::LEFTBUTTON5:					// Ö´ĞĞ£¬ÇĞµ½¼Ó¹¤½çÃæ
+	case base::LEFTBUTTON5:					// æ‰§è¡Œï¼Œåˆ‡åˆ°åŠ å·¥ç•Œé¢
 		{
 			ui.fileManagerWidget_->executeCurrentItem();
 		}		
 		break;
-	case base::LEFTBUTTON6:					// ´ò¿ª£¬ÇĞµ½±à¼­½çÃæ
+	case base::LEFTBUTTON6:					// æ‰“å¼€ï¼Œåˆ‡åˆ°ç¼–è¾‘ç•Œé¢
 		{
 			ui.fileManagerWidget_->openCurrentItem();
 		}
@@ -226,32 +226,32 @@ void MainContainer::onFileWidgetModule(int module)
 
 void MainContainer::onModule(int moduleIndex)
 {
-	// Ö÷½çÃæÇĞ»»
+	// ä¸»ç•Œé¢åˆ‡æ¢
 	switch (moduleIndex)
 	{
-	case base::LEFTBUTTON1:					// ¼Ó¹¤½çÃæ
+	case base::LEFTBUTTON1:					// åŠ å·¥ç•Œé¢
 		ui.mainContainerWidget_->setCurrentWidget(ui.processWidget_);
 		ui.moduleButtonsWidget_->setCurrentWidget(ui.processModuleButtonsWidget_);
 		ui.processModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
-		emit signalChangeModules(QString(tr("¼Ó¹¤")));
+		emit signalChangeModules(QString(tr("åŠ å·¥")));
 		break;
-	case base::LEFTBUTTON2:					// ÎÄ¼ş¹ÜÀí½çÃæ
+	case base::LEFTBUTTON2:					// æ–‡ä»¶ç®¡ç†ç•Œé¢
 		ui.mainContainerWidget_->setCurrentWidget(ui.fileManagerWidget_);
 		ui.moduleButtonsWidget_->setCurrentWidget(ui.fileManagerModuleButtonsWidget_);
 		ui.fileManagerModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
-		emit signalChangeModules(QString(tr("ÎÄ¼ş¹ÜÀí")));
+		emit signalChangeModules(QString(tr("æ–‡ä»¶ç®¡ç†")));
 		break;
-	case base::LEFTBUTTON3:					// ±à¼­½çÃæ
+	case base::LEFTBUTTON3:					// ç¼–è¾‘ç•Œé¢
 		ui.mainContainerWidget_->setCurrentWidget(ui.programEditWidget_);
 		ui.moduleButtonsWidget_->setCurrentWidget(ui.programEditModuleButtonsWidget_);
 		ui.programEditModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
-		emit signalChangeModules(QString(tr("±à¼­")));
+		emit signalChangeModules(QString(tr("ç¼–è¾‘")));
 		break;
-	case base::LEFTBUTTON4:					// ÉèÖÃ½çÃæ
+	case base::LEFTBUTTON4:					// è®¾ç½®ç•Œé¢
 		ui.mainContainerWidget_->setCurrentWidget(ui.setWidget_);
 		ui.moduleButtonsWidget_->setCurrentWidget(ui.setModuleButtonsWidget_);	
 		ui.setModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
-		emit signalChangeModules(QString(tr("ÉèÖÃ")));
+		emit signalChangeModules(QString(tr("è®¾ç½®")));
 		break;
 	default:
 		break;
@@ -260,10 +260,10 @@ void MainContainer::onModule(int moduleIndex)
 
 void MainContainer::onHome()
 {
-	// ÇĞ»»µ½Ö÷½çÃæ
+	// åˆ‡æ¢åˆ°ä¸»ç•Œé¢
 	ui.mainContainerWidget_->setCurrentWidget(ui.processWidget_);
 	ui.moduleButtonsWidget_->setCurrentWidget(ui.homeModuleButtonsWidget_);
-	emit signalChangeModules(QString(tr("Ö÷Ò³")));
+	emit signalChangeModules(QString(tr("ä¸»é¡µ")));
 }
 
 void ltp::client::MainContainer::selectedFile()

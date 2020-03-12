@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_NETWORK_H_
+ï»¿#ifndef LTP_CLIENT_NETWORK_H_
 #define LTP_CLIENT_NETWORK_H_
 
 #include <string>
@@ -19,20 +19,20 @@ namespace ltp
 		public:
 			enum ConnectState
 			{
-				//Í¨ĞÅÕı³£
+				//é€šä¿¡æ­£å¸¸
 				CONNECTED,
-				//ÍøÂçÎ´Á¬½Ó
+				//ç½‘ç»œæœªè¿æ¥
 				UNCONNECTED,
-				//ÍøÂçÒÑÁ¬½Ó£¬ÓÖ±»¶Ï¿ª
+				//ç½‘ç»œå·²è¿æ¥ï¼Œåˆè¢«æ–­å¼€
 				DISCONNECTED
 			};
 			~Network();
-			//·µ»Ø·şÎñÆ÷ip
+			//è¿”å›æœåŠ¡å™¨ip
 			const std::string& host() const
 			{
 				return host_;
 			}
-			//Éè¶¨·şÎñÆ÷ip
+			//è®¾å®šæœåŠ¡å™¨ip
 			void setHost(const std::string& host)
 			{
 				host_ = host;
@@ -40,38 +40,38 @@ namespace ltp
 			void connect();
 			void disconnect();
 			void reconnect();
-			//¶ÁĞ´ºê±äÁ¿
+			//è¯»å†™å®å˜é‡
 			double macroVariable(int address) const;
 			void setMacroVariable(int address, double value);
-			//¶ÁĞ´PLC±äÁ¿
+			//è¯»å†™PLCå˜é‡
 			unsigned long plcVariable(rmi::PlcReadOnlyVariableName name) const;
 			void setPlcVariable(rmi::PlcWriteOnlyVariableName name, unsigned long value);
-			//Ô¶³Ì´ò¿ªÎÄ¼ş
+			//è¿œç¨‹æ‰“å¼€æ–‡ä»¶
 			int openFile(int channel, const std::string& fileName);
-			//Ô¶³Ì´ò¿ªÎÄ¼şÃû£¨²»´øÂ·¾¶£©
+			//è¿œç¨‹æ‰“å¼€æ–‡ä»¶åï¼ˆä¸å¸¦è·¯å¾„ï¼‰
 			std::string openedFileName() const;
-			//Ô¶³Ì´ò¿ªÎÄ¼şÃû£¨´øÂ·¾¶£©
+			//è¿œç¨‹æ‰“å¼€æ–‡ä»¶åï¼ˆå¸¦è·¯å¾„ï¼‰
 			std::string openedFilePath() const;
-			//Ô¶³ÌÎÄ¼şMD5
+			//è¿œç¨‹æ–‡ä»¶MD5
 			std::string openedFileMD5(int channel) const;
 			
 		signals:
-			//ÓÉÎ´Á¬½Ó»òÁ¬½Ó¶Ï¿ª×´Ì¬³É¹¦Á¬½Ó
+			//ç”±æœªè¿æ¥æˆ–è¿æ¥æ–­å¼€çŠ¶æ€æˆåŠŸè¿æ¥
 			void connected();
-			//Ö÷¶¯¶Ï¿ªÁ¬½Ó
+			//ä¸»åŠ¨æ–­å¼€è¿æ¥
 			void unconnected();
-			//ÍøÂç²»Í¨¡¢·şÎñ¶Ë³ö´íµ¼ÖÂµÄÁ¬½Ó¶Ï¿ª
+			//ç½‘ç»œä¸é€šã€æœåŠ¡ç«¯å‡ºé”™å¯¼è‡´çš„è¿æ¥æ–­å¼€
 			void disconnected();
 
 		private:
 			Network();
-			//·şÎñÆ÷ip
+			//æœåŠ¡å™¨ip
 			std::string host_;
-			//Á¬½Óµ½¿ØÖÆÆ÷µÄ¾ä±ú
+			//è¿æ¥åˆ°æ§åˆ¶å™¨çš„å¥æŸ„
 			int handle_;
-			//Á¬½Ó×´Ì¬
+			//è¿æ¥çŠ¶æ€
 			ConnectState connectState_;
-			//¼ì²éÁ¬½Ó×´Ì¬¶¨Ê±Æ÷
+			//æ£€æŸ¥è¿æ¥çŠ¶æ€å®šæ—¶å™¨
 			QTimer checkConnectionTimer_;
 
 		private slots:

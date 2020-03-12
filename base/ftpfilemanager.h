@@ -1,4 +1,4 @@
-#ifndef FTPFILEMANAGER_H
+ï»¿#ifndef FTPFILEMANAGER_H
 #define FTPFILEMANAGER_H
 
 #include <QUrlInfo>
@@ -17,7 +17,7 @@ namespace ltp
 		public:
 			FtpFileManager(QWidget *parent = nullptr);
 			~FtpFileManager();
-			//Éè¶¨Ô¶³ÌipµØÖ·
+			//è®¾å®šè¿œç¨‹ipåœ°å€
 			void setFtpHost(const std::string& ip)
 			{
 				ip_ = ip;
@@ -25,53 +25,53 @@ namespace ltp
 			}
 
 		public slots:
-			//´ò¿ªµ±Ç°Ñ¡ÖĞÏî
+			//æ‰“å¼€å½“å‰é€‰ä¸­é¡¹
 			virtual void openCurrentItem();
-			//Ö´ĞĞµ±Ç°Ñ¡ÖĞÏî
+			//æ‰§è¡Œå½“å‰é€‰ä¸­é¡¹
 			virtual void executeCurrentItem();
-			//ftpÁ¬½Ó
+			//ftpè¿æ¥
 			void connectToFtp();
-			//ÉÏ´«ÎÄ¼ş
+			//ä¸Šä¼ æ–‡ä»¶
 			void uploadFile(const QString& filePath);
 
 		signals:
-			//´ò¿ªÎÄ¼şĞÅºÅ
+			//æ‰“å¼€æ–‡ä»¶ä¿¡å·
 			void openFile(const QString& localFilePath, const QString& remoteFilePath);
-			//Ö´ĞĞÎÄ¼şĞÅºÅ
+			//æ‰§è¡Œæ–‡ä»¶ä¿¡å·
 			void executeFile(const QString& localFilePath, const QString& remoteFilePath);
 
 		protected slots:
-			//Ë¢ĞÂÁĞ±í
+			//åˆ·æ–°åˆ—è¡¨
 			virtual void refreshList();
-			//Ìø×ªÉÏÒ»¼¶
+			//è·³è½¬ä¸Šä¸€çº§
 			virtual void cdToParent();
-			//½øÈëÎÄ¼ş¼Ğ»ò´ò¿ªÎÄ¼ş
+			//è¿›å…¥æ–‡ä»¶å¤¹æˆ–æ‰“å¼€æ–‡ä»¶
 			virtual void openItem(QTableWidgetItem*);
-			//Ö´ĞĞÎÄ¼ş
+			//æ‰§è¡Œæ–‡ä»¶
 			virtual void executeItem(QTableWidgetItem*);
-			//Ñ¡ÖĞµÄÎÄ¼ş±ä»¯
+			//é€‰ä¸­çš„æ–‡ä»¶å˜åŒ–
 			virtual void selectedItemChanged();
 			
 		private:
-			//ÓÃÓÚÉÏ´«ÏÂÔØµÄftp
+			//ç”¨äºä¸Šä¼ ä¸‹è½½çš„ftp
 			FtpTransmissionManager ftpTransmissionManager_;
-			//°ü×°qftpÊµÏÖÎÄ¼şÁĞ±í»ñÈ¡
+			//åŒ…è£…qftpå®ç°æ–‡ä»¶åˆ—è¡¨è·å–
 			std::shared_ptr<QFtp> ftp_;
-			//´¢´æipµØÖ·
+			//å‚¨å­˜ipåœ°å€
 			std::string ip_;
-			//µ±Ç°ÏÔÊ¾µÄÁĞ±íÖĞµÄÏîÄ¿ÊÇ·ñÊÇÎÄ¼ş¼Ğ
+			//å½“å‰æ˜¾ç¤ºçš„åˆ—è¡¨ä¸­çš„é¡¹ç›®æ˜¯å¦æ˜¯æ–‡ä»¶å¤¹
 			QHash<QString, bool> isDirectory_;
-			//µ±Ç°Â·¾¶
+			//å½“å‰è·¯å¾„
 			QString currentPath_;
-			//ÓÃÓÚ´æ·ÅÎÄ¼ş´ò¿ªÊ¹ÓÃµÄ±¾µØÁÙÊ±ÎÄ¼ş
+			//ç”¨äºå­˜æ”¾æ–‡ä»¶æ‰“å¼€ä½¿ç”¨çš„æœ¬åœ°ä¸´æ—¶æ–‡ä»¶
 			const QString editTemporaryFilePath_;
-			//×î½ü´ò¿ªµÄÎÄ¼şµÄÔ¶³ÌÎÄ¼şÃû
+			//æœ€è¿‘æ‰“å¼€çš„æ–‡ä»¶çš„è¿œç¨‹æ–‡ä»¶å
 			QString lastOpenedRemoteFilePath_;
 
 		private slots:
-			//ftpÃüÁî½áÊø
+			//ftpå‘½ä»¤ç»“æŸ
 			void ftpCommandFinished(int, bool error);
-			//¼ÓÔØÎÄ¼şĞÅÏ¢
+			//åŠ è½½æ–‡ä»¶ä¿¡æ¯
 			void addToList(const QUrlInfo& urlInfo);
 
 		};

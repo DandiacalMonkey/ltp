@@ -1,4 +1,4 @@
-#include "filemanager.h"
+ï»¿#include "filemanager.h"
 
 using ltp::base::FileManager;
 
@@ -7,14 +7,14 @@ FileManager::FileManager(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	// tablewidgetÃ¿ÁĞËùÕ¼±ÈÀıÉèÖÃ
+	// tablewidgetæ¯åˆ—æ‰€å æ¯”ä¾‹è®¾ç½®
 	ui.tableWidget_->horizontalHeader()->resizeSection(0, 323);
 	ui.tableWidget_->horizontalHeader()->resizeSection(1, 100);
 	ui.tableWidget_->horizontalHeader()->resizeSection(2, 50);
 	ui.tableWidget_->horizontalHeader()->resizeSection(3, 50);
 	ui.tableWidget_->horizontalHeader()->resizeSection(4, 130);
 
-	// Ë«»÷ÊÂ¼ş
+	// åŒå‡»äº‹ä»¶
 	connect(ui.tableWidget_, SIGNAL(itemActivated(QTableWidgetItem*)), this, SLOT(openItem(QTableWidgetItem*)));
 }
 

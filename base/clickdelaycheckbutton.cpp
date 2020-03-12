@@ -1,4 +1,4 @@
-#include "clickdelaycheckbutton.h"
+ï»¿#include "clickdelaycheckbutton.h"
 
 using ltp::base::ClickDelayCheckButton;
 
@@ -18,7 +18,7 @@ void ClickDelayCheckButton::setCheckFunction(const std::function<void ()>& funct
 {
 	isAutoChecked_ = false;
 	checkFunction_ = function;
-	//¼ì²é¶¨Ê±Æ÷Æô¶¯
+	//æ£€æŸ¥å®šæ—¶å™¨å¯åŠ¨
 	if (timer_ == nullptr)
 	{
 		timer_ = new QTimer(this);
@@ -32,7 +32,7 @@ void ClickDelayCheckButton::setClickDelayCheck(const std::function<void()>& clic
 	clickFunction_ = clickFunction;
 	delayMilliseconds_ = miliseconds;
 	delayCheckFunction_ = delayCheckFunction;
-	//µã»÷´¥·¢
+	//ç‚¹å‡»è§¦å‘
 	connect(this, SIGNAL(clicked()), SLOT(onClick()));
 }
 

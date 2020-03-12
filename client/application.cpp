@@ -1,4 +1,4 @@
-#include "application.h"
+ï»¿#include "application.h"
 #include <QKeyEvent>
 #include "physicalbuttonsprocessor.h"
 
@@ -11,17 +11,17 @@ Application::Application(int& argc, char** argv)
 
 bool Application::notify(QObject* receiver, QEvent* event)
 {
-	//¹ıÂË´øCtrlµÄ¼üÅÌÊÂ¼ş
+	//è¿‡æ»¤å¸¦Ctrlçš„é”®ç›˜äº‹ä»¶
 	if (event->type() == QEvent::KeyPress)
 	{
 		QKeyEvent* keyEvent = dynamic_cast<QKeyEvent*>(event);
 		if (keyEvent->modifiers() == Qt::ControlModifier)
 		{
-			QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);			// ×ª»»Îª¼üÅÌÊÂ¼ş
-			// ¼ì²âÊäÈë¼üÖµÊÇ·ñÎªÍâÉè¼üÖµ
+			QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);			// è½¬æ¢ä¸ºé”®ç›˜äº‹ä»¶
+			// æ£€æµ‹è¾“å…¥é”®å€¼æ˜¯å¦ä¸ºå¤–è®¾é”®å€¼
 			if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsProcessor(keyEvent))
 			{
-				// Ö´ĞĞÍâÉè¼üÖµ¶ÔÓ¦µÄº¯Êı£¬·¢³öÍâÉè°´¼üĞÅºÅ
+				// æ‰§è¡Œå¤–è®¾é”®å€¼å¯¹åº”çš„å‡½æ•°ï¼Œå‘å‡ºå¤–è®¾æŒ‰é”®ä¿¡å·
 				base::getInstance<PhysicalButtonsProcessor>().getMapFunction(keyEvent);
 				return true;
 			}

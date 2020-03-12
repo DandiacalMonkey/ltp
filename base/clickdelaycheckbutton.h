@@ -1,4 +1,4 @@
-#ifndef LTP_BASE_CLICKDELAYCHECKBUTTON_H_
+ï»¿#ifndef LTP_BASE_CLICKDELAYCHECKBUTTON_H_
 #define LTP_BASE_CLICKDELAYCHECKBUTTON_H_
 
 #include <functional>
@@ -17,29 +17,29 @@ namespace ltp
 			explicit ClickDelayCheckButton(QWidget* parent = nullptr);
 			~ClickDelayCheckButton();
 
-			//Éè¶¨check¼ì²éº¯ÊıÒÔ¼°¼ì²éÆµÂÊ
+			//è®¾å®šcheckæ£€æŸ¥å‡½æ•°ä»¥åŠæ£€æŸ¥é¢‘ç‡
 			void setCheckFunction(const std::function<void()>& function, int milliseconds);
-			//Éè¶¨´¥·¢º¯ÊıºÍÑÓÊ±Ê±¼ä¡¢ÑÓÊ±¼ì²éº¯Êı
+			//è®¾å®šè§¦å‘å‡½æ•°å’Œå»¶æ—¶æ—¶é—´ã€å»¶æ—¶æ£€æŸ¥å‡½æ•°
 			void setClickDelayCheck(const std::function<void()>& clickFunction, 
 				int miliseconds, const std::function<void()>& delayCheckFunction);
-			//Éè¶¨ÊÇ·ñµã»÷ºó±ä¸üchecked×´Ì¬
+			//è®¾å®šæ˜¯å¦ç‚¹å‡»åå˜æ›´checkedçŠ¶æ€
 			void setAutoChecked(bool isAutoChecked);
 
 		protected:
 			virtual void nextCheckState();
 
 		private:
-			//ÊÇ·ñ×Ô¶¯ÉèÖÃchecked×´Ì¬
+			//æ˜¯å¦è‡ªåŠ¨è®¾ç½®checkedçŠ¶æ€
 			bool isAutoChecked_;
-			//¼ì²éÊ±Ê¹ÓÃµÄ¼ì²éº¯Êı
+			//æ£€æŸ¥æ—¶ä½¿ç”¨çš„æ£€æŸ¥å‡½æ•°
 			std::function<void()> checkFunction_;
-			//¼ì²éº¯Êı¶¨Ê±Æ÷
+			//æ£€æŸ¥å‡½æ•°å®šæ—¶å™¨
 			QTimer* timer_;
-			//°´Å¥µã»÷ÏìÓ¦º¯Êı
+			//æŒ‰é’®ç‚¹å‡»å“åº”å‡½æ•°
 			std::function<void()> clickFunction_;
-			//µã»÷ºóÑÓÊ±Ê±¼ä
+			//ç‚¹å‡»åå»¶æ—¶æ—¶é—´
 			int delayMilliseconds_;
-			//ÑÓÊ±È·ÈÏº¯Êı
+			//å»¶æ—¶ç¡®è®¤å‡½æ•°
 			std::function<void()> delayCheckFunction_;
 
 		private slots:

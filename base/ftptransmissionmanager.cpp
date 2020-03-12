@@ -1,4 +1,4 @@
-#include "ftptransmissionmanager.h"
+ï»¿#include "ftptransmissionmanager.h"
 #include <QUrl>
 
 using ltp::base::FtpTransmissionManager;
@@ -17,14 +17,14 @@ void ltp::base::FtpTransmissionManager::connect()
 bool FtpTransmissionManager::downloadFile(const QString& remoteFilePath, const QString& localFilePath)
 {
 	file_.reset(new QFile(localFilePath));
-	//·ÇÖ»¶ÁÉ¾³ýÎÄ¼þ
+	//éžåªè¯»åˆ é™¤æ–‡ä»¶
 	if (!file_->open(QIODevice::WriteOnly))
 	{
 		return false;
 	}
-	//Æô¶¯ÏÂÔØ
+	//å¯åŠ¨ä¸‹è½½
 	ftp_->get(remoteFilePath, file_.get());
-	//µ¯³öÄ£Ì¬½ø¶È¿ò£¬µÈ´ýÏÂÔØÍê³É
+	//å¼¹å‡ºæ¨¡æ€è¿›åº¦æ¡†ï¼Œç­‰å¾…ä¸‹è½½å®Œæˆ
 	progressDialog_->exec();
 	return true;
 }
@@ -32,14 +32,14 @@ bool FtpTransmissionManager::downloadFile(const QString& remoteFilePath, const Q
 bool FtpTransmissionManager::uploadFile(const QString& localFilePath, const QString& remoteFilePath)
 {
 	file_.reset(new QFile(localFilePath));
-	//ÉÏ´«Ö»ÐèÒª¶ÁÎÄ¼þ
+	//ä¸Šä¼ åªéœ€è¦è¯»æ–‡ä»¶
 	if (!file_->open(QIODevice::ReadOnly))
 	{
 		return false;
 	}
-	//Æô¶¯ÏÂÔØ
+	//å¯åŠ¨ä¸‹è½½
 	ftp_->put(file_.get(), remoteFilePath);
-	//µ¯³öÄ£Ì¬½ø¶È¿ò£¬µÈ´ýÏÂÔØÍê³É
+	//å¼¹å‡ºæ¨¡æ€è¿›åº¦æ¡†ï¼Œç­‰å¾…ä¸‹è½½å®Œæˆ
 	progressDialog_->exec();
 	return true;
 }
@@ -58,52 +58,52 @@ void FtpTransmissionManager::ftpCommandFinished(int, bool error)
 {
 	switch (ftp_->currentCommand())
 	{
-	//Á¬½Ó
+	//è¿žæŽ¥
 	case QFtp::ConnectToHost:
 		{
 			if (error)
 			{
-				//Á¬½ÓÊ§°Ü
+				//è¿žæŽ¥å¤±è´¥
 				emit connectFail();
 			}
 			else
 			{
-				//Á¬½Ó³É¹¦
+				//è¿žæŽ¥æˆåŠŸ
 				emit connectSuccess();
 			}
 			return;
 		}
 		break;
-	//ÏÂÔØ
+	//ä¸‹è½½
 	case QFtp::Get:
 		{
 			if (error)
 			{
-				//¹Ø±Õ¡¢É¾³ýÎÄ¼þ
+				//å…³é—­ã€åˆ é™¤æ–‡ä»¶
 				file_->close();
 				file_->remove();
 				progressDialog_->reject();
 			}
 			else
 			{
-				//ÏÂÔØ³É¹¦£¬½ö¹Ø±ÕÎÄ¼þ
+				//ä¸‹è½½æˆåŠŸï¼Œä»…å…³é—­æ–‡ä»¶
 				file_->close();
 				progressDialog_->accept();
 			}
 		}
 		break;
-	//ÉÏ´«
+	//ä¸Šä¼ 
 	case QFtp::Put:
 	{
 		if (error)
 		{
-			//¹Ø±Õ¡¢É¾³ýÎÄ¼þ
+			//å…³é—­ã€åˆ é™¤æ–‡ä»¶
 			file_->close();
 			progressDialog_->reject();
 		}
 		else
 		{
-			//ÏÂÔØ³É¹¦£¬½ö¹Ø±ÕÎÄ¼þ
+			//ä¸‹è½½æˆåŠŸï¼Œä»…å…³é—­æ–‡ä»¶
 			file_->close();
 			progressDialog_->accept();
 		}

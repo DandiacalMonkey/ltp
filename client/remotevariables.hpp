@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_REMOTE_VARIABLES_H_
+ï»¿#ifndef LTP_CLIENT_REMOTE_VARIABLES_H_
 #define LTP_CLIENT_REMOTE_VARIABLES_H_
 
 #include "network.h"
@@ -12,22 +12,22 @@ namespace ltp
 		public:
 			RemoteVariables() {};
 			~RemoteVariables() {};
-			//»ñÈ¡ºê±äÁ¿
+			//è·å–å®å˜é‡
 			double macroVariable(int address) const
 			{
 				return base::getInstance<Network>().macroVariable(address);
 			}
-			//Ğ´ºê±äÁ¿
+			//å†™å®å˜é‡
 			void setMacroVariable(int address, double value)
 			{
 				base::getInstance<Network>().setMacroVariable(address, value);
 			}
-			//»ñÈ¡PLC±äÁ¿
+			//è·å–PLCå˜é‡
 			unsigned long plcVariable(rmi::PlcReadOnlyVariableName name) const
 			{
 				return base::getInstance<Network>().plcVariable(name);
 			}
-			//Ğ´PLC±äÁ¿
+			//å†™PLCå˜é‡
 			void setPlcVariable(rmi::PlcWriteOnlyVariableName name, unsigned long value)
 			{
 				base::getInstance<Network>().setPlcVariable(name, value);

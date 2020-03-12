@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_PHYSICALBUTTONSPROCESSOR_H_
+ï»¿#ifndef LTP_CLIENT_PHYSICALBUTTONSPROCESSOR_H_
 #define LTP_CLIENT_PHYSICALBUTTONSPROCESSOR_H_
 
 #include <QObject>
@@ -21,13 +21,13 @@ namespace ltp
 			void getMapFunction(QKeyEvent* event);
 
 		signals:
-			// ×ó±ß
+			// å·¦è¾¹
 			void returnButtonClicked();
 			void leftButtonClicked(int key);
-			// ÏÂ±ß
+			// ä¸‹è¾¹
 			void bottomButtonModeClicked(int key);
 			void bottomButtonRateClicked(int key);
-			// ÓÒ±ß
+			// å³è¾¹
 			void rightButtonPlus(int key);
 			void rightButtonMinus(int key);
 			void rightButtonStart();
@@ -37,7 +37,7 @@ namespace ltp
 		private:
 			PhysicalButtonsProcessor(QObject *parent = nullptr);
 			~PhysicalButtonsProcessor();
-			// °´Å¥¼üÖµºÍÏà¹ØÊÂ¼şµÄÓ³Éä
+			// æŒ‰é’®é”®å€¼å’Œç›¸å…³äº‹ä»¶çš„æ˜ å°„
 			std::unordered_map<int, std::function<void()>> keyValueSignalMap_;
 			void initKeyMap();
 		};

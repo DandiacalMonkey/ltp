@@ -1,4 +1,4 @@
-#ifndef LTP_BASE_SINGLETON_H_
+﻿#ifndef LTP_BASE_SINGLETON_H_
 #define LTP_BASE_SINGLETON_H_
 
 #include <QMutex>

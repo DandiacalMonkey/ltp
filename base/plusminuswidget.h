@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_PLUSMINUSWIDGET_H_
+ï»¿#ifndef LTP_CLIENT_PLUSMINUSWIDGET_H_
 #define LTP_CLIENT_PLUSMINUSWIDGET_H_
 
 #include <QtGui/QWidget>
@@ -16,7 +16,7 @@ namespace ltp
 			PlusMinusWidget(QWidget* parent = 0);
 			~PlusMinusWidget();
 
-			void setValue(int value);			// ÊıÖµ¸Ä±ä
+			void setValue(int value);			// æ•°å€¼æ”¹å˜
 		private:
 			Ui::PlusMinusWidgetClass ui;
 

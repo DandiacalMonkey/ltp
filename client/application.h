@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_APPLICATION_H_
+﻿#ifndef LTP_CLIENT_APPLICATION_H_
 #define LTP_CLIENT_APPLICATION_H_
 
 #include <QApplication>

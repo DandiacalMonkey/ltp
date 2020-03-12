@@ -1,4 +1,4 @@
-#ifndef LTP_CLIENT_HINTBAR_H_
+ï»¿#ifndef LTP_CLIENT_HINTBAR_H_
 #define LTP_CLIENT_HINTBAR_H_
 
 #include <QtGui/QWidget>
@@ -17,7 +17,7 @@ public:
 	~HintBar();
 
 public slots:
-	//Éè¶¨ÒªÏÔÊ¾µÄÌáÊ¾
+	//è®¾å®šè¦æ˜¾ç¤ºçš„æç¤º
 	void setHint(const QString& hint)
 	{
 		ui.hintLabel_->setText(hint);
