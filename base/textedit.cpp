@@ -84,7 +84,7 @@ bool TextEdit::save()
 	if(!file.open(QFile::WriteOnly | QFile::Text))			// 打开权限
 	{
 		// error报警：无法读取文件
-		emit signalTips(QString(tr("错误：无法读取文件%1").arg(curFileName_)));
+		emit signalTips(QString(tr("错误：无法读取文件")));
 		return false;
 	}
 
@@ -93,7 +93,7 @@ bool TextEdit::save()
 	file.close();
     ui.insideTextEdit_->document()->setModified(false);
 	// 提示保存成功
-	emit signalTips(QString(tr("文件%1保存成功！").arg(curFileName_)));
+	emit signalTips(QString(tr("文件保存成功！")));
 	emit signalSaved(curFileName_);
 	return true;
 }

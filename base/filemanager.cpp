@@ -15,7 +15,7 @@ FileManager::FileManager(QWidget *parent)
 	ui.tableWidget_->horizontalHeader()->resizeSection(4, 130);
 
 	// Ë«»÷ÊÂ¼þ
-	connect(ui.tableWidget_, SIGNAL(itemActivated(QTableWidgetItem*)), this, SLOT(processItem(QTableWidgetItem*)));
+	connect(ui.tableWidget_, SIGNAL(itemActivated(QTableWidgetItem*)), this, SLOT(openItem(QTableWidgetItem*)));
 }
 
 FileManager::~FileManager()

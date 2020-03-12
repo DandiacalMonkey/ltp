@@ -2,6 +2,7 @@
 
 #include <QDateTime>
 #include "machiningstates.h"
+#include "network.h"
 
 using ltp::client::TitleBar;
 
@@ -11,7 +12,6 @@ TitleBar::TitleBar(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	ui.connectStateLabel_->setPixmap(QPixmap(":/LtpClient/image/net_connected.png"));
 	// 初始隐藏错误提示栏
 	ui.errorMessageLabel_->setText(tr(""));
 	ui.errorMessageLabel_->setStyleSheet("QLabel{background:#F5F5F5;}");
@@ -24,6 +24,9 @@ TitleBar::TitleBar(QWidget *parent)
 	connect(&base::getInstance<MachiningStates>(), SIGNAL(errorLevelChanged(base::ErrorLevel)), this, SLOT(setErrorMessages(base::ErrorLevel)));
 	// 文件名更新
 	connect(&base::getInstance<MachiningStates>(), SIGNAL(machiningFileNameChanged(QString)), this, SLOT(setCurrentNCName(QString)));
+	// 网络连接更新
+	connect(&base::getInstance<Network>(), SIGNAL(connected()), this, SLOT(setConnected()));
+	connect(&base::getInstance<Network>(), SIGNAL(disconnected()), this, SLOT(setDisconnected()));
 
 	updateTimeTimer_ = new QTimer(this);			// 系统时间更新
 	connect(updateTimeTimer_, SIGNAL(timeout()), this, SLOT(updateTime()));
@@ -49,8 +52,8 @@ void TitleBar::setMode(ltp::base::Mode modeType)
 		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_handwheel.png"));
 		ui.modeNameLabel_->setText(tr("手轮"));
 		break;
-	case ltp::base::CODELESS:		// 快捷（少图）
-		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_auto.png"));
+	case ltp::base::CODELESS:		// 快捷
+		ui.modeIconLabel_->setPixmap(QPixmap(":/LtpClient/image/mode_codeless.png"));
 		ui.modeNameLabel_->setText(tr("CODELESS"));
 		break;
 	case ltp::base::JOG:			// JOG
@@ -133,5 +136,25 @@ void TitleBar::setErrorMessages(ltp::base::ErrorLevel errlevel)
 	}
 }
 
+void TitleBar::setDisconnected()
+{
+	setConnectState(false);
+}
 
+void TitleBar::setConnected()
+{
+	setConnectState(true);
+}
+
+void TitleBar::setConnectState(bool isConnect)
+{
+	if (isConnect)		// 连接状态
+	{
+		ui.connectStateLabel_->setPixmap(QPixmap(":/LtpClient/image/net_connected.png"));
+	} 
+	else				// 断开状态
+	{
+		ui.connectStateLabel_->setPixmap(QPixmap(":/LtpClient/image/net_disconnected.png"));
+	}
+}
 

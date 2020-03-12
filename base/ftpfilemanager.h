@@ -27,14 +27,18 @@ namespace ltp
 		public slots:
 			//打开当前选中项
 			virtual void openCurrentItem();
+			//执行当前选中项
+			virtual void executeCurrentItem();
 			//ftp连接
 			void connectToFtp();
+			//上传文件
+			void uploadFile(const QString& filePath);
 
 		signals:
-			//连接成功
-			void connectSuccess();
-			//连接失败
-			void connectFail();
+			//打开文件信号
+			void openFile(const QString& localFilePath, const QString& remoteFilePath);
+			//执行文件信号
+			void executeFile(const QString& localFilePath, const QString& remoteFilePath);
 
 		protected slots:
 			//刷新列表
@@ -42,8 +46,12 @@ namespace ltp
 			//跳转上一级
 			virtual void cdToParent();
 			//进入文件夹或打开文件
-			virtual void processItem(QTableWidgetItem*);
-
+			virtual void openItem(QTableWidgetItem*);
+			//执行文件
+			virtual void executeItem(QTableWidgetItem*);
+			//选中的文件变化
+			virtual void selectedItemChanged();
+			
 		private:
 			//用于上传下载的ftp
 			FtpTransmissionManager ftpTransmissionManager_;
@@ -55,6 +63,10 @@ namespace ltp
 			QHash<QString, bool> isDirectory_;
 			//当前路径
 			QString currentPath_;
+			//用于存放文件打开使用的本地临时文件
+			const QString editTemporaryFilePath_;
+			//最近打开的文件的远程文件名
+			QString lastOpenedRemoteFilePath_;
 
 		private slots:
 			//ftp命令结束

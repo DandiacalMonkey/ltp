@@ -2,34 +2,60 @@
 #define LTP_CLIENT_FILEMANAGERWIDGET_H_
 
 #include <QtGui/QWidget>
+#include <QProgressDialog>
+#include <QHash>
+#include <QNetworkConfigurationManager>
+#include "base/globals.h"
 #include "ui_filemanagerwidget.h"
+
+class QFile;
+class QFtp;
+class QUrlInfo;
+class QNetworkSession;
 
 namespace ltp
 {
 	namespace client
 	{
-
 		class FileManagerWidget : public QWidget
 		{
 			Q_OBJECT
 		 
 		public:
 			FileManagerWidget(QWidget *parent = 0);
-			~FileManagerWidget();
-			void onStartPage();
+			~FileManagerWidget();  
+			QString getCurrentFileName();			// 获取当前文件名
+			bool checkDownload(QString);			// 检查文件是否下载
 
 		private:
 			Ui::FileManagerWidgetClass ui;
+			QHash<QString, bool> isDirectory;
+			QString currentPath;
+			QFtp *ftp;
+			QFile *file;
+
+			QNetworkSession *networkSession;
+			QNetworkConfigurationManager manager;
+			QDialog *progressDialog;
 
 		private slots:
-			void onFileManagerModule(int);
-			void enableButton(bool);
+			void enableDownloadButton();				// 使能下载按钮
+			void enableConnectButton();					// 使能连接按钮
+			void processItem(QTableWidgetItem*);		// 进入文件夹
+			void connectOrDisconnect();					// 是否连接
+			void connectToFtp();						// ftp连接
+			void ftpCommandFinished(int, bool error);	// 命令结束
+			void addToList(const QUrlInfo &urlInfo);	// 加载文件信息
+			void updateDataTransferProgress(qint64 readBytes, qint64 totalBytes);
+			void cdToParent();							// 返回上一级菜单
+			bool downloadFile(QString);					// 下载文件
+			void downloadCurrentFile();					// 下载当前选中文件
+			void cancelDownload();						// 取消下载
+			void uploadCurrentFile();					// 上载当前选中文件
+			bool uploadFile(QString);					// 上载文件
 
 		signals:
-			void onHome();								// 返回主页
-			void onProcessFile(QString filename);
-			void onOpenFile(QString);
-			void signalSaved(QString);					// 文件已保存, 需要同步上载ftp
+			void downloadEnable(bool);
 		};
 	}
 }

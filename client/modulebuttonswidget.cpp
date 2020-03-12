@@ -1,6 +1,6 @@
 ﻿#include "modulebuttonswidget.h"
-
 #include <QButtonGroup>
+#include "base/globals.h"
 
 using ltp::client::ModuleButtonsWidget;
 
@@ -13,12 +13,12 @@ ModuleButtonsWidget::ModuleButtonsWidget(QWidget* parent)
 	setExclusive(true);
 
 	buttonGroup_ = new QButtonGroup(this);
-	buttonGroup_->addButton(ui.moduleButton1_, BUTTON1);
-	buttonGroup_->addButton(ui.moduleButton2_, BUTTON2);
-	buttonGroup_->addButton(ui.moduleButton3_, BUTTON3);
-	buttonGroup_->addButton(ui.moduleButton4_, BUTTON4);
-	buttonGroup_->addButton(ui.moduleButton5_, BUTTON5);
-	buttonGroup_->addButton(ui.moduleButton6_, BUTTON6);
+	buttonGroup_->addButton(ui.moduleButton1_, base::LEFTBUTTON1);
+	buttonGroup_->addButton(ui.moduleButton2_, base::LEFTBUTTON2);
+	buttonGroup_->addButton(ui.moduleButton3_, base::LEFTBUTTON3);
+	buttonGroup_->addButton(ui.moduleButton4_, base::LEFTBUTTON4);
+	buttonGroup_->addButton(ui.moduleButton5_, base::LEFTBUTTON5);
+	buttonGroup_->addButton(ui.moduleButton6_, base::LEFTBUTTON6);
 
 	// buttonGroup_信号槽
 	connect(buttonGroup_, SIGNAL(buttonClicked(int)), SIGNAL(signalButtonClicked(int)));
@@ -37,22 +37,22 @@ void ModuleButtonsWidget::setButtonEnabled(int id, bool enabled)
 {
 	switch(id)
 	{
-	case BUTTON1:
+	case base::LEFTBUTTON1:
 		ui.moduleButton1_->setEnabled(enabled);
 		break;
-	case BUTTON2:
+	case base::LEFTBUTTON2:
 		ui.moduleButton2_->setEnabled(enabled);
 		break;
-	case BUTTON3:
+	case base::LEFTBUTTON3:
 		ui.moduleButton3_->setEnabled(enabled);
 		break;
-	case BUTTON4:
+	case base::LEFTBUTTON4:
 		ui.moduleButton4_->setEnabled(enabled);
 		break;
-	case BUTTON5:
+	case base::LEFTBUTTON5:
 		ui.moduleButton5_->setEnabled(enabled);
 		break;
-	case BUTTON6:
+	case base::LEFTBUTTON6:
 		ui.moduleButton6_->setEnabled(enabled);
 		break;
 	default:
@@ -68,27 +68,27 @@ void ModuleButtonsWidget::setReturnButtonEnabled(bool enabled)
 void ModuleButtonsWidget::setCommandButtonName(int id, QString name)
 {
 	// 设置按钮名
-	if (id == BUTTON1)
+	if (id == base::LEFTBUTTON1)
 	{
 		ui.moduleButton1_->setText(name);
 	} 
-	else if (id == BUTTON2)
+	else if (id == base::LEFTBUTTON2)
 	{
 		ui.moduleButton2_->setText(name);
 	}
-	else if (id == BUTTON3)
+	else if (id == base::LEFTBUTTON3)
 	{
 		ui.moduleButton3_->setText(name);
 	}
-	else if (id == BUTTON4)
+	else if (id == base::LEFTBUTTON4)
 	{
 		ui.moduleButton4_->setText(name);
 	}
-	else if (id == BUTTON5)
+	else if (id == base::LEFTBUTTON5)
 	{
 		ui.moduleButton5_->setText(name);
 	}
-	else if (id == BUTTON6)
+	else if (id == base::LEFTBUTTON6)
 	{
 		ui.moduleButton6_->setText(name);
 	}
@@ -96,27 +96,27 @@ void ModuleButtonsWidget::setCommandButtonName(int id, QString name)
 
 void ModuleButtonsWidget::setCheckedButton(int id, bool checked)
 {
-	if (id == BUTTON1)
+	if (id == base::LEFTBUTTON1)
 	{
 		ui.moduleButton1_->setChecked(checked);
 	} 
-	else if (id == BUTTON2)
+	else if (id == base::LEFTBUTTON2)
 	{
 		ui.moduleButton2_->setChecked(checked);
 	}
-	else if (id == BUTTON3)
+	else if (id == base::LEFTBUTTON3)
 	{
 		ui.moduleButton3_->setChecked(checked);
 	}
-	else if (id == BUTTON4)
+	else if (id == base::LEFTBUTTON4)
 	{
 		ui.moduleButton4_->setChecked(checked);
 	}
-	else if (id == BUTTON5)
+	else if (id == base::LEFTBUTTON5)
 	{
 		ui.moduleButton5_->setChecked(checked);
 	}
-	else if (id == BUTTON6)
+	else if (id == base::LEFTBUTTON6)
 	{
 		ui.moduleButton6_->setChecked(checked);
 	}

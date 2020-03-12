@@ -5,12 +5,16 @@
 using ltp::base::FtpFileManager;
 
 FtpFileManager::FtpFileManager(QWidget *parent)
-	: FileManager(parent)
+	: FileManager(parent), 
+	  editTemporaryFilePath_("./NCFiles/edit_file.nc")
 {
 	ui.locationLabel_->setText(tr("控制器") + ":/" + tr("用户盘"));
 	//返回上一级按钮
 	connect(ui.cdToParentButton_, SIGNAL(clicked()), SLOT(cdToParent()));
+	//刷新按钮
 	connect(ui.refreshButton_, SIGNAL(clicked()), SLOT(refreshList()));
+	//发送项目被选中信号
+	connect(ui.tableWidget_, SIGNAL(currentItemChanged(QTableWidgetItem*, QTableWidgetItem*)), SLOT(selectedItemChanged()));
 }
 
 FtpFileManager::~FtpFileManager()
@@ -20,12 +24,17 @@ FtpFileManager::~FtpFileManager()
 
 void FtpFileManager::openCurrentItem()
 {
+	openItem(ui.tableWidget_->currentItem());	
+}
 
+void FtpFileManager::executeCurrentItem()
+{
+	executeItem(ui.tableWidget_->currentItem());
 }
 
 void FtpFileManager::connectToFtp()
 {
-	//重连下载器
+	// 重连下载器
 	ftpTransmissionManager_.connect();
 
 	ftp_.reset(new QFtp());
@@ -42,12 +51,17 @@ void FtpFileManager::connectToFtp()
 	ftp_->login();
 }
 
+void ltp::base::FtpFileManager::uploadFile(const QString& filePath)
+{
+	ftpTransmissionManager_.uploadFile(filePath, lastOpenedRemoteFilePath_);
+}
+
 void FtpFileManager::refreshList()
 {
 	// 清除表格信息
 	ui.tableWidget_->tableWidgetClear();
 	isDirectory_.clear();
-	//重新获取列表
+	// 重新获取列表
 	ftp_->list();
 }
 
@@ -73,7 +87,7 @@ void FtpFileManager::cdToParent()
 	ftp_->list();
 }
 
-void FtpFileManager::processItem(QTableWidgetItem* tableItem)
+void FtpFileManager::openItem(QTableWidgetItem* tableItem)
 {
 	// 获取所在行第一列name，即文件名
 	QTableWidgetItem* tempItem = ui.tableWidget_->item(tableItem->row(), 0);
@@ -93,6 +107,53 @@ void FtpFileManager::processItem(QTableWidgetItem* tableItem)
 		//路径变化
 		ui.pathLabel_->setText(currentPath_);
 		return;
+	}
+	else
+	{
+		lastOpenedRemoteFilePath_ = currentPath_ + "/" + name;
+		ftpTransmissionManager_.downloadFile(lastOpenedRemoteFilePath_, editTemporaryFilePath_);
+		emit openFile(editTemporaryFilePath_, lastOpenedRemoteFilePath_);
+	}
+}
+
+void ltp::base::FtpFileManager::executeItem(QTableWidgetItem* tableItem)
+{
+	// 获取所在行第一列name，即文件名
+	QTableWidgetItem* tempItem = ui.tableWidget_->item(tableItem->row(), 0);
+	QString name = tempItem->text();
+
+	// 是文件夹
+	if (isDirectory_.value(name))
+	{
+		return;
+	}
+	else
+	{
+		ftpTransmissionManager_.downloadFile(currentPath_ + "/" + name, editTemporaryFilePath_);
+		emit executeFile(editTemporaryFilePath_, currentPath_ + "/" + name);
+	}
+}
+
+void ltp::base::FtpFileManager::selectedItemChanged()
+{
+	//获取所在行的文件名
+	QTableWidgetItem* current = ui.tableWidget_->currentItem();
+	if (current)				// 当前目录下有内容
+	{
+		QTableWidgetItem* tempItem = ui.tableWidget_->item(current->row(), 0);
+		QString currentFile = tempItem->text();
+		if (isDirectory_.value(currentFile) == true)
+		{
+			emit selectedFolder();
+		}
+		else
+		{
+			emit selectedFile();
+		}
+	}
+	else
+	{
+		emit selectedNone();
 	}
 }
 
