@@ -188,15 +188,6 @@
     <ClCompile Include="network.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="filemanagerwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_filemanagerwidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_filemanagerwidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="..\base\filetablewidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -367,12 +358,6 @@
     <CustomBuild Include="programeditwidget.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="filemanagerwidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="filemanagerwidget.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\base\filetablewidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -458,9 +443,6 @@
     </ClInclude>
     <ClInclude Include="..\base\systemvariables.hpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_filemanagerwidget.h">
-      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="..\common\rmi\globals.h">
       <Filter>Header Files</Filter>
