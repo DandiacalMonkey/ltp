@@ -89,19 +89,19 @@ void TitleBar::setMachiningState(ltp::base::MachiningState state)
 	{
 	case ltp::base::READY:
 		ui.machiningStateLabel_->setText(tr("就绪"));
-		ui.machiningStateLabel_->setStyleSheet("QLabel{background:transparent; font:14px SIMHEI; color:black;}");
+		ui.machiningStateLabel_->setStyleSheet("QLabel{background:transparent; font:14px SIMHEI; color:black; padding:0px 0px 0px 0px; margin-bottom:1px; margin-left:13px; margin-top:14px; margin-right:15px;}");
 		break;
 	case ltp::base::BUSY:
 		ui.machiningStateLabel_->setText(tr("动作中"));
-		ui.machiningStateLabel_->setStyleSheet("QLabel{background:#00AA4B; font:14px SIMHEI; color:white; border-radius:10px; padding:3px 2px 3px 2px;}");
+		ui.machiningStateLabel_->setStyleSheet("QLabel{background:#00AA4B; font:14px SIMHEI; color:white; border-radius:10px; padding:3px 2px 3px 2px; margin-bottom:0px; margin-left:4px; margin-top:9px; margin-right:4px;}");
 		break;
 	case ltp::base::HOLD:
 		ui.machiningStateLabel_->setText(tr("暂停"));
-		ui.machiningStateLabel_->setStyleSheet("QLabel{background:#FFBE0A; font:14px SIMHEI; color:white; border-radius:10px; padding:3px 9px 3px 9px;}");
+		ui.machiningStateLabel_->setStyleSheet("QLabel{background:#FFBE0A; font:14px SIMHEI; color:white; border-radius:10px; padding:3px 9px 3px 9px; margin-bottom:0px; margin-left:4px; margin-top:9px; margin-right:4px;}");
 		break;
 	case ltp::base::STOP:
-		ui.machiningStateLabel_->setText(tr("停止"));
-		ui.machiningStateLabel_->setStyleSheet("QLabel{background:#FA3200; font:14px SIMHEI; color:white; border-radius:10px; padding:3px 9px 3px 9px;}");
+		ui.machiningStateLabel_->setText(tr("已停止"));
+		ui.machiningStateLabel_->setStyleSheet("QLabel{background:#FA3200; font:14px SIMHEI; color:white; border-radius:10px; padding:3px 2px 3px 2px; margin-bottom:0px; margin-left:4px; margin-top:9px; margin-right:4px;}");
 		break;
 	default:
 		break;

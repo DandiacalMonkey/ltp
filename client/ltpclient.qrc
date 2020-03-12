@@ -23,5 +23,7 @@
         <file>image/sub_rest.png</file>
         <file>image/mode_codeless.png</file>
         <file>image/net_disconnected.png</file>
+        <file>image/top.png</file>
+        <file>image/bottom.png</file>
     </qresource>
 </RCC>

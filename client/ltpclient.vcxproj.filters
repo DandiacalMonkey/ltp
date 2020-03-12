@@ -269,6 +269,15 @@
     <ClCompile Include="processwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="setwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_setwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_setwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_processwidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -391,6 +400,12 @@
     <CustomBuild Include="processwidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="setwidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="setwidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="processwidget.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
@@ -456,8 +471,8 @@
     <ClInclude Include="GeneratedFiles\ui_processwidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
+    <ClInclude Include="GeneratedFiles\ui_setwidget.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
