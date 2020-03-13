@@ -22,8 +22,9 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 	normalDirectionAxisButton_ = ui.axisButton6_;
 	//按钮初始化
 	const int checkDelay = 50;
-	for each (auto x in axisButtons_)
+	for (int i = 0; i < axisButtons_.size(); ++i)
 	{
+		auto x = axisButtons_.at(i);
 		//默认为disable
 		x->setEnabled(false);
 		//按钮按下和延迟确认
@@ -125,9 +126,9 @@ void SelectAxisBar::resetButtonClicked()
 void SelectAxisBar::setValidAxes(const std::vector<ltp::base::Axis> validAxes)
 {
 	//先将所有按钮无效化
-	for each (auto x in axisButtons_)
+	for (int i = 0; i < axisButtons_.size(); ++i)
 	{
-		x->setEnabled(false);
+		axisButtons_[i]->setEnabled(false);
 	}
 	//清空映射内容，需要重建
 	buttonsAxisEnumMap_.clear();
@@ -149,16 +150,16 @@ void SelectAxisBar::updateInformation()
 	{
 		//当前选中轴的轴地址
 		auto remoteSelectedAxis = systemVariables.plcVariable(rmi::F_AXIS);
-		for each (auto x in buttonsAxisEnumMap_)
+		for (auto it = buttonsAxisEnumMap_.begin(); it != buttonsAxisEnumMap_.end(); ++it)
 		{
 			//有效轴设置可点按
-			x.first->setEnabled(true);
+			it->first->setEnabled(true);
 			//清空选中状态
-			x.first->setChecked(false);
+			it->first->setChecked(false);
 			//选中当前轴
-			if (x.second + 1 == remoteSelectedAxis)
+			if (it->second + 1 == remoteSelectedAxis)
 			{
-				x.first->setChecked(true);
+				it->first->setChecked(true);
 			}
 		}
 		ui.modeLabel_->setText(tr("手轮"));
@@ -168,13 +169,12 @@ void SelectAxisBar::updateInformation()
 	}
 	else if (machiningStates.mode() == base::JOG)
 	{
-
-		for each (auto x in buttonsAxisEnumMap_)
+		for (auto it = buttonsAxisEnumMap_.begin(); it != buttonsAxisEnumMap_.end(); ++it)
 		{
 			//有效轴设置可点按
-			x.first->setEnabled(true);
+			it->first->setEnabled(true);
 			//清空选中状态
-			x.first->setChecked(false);
+			it->first->setChecked(false);
 		}
 		ui.modeLabel_->setText(tr("JOG"));
 		//jog倍率显示
@@ -184,12 +184,12 @@ void SelectAxisBar::updateInformation()
 	else
 	{
 		//非jog和手轮不能轴选
-		for each (auto x in buttonsAxisEnumMap_)
+		for (auto it = buttonsAxisEnumMap_.begin(); it != buttonsAxisEnumMap_.end(); ++it)
 		{
 			//有效轴设置不可点按
-			x.first->setEnabled(false);
+			it->first->setEnabled(false);
 			//清空选中状态
-			x.first->setChecked(false);
+			it->first->setChecked(false);
 		}
 		ui.modeLabel_->setText("");
 		ui.overrideLabel_->setText("");

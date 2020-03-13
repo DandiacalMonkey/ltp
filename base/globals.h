@@ -110,4 +110,16 @@ namespace ltp
 	}
 }
 
+namespace std 
+{
+    template <>
+    struct hash<ltp::base::Axis> 
+	{
+        size_t operator ()(ltp::base::Axis value) const 
+		{
+            return static_cast<size_t>(value);
+        }
+    };
+}
+
 #endif // LTP_BASE_GLOBALS_H_
