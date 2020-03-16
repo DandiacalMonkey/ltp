@@ -1,5 +1,6 @@
 ﻿#include "ftptransmissionmanager.h"
 #include <QUrl>
+#include <QTextCodec>
 
 using ltp::base::FtpTransmissionManager;
 
@@ -28,8 +29,10 @@ bool FtpTransmissionManager::downloadFile(const QString& remoteFilePath, const Q
 	{
 		return false;
 	}
+	//控制器端ftp使用gbk编码，需要将qstring内部的Unicode转换为gbk编码再原封不动放进qstring中
+	QString temp = QString::fromLatin1(QTextCodec::codecForName("gbk")->fromUnicode(remoteFilePath));
 	//启动下载
-	ftp_->get(remoteFilePath, file_.get());
+	ftp_->get(temp, file_.get());
 	//弹出模态进度框，等待下载完成
 	progressDialog_->exec();
 	return true;

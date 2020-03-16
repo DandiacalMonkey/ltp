@@ -1,5 +1,5 @@
 ﻿#include "textedit.h"
-
+#include <QTextCodec>
 #include <QTextBlock>
 #include <QFile>
 #include <QFileInfo>
@@ -156,6 +156,8 @@ bool TextEdit::loadFile(const QString& fileName)
 	}
 
 	QTextStream in(&file);
+	//控制器上NC文件默认使用gbk
+	in.setCodec(QTextCodec::codecForName("gbk"));
 	ui.insideTextEdit_->setPlainText(in.readAll());
 
 	curFileName_ = fileinfo.fileName();
