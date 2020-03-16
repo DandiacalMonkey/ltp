@@ -25,7 +25,7 @@ TitleBar::TitleBar(QWidget *parent)
 	// 文件名更新
 	connect(&base::getInstance<MachiningStates>(), SIGNAL(machiningFileNameChanged(QString)), this, SLOT(setCurrentNCName(QString)));
 	// 网络连接更新
-	connect(&base::getInstance<Network>(), SIGNAL(connected()), this, SLOT(setConnected()));
+	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), this, SLOT(setConnected()));
 	connect(&base::getInstance<Network>(), SIGNAL(disconnected()), this, SLOT(setDisconnected()));
 
 	updateTimeTimer_ = new QTimer(this);			// 系统时间更新

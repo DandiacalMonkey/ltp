@@ -5,7 +5,7 @@
 using ltp::base::FtpFileManager;
 
 FtpFileManager::FtpFileManager(QWidget *parent)
-	: FileManager(parent), 
+	: FileManager(parent),
 	  editTemporaryFilePath_("./NCFiles/edit_file.nc")
 {
 	ui.locationLabel_->setText(tr("控制器") + ":/" + tr("用户盘"));
@@ -32,11 +32,16 @@ void FtpFileManager::executeCurrentItem()
 	executeItem(ui.tableWidget_->currentItem());
 }
 
-void FtpFileManager::connectToFtp()
+void ltp::base::FtpFileManager::connectToFtp()
 {
 	// 重连下载器
-	ftpTransmissionManager_.connect();
-
+	ftpTransmissionManager_.connect(ip_);
+	ip_ = "192.168.6.195";
+	//先尝试断开旧连接
+	if (ftp_)
+	{
+		ftp_->close();
+	}
 	ftp_.reset(new QFtp());
 	connect(ftp_.get(), SIGNAL(commandFinished(int, bool)), SLOT(ftpCommandFinished(int, bool)));
 	connect(ftp_.get(), SIGNAL(listInfo(QUrlInfo)), SLOT(addToList(QUrlInfo)));
@@ -45,13 +50,20 @@ void FtpFileManager::connectToFtp()
 	ui.tableWidget_->tableWidgetClear();
 	currentPath_.clear();
 	isDirectory_.clear();
-
+	//路径变化
+	ui.pathLabel_->setText(currentPath_);
 	QUrl url(QString::fromStdString(ip_));
 	ftp_->connectToHost(url.toString(), 21);
 	ftp_->login();
 }
 
-void ltp::base::FtpFileManager::uploadFile(const QString& filePath)
+void FtpFileManager::connectToFtp(const std::string& ip)
+{
+	ip_ = ip;
+	connectToFtp();
+}
+
+void FtpFileManager::uploadFile(const QString& filePath)
 {
 	ftpTransmissionManager_.uploadFile(filePath, lastOpenedRemoteFilePath_);
 }
@@ -62,7 +74,10 @@ void FtpFileManager::refreshList()
 	ui.tableWidget_->tableWidgetClear();
 	isDirectory_.clear();
 	// 重新获取列表
-	ftp_->list();
+	if (ftp_)
+	{
+		ftp_->list();
+	}
 }
 
 void FtpFileManager::cdToParent()

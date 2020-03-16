@@ -10,10 +10,8 @@ MainContainer::MainContainer(QWidget* parent)
 {
 	ui.setupUi(this);
 	initModuleButtonsWidget();
-	//TODO:ip地址需要改为设定
-	ui.fileManagerWidget_->setFtpHost("192.168.6.195");
 	//网络联通后，尝试连接ftp
-	connect(&base::getInstance<Network>(), SIGNAL(connected()), ui.fileManagerWidget_, SLOT(connectToFtp()));
+	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), ui.fileManagerWidget_, SLOT(connectToFtp(const std::string&)));
 	// 主菜单切换new
 	connect(ui.homeModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onModule(int)));
 	// 其他界面切到主界面

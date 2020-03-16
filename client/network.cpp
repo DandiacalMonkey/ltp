@@ -12,7 +12,7 @@ void ltp::client::Network::connect()
 		remote_set_send_timeout(handle_, 20);
 		remote_set_receive_timeout(handle_, 20);
 		connectState_ = CONNECTED;
-		emit connected();
+		emit connected(host_);
 	}
 }
 
@@ -127,7 +127,7 @@ void Network::checkConnection()
 		if (remote_connect_status(handle_) == 0)
 		{
 			connectState_ = CONNECTED;
-			emit connected();
+			emit connected(host_);
 		}
 		break;
 	default:

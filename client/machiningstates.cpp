@@ -18,7 +18,7 @@ MachiningStates::MachiningStates(QObject* parent)
 	timer_.start(kInterval);
 	connect(&timer_, SIGNAL(timeout()), SLOT(updateState()));
 	//网络连接时，确认有效轴
-	connect(&base::getInstance<Network>(), SIGNAL(connected()), SLOT(updateAxesInformation()));
+	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), SLOT(updateAxesInformation()));
 	// 下排外设按钮响应
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(bottomButtonModeClicked(int)), this, SLOT(modeChanged(int)));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(bottomButtonRateClicked(int)), this, SLOT(rateChanged(int)));

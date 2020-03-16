@@ -19,15 +19,10 @@ namespace ltp
 		public:
 			FtpTransmissionManager();
 			~FtpTransmissionManager();
-			//设定远程ip地址
-			void setHost(const std::string& ip)
-			{
-				ip_ = ip;
-			}
 
 		public slots:
 			//连接服务器
-			void connect();
+			void connect(const std::string& ip);
 			//下载文件
 			bool downloadFile(const QString& remoteFilePath, const QString& localFilePath);
 			//上传文件

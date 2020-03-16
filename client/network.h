@@ -57,7 +57,7 @@ namespace ltp
 			
 		signals:
 			//由未连接或连接断开状态成功连接
-			void connected();
+			void connected(const std::string& host);
 			//主动断开连接
 			void unconnected();
 			//网络不通、服务端出错导致的连接断开

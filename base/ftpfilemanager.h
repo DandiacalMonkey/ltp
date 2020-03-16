@@ -17,12 +17,6 @@ namespace ltp
 		public:
 			FtpFileManager(QWidget *parent = nullptr);
 			~FtpFileManager();
-			//设定远程ip地址
-			void setFtpHost(const std::string& ip)
-			{
-				ip_ = ip;
-				ftpTransmissionManager_.setHost(ip);
-			}
 
 		public slots:
 			//打开当前选中项
@@ -31,6 +25,7 @@ namespace ltp
 			virtual void executeCurrentItem();
 			//ftp连接
 			void connectToFtp();
+			void connectToFtp(const std::string& ip);
 			//上传文件
 			void uploadFile(const QString& filePath);
 

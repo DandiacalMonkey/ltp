@@ -3,8 +3,14 @@
 
 using ltp::base::FtpTransmissionManager;
 
-void ltp::base::FtpTransmissionManager::connect()
+void ltp::base::FtpTransmissionManager::connect(const std::string& ip)
 {
+	ip_ = ip;
+	//先尝试断开旧连接
+	if (ftp_)
+	{
+		ftp_->close();
+	}
 	ftp_.reset(new QFtp());
 	QObject::connect(ftp_.get(), SIGNAL(commandFinished(int, bool)), this, SLOT(ftpCommandFinished(int, bool)));
 	//connect(ftp_.get(), SIGNAL(dataTransferProgress(qint64, qint64)), this, SLOT(updateDataTransferProgress(qint64, qint64)));
