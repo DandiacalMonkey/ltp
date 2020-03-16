@@ -8,8 +8,15 @@
 
 int main(int argc, char *argv[])
 {
-	QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());
-	QTextCodec::setCodecForTr(QTextCodec::codecForLocale());
+#ifdef Q_OS_WIN
+	QTextCodec* codec = QTextCodec::codecForName("gbk");
+	QTextCodec::setCodecForCStrings(codec);
+	QTextCodec::setCodecForTr(codec);
+#else
+	QTextCodec* codec = QTextCodec::codecForName("utf8");
+	QTextCodec::setCodecForCStrings(codec);
+	QTextCodec::setCodecForTr(codec);
+#endif
 
 	ltp::client::Application a(argc, argv);
 

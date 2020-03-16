@@ -33,9 +33,9 @@ MachiningStates::MachiningStates(QObject* parent)
 	axisEnumAxisCharacterMap_[base::V_AXIS] = 'V';
 	axisEnumAxisCharacterMap_[base::W_AXIS] = 'W';
 	//初始化轴字符到轴枚举映射关系
-	for each (auto x in axisEnumAxisCharacterMap_)
+	for (auto it = axisEnumAxisCharacterMap_.begin(); it != axisEnumAxisCharacterMap_.end(); it++)
 	{
-		axisCharacterAxisEnumMap_[x.second] = x.first;
+		axisCharacterAxisEnumMap_[it->second] = it->first;
 	}
 }
 
@@ -144,9 +144,9 @@ char MachiningStates::axisEnumToAxisCharacter(ltp::base::Axis axisEnum) const
 std::vector<char> ltp::client::MachiningStates::axesEnumToAxesCharacter(const std::vector<base::Axis>& axesEnum) const
 {
 	std::vector<char> result;
-	for each (auto x in axesEnum)
+	for (auto it = axesEnum.begin(); it != axesEnum.end(); it++)
 	{
-		result.push_back(axisEnumToAxisCharacter(x));
+		result.push_back(axisEnumToAxisCharacter(*it));
 	}
 	return std::move(result);
 }
@@ -159,9 +159,9 @@ ltp::base::Axis ltp::client::MachiningStates::axisCharacterToAxisEnum(char axisC
 std::vector<ltp::base::Axis> ltp::client::MachiningStates::axesCharacterToAxesEnum(const std::vector<char>& axesCharacter) const
 {
 	std::vector<base::Axis> result;
-	for each (auto x in axesCharacter)
+	for (auto it = axesCharacter.begin(); it != axesCharacter.end(); it++)
 	{
-		result.push_back(axisCharacterToAxisEnum(x));
+		result.push_back(axisCharacterToAxisEnum(*it));
 	}
 	return std::move(result);
 }
@@ -210,8 +210,8 @@ void MachiningStates::updateAxesInformation()
 	//更新轴地址
 	auto remoteAxesAddress = systemVariables.axesAddress();
 	axesAddress_.clear();
-	for each (auto x in remoteAxesAddress)
+	for (auto it = remoteAxesAddress.begin(); it != remoteAxesAddress.end(); it++)
 	{
-		axesAddress_[axisCharacterToAxisEnum(x.first)] = x.second;
+		axesAddress_[axisCharacterToAxisEnum(it->first)] = it->second;
 	}
 }
