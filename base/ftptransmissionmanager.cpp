@@ -46,8 +46,10 @@ bool FtpTransmissionManager::uploadFile(const QString& localFilePath, const QStr
 	{
 		return false;
 	}
-	//启动下载
-	ftp_->put(file_.get(), remoteFilePath);
+	//控制器端ftp使用gbk编码，需要将qstring内部的Unicode转换为gbk编码再原封不动放进qstring中
+	QString temp = QString::fromLatin1(QTextCodec::codecForName("gbk")->fromUnicode(remoteFilePath));
+	//启动上传
+	ftp_->put(file_.get(), temp);
 	//弹出模态进度框，等待下载完成
 	progressDialog_->exec();
 	return true;

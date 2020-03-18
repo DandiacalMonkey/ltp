@@ -28,14 +28,14 @@ namespace ltp
 			~MainContainer();
 
 		public slots:
-			void openEditFile(const QString& localFilePath, const QString& remoteFilePath);			// 打开编辑文件
+			void openEditFile(const QString& localFilePath, const QString& remoteFtpFilePath);			// 打开编辑文件
+			void openProcessFile(const QString& remoteFtpFilePath);
 
 		private:
 			Ui::MainContainerClass ui;
 			void initModuleButtonsWidget();					// 初始化左侧按钮模块信息
 
 		signals:
-			void signalChangeProcessFileName(QString);		// 当前加工文件名改变
 			void signalChangeModules(QString);				// 切换模块，菜单栏信息修改
 
 		private slots:

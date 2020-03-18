@@ -65,9 +65,11 @@ ProgramEditWidget::ProgramEditWidget(QWidget *parent)
 	// 保存
 	connect(ui.saveButton_, SIGNAL(clicked()), ui.textEdit_, SLOT(save()));
 	// 提示信息
-	connect(ui.textEdit_, SIGNAL(signalTips(QString)), this, SLOT(onHint(QString)));
+	connect(ui.textEdit_, SIGNAL(signalTips(QString)), SLOT(onHint(QString)));
 	// 文件已经保存
-	connect(ui.textEdit_, SIGNAL(signalSaved(QString)), this, SIGNAL(signalSaved(QString)));
+	connect(ui.textEdit_, SIGNAL(signalSaved(QString)), SIGNAL(signalSaved(QString)));
+	// 文件被关闭
+	connect(ui.textEdit_, SIGNAL(signalClosed(QString)), SLOT(fileClosed()));
 
 	// 定时器每0.5s更新一次数据
 	QTimer *timer_ = new QTimer();
@@ -118,6 +120,11 @@ void ProgramEditWidget::onTimer()
 	// 当前坐标系
 	QString str = "G" + QString::number(coord);
 	ui.currentWorkpieceCoordinate_->setText(str);
+}
+
+void ProgramEditWidget::fileClosed()
+{
+	ui.programTitleLabel_->clear();
 }
 
 void ProgramEditWidget::onHint(QString str)
@@ -240,23 +247,16 @@ void ProgramEditWidget::onOpenFile(QString fileName)
 {
 	// 打开文件
 	ui.textEdit_->openFile(fileName);
-	// 更新当前打开文件名
-	updateFileName();
+}
+
+void ltp::client::ProgramEditWidget::saveFile()
+{
+	ui.textEdit_->save();
 }
 
 void ProgramEditWidget::closeFile()
 {
 	ui.textEdit_->closeFile();
-	// 更新当前打开文件名
-	updateFileName();
-}
-
-void ProgramEditWidget::updateFileName()
-{
-	// 更新当前打开文件名
-	QString currentFileName = ui.textEdit_->getCurrentFileName();
-	QString str = QString(tr("本地存储器：")) + currentFileName;
-	ui.programTitleLabel_->setText(str);
 }
 
 void ProgramEditWidget::onTeachEditModule(int editModule)

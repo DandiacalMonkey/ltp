@@ -19,11 +19,12 @@ namespace ltp
 			void checkModified();					// 检查文件是否修改 
 
 		private:
-			bool loadFile(const QString& fileName);	// 加载文件
+			bool loadFile(const QString& filePath);	// 加载文件
 
 		private:
 			Ui::TextEditClass ui;
-			QString curFileName_;					// 当前文件名
+			QString fileName_;						// 当前文件名
+			QString filePath_;						// 当前文件名(含路径)
 			int lineTotalNum_;						// 打开文件的总行数
 
 		private slots:
@@ -33,19 +34,20 @@ namespace ltp
 
 		public slots:
 			bool save();
-			void saveAs(const QString& fileName);
+			void saveAs(const QString& filePath);
 			void removeLine();						// 删除行
 			void copyText();						// 拷贝
 			void pasteText();						// 复制
 			void cutText();							// 剪切 
 			void recoverText();						// 撤销
 			void repealText();						// 恢复
-			void openFile(const QString& fileName);	// 打开文件
+			void openFile(const QString& filePath);	// 打开文件
 			void closeFile();						// 关闭文件
 
 		signals:
 			void signalTips(QString);
-			void signalSaved(QString);
+			void signalSaved(QString filePath);
+			void signalClosed(QString filePath);
 		};
 	}
 }

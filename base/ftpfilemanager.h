@@ -23,6 +23,8 @@ namespace ltp
 			virtual void openCurrentItem();
 			//执行当前选中项
 			virtual void executeCurrentItem();
+			//执行最后打开的文件
+			virtual void executeLastOpenedFile();
 			//ftp连接
 			void connectToFtp();
 			void connectToFtp(const std::string& ip);
@@ -31,9 +33,9 @@ namespace ltp
 
 		signals:
 			//打开文件信号
-			void openFile(const QString& localFilePath, const QString& remoteFilePath);
+			void openFtpFile(const QString& localFilePath, const QString& remoteFtpFilePath);
 			//执行文件信号
-			void executeFile(const QString& localFilePath, const QString& remoteFilePath);
+			void executeFtpFile(const QString& remoteFtpFilePath);
 
 		protected slots:
 			//刷新列表

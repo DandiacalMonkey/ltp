@@ -21,6 +21,8 @@ namespace ltp
 			virtual void openCurrentItem() = 0;
 			//执行当前选中项
 			virtual void executeCurrentItem() = 0;
+			//执行最后打开的文件
+			virtual void executeLastOpenedFile() = 0;
 
 		signals:
 			//连接成功

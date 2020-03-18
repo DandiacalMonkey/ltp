@@ -72,7 +72,7 @@ void TextEdit::focusLine(int lineNum)
 
 bool TextEdit::save()
 {
-	if (curFileName_.isNull() || curFileName_.isEmpty())		// 当前文件名是空
+	if (filePath_.isNull() || filePath_.isEmpty())		// 当前文件名是空
 	{
 		// error报警 
 		emit signalTips(QString(tr("无法保存未命名文件")));
@@ -80,7 +80,7 @@ bool TextEdit::save()
 	}
 
 	// 保存当前打开文件
-	QFile file(curFileName_);
+	QFile file(filePath_);
 	if(!file.open(QFile::WriteOnly | QFile::Text))			// 打开权限
 	{
 		// error报警：无法读取文件
@@ -89,16 +89,18 @@ bool TextEdit::save()
 	}
 
 	QTextStream out(&file);
+	out.setCodec(QTextCodec::codecForName("gbk"));
     out << ui.insideTextEdit_->toPlainText();
+	out.flush();
 	file.close();
     ui.insideTextEdit_->document()->setModified(false);
 	// 提示保存成功
 	emit signalTips(QString(tr("文件保存成功！")));
-	emit signalSaved(curFileName_);
+	emit signalSaved(filePath_);
 	return true;
 }
 
-void TextEdit::saveAs(const QString& fileName)
+void TextEdit::saveAs(const QString& filePath)
 {
 
 }
@@ -137,21 +139,21 @@ void TextEdit::repealText()
 }
 
 //读取文件
-bool TextEdit::loadFile(const QString& fileName)
+bool TextEdit::loadFile(const QString& filePath)
 {
-	QFile file(fileName);
+	QFile file(filePath);
 	if(!file.open(QFile::ReadOnly | QFile::Text))
 	{
 		// error报警：无法读取文件
-		emit signalTips(QString(tr("错误：无法读取文件%1").arg(fileName)));
+		emit signalTips(QString(tr("错误：无法读取文件%1").arg(filePath)));
 		return false;
 	}
 
-	QFileInfo fileinfo(fileName);
+	QFileInfo fileinfo(filePath);
 	if (fileinfo.size() > 1024 * 1024 + 100)
 	{	
 		// error报警：文件大小超过1MB, 无法读取文件!
-		emit signalTips(QString(tr("错误：文件%1大小超过1MB, 无法读取文件!").arg(fileName)));
+		emit signalTips(QString(tr("错误：文件%1大小超过1MB, 无法读取文件!").arg(filePath)));
 		return false;
 	}
 
@@ -160,7 +162,9 @@ bool TextEdit::loadFile(const QString& fileName)
 	in.setCodec(QTextCodec::codecForName("gbk"));
 	ui.insideTextEdit_->setPlainText(in.readAll());
 
-	curFileName_ = fileinfo.fileName();
+	fileName_ = fileinfo.filePath();
+	filePath_ = filePath;
+
 	lineTotalNum_ = ui.insideTextEdit_->document()->blockCount();
 
 	file.close();
@@ -187,15 +191,18 @@ void TextEdit::openFile(const QString& openFileName)
 
 QString TextEdit::getCurrentFileName()
 {
-	return curFileName_;
+	return fileName_;
 }
 
 void TextEdit::closeFile()
 {
 	// 检查是否修改
 	checkModified();
+	//文件关闭信号
+	emit signalClosed(filePath_);
 	// 清除当前文件名
-	curFileName_ = "";
+	fileName_.clear();
+	filePath_.clear();
 	// 清空文件显示
 	ui.insideTextEdit_->clear();
 }

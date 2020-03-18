@@ -2,6 +2,7 @@
 #include "base/globals.h"
 #include "physicalbuttonsprocessor.h"
 #include "network.h"
+#include "machiningstates.h"
 
 using ltp::client::MainContainer;
 
@@ -10,7 +11,7 @@ MainContainer::MainContainer(QWidget* parent)
 {
 	ui.setupUi(this);
 	initModuleButtonsWidget();
-	//网络联通后，尝试连接ftp
+	// 网络联通后，尝试连接ftp
 	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), ui.fileManagerWidget_, SLOT(connectToFtp(const std::string&)));
 	// 主菜单切换new
 	connect(ui.homeModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onModule(int)));
@@ -26,7 +27,8 @@ MainContainer::MainContainer(QWidget* parent)
 	connect(ui.fileManagerWidget_, SIGNAL(selectedFolder()), SLOT(selectedFolder()));
 	connect(ui.fileManagerWidget_, SIGNAL(selectedNone()), SLOT(selectedNone()));
 	// 文件打开
-	connect(ui.fileManagerWidget_, SIGNAL(openFile(const QString&, const QString&)), SLOT(openEditFile(const QString&, const QString&)));
+	connect(ui.fileManagerWidget_, SIGNAL(openFtpFile(const QString&, const QString&)), SLOT(openEditFile(const QString&, const QString&)));
+	connect(ui.fileManagerWidget_, SIGNAL(executeFtpFile(const QString&)), SLOT(openProcessFile(const QString&)));
 	// 编辑界面保存，同时上载到ftp客户端
 	connect(ui.programEditWidget_, SIGNAL(signalSaved(QString)), ui.fileManagerWidget_, SLOT(uploadFile(QString)));
 	// 加工界面，左侧按钮切换
@@ -44,6 +46,14 @@ MainContainer::MainContainer(QWidget* parent)
 MainContainer::~MainContainer()
 {
 	
+}
+
+void MainContainer::openProcessFile(const QString& remoteFtpFilePath)
+{
+	//切换到编辑界面
+	onModule(base::LEFTBUTTON1);
+	//远程加载
+	base::getInstance<MachiningStates>().remoteOpenFtpFile(remoteFtpFilePath);
 }
 
 void MainContainer::leftButtonClicked(int key)
@@ -90,14 +100,14 @@ void MainContainer::returnButtonClicked()
 	}
 }
 
-void ltp::client::MainContainer::openEditFile(const QString& localFilePath, const QString& remoteFilePath)
+void MainContainer::openEditFile(const QString& localFilePath, const QString& remoteFtpFilePath)
 {
 	//切换到编辑界面
 	onModule(base::LEFTBUTTON3);
 	//打开文件
 	ui.programEditWidget_->onOpenFile(localFilePath);
 	//将文件名修改为远程文件名
-	ui.programEditWidget_->setRemoteFilePath(remoteFilePath);
+	ui.programEditWidget_->setRemoteFilePath(remoteFtpFilePath);
 }
 
 void MainContainer::initModuleButtonsWidget()
@@ -184,7 +194,8 @@ void MainContainer::onProgrameEditWidgetModule(int module)
 		ui.programEditWidget_->onEditBarModule(module);
 		break;
 	case base::LEFTBUTTON5:					// 执行
-		// todo
+		ui.programEditWidget_->saveFile();
+		ui.fileManagerWidget_->executeLastOpenedFile();
 		break;
 	case base::LEFTBUTTON6:					// 关闭
 		ui.programEditWidget_->closeFile();

@@ -206,6 +206,21 @@ void ltp::client::MachiningStates::updateMachiningFile()
 	emit localMachiningFileChanged(localMachiningFilePath_);
 }
 
+void MachiningStates::remoteOpenFile(const QString& localFilePath, const QString& remoteFilePath)
+{
+	//文件路径转换为ftp文件路径
+	auto remoteFtpFilePath = filePathToFtpPath(remoteFilePath);
+	//上传文件
+	ftpTransmissionManager_.uploadFile(localFilePath, remoteFtpFilePath);
+	//远程打开
+	base::getInstance<Network>().openFile(1, remoteFtpFilePath.toUtf8().data());
+}
+void ltp::client::MachiningStates::remoteOpenFtpFile(const QString remoteFtpFilePath)
+{
+	//远程打开
+	base::getInstance<Network>().openFile(1, remoteFtpFilePath.toUtf8().data());
+}
+
 void MachiningStates::updateState()
 {
 	//模式

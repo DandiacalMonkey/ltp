@@ -25,6 +25,7 @@ namespace ltp
 			void setRemoteFilePath(const QString& filePath);									// 设定显示的文件名
 
 			void onOpenFile(QString fileName);		// 打开文件
+			void saveFile();						// 保存文件
 			void onTeachEditModule(int);			// 切换示教编辑模块
 
 		private:
@@ -35,12 +36,12 @@ namespace ltp
 			void onProgrameEdit();			// 程序编辑
 			void onTeachEdit();				// 示教编辑
 			void onEditTeach();				// 编辑示教
-			void updateFileName();			// 更新打开文件名
 
 		private slots:
 			void setValidAxes(const std::vector<base::Axis> &validAxes);
 			void onHint(QString);
 			void onTimer();
+			void fileClosed();
 
 		signals:
 			void signalSaved(QString);

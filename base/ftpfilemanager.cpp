@@ -127,7 +127,7 @@ void FtpFileManager::openItem(QTableWidgetItem* tableItem)
 	{
 		lastOpenedRemoteFilePath_ = currentPath_ + "/" + name;
 		ftpTransmissionManager_.downloadFile(lastOpenedRemoteFilePath_, editTemporaryFilePath_);
-		emit openFile(editTemporaryFilePath_, lastOpenedRemoteFilePath_);
+		emit openFtpFile(editTemporaryFilePath_, lastOpenedRemoteFilePath_);
 	}
 }
 
@@ -144,9 +144,13 @@ void ltp::base::FtpFileManager::executeItem(QTableWidgetItem* tableItem)
 	}
 	else
 	{
-		ftpTransmissionManager_.downloadFile(currentPath_ + "/" + name, editTemporaryFilePath_);
-		emit executeFile(editTemporaryFilePath_, currentPath_ + "/" + name);
+		emit executeFtpFile(currentPath_ + "/" + name);
 	}
+}
+
+void ltp::base::FtpFileManager::executeLastOpenedFile()
+{
+	emit executeFtpFile(lastOpenedRemoteFilePath_);
 }
 
 void ltp::base::FtpFileManager::selectedItemChanged()

@@ -51,6 +51,12 @@ namespace ltp
 			//更新正在加工的文件
 			void updateMachiningFile();
 
+		public slots:
+			//远程打开文件
+			void remoteOpenFile(const QString& localFilePath, const QString& remoteFilePath);
+			//远程打开ftp文件
+			void remoteOpenFtpFile(const QString remoteFtpFilePath);
+
 		signals:
 			//检测到模式切换时发出信号
 			void modeChanged(base::Mode mode);
