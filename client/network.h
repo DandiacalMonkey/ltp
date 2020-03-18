@@ -52,6 +52,8 @@ namespace ltp
 			std::string openedFileName() const;
 			//远程打开文件名（带路径）
 			std::string openedFilePath() const;
+			//远程文件最后修改时间
+			int fileLastModifiedTime(const std::string& filePath) const;
 			//远程文件MD5
 			std::string openedFileMD5(int channel) const;
 			

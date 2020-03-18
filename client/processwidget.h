@@ -21,7 +21,7 @@ namespace ltp
 			Ui::ProcessWidgetClass ui;
 
 		private slots:
-			void onProcessFile(QString);
+			void onProcessFile(const QString& filePath);
 
 		};
 	}

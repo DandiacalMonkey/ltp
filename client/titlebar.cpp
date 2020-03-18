@@ -23,7 +23,7 @@ TitleBar::TitleBar(QWidget *parent)
 	// 报错信息更新
 	connect(&base::getInstance<MachiningStates>(), SIGNAL(errorLevelChanged(base::ErrorLevel)), this, SLOT(setErrorMessages(base::ErrorLevel)));
 	// 文件名更新
-	connect(&base::getInstance<MachiningStates>(), SIGNAL(machiningFileNameChanged(QString)), this, SLOT(setCurrentNCName(QString)));
+	connect(&base::getInstance<MachiningStates>(), SIGNAL(machiningFileChanged(const QString&)), this, SLOT(setCurrentNCName(QString)));
 	// 网络连接更新
 	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), this, SLOT(setConnected()));
 	connect(&base::getInstance<Network>(), SIGNAL(disconnected()), this, SLOT(setDisconnected()));
@@ -108,9 +108,9 @@ void TitleBar::setMachiningState(ltp::base::MachiningState state)
 	}
 }
 
-void TitleBar::setCurrentNCName(const QString &name)
+void TitleBar::setCurrentNCName(const QString &filePath)
 {
-	ui.currentNCNameLabel_->setText(name);
+	ui.currentNCNameLabel_->setText(filePath.mid(filePath.lastIndexOf("/") + 1));
 }
 
 void TitleBar::setErrorMessages(ltp::base::ErrorLevel errlevel)

@@ -1,4 +1,5 @@
 ﻿#include "machiningstates.h"
+#include <QTextCodec>
 #include "network.h"
 #include "base/systemvariables.hpp"
 #include "remotevariables.hpp"
@@ -7,11 +8,14 @@
 
 using ltp::client::MachiningStates;
 
+const QString MachiningStates::ftpRootPath = "/home/Lynuc/Users/NCFiles";
+
 MachiningStates::MachiningStates(QObject* parent)
 	: QObject(parent),
-	  mode_(base::CODELESS),
-	  machiningState_(base::READY),
-	  errorLevel_(base::NO_ERROR)
+	mode_(base::CODELESS),
+	machiningState_(base::READY),
+	errorLevel_(base::NO_ERROR),
+	localMachiningFilePath_("./NCFiles/machining_file.nc")
 {
 	//状态刷新
 	const int kInterval = 200;
@@ -20,8 +24,10 @@ MachiningStates::MachiningStates(QObject* parent)
 	//网络连接时，确认有效轴
 	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), SLOT(updateAxesInformation()));
 	// 下排外设按钮响应
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(bottomButtonModeClicked(int)), this, SLOT(modeChanged(int)));
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(bottomButtonRateClicked(int)), this, SLOT(rateChanged(int)));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(bottomButtonModeClicked(int)), this, SLOT(modeChanged(int)));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(bottomButtonRateClicked(int)), this, SLOT(rateChanged(int)));
+	//ftp传输连接
+	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), &ftpTransmissionManager_, SLOT(connect(const std::string&)));
 	//初始化轴枚举到轴字符映射关系
 	axisEnumAxisCharacterMap_[base::X_AXIS] = 'X';
 	axisEnumAxisCharacterMap_[base::Y_AXIS] = 'Y';
@@ -76,6 +82,20 @@ void MachiningStates::modeChanged(int buttonID)
 	}
 }
 
+QString MachiningStates::filePathToFtpPath(const QString& filePath)
+{
+	if (filePath.indexOf(ftpRootPath) == 0)
+	{
+		return filePath.mid(ftpRootPath.length() + 1);
+	}
+	return "";
+}
+
+QString MachiningStates::ftpPathToFilePath(const QString& ftpPath)
+{
+	return ftpRootPath + ftpPath;
+}
+
 ltp::base::Mode MachiningStates::mode() const
 {
 	return static_cast<base::Mode>(static_cast<int>(
@@ -106,12 +126,21 @@ ltp::base::MachiningState MachiningStates::machiningState() const
 
 QString MachiningStates::machiningFilePath() const
 {
-	return QString();
+	//远程接口传输使用utf-8
+	QTextCodec* codec = QTextCodec::codecForName("utf8");
+	return codec->toUnicode(base::getInstance<Network>().openedFilePath().c_str());
 }
 
 QString MachiningStates::machiningFileName() const
 {
-	return QString();
+	//远程接口传输使用utf-8
+	QTextCodec* codec = QTextCodec::codecForName("utf8");
+	return codec->toUnicode(base::getInstance<Network>().openedFileName().c_str());
+}
+
+int MachiningStates::machiningFileLastModifiedTime() const
+{
+	return base::getInstance<Network>().fileLastModifiedTime(machiningFilePath().toStdString());
 }
 
 ltp::base::ErrorLevel MachiningStates::errorLevel() const
@@ -171,6 +200,12 @@ int ltp::client::MachiningStates::axisEnumToAxisAddress(base::Axis axisEnum) con
 	return axesAddress_.at(axisEnum);
 }
 
+void ltp::client::MachiningStates::updateMachiningFile()
+{
+	ftpTransmissionManager_.downloadFile(filePathToFtpPath(machiningFilePath_), localMachiningFilePath_);
+	emit localMachiningFileChanged(localMachiningFilePath_);
+}
+
 void MachiningStates::updateState()
 {
 	//模式
@@ -193,6 +228,24 @@ void MachiningStates::updateState()
 	{
 		errorLevel_ = remoteErrorLevel;
 		emit errorLevelChanged(errorLevel_);
+	}
+	//当前加载的文件名和修改时间
+	auto currentFilePath = machiningFilePath();
+	auto currentFileLastModifiedTime = machiningFileLastModifiedTime();
+	//如果出现变化
+	if ((currentFilePath.length() != 0 && currentFilePath != machiningFilePath_) ||
+		(currentFileLastModifiedTime != 0 && currentFileLastModifiedTime != machiningFileLastModifiedTime_))
+	{
+		if (currentFilePath != machiningFilePath_)
+		{
+			machiningFilePath_ = currentFilePath;
+		}
+		if (currentFileLastModifiedTime != machiningFileLastModifiedTime_)
+		{
+			machiningFileLastModifiedTime_ = currentFileLastModifiedTime;
+		}
+		updateMachiningFile();
+		emit machiningFileChanged(machiningFilePath_);
 	}
 }
 

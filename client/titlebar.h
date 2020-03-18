@@ -30,7 +30,7 @@ namespace ltp
 			void setMode(base::Mode modeType);					// 设置模式信息
 			void setModuleName(const QString &name);			// 设置模块信息
 			void setMachiningState(base::MachiningState state);	// 设置加工状态
-			void setCurrentNCName(const QString &name);			// 设置当前加工文件
+			void setCurrentNCName(const QString &filePath);		// 设置当前加工文件
 			void setErrorMessages(base::ErrorLevel errlevel);	// 设置报错信息
 			void setConnected();								// 网络连接成功
 			void setDisconnected();								// 网络连接失败

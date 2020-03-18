@@ -89,6 +89,16 @@ std::string ltp::client::Network::openedFilePath() const
 	return std::move(std::string(filePath));
 }
 
+int ltp::client::Network::fileLastModifiedTime(const std::string& filePath) const
+{
+	int lastModifiedTime;
+	if (remote_get_file_last_modified_time(handle_, filePath.c_str(), &lastModifiedTime) == 0)
+	{
+		return lastModifiedTime;
+	}
+	return 0;
+}
+
 std::string ltp::client::Network::openedFileMD5(int channel) const
 {
 	char md5[256];
