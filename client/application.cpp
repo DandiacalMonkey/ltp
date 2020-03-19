@@ -12,23 +12,6 @@ Application::Application(int& argc, char** argv)
 	:QApplication(argc, argv)
 {
 	currentWidget_ = nullptr;			//当前鼠标点击的对象
-	// 虚拟键盘输入
-	connect(&base::getInstance<base::KeyBoardDialog>(), SIGNAL(keyboardEvent(QKeyEvent*)), this, SLOT(receiveKeyboardEvent(QKeyEvent*)));
-}
-
-void Application::receiveKeyboardEvent(QKeyEvent* event)
-{
-	// 虚拟键盘按键按下，找到对应输入框进行输入
-	if (currentEditType_ == "QLineEdit")
-	{
-		QLineEdit* currentLineEdit = static_cast<QLineEdit*>(currentWidget_);
-		this->postEvent(currentLineEdit, event);
-	}
-	else if (currentEditType_ == "QTextEdit")
-	{
-		QTextEdit* currentTextEdit = static_cast<QTextEdit*>(currentWidget_);
-		this->postEvent(currentTextEdit, event);
-	}
 }
 
 bool Application::notify(QObject* receiver, QEvent* event)

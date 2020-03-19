@@ -1,18 +1,21 @@
 ﻿#include "keyboarddialog.h"
 #include <QKeyEvent>
+#include <QDebug>
 
 using ltp::base::KeyBoardDialog;
 
 KeyBoardDialog::KeyBoardDialog(QWidget* parent)
-	: QDialog(parent)
+	: QWidget(parent)
 {
 	ui.setupUi(this);
-	
+	setFocusPolicy(Qt::NoFocus);
+	setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
 	buttonGroup_ = new QButtonGroup(this);
 	initKey();			// 初始化buttonGroup_
 	connect(buttonGroup_, SIGNAL(buttonClicked(int)), this, SLOT(keyButtonClicked(int)));
 //	connect(ui.titleWidget_, SIGNAL(signalClose()), this, SLOT(closeKeyboardDialog()));
 //	connect(ui.confirmButton_, SIGNAL(clicked()), this, SLOT(confirmButonClicked()));
+	move(0, 400);
 }
 
 KeyBoardDialog::~KeyBoardDialog()
@@ -398,7 +401,7 @@ void KeyBoardDialog::keyButtonClicked(int key)
 	// 发送虚拟键盘按下事件
 	if (keyPressEvent != NULL)
 	{
-		emit keyboardEvent(keyPressEvent);
+		QCoreApplication::postEvent(QApplication::focusWidget(), keyPressEvent);
 	}
 }
 

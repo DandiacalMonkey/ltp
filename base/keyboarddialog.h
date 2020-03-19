@@ -64,7 +64,7 @@ namespace ltp
 			KEY_LEFTSLASH
 		};
 
-		class KeyBoardDialog : public QDialog
+		class KeyBoardDialog : public QWidget
 		{
 		Q_OBJECT
 			friend KeyBoardDialog& getInstance<KeyBoardDialog>();		
@@ -88,7 +88,6 @@ namespace ltp
 		signals:
 			//void insertString(QString value);
 		//	void closeKeyboard();
-			void keyboardEvent(QKeyEvent*);
 		};
 	}
 }
