@@ -69,13 +69,17 @@ void MachiningStates::rateChanged(int buttonID)
 
 void MachiningStates::modeChanged(int buttonID)
 {
+	// 发送PLC信号修改当前模式
 	switch (buttonID)
 	{
 	case base::BOTTOMBUTTON1:			// 自动
+		base::getInstance<Network>().setPlcVariable(rmi::G_MODE, base::MEMORY);
 		break;
 	case base::BOTTOMBUTTON2:			// JOG
+		base::getInstance<Network>().setPlcVariable(rmi::G_MODE, base::JOG);
 		break;
 	case base::BOTTOMBUTTON3:			// 手轮
+		base::getInstance<Network>().setPlcVariable(rmi::G_MODE, base::HANDLE);
 		break;
 	default:
 		break;

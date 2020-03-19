@@ -1,29 +1,105 @@
 ﻿#include "application.h"
-#include <QKeyEvent>
+#include <QMouseEvent>
+#include <QWidget>
+#include <QTextEdit>
+#include <QLineEdit>
 #include "physicalbuttonsprocessor.h"
+#include "base/keyboarddialog.h"
 
 using ltp::client::Application;
 
 Application::Application(int& argc, char** argv)
 	:QApplication(argc, argv)
 {
+	currentWidget_ = nullptr;			//当前鼠标点击的对象
+	// 虚拟键盘输入
+	connect(&base::getInstance<base::KeyBoardDialog>(), SIGNAL(keyboardEvent(QKeyEvent*)), this, SLOT(receiveKeyboardEvent(QKeyEvent*)));
+}
+
+void Application::receiveKeyboardEvent(QKeyEvent* event)
+{
+	// 虚拟键盘按键按下，找到对应输入框进行输入
+	if (currentEditType_ == "QLineEdit")
+	{
+		QLineEdit* currentLineEdit = static_cast<QLineEdit*>(currentWidget_);
+		this->postEvent(currentLineEdit, event);
+	}
+	else if (currentEditType_ == "QTextEdit")
+	{
+		QTextEdit* currentTextEdit = static_cast<QTextEdit*>(currentWidget_);
+		this->postEvent(currentTextEdit, event);
+	}
 }
 
 bool Application::notify(QObject* receiver, QEvent* event)
 {
 	//过滤带Ctrl的键盘事件
-	if (event->type() == QEvent::KeyPress)
+	if (event->type() == QEvent::KeyPress)					// 键盘按下
 	{
-		QKeyEvent* keyEvent = dynamic_cast<QKeyEvent*>(event);
+		QKeyEvent* keyEvent = dynamic_cast<QKeyEvent*>(event);		// 转换为键盘事件
 		if (keyEvent->modifiers() == Qt::ControlModifier)
-		{
-			QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);			// 转换为键盘事件
+		{	
 			// 检测输入键值是否为外设键值
-			if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsProcessor(keyEvent))
+			if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsPressProcessor(keyEvent))
 			{
 				// 执行外设键值对应的函数，发出外设按键信号
-				base::getInstance<PhysicalButtonsProcessor>().getMapFunction(keyEvent);
+				base::getInstance<PhysicalButtonsProcessor>().getMapPressFunction(keyEvent);
 				return true;
+			}
+		}
+	}
+	else if (event->type() == QEvent::KeyRelease)			// 键盘松开
+	{
+		QKeyEvent* keyEvent = dynamic_cast<QKeyEvent*>(event);		// 转换为键盘事件
+		if (keyEvent->modifiers() == Qt::ControlModifier)
+		{	
+			// 检测输入键值是否为外设键值
+			if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsRealeaseProcessor(keyEvent))
+			{
+				// 执行外设键值对应的函数，发出外设按键信号
+				base::getInstance<PhysicalButtonsProcessor>().getMapRealeaseFunction(keyEvent);
+				return true;
+			}
+		}
+	}
+
+	// 鼠标事件的接收者为输入控件，需要显示虚拟键盘
+	if (event->type() == QEvent::MouseButtonPress)
+	{
+		QMouseEvent* mouseEvent = dynamic_cast<QMouseEvent*>(event);		// 转换为鼠标事件
+		QWidget* nowWidget = dynamic_cast<QWidget*>(receiver);				// 当前选中位置
+
+		// 鼠标左键点击，且点击的不是键盘上的控件
+		if (mouseEvent->button() == Qt::LeftButton && !base::getInstance<base::KeyBoardDialog>().isAncestorOf(nowWidget))
+		{			
+			if (nowWidget->inherits("QLineEdit"))				// 当前焦点为QLineEdit，显示虚拟键盘
+			{
+				currentEditType_ = "QLineEdit";
+				currentWidget_ = nowWidget;
+				base::getInstance<base::KeyBoardDialog>().show();
+				base::getInstance<base::KeyBoardDialog>().raise();
+			}
+			else if (nowWidget->parent() != nullptr)
+			{
+				if (nowWidget->parent()->inherits("QTextEdit"))	// 当前焦点为QTextEdit，显示虚拟键盘	
+				{
+					currentEditType_ = "QTextEdit";
+					currentWidget_ = nowWidget;
+					base::getInstance<base::KeyBoardDialog>().show();
+					base::getInstance<base::KeyBoardDialog>().raise();
+				}
+				else
+				{
+					currentWidget_ = nullptr;
+					currentEditType_ = "";
+					base::getInstance<base::KeyBoardDialog>().hide();
+				}
+			}
+			else												// 非输入框焦点，隐藏虚拟键盘
+			{
+				currentWidget_ = nullptr;
+				currentEditType_ = "";
+				base::getInstance<base::KeyBoardDialog>().hide();
 			}
 		}
 	}

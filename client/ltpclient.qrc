@@ -25,5 +25,11 @@
         <file>image/net_disconnected.png</file>
         <file>image/top.png</file>
         <file>image/bottom.png</file>
+        <file>image/close.png</file>
+        <file>image/backspace.png</file>
+        <file>image/backspace_pressed.png</file>
+        <file>image/close_pressed.png</file>
+        <file>image/enter.png</file>
+        <file>image/enter_pressed.png</file>
     </qresource>
 </RCC>

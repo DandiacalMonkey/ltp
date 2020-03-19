@@ -18,6 +18,13 @@ namespace ltp
 
 		private:
 			Ui::SetWidgetClass ui;
+
+		private slots:
+			void connectState(bool);
+			void connectClicked(bool);
+
+		signals:
+			void connectIP(QString controllerIP, QString teachIP, bool connected);
 		};
 	}
 }

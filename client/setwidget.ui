@@ -76,7 +76,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="controllerLabel_">
           <property name="styleSheet">
            <string notr="true">font:14px SIMHEI;</string>
           </property>
@@ -86,14 +86,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>30</height>
-           </size>
-          </property>
-         </widget>
+         <widget class="ltp::base::IPLineEdit" name="controllerIPLineEdit_" native="true"/>
         </item>
         <item>
          <spacer name="verticalSpacer_3">
@@ -112,7 +105,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="teachLabel_">
           <property name="styleSheet">
            <string notr="true">font:14px SIMHEI;</string>
           </property>
@@ -122,14 +115,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_2">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>30</height>
-           </size>
-          </property>
-         </widget>
+         <widget class="ltp::base::IPLineEdit" name="teachIPLineEdit_" native="true"/>
         </item>
         <item>
          <spacer name="verticalSpacer_4">
@@ -198,6 +184,12 @@
    <class>ltp::base::PushButton</class>
    <extends>QPushButton</extends>
    <header>base/pushbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ltp::base::IPLineEdit</class>
+   <extends>QWidget</extends>
+   <header>base/iplineedit.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

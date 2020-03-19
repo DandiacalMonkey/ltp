@@ -46,11 +46,14 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTextEdit QScrollBar::vertical {margin: 10px 0px 10px 0px;background-color:#E6E6E6; border: 0px; width: 10px;}
+        <string notr="true">QTextEdit QScrollBar::vertical {margin: 16px 0px 16px 0px;background-color:#E6E6E6; border: 0px; width: 16px;}
 
-QTextEdit QScrollBar::handle:vertical{background:#BEBEBE;}
-QTextEdit QScrollBar::add-line:vertical{height: 10px;	width:10px; 	subcontrol-position: bottom left;	 subcontrol-origin: margin; image:url(&quot;../image/bottom.png&quot;);}
-QTextEdit QScrollBar::sub-line:vertical{ image:url(&quot;../image/top.png&quot;);}
+QTextEdit QScrollBar::handle:vertical{background:rgba(0,0,0,51);}
+QTextEdit QScrollBar::handle:vertical:pressed{background:rgba(0,0,0,153);}
+QTextEdit QScrollBar::add-line:vertical{height:16px;width:16px;subcontrol-position:bottom left;subcontrol-origin: margin; image:url(&quot;:/LtpClient/image/bottom.png&quot;); background-color:#E6E6E6;} 
+QTextEdit QScrollBar::add-line:vertical:pressed{height:16px;width:16px;subcontrol-position:bottom left;subcontrol-origin: margin; image:url(&quot;:/LtpClient/image/bottom.png&quot;); background-color:rgba(0,0,0,153);} 
+QTextEdit QScrollBar::sub-line:vertical{ image:url(&quot;:/LtpClient/image/top.png&quot;);background-color:#E6E6E6;}
+QTextEdit QScrollBar::sub-line:vertical:pressed{ image:url(&quot;:/LtpClient/image/top.png&quot;);background-color:rgba(0,0,0,153);}
 
 QTextEdit{font:13px Arial;} 
 

@@ -15,6 +15,15 @@ namespace ltp
 			PushButton(QWidget *parent = 0);
 			~PushButton(); 
 		};
+
+		class DialogButton : public QPushButton
+		{
+			Q_OBJECT
+
+		public:
+			DialogButton(QWidget *parent = 0);
+			~DialogButton(); 
+		};
 	}
 }
 

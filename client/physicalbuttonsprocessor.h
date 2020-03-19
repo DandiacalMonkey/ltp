@@ -17,8 +17,10 @@ namespace ltp
 			friend PhysicalButtonsProcessor& base::getInstance<PhysicalButtonsProcessor>();
 
 		public:	
-			bool isPhysicalButtonsProcessor(QKeyEvent* event) const;
-			void getMapFunction(QKeyEvent* event);
+			bool isPhysicalButtonsPressProcessor(QKeyEvent* event) const;
+			bool isPhysicalButtonsRealeaseProcessor(QKeyEvent* event) const;
+			void getMapPressFunction(QKeyEvent* event);
+			void getMapRealeaseFunction(QKeyEvent* event);
 
 		signals:
 			// 左边
@@ -28,8 +30,10 @@ namespace ltp
 			void bottomButtonModeClicked(int key);
 			void bottomButtonRateClicked(int key);
 			// 右边
-			void rightButtonPlus(int key);
-			void rightButtonMinus(int key);
+			void rightButtonPlusPress(int key);
+			void rightButtonMinusPress(int key);
+			void rightButtonPlusRealease(int key);
+			void rightButtonMinusRealease(int key);
 			void rightButtonStart();
 			void rightButtonStop();
 			void rightButtonReset();
@@ -38,7 +42,8 @@ namespace ltp
 			PhysicalButtonsProcessor(QObject *parent = nullptr);
 			~PhysicalButtonsProcessor();
 			// 按钮键值和相关事件的映射
-			std::unordered_map<int, std::function<void()>> keyValueSignalMap_;
+			std::unordered_map<int, std::function<void()>> keyPressValueSignalMap_;
+			std::unordered_map<int, std::function<void()>> keyRealeaseValueSignalMap_;
 			void initKeyMap();
 		};
 	}

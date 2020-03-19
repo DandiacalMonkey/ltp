@@ -208,12 +208,28 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="mainContainerLayout_" stretch="420,259">
+    <layout class="QHBoxLayout" name="mainContainerLayout_" stretch="410,0,259">
      <property name="spacing">
       <number>0</number>
      </property>
      <item>
       <widget class="ltp::base::TextEdit" name="textEdit_" native="true"/>
+     </item>
+     <item>
+      <widget class="QWidget" name="expandWidget_" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>10</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>10</width>
+         <height>16777215</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QWidget" name="sideBarWidget_" native="true">

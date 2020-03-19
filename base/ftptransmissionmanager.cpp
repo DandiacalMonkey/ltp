@@ -14,7 +14,7 @@ void ltp::base::FtpTransmissionManager::connect(const std::string& ip)
 	}
 	ftp_.reset(new QFtp());
 	QObject::connect(ftp_.get(), SIGNAL(commandFinished(int, bool)), this, SLOT(ftpCommandFinished(int, bool)));
-	//connect(ftp_.get(), SIGNAL(dataTransferProgress(qint64, qint64)), this, SLOT(updateDataTransferProgress(qint64, qint64)));
+	QObject::connect(ftp_.get(), SIGNAL(dataTransferProgress(qint64, qint64)), this, SLOT(updateDataTransferProgress(qint64, qint64)));
 
 	QUrl url(QString::fromStdString(ip_));
 	ftp_->connectToHost(url.toString(), 21);
@@ -57,8 +57,12 @@ bool FtpTransmissionManager::uploadFile(const QString& localFilePath, const QStr
 
 FtpTransmissionManager::FtpTransmissionManager()
 {
-	progressDialog_ = new QDialog();
+	progressDialog_ = new ProgressDialog();
+	progressDialog_->setTitleName(tr("加载"));
+	progressDialog_->setContentName(tr("文件加载中..."));
 	progressDialog_->setModal(true);
+
+	QObject::connect(progressDialog_, SIGNAL(siganlCancel()), this, SLOT(cancelDownload()));
 }
 
 FtpTransmissionManager::~FtpTransmissionManager()
@@ -122,5 +126,21 @@ void FtpTransmissionManager::ftpCommandFinished(int, bool error)
 	break;
 	default:
 		break;
+	}
+}
+
+void FtpTransmissionManager::updateDataTransferProgress(qint64 readBytes, qint64 totalBytes)
+{
+	// 加载进度条
+	progressDialog_->setProgressLoad(readBytes, totalBytes);
+}
+
+void FtpTransmissionManager::cancelDownload()
+{
+	ftp_->abort();				// 中止命令
+	if (file_->exists())		// 文件存在则删除
+	{
+		file_->close();
+		file_->remove();
 	}
 }

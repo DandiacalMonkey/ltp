@@ -218,10 +218,12 @@ void ProgramEditWidget::onEditBarModule(int nModule)
 	{
 	case base::LEFTBUTTON1:
 		onProgrameEdit();	// 程序编程
+		ui.expandWidget_->show();
 		break;
 	case base::LEFTBUTTON2:
 		onTeachEdit();		// 示教编程
 		onTeachEditModule(base::LEFTBUTTON1);
+		ui.expandWidget_->hide();
 		break;
 	case base::LEFTBUTTON3:
 		onEditTeach();		// 编辑示教

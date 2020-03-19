@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QFtp>
 #include <QFile>
-#include <QDialog>
+#include "base/progressdialog.h"
 
 
 namespace ltp
@@ -42,12 +42,15 @@ namespace ltp
 			//上传和下载时使用的文件
 			std::shared_ptr<QFile> file_;
 			//进度框
-			QDialog* progressDialog_;
+			ProgressDialog* progressDialog_;
 
 		private slots:
 			//命令结束
 			void ftpCommandFinished(int, bool error);
-
+			// 更新进度条
+			void updateDataTransferProgress(qint64, qint64);
+			// 取消下载
+			void cancelDownload();
 		};
 	}
 }

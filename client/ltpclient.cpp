@@ -9,6 +9,8 @@ LtpClient::LtpClient(QWidget *parent, Qt::WFlags flags)
 	ui.setupUi(this);
 	//提示栏
 	base::getInstance<HintWidgetProxy<HintBar>>().setHintWidget(ui.hintBar_);
+	// 当前加工文件名修改
+	connect(ui.mainContainer, SIGNAL(signalChangeProcessFileName(QString)), ui.titleBar_, SLOT(setCurrentNCName(QString)));
 	// 修改当前模块名
 	connect(ui.mainContainer, SIGNAL(signalChangeModules(QString)), ui.titleBar_, SLOT(setModuleName(QString)));
 }
