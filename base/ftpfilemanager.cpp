@@ -286,6 +286,9 @@ void FtpFileManager::addToList(const QUrlInfo& urlInfo)
 	QTableWidgetItem* fileDateItem = new QTableWidgetItem(fileDate);
 	QTableWidgetItem* filePermissionItem = new QTableWidgetItem(fileAuthority);
 
+	QPixmap pixmap(urlInfo.isDir() ? (":/LtpClient/image/folder.png") : (":/LtpClient/image/file.png"));
+	fileNameItem->setIcon(pixmap);
+
 	// 插入表格
 	int row = ui.tableWidget_->rowCount();
 	ui.tableWidget_->insertRow(row);

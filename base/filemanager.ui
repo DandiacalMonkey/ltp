@@ -79,6 +79,9 @@
           <height>24</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border:none;background-image:url(:/LtpClient/image/to_previous.png);</string>
+        </property>
         <property name="text">
          <string/>
         </property>

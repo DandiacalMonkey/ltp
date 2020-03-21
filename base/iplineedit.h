@@ -16,6 +16,7 @@ namespace ltp
 			IPLineEdit(QWidget* parent = 0);
 			~IPLineEdit();
 			QString getIP();				// 获取ip地址
+			void setIP(const QString);		// 设置ip地址
 
 		private:
 			Ui::IPLineEditClass ui;
@@ -23,7 +24,6 @@ namespace ltp
 
 		private slots:
 			void textChanged(const QString&);
-			void setIP(const QString&);		// 设置ip地址
 			void clear();					// 清空
 
 		protected:

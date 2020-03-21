@@ -105,7 +105,8 @@ namespace ltp
 		{
 			NO_ERROR,
 			WARNNING,
-			ERROR
+			ERROR,
+			DISCONNECTED
 		};
 	}
 }

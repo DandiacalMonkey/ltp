@@ -66,7 +66,7 @@
 
 QPushButton:checked{background:transparent; border-image:url(:/LtpClient/image/sub_pressed.png);}
 
-QPushButton:hover{background:transparent; border-image:url(:/LtpClient/image/sub_pressed.png);}</string>
+QPushButton:pressed{background:transparent; border-image:url(:/LtpClient/image/sub_pressed.png);}</string>
      </property>
      <property name="text">
       <string/>
@@ -146,7 +146,7 @@ background:transparent;</string>
 
 QPushButton:checked{background:transparent; border-image:url(:/LtpClient/image/add_pressed.png);}
 
-QPushButton:hover{background:transparent; border-image:url(:/LtpClient/image/add_pressed.png);}</string>
+QPushButton:pressed{background:transparent; border-image:url(:/LtpClient/image/add_pressed.png);}</string>
      </property>
      <property name="text">
       <string/>

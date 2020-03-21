@@ -192,7 +192,7 @@ QProgressBar::chunk{background-color:#0064C8;}</string>
   <customwidget>
    <class>ltp::base::DialogButton</class>
    <extends>QPushButton</extends>
-   <header>pushbutton.h</header>
+   <header>base/pushbutton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
