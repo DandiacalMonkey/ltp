@@ -53,6 +53,8 @@ namespace ltp
 			void backTeachModule();							// 切回示教编程模块选择
 			void returnButtonClicked();						// 外设返回按键响应
 			void leftButtonClicked(int);					// 左侧外设按钮响应
+			void teachIsLastPoint(bool);					// 示教操作界面当前记录点是否为最后一点
+			void teachPreviousEnabled(bool);				// 示教操作界面前一点按钮是否有效
 		};
 	}
 }

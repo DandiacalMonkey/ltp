@@ -138,6 +138,11 @@ void TextEdit::repealText()
 	ui.insideTextEdit_->undo();		// 恢复撤销
 }
 
+void ltp::base::TextEdit::insertPlainText(const QString& text)
+{
+	ui.insideTextEdit_->insertPlainText(text);
+}
+
 //读取文件
 bool TextEdit::loadFile(const QString& filePath)
 {
@@ -226,4 +231,9 @@ void TextEdit::checkModified()
 		}
 		save();
 	}
+}
+
+void ltp::base::TextEdit::gotoLineBegin()
+{
+	ui.insideTextEdit_->moveCursor(QTextCursor::StartOfLine);
 }

@@ -13,8 +13,9 @@ namespace ltp
 		{
 		public:
 			TeachCommandLine(const QString& command, const QString& schematicDiagramPath);
-			virtual bool checkPoint();
-			virtual QString getCommand();
+			virtual bool checkPoint() throw (RepeatPointException);
+			virtual bool hasPreviousPoint() const;
+			virtual QString getCommand() const;
 			virtual void reset();
 
 		private:

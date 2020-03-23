@@ -130,19 +130,24 @@ void ProgramEditWidget::fileClosed()
 
 void ltp::client::ProgramEditWidget::checkPoint()
 {
-	if (teachCommand_->checkPoint())
+	try
 	{
-		teachCommand_->getCommand();
-		teachCommand_->reset();
+		//记录点
+		if (teachCommand_->checkPoint())
+		{
+			//定位到行首
+			ui.textEdit_->gotoLineBegin();
+			ui.textEdit_->insertPlainText(teachCommand_->getCommand() + '\n');
+			teachCommand_->reset();
+		}
+		//最后一点，需要将按钮改为确定
+		emit signalTeachIsLastPoint(teachCommand_->isLastPoint());
+		//能否退回上一点
+		emit signalTeachPreviousEnabled(teachCommand_->hasPreviousPoint());
 	}
-	else
+	catch (TeachCommand::TeachCommandException& exception)
 	{
-
-	}
-	//最后一点，需要将按钮改为确定
-	if (teachCommand_->isLastPoint())
-	{
-
+		base::getInstance<HintWidgetProxy<HintBar>>().setHint(exception.hint());
 	}
 }
 
@@ -299,8 +304,8 @@ void ProgramEditWidget::onTeachEditModule(int editModule)
 		//ui.teachSchematicDiagram_->
 		break;
 	case base::LEFTBUTTON2:						// G00
-		ui.teachTitle_->setText(QString("G00"));
-		//ui.teachSchematicDiagram_->setPixmap(QPixmap((":/LtpClient/image/skip_rest.png")));
+		teachCommand_.reset(new TeachCommandLine("G00", ":/LtpClient/image/skip_rest.png"));
+		ui.teachTitle_->setText(teachCommand_->teachTitle());
 		break;
 	case base::LEFTBUTTON3:						// G01
 		teachCommand_.reset(new TeachCommandLine("G01", ":/LtpClient/image/skip_rest.png"));
@@ -315,4 +320,10 @@ void ProgramEditWidget::onTeachEditModule(int editModule)
 	default:
 		break;
 	}
+	//操作提示
+	onHint(teachCommand_->hint());
+	//最后一点，需要将按钮改为确定
+	emit signalTeachIsLastPoint(teachCommand_->isLastPoint());
+	//能否退回上一点
+	emit signalTeachPreviousEnabled(teachCommand_->hasPreviousPoint());
 }

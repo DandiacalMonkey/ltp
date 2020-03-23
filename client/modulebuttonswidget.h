@@ -16,6 +16,7 @@ namespace ltp
 			ModuleButtonsWidget(QWidget* parent = 0);
 			~ModuleButtonsWidget();
 
+		public slots:
 			void setButtonEnabled(int id, bool enabled);
 			void setReturnButtonEnabled(bool enabled);
 			void setCommandButtonName(int id, QString name);

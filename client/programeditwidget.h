@@ -35,6 +35,8 @@ namespace ltp
 
 		signals:
 			void signalSaved(QString);
+			void signalTeachIsLastPoint(bool);
+			void signalTeachPreviousEnabled(bool);
 
 		private:
 			Ui::ProgramEditWidgetClass ui;

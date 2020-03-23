@@ -41,6 +41,8 @@ MainContainer::MainContainer(QWidget* parent)
 	// 示教编程操作界面
 	connect(ui.teachEditOperationButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(teachEditOperation(int)));
 	connect(ui.teachEditOperationButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backTeachModule()));
+	connect(ui.programEditWidget_, SIGNAL(signalTeachIsLastPoint(bool)), this, SLOT(teachIsLastPoint(bool)));
+	connect(ui.programEditWidget_, SIGNAL(signalTeachPreviousEnabled(bool)), this, SLOT(teachPreviousEnabled(bool)));
 	// 外设按钮响应
 	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(returnButtonClicked()), this, SLOT(returnButtonClicked()));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(leftButtonClicked(int)), this, SLOT(leftButtonClicked(int)));
@@ -83,6 +85,16 @@ void MainContainer::leftButtonClicked(int key)
 	{
 		onProgramTeachEditModule(key);
 	}
+}
+
+void ltp::client::MainContainer::teachIsLastPoint(bool isLast)
+{
+	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, isLast ? "确定" : "记录点");
+}
+
+void ltp::client::MainContainer::teachPreviousEnabled(bool enabled)
+{
+	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON4, enabled);
 }
 
 void MainContainer::returnButtonClicked()
@@ -148,10 +160,11 @@ void MainContainer::initModuleButtonsWidget()
 
 	// 编辑界面左侧按钮栏设置
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("G114")));
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("G00")));
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("G01")));
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("G02")));
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("G102")));
+	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("快速定位")));
+	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("直线")));
+	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("圆弧")));
+	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("空间圆弧")));
+	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("下一页")));
 	ui.teachEditModuleButtonsWidget_->setCheckableButton(false);
 
 	// 设置界面左侧按钮栏设置
