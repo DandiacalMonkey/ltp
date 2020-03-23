@@ -8,6 +8,7 @@ FtpFileManager::FtpFileManager(QWidget *parent)
 	: FileManager(parent),
 	  editTemporaryFilePath_("./NCFiles/edit_file.nc")
 {
+	ui.cdToParentButton_->setEnabled(false);
 	ui.locationLabel_->setText(tr("控制器") + ":/" + tr("用户盘"));
 	//返回上一级按钮
 	connect(ui.cdToParentButton_, SIGNAL(clicked()), SLOT(cdToParent()));

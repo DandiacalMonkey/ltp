@@ -113,7 +113,7 @@
          <string notr="true">padding:0px;</string>
         </property>
         <property name="text">
-         <string>图</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -151,7 +151,7 @@
          <string notr="true">background:transparent; font:14px SIMHEI; color:black; padding:0px 0px 0px 0px; margin-bottom:1px; margin-left:0px; margin-top:14px; margin-right:0px;</string>
         </property>
         <property name="text">
-         <string>手轮</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -189,7 +189,7 @@
          <string notr="true">background:transparent; font:14px SIMHEI; color:black; padding:0px 0px 0px 0px; margin-bottom:1px; margin-left:13px; margin-top:14px; margin-right:15px;</string>
         </property>
         <property name="text">
-         <string>就绪</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -227,7 +227,7 @@
          <string notr="true">background:transparent; font:14px Arial; color:black; padding:0px 0px 0px 0px; margin-bottom:1px; margin-left:0px; margin-top:14px; margin-right:0px;</string>
         </property>
         <property name="text">
-         <string>XXXXXXXX.NC</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -246,7 +246,7 @@
          </size>
         </property>
         <property name="text">
-         <string>连接</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -284,7 +284,7 @@
          <string notr="true">font: 14px Arial</string>
         </property>
         <property name="text">
-         <string>时间</string>
+         <string> </string>
         </property>
        </widget>
       </item>

@@ -80,7 +80,9 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:none;background-image:url(:/LtpClient/image/to_previous.png);</string>
+         <string notr="true">QPushButton{border:none;background-image:url(:/LtpClient/image/to_previous.png);background-color:#F5F5F5;}
+QPushButton:!enabled{border:none;background-image:url(:/LtpClient/image/to_previous_disabled.png);background-color:#F5F5F5;}
+QPushButton:pressed{border:none;background-image:url(:/LtpClient/image/to_previous.png);background-color:#E1EBFF;}</string>
         </property>
         <property name="text">
          <string/>
