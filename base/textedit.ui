@@ -48,7 +48,7 @@
        <property name="styleSheet">
         <string notr="true">QTextEdit QScrollBar::vertical {margin: 16px 0px 16px 0px;background-color:#E6E6E6; border: 0px; width: 16px;}
 
-QTextEdit QScrollBar::handle:vertical{background:rgba(0,0,0,51);}
+QTextEdit QScrollBar::handle:vertical{background:rgba(0,0,0,51);min-height:20px;}
 QTextEdit QScrollBar::handle:vertical:pressed{background:rgba(0,0,0,153);}
 QTextEdit QScrollBar::add-line:vertical{height:16px;width:16px;subcontrol-position:bottom left;subcontrol-origin: margin; image:url(&quot;:/LtpClient/image/bottom.png&quot;); background-color:#E6E6E6;} 
 QTextEdit QScrollBar::add-line:vertical:pressed{height:16px;width:16px;subcontrol-position:bottom left;subcontrol-origin: margin; image:url(&quot;:/LtpClient/image/bottom.png&quot;); background-color:rgba(0,0,0,153);} 

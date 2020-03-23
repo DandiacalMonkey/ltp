@@ -50,6 +50,8 @@ namespace ltp
 			int axisEnumToAxisAddress(base::Axis axisEnum) const;
 			//更新正在加工的文件
 			void updateMachiningFile();
+			//当前主程序加工行号
+			int mainProgramLineNumber();
 
 		public slots:
 			//远程打开文件
@@ -70,6 +72,8 @@ namespace ltp
 			void localMachiningFileChanged(const QString& filePath);
 			//有效轴变化信号
 			void validAxesChanged(const std::vector<base::Axis>& validAxes);
+			//当前加工行号变化
+			void mainProgramLineNumberChanged(int lineNumber);
 
 		private:
 			//作为单例使用
@@ -96,6 +100,8 @@ namespace ltp
 			const QString localMachiningFilePath_;
 			//上传和下载文件
 			base::FtpTransmissionManager ftpTransmissionManager_;
+			//当前主程序加工行号
+			int mainProgramLineNumber_;
 
 		private slots:
 			//更新状态，确定是否变化，发送相应信号

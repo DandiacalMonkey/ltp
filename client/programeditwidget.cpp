@@ -5,6 +5,7 @@
 #include "base/systemvariables.hpp"
 #include "remotevariables.hpp"
 #include "base/globals.h"
+#include "teachcommandline.h"
 
 using ltp::client::ProgramEditWidget;
 
@@ -127,6 +128,34 @@ void ProgramEditWidget::fileClosed()
 	ui.programTitleLabel_->clear();
 }
 
+void ltp::client::ProgramEditWidget::checkPoint()
+{
+	if (teachCommand_->checkPoint())
+	{
+		teachCommand_->getCommand();
+		teachCommand_->reset();
+	}
+	else
+	{
+
+	}
+	//最后一点，需要将按钮改为确定
+	if (teachCommand_->isLastPoint())
+	{
+
+	}
+}
+
+void ltp::client::ProgramEditWidget::previousPoint()
+{
+	teachCommand_->previousPoint();
+}
+
+void ltp::client::ProgramEditWidget::cancelTeach()
+{
+	teachCommand_->reset();
+}
+
 void ProgramEditWidget::onHint(QString str)
 {
 	base::getInstance<HintWidgetProxy<HintBar>>().setHint(str);
@@ -198,6 +227,7 @@ void ProgramEditWidget::onProgrameEdit()
 	// 程序编程
 	ui.sideBarWidget_->hide();
 	ui.buttonWidget_->show();
+	ui.expandWidget_->show();
 }
 
 void ProgramEditWidget::onTeachEdit()
@@ -205,6 +235,7 @@ void ProgramEditWidget::onTeachEdit()
 	// 示教编程
 	ui.sideBarWidget_->show();
 	ui.buttonWidget_->hide();
+	ui.expandWidget_->hide();
 }
 
 void ProgramEditWidget::onEditTeach()
@@ -218,12 +249,9 @@ void ProgramEditWidget::onEditBarModule(int nModule)
 	{
 	case base::LEFTBUTTON1:
 		onProgrameEdit();	// 程序编程
-		ui.expandWidget_->show();
 		break;
 	case base::LEFTBUTTON2:
-		onTeachEdit();		// 示教编程
-		onTeachEditModule(base::LEFTBUTTON1);
-		ui.expandWidget_->hide();
+		onProgrameEdit();	// 模块选择，但右侧显示程序编程
 		break;
 	case base::LEFTBUTTON3:
 		onEditTeach();		// 编辑示教
@@ -263,6 +291,7 @@ void ProgramEditWidget::closeFile()
 
 void ProgramEditWidget::onTeachEditModule(int editModule)
 {
+	onTeachEdit();
 	switch (editModule)
 	{
 	case base::LEFTBUTTON1:						// G114
@@ -274,7 +303,8 @@ void ProgramEditWidget::onTeachEditModule(int editModule)
 		//ui.teachSchematicDiagram_->setPixmap(QPixmap((":/LtpClient/image/skip_rest.png")));
 		break;
 	case base::LEFTBUTTON3:						// G01
-		ui.teachTitle_->setText(QString("G01"));
+		teachCommand_.reset(new TeachCommandLine("G01", ":/LtpClient/image/skip_rest.png"));
+		ui.teachTitle_->setText(teachCommand_->teachTitle());
 		break;
 	case base::LEFTBUTTON4:						// G02
 		ui.teachTitle_->setText(QString("G02"));

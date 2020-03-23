@@ -46,12 +46,16 @@
      <property name="styleSheet">
       <string notr="true">background:white;</string>
      </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="ltp::client::ModuleButtonsWidget" name="homeModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="processModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="fileManagerModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="programEditModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="teachEditModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="setModuleButtonsWidget_"/>
+     <widget class="ltp::client::ModuleButtonsWidget" name="teachEditOperationButtonsWidget_"/>
     </widget>
    </item>
    <item>

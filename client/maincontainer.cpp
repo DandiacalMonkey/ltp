@@ -38,6 +38,9 @@ MainContainer::MainContainer(QWidget* parent)
 	// 示教编辑界面，左侧按钮切换
 	connect(ui.teachEditModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgramTeachEditModule(int)));
 	connect(ui.teachEditModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backProgrameModule()));
+	// 示教编程操作界面
+	connect(ui.teachEditOperationButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(teachEditOperation(int)));
+	connect(ui.teachEditOperationButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backTeachModule()));
 	// 外设按钮响应
 	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(returnButtonClicked()), this, SLOT(returnButtonClicked()));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(leftButtonClicked(int)), this, SLOT(leftButtonClicked(int)));
@@ -84,6 +87,7 @@ void MainContainer::leftButtonClicked(int key)
 
 void MainContainer::returnButtonClicked()
 {
+	//TODO：这里要修改，改成直接连接当前界面的返回按钮
 	auto tempWidget = ui.moduleButtonsWidget_->currentWidget();
 	// 主界面、加工界面、文件管理界面、编辑界面、设置界面
 	if (ui.moduleButtonsWidget_->currentIndex() == HOME_BUTTONS_WIDGET ||
@@ -148,9 +152,19 @@ void MainContainer::initModuleButtonsWidget()
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("G01")));
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("G02")));
 	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("G102")));
+	ui.teachEditModuleButtonsWidget_->setCheckableButton(false);
 
 	// 设置界面左侧按钮栏设置
 	ui.setModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("连接设置")));
+
+	// 示教变成操作按钮栏设置
+	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON1, false);
+	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON2, false);
+	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON3, false);
+	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("上一点")));
+	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("取消")));
+	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("确定")));
+	ui.teachEditOperationButtonsWidget_->setCheckableButton(false);
 }
 
 void MainContainer::backProgrameModule()
@@ -158,6 +172,27 @@ void MainContainer::backProgrameModule()
 	// 返回程序编辑界面
 	onProgrameEditWidgetModule(base::LEFTBUTTON1);
 	ui.programEditModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
+}
+
+void ltp::client::MainContainer::teachEditOperation(int module)
+{
+	switch (module)
+	{
+	case base::LEFTBUTTON4:
+		ui.programEditWidget_->previousPoint();
+	case base::LEFTBUTTON5:
+		ui.programEditWidget_->cancelTeach();
+	case base::LEFTBUTTON6:
+		ui.programEditWidget_->checkPoint();
+	default:
+		break;
+	}
+}
+
+void MainContainer::backTeachModule()
+{
+	// 返回示教模块选择
+	onProgrameEditWidgetModule(base::LEFTBUTTON2);
 }
 
 void MainContainer::onProcessWidgetModule(int module)
@@ -187,7 +222,6 @@ void MainContainer::onProgrameEditWidgetModule(int module)
 		break;
 	case base::LEFTBUTTON2:					// 示教编辑
 		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditModuleButtonsWidget_);
-		ui.teachEditModuleButtonsWidget_->setCheckedButton(base::LEFTBUTTON1, true);
 		ui.programEditWidget_->onEditBarModule(module);
 		break;
 	case base::LEFTBUTTON3:					// 编辑示教
@@ -207,6 +241,8 @@ void MainContainer::onProgrameEditWidgetModule(int module)
 
 void MainContainer::onProgramTeachEditModule(int module)
 {
+	// 切换示教操控按钮
+	ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditOperationButtonsWidget_);
 	// 切换编辑模块
 	ui.programEditWidget_->onTeachEditModule(module);
 }

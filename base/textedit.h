@@ -17,6 +17,11 @@ namespace ltp
 			~TextEdit();  
 			QString getCurrentFileName();			// 获取当前打开文件名
 			void checkModified();					// 检查文件是否修改 
+			//设置不可编辑
+			void setReadOnly(bool readOnly)
+			{
+				ui.insideTextEdit_->setReadOnly(readOnly);
+			}
 
 		private:
 			bool loadFile(const QString& filePath);	// 加载文件

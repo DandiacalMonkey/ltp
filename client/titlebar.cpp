@@ -16,18 +16,6 @@ TitleBar::TitleBar(QWidget *parent)
 	ui.errorMessageLabel_->setText(tr(""));
 	ui.errorMessageLabel_->setStyleSheet("QLabel{background:#F5F5F5;}");
 
-	// 模式更新
-	connect(&base::getInstance<MachiningStates>(), SIGNAL(modeChanged(base::Mode)), this, SLOT(setMode(base::Mode)));
-	// 加工状态更新
-	connect(&base::getInstance<MachiningStates>(), SIGNAL(machiningStateChanged(base::MachiningState)), this, SLOT(setMachiningState(base::MachiningState)));
-	// 报错信息更新
-	connect(&base::getInstance<MachiningStates>(), SIGNAL(errorLevelChanged(base::ErrorLevel)), this, SLOT(setErrorMessages(base::ErrorLevel)));
-	// 文件名更新
-	connect(&base::getInstance<MachiningStates>(), SIGNAL(machiningFileChanged(const QString&)), this, SLOT(setCurrentNCName(QString)));
-	// 网络连接更新
-	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), this, SLOT(setConnected()));
-	connect(&base::getInstance<Network>(), SIGNAL(disconnected()), this, SLOT(setDisconnected()));
-
 	updateTimeTimer_ = new QTimer(this);			// 系统时间更新
 	connect(updateTimeTimer_, SIGNAL(timeout()), this, SLOT(updateTime()));
 	updateTimeTimer_->start(1000);

@@ -49,11 +49,12 @@ namespace ltp
 			void onProcessWidgetModule(int);				// 切换加工模块
 			void onProgramTeachEditModule(int);				// 切换示教编辑模块
 			void backProgrameModule();						// 切回编辑模块
+			void teachEditOperation(int);					// 示教编辑界面操作
+			void backTeachModule();							// 切回示教编程模块选择
 			void returnButtonClicked();						// 外设返回按键响应
 			void leftButtonClicked(int);					// 左侧外设按钮响应
 		};
 	}
 }
-
 
 #endif // LTP_CLIENT_MAINCONTAINER_H_

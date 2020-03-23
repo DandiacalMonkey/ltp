@@ -210,6 +210,15 @@ void ltp::client::MachiningStates::updateMachiningFile()
 	emit localMachiningFileChanged(localMachiningFilePath_);
 }
 
+int ltp::client::MachiningStates::mainProgramLineNumber()
+{
+	if (base::getInstance<base::SystemVariables<RemoteVariables>>().macroVariable(base::PROGRAM_NUMBER) == 0)
+	{
+		return base::getInstance<base::SystemVariables<RemoteVariables>>().macroVariable(base::CURRENT_PROGRAM_LINE_NUMBER);
+	}
+	return mainProgramLineNumber_;
+}
+
 void MachiningStates::remoteOpenFile(const QString& localFilePath, const QString& remoteFilePath)
 {
 	//文件路径转换为ftp文件路径
@@ -265,6 +274,13 @@ void MachiningStates::updateState()
 		}
 		updateMachiningFile();
 		emit machiningFileChanged(machiningFilePath_);
+	}
+	//当前加工行号
+	auto currentMainProgramLineNumber = mainProgramLineNumber();
+	if (currentMainProgramLineNumber != mainProgramLineNumber_)
+	{
+		mainProgramLineNumber_ = currentMainProgramLineNumber;
+		emit mainProgramLineNumberChanged(mainProgramLineNumber_);
 	}
 }
 
