@@ -9,6 +9,7 @@ LtpClient::LtpClient(QWidget *parent, Qt::WFlags flags)
 	: QWidget(parent, flags)
 {
 	ui.setupUi(this);
+	this->setWindowFlags(Qt::FramelessWindowHint);
 	//提示栏
 	base::getInstance<HintWidgetProxy<HintBar>>().setHintWidget(ui.hintBar_);
 	// 修改当前模块名

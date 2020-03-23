@@ -34,5 +34,6 @@
         <file>image/file.png</file>
         <file>image/folder.png</file>
         <file>image/to_previous.png</file>
+        <file>image/to_previous_disabled.png</file>
     </qresource>
 </RCC>

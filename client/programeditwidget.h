@@ -1,6 +1,7 @@
 ﻿#ifndef LTP_CLIENT_PROGRAMEDITWIDGET_H_
 #define LTP_CLIENT_PROGRAMEDITWIDGET_H_
 
+#include <memory>
 #include <QtGui/QWidget>
 #include <QTimer>
 #include "base/globals.h"
