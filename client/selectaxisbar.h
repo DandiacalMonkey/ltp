@@ -35,16 +35,20 @@ namespace ltp
 			QPushButton* normalDirectionAxisButton_;
 			//刷新状态定时器
 			QTimer timer;
-
 		private slots:
 			//更新轴选栏状态
 			void updateInformation();
 			// 右侧外设按键响应
 			void plusButtonClicked(int);
 			void minusButtonClicked(int);
+			void plusButtonRealeased(int);
+			void minusButtonRealeased(int);
 			void startButtonClicked();
 			void stopButtonClicked();
 			void resetButtonClicked();
+			void startButtonRealeased();
+			void stopButtonRealeased();
+			void resetButtonRealeased();
 		};
 	}
 }

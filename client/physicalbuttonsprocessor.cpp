@@ -61,6 +61,9 @@ void PhysicalButtonsProcessor::initKeyMap()
 	keyRealeaseValueSignalMap_.insert(std::make_pair(Qt::Key_L, [this](){emit rightButtonPlusRealease(base::RIGHTBUTTON5);}));
 	keyRealeaseValueSignalMap_.insert(std::make_pair(Qt::Key_M, [this](){emit rightButtonMinusRealease(base::RIGHTBUTTON6);}));
 	keyRealeaseValueSignalMap_.insert(std::make_pair(Qt::Key_N, [this](){emit rightButtonPlusRealease(base::RIGHTBUTTON6);}));
+	keyRealeaseValueSignalMap_.insert(std::make_pair(Qt::Key_O, [this](){emit rightButtonResetRealease();}));
+	keyRealeaseValueSignalMap_.insert(std::make_pair(Qt::Key_A, [this](){emit rightButtonStopRealease();}));
+	keyRealeaseValueSignalMap_.insert(std::make_pair(Qt::Key_B, [this](){emit rightButtonStartRealease();}));
 }
 
 bool PhysicalButtonsProcessor::isPhysicalButtonsPressProcessor(QKeyEvent* event) const

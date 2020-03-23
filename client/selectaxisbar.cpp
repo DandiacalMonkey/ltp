@@ -54,11 +54,16 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 	connect(&base::getInstance<MachiningStates>(),
 		SIGNAL(modeChanged(base::Mode)), SLOT(updateInformation()));
 	// 外设按钮响应
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonPlus(int)), this, SLOT(plusButtonClicked(int)));
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonMinus(int)), this, SLOT(minusButtonClicked(int)));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonPlusPress(int)), this, SLOT(plusButtonClicked(int)));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonMinusPress(int)), this, SLOT(minusButtonClicked(int)));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonPlusRealease(int)), this, SLOT(plusButtonRealeased(int)));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonMinusRealease(int)), this, SLOT(minusButtonRealeased(int)));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStart()), this, SLOT(startButtonClicked()));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStop()), this, SLOT(stopButtonClicked()));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonReset()), this, SLOT(resetButtonClicked()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStartRealease()), this, SLOT(startButtonRealeased()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStopRealease()), this, SLOT(stopButtonRealeased()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonResetRealease()), this, SLOT(resetButtonRealeased()));
 }
 
 SelectAxisBar::~SelectAxisBar()
@@ -68,59 +73,68 @@ SelectAxisBar::~SelectAxisBar()
 
 void SelectAxisBar::plusButtonClicked(int key)
 {
-	switch (key)
+	// 轴选jog+，按键在显示轴范围内有对应，将相应plc置位
+	if (key - base::RIGHTBUTTON1 < base::getInstance<MachiningStates>().validAxes().size())
 	{
-	case base::RIGHTBUTTON1:
-		break;
-	case base::RIGHTBUTTON2:
-		break;
-	case base::RIGHTBUTTON3:
-		break;
-	case base::RIGHTBUTTON4:
-		break;
-	case base::RIGHTBUTTON5:
-		break;
-	case base::RIGHTBUTTON6:
-		break;
-	default:
-		break;
+		base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
 	}
 }
 
 void SelectAxisBar::minusButtonClicked(int key)
 {
-	switch (key)
+	// 轴选jog-，按键在显示轴范围内有对应，将相应plc置位
+	if (key - base::RIGHTBUTTON1 < base::getInstance<MachiningStates>().validAxes().size())
 	{
-	case base::RIGHTBUTTON1:
-		break;
-	case base::RIGHTBUTTON2:
-		break;
-	case base::RIGHTBUTTON3:
-		break;
-	case base::RIGHTBUTTON4:
-		break;
-	case base::RIGHTBUTTON5:
-		break;
-	case base::RIGHTBUTTON6:
-		break;
-	default:
-		break;
+		base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
 	}
+}
+
+void SelectAxisBar::plusButtonRealeased(int key)
+{
+	// jog+按钮松开，将plc移轴位置0
+	base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 0);
+}
+
+void SelectAxisBar::minusButtonRealeased(int key)
+{
+	// jog-按钮松开，将plc移轴位置0
+	base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 0);
 }
 
 void SelectAxisBar::startButtonClicked()
 {
 	// 启动按钮按下
+	base::getInstance<Network>().setPlcVariable(rmi::G_CYCLESTART, 1);
+}
+
+void SelectAxisBar::startButtonRealeased()
+{
+	// 启动按钮松开
+	base::getInstance<Network>().setPlcVariable(rmi::G_CYCLESTART, 0);
 }
 
 void SelectAxisBar::stopButtonClicked()
 {
 	// 停止按钮按下
+	base::getInstance<Network>().setPlcVariable(rmi::G_PROGSTOP, 1);
+}
+
+void SelectAxisBar::stopButtonRealeased()
+{
+	// 停止按钮松开
+	base::getInstance<Network>().setPlcVariable(rmi::G_PROGSTOP, 0);
 }
 
 void SelectAxisBar::resetButtonClicked()
 {
 	// 重置按钮按下
+	base::getInstance<Network>().setPlcVariable(rmi::G_RESET, 1);
+}
+
+void SelectAxisBar::resetButtonRealeased()
+{
+	// 重置按钮松开
+	base::getInstance<Network>().setPlcVariable(rmi::G_RESET, 0);
 }
 
 void SelectAxisBar::setValidAxes(const std::vector<ltp::base::Axis> validAxes)

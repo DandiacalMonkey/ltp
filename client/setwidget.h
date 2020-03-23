@@ -18,13 +18,18 @@ namespace ltp
 
 		private:
 			Ui::SetWidgetClass ui;
+			void connectState(bool);
+			void readIPSetting();		// 断电保存读取ip
+			void writeIPSetting();		// 断电保存写入ip
+			QString getTeachIP();			// 获取当前示教器ip地址
+			void changeTeachIP();		// 修改当前示教器ip地址
+			QString str_Analysis(QString line);
 
 		private slots:
-			void connectState(bool);
 			void connectClicked(bool);
-
-		signals:
-			void connectIP(QString controllerIP, QString teachIP, bool connected);
+			void setConnected();
+			void setDisconnected();
+		
 		};
 	}
 }

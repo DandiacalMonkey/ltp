@@ -21,6 +21,11 @@ HEADERS += ../base/systemvariables.hpp \
     ../base/filemanager.h \
     ../base/ftpfilemanager.h \
     ../base/ftptransmissionmanager.h \
+    ../base/iplineedit.h \
+    ../base/progressdialog.h \
+    ../base/dialogtitlewidget.h \
+    ../base/keyboarddialog.h \
+    ../base/keybutton.h \
     ./application.h \
     ./network.h \
     ./machiningstates.h \
@@ -43,14 +48,19 @@ HEADERS += ../base/systemvariables.hpp \
     ./titlebar.h
 SOURCES += ../base/buttonprocessor.cpp \
     ../base/clickdelaycheckbutton.cpp \
+    ../base/dialogtitlewidget.cpp \
     ../base/filemanager.cpp \
     ../base/filetablewidget.cpp \
     ../base/ftpfilemanager.cpp \
     ../base/ftptransmissionmanager.cpp \
+    ../base/iplineedit.cpp \
+    ../base/keyboarddialog.cpp \
+    ../base/keybutton.cpp \
     ../base/loadbar.cpp \
     ../base/modulebuttons.cpp \
     ../base/panelbutton.cpp \
     ../base/plusminuswidget.cpp \
+    ../base/progressdialog.cpp \
     ../base/pushbutton.cpp \
     ../base/textedit.cpp \
     ./application.cpp \
@@ -82,5 +92,9 @@ FORMS += ./ltpclient.ui \
     ./programeditwidget.ui \
     ./processwidget.ui \
     ../base/filemanager.ui \
-    ./setwidget.ui
+    ./setwidget.ui \
+    ../base/progressdialog.ui \
+    ../base/iplineedit.ui \
+    ../base/dialogtitlewidget.ui \
+    ../base/keyboarddialog.ui
 RESOURCES += ltpclient.qrc

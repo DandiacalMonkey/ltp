@@ -10,6 +10,7 @@ CONFIG += debug_and_release
 DEFINES += QT_DLL QT_XML_LIB QT_NETWORK_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
+    .. \
     ./GeneratedFiles/Debug
 DEPENDPATH += .
 QMAKESPEC = linux-arm-gnueabi-g++
@@ -23,5 +24,5 @@ MOC_DIR += ./GeneratedFiles/debug
 OBJECTS_DIR += debug
 UI_DIR += ./GeneratedFiles
 RCC_DIR += ./GeneratedFiles
-LIBS += -lstdc++
+LIBS += -L. -lstdc++ -lRemoteComm
 include(ltpclient.pri)

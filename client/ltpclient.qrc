@@ -31,5 +31,8 @@
         <file>image/close_pressed.png</file>
         <file>image/enter.png</file>
         <file>image/enter_pressed.png</file>
+        <file>image/file.png</file>
+        <file>image/folder.png</file>
+        <file>image/to_previous.png</file>
     </qresource>
 </RCC>

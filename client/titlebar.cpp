@@ -119,6 +119,11 @@ void TitleBar::setErrorMessages(ltp::base::ErrorLevel errlevel)
 		ui.errorMessageLabel_->setText(tr(" 错误！"));
 		ui.errorMessageLabel_->setStyleSheet("QLabel{background:rgb(250, 50, 0); font:14px SIMHEI; color:white;}");
 		break;
+	case base::DISCONNECTED:			// 当前无网络连接
+		ui.errorMessageLabel_->show();
+		ui.errorMessageLabel_->setText(tr(" 与控制器连接断开！"));
+		ui.errorMessageLabel_->setStyleSheet("QLabel{background:rgb(255, 190, 10); font:14px SIMHEI; color:black;}");
+		break;
 	default:
 		break;
 	}
@@ -126,12 +131,16 @@ void TitleBar::setErrorMessages(ltp::base::ErrorLevel errlevel)
 
 void TitleBar::setDisconnected()
 {
+	// 修改未连接状态标题，报错信息
 	setConnectState(false);
+	setErrorMessages(base::DISCONNECTED);
 }
 
 void TitleBar::setConnected()
 {
+	// 修改连接状态标题，报错信息
 	setConnectState(true);
+	setErrorMessages(base::NO_ERROR);
 }
 
 void TitleBar::setConnectState(bool isConnect)

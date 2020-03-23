@@ -52,18 +52,45 @@ MachiningStates::~MachiningStates()
 
 void MachiningStates::rateChanged(int buttonID)
 {
-	switch (buttonID)
+	if (mode() == base::JOG)			// JOG倍率修改
 	{
-	case base::BOTTOMBUTTON6:			// X1 5%
-		break;
-	case base::BOTTOMBUTTON7:			// X10 25%
-		break;
-	case base::BOTTOMBUTTON8:			// X100 50%
-		break;
-	case base::BOTTOMBUTTON9:			// X200 100%
-		break;
-	default:
-		break;
+		switch (buttonID)
+		{
+		case base::BOTTOMBUTTON6:			// X1 5%
+			base::getInstance<Network>().setPlcVariable(rmi::G_JOVRD, 0);
+			break;
+		case base::BOTTOMBUTTON7:			// X10 25%
+			base::getInstance<Network>().setPlcVariable(rmi::G_JOVRD, 1);
+			break;
+		case base::BOTTOMBUTTON8:			// X100 50%
+			base::getInstance<Network>().setPlcVariable(rmi::G_JOVRD, 2);
+			break;
+		case base::BOTTOMBUTTON9:			// X200 100%
+			base::getInstance<Network>().setPlcVariable(rmi::G_JOVRD, 3);
+			break;
+		default:
+			break;
+		}
+	}
+	else if (mode() == base::HANDLE)	// 手轮倍率修改
+	{
+		switch (buttonID)
+		{
+		case base::BOTTOMBUTTON6:			// X1 5%
+			base::getInstance<Network>().setPlcVariable(rmi::G_HWOVRD, 0);
+			break;
+		case base::BOTTOMBUTTON7:			// X10 25%
+			base::getInstance<Network>().setPlcVariable(rmi::G_HWOVRD, 1);
+			break;
+		case base::BOTTOMBUTTON8:			// X100 50%
+			base::getInstance<Network>().setPlcVariable(rmi::G_HWOVRD, 2);
+			break;
+		case base::BOTTOMBUTTON9:			// X200 100%
+			base::getInstance<Network>().setPlcVariable(rmi::G_HWOVRD, 3);
+			break;
+		default:
+			break;
+		}
 	}
 }
 

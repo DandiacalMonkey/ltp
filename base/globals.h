@@ -1,6 +1,8 @@
 ﻿#ifndef LTP_BASE_GLOBALS_H_
 #define LTP_BASE_GLOBALS_H_
 
+#include <functional>
+
 namespace ltp
 {
 	namespace base
@@ -107,8 +109,11 @@ namespace ltp
 		{
 			NO_ERROR,
 			WARNNING,
-			ERROR
+			ERROR,
+			DISCONNECTED
 		};
+		//轴枚举转换成轴字符
+		char axisEnumToAxisChar(Axis axisEnum);
 	}
 }
 

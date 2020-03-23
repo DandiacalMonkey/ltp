@@ -80,7 +80,7 @@ void IPLineEdit::textChanged(const QString& text)
 				.arg(ui.txtIP3_->text()).arg(ui.txtIP4_->text());
 }
 
-void IPLineEdit::setIP(const QString& ip)
+void IPLineEdit::setIP(const QString ip)
 {
 	//先检测IP地址是否合法
 	QRegExp regExp("((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)");

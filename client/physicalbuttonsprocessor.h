@@ -37,6 +37,9 @@ namespace ltp
 			void rightButtonStart();
 			void rightButtonStop();
 			void rightButtonReset();
+			void rightButtonStartRealease();
+			void rightButtonStopRealease();
+			void rightButtonResetRealease();
 
 		private:
 			PhysicalButtonsProcessor(QObject *parent = nullptr);
