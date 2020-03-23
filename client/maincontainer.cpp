@@ -183,6 +183,15 @@ void MainContainer::initModuleButtonsWidget()
 	ui.setModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON4, false);
 	ui.setModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON5, false);
 	ui.setModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON6, false);
+
+	// 示教编程操作按钮栏设置
+	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON1, false);
+	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON2, false);
+	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON3, false);
+	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("上一点")));
+	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("取消")));
+	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("确定")));
+	ui.teachEditOperationButtonsWidget_->setCheckableButton(false);
 }
 
 void MainContainer::backProgrameModule()
