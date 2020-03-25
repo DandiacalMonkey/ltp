@@ -362,7 +362,7 @@ void KeyBoardDialog::keyButtonClicked(int key)
 				keyPressEvent = new QKeyEvent(QEvent::KeyPress, Qt::Key_V, Qt::NoModifier, "v");
 				break;
 			case KEY_B:
-				keyPressEvent = new QKeyEvent(QEvent::KeyPress, Qt::Key_B, Qt::NoModifier, "bB");
+				keyPressEvent = new QKeyEvent(QEvent::KeyPress, Qt::Key_B, Qt::NoModifier, "b");
 				break;
 			case KEY_N:
 				keyPressEvent = new QKeyEvent(QEvent::KeyPress, Qt::Key_N, Qt::NoModifier, "n");

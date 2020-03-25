@@ -178,7 +178,7 @@ ltp::base::ErrorLevel MachiningStates::errorLevel() const
 {
 	auto& systemVariables = base::getInstance<base::SystemVariables<RemoteVariables>>();
 	//CI错误和致命错误，表示有报错
-	if (systemVariables.plcVariable(rmi::F_CIERR) != 0 | 
+	if (systemVariables.plcVariable(rmi::F_CIERR) != 0 ||
 		systemVariables.plcVariable(rmi::F_FATALERR) != 0)
 	{
 		return base::ERROR;

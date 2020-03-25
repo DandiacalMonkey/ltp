@@ -20,7 +20,9 @@ SetWidget::SetWidget(QWidget *parent)
 	connect(&base::getInstance<Network>(), SIGNAL(unconnected()), this, SLOT(setDisconnected()));
 	connect(&base::getInstance<Network>(), SIGNAL(disconnected()), this, SLOT(setDisconnected()));
 	// 连接按钮作用
-	connect(ui.connectButton_, SIGNAL(clicked(bool)), this, SLOT(connectClicked(bool)));
+	connect(ui.connectButton_, SIGNAL(clicked(bool)), this, SLOT(connectClicked()));
+	// 读取断电保存ip地址后进行开机网络连接
+	connectClicked();
 }
 
 SetWidget::~SetWidget()
@@ -175,7 +177,7 @@ QString SetWidget::str_Analysis(QString line)
 
 void SetWidget::readIPSetting()
 {
-	QFile file("Settings/test.xml");
+	QFile file("Settings/ip_address.xml");
 	if (!file.open(QFile::ReadOnly | QFile::Text))
 	{
 		// 无法打开
@@ -232,7 +234,7 @@ void SetWidget::readIPSetting()
 void SetWidget::writeIPSetting()
 {
 	//打开或创建文件
-	QFile file("Settings/test.xml");
+	QFile file("Settings/ip_address.xml");
 	if (!file.open(QIODevice::WriteOnly))
 	{
 		qDebug() << "writeIPSetting error";
@@ -277,7 +279,7 @@ void SetWidget::connectState(bool connected)
 	}
 }
 
-void SetWidget::connectClicked(bool)
+void SetWidget::connectClicked()
 {
 	if (ui.connectButton_->text() == tr("断开"))
 	{
@@ -285,11 +287,11 @@ void SetWidget::connectClicked(bool)
 	}
 	else if (ui.connectButton_->text() == tr("连接"))
 	{
-		ltp::base::getInstance<ltp::client::Network>().setHost(ui.controllerIPLineEdit_->getIP().toStdString());
-		// 网络连接需要最后执行，部分初始化依赖于网络连接信号
-		ltp::base::getInstance<ltp::client::Network>().connect();
 		// 修改示教器ip
 		changeTeachIP();
+		ltp::base::getInstance<ltp::client::Network>().setHost(ui.controllerIPLineEdit_->getIP().toStdString());
+		// 网络连接需要最后执行，部分初始化依赖于网络连接信号
+		ltp::base::getInstance<ltp::client::Network>().connect();		
 		// 断电保存
 		writeIPSetting();
 	}

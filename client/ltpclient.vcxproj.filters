@@ -332,10 +332,10 @@
     <ClCompile Include="teachcommandline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\base\globals.cpp">
+    <ClCompile Include="..\base\ltpmath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\base\ltpmath.cpp">
+    <ClCompile Include="..\base\globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

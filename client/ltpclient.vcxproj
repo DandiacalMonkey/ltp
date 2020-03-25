@@ -90,10 +90,12 @@
     <ClCompile Include="..\base\filetablewidget.cpp" />
     <ClCompile Include="..\base\ftpfilemanager.cpp" />
     <ClCompile Include="..\base\ftptransmissionmanager.cpp" />
+    <ClCompile Include="..\base\globals.cpp" />
     <ClCompile Include="..\base\iplineedit.cpp" />
     <ClCompile Include="..\base\keyboarddialog.cpp" />
     <ClCompile Include="..\base\keybutton.cpp" />
     <ClCompile Include="..\base\loadbar.cpp" />
+    <ClCompile Include="..\base\ltpmath.cpp" />
     <ClCompile Include="..\base\modulebuttons.cpp" />
     <ClCompile Include="..\base\panelbutton.cpp" />
     <ClCompile Include="..\base\plusminuswidget.cpp" />
@@ -310,6 +312,8 @@
     <ClCompile Include="programeditwidget.cpp" />
     <ClCompile Include="selectaxisbar.cpp" />
     <ClCompile Include="setwidget.cpp" />
+    <ClCompile Include="teachcommand.cpp" />
+    <ClCompile Include="teachcommandline.cpp" />
     <ClCompile Include="titlebar.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -338,6 +342,9 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\base\ltpmath.h" />
+    <ClInclude Include="teachcommand.h" />
+    <ClInclude Include="teachcommandline.h" />
     <CustomBuild Include="setwidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing setwidget.h...</Message>

@@ -155,13 +155,6 @@ bool TextEdit::loadFile(const QString& filePath)
 	}
 
 	QFileInfo fileinfo(filePath);
-	if (fileinfo.size() > 1024 * 1024 + 100)
-	{	
-		// error报警：文件大小超过1MB, 无法读取文件!
-		emit signalTips(QString(tr("错误：文件%1大小超过1MB, 无法读取文件!").arg(filePath)));
-		return false;
-	}
-
 	QTextStream in(&file);
 	//控制器上NC文件默认使用gbk
 	in.setCodec(QTextCodec::codecForName("gbk"));

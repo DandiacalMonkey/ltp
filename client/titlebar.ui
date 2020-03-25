@@ -284,7 +284,7 @@
          <string notr="true">font: 14px Arial</string>
         </property>
         <property name="text">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -297,7 +297,7 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>TitleBar报警部分</string>
+      <string/>
      </property>
     </widget>
    </item>

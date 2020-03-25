@@ -26,7 +26,7 @@ namespace ltp
 			QString str_Analysis(QString line);
 
 		private slots:
-			void connectClicked(bool);
+			void connectClicked();
 			void setConnected();
 			void setDisconnected();
 		

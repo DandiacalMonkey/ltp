@@ -29,7 +29,7 @@ namespace ltp
 			void mouseMoveEvent(QMouseEvent *e);
 
 		signals:
-			void signalClose();									// close按钮按下信号
+			void signalClose();				// close按钮按下信号
 			void mouseMove(QPoint point);	// 鼠标移动信号，代表移动窗口
 		};
 	}

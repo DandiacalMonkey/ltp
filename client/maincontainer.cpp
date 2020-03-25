@@ -13,7 +13,7 @@ MainContainer::MainContainer(QWidget* parent)
 	initModuleButtonsWidget();
 	// 网络联通后，尝试连接ftp
 	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), ui.fileManagerWidget_, SLOT(connectToFtp(const std::string&)));
-	// 主菜单切换new
+	// 主菜单切换
 	connect(ui.homeModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onModule(int)));
 	// 其他界面切到主界面
 	connect(ui.fileManagerModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(onHome()));
