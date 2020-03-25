@@ -14,15 +14,14 @@ SetWidget::SetWidget(QWidget *parent)
 	connectState(false);			// 初始连接状态
 	readIPSetting();				// 读取断电保存ip地址	
 	ui.teachIPLineEdit_->setIP(getTeachIP());
+	ltp::base::getInstance<ltp::client::Network>().setHost(ui.controllerIPLineEdit_->getIP().toStdString());
 
 	// 连接状态改变
 	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), this, SLOT(setConnected()));
 	connect(&base::getInstance<Network>(), SIGNAL(unconnected()), this, SLOT(setDisconnected()));
 	connect(&base::getInstance<Network>(), SIGNAL(disconnected()), this, SLOT(setDisconnected()));
 	// 连接按钮作用
-	connect(ui.connectButton_, SIGNAL(clicked(bool)), this, SLOT(connectClicked()));
-	// 读取断电保存ip地址后进行开机网络连接
-	connectClicked();
+	connect(ui.connectButton_, SIGNAL(clicked(bool)), this, SLOT(connectClicked())); 
 }
 
 SetWidget::~SetWidget()

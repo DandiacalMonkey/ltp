@@ -7,7 +7,8 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./teachcommand.h \
+HEADERS += ../base/ltpmath.h \
+    ./teachcommand.h \
     ./teachcommandline.h \
     ../base/systemvariables.hpp \
     ../common/rmi/globals.h \
@@ -55,10 +56,12 @@ SOURCES += ../base/buttonprocessor.cpp \
     ../base/filetablewidget.cpp \
     ../base/ftpfilemanager.cpp \
     ../base/ftptransmissionmanager.cpp \
+    ../base/globals.cpp \
     ../base/iplineedit.cpp \
     ../base/keyboarddialog.cpp \
     ../base/keybutton.cpp \
     ../base/loadbar.cpp \
+    ../base/ltpmath.cpp \
     ../base/modulebuttons.cpp \
     ../base/panelbutton.cpp \
     ../base/plusminuswidget.cpp \

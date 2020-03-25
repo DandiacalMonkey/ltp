@@ -19,7 +19,7 @@ TeachCommandLine::TeachCommandLine(const QString& command, const QString& schema
 	reset();
 }
 
-bool TeachCommandLine::checkPoint()
+bool TeachCommandLine::checkPoint() throw (RepeatPointException)
 {
 	//当前位置
 	auto currentPosition = systemVariables_.workpieceCoordinates(1);

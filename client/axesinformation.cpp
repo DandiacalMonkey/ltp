@@ -12,7 +12,7 @@ AxesInformation::AxesInformation(QWidget *parent)
 	hideAll();		// 初始将所有轴信息隐藏
 
 	// 根据连接控制器判断需要显示的轴信息
-	connect(&base::getInstance<MachiningStates>(), SIGNAL(validAxesChanged(std::vector<base::Axis>)), this, SLOT(setValidAxes(std::vector<base::Axis>)));
+	connect(&base::getInstance<MachiningStates>(), SIGNAL(validAxesChanged(const std::vector<base::Axis>)), this, SLOT(setValidAxes(const std::vector<base::Axis>)));
 	
 	// 定时器每0.5s更新一次数据
 	QTimer *timer_ = new QTimer();
@@ -267,7 +267,6 @@ void AxesInformation::setValidAxes(const std::vector<ltp::base::Axis> &validAxes
 	default:
 		break;
 	}
-	
 }
 
 void AxesInformation::onTimer()

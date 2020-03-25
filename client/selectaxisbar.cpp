@@ -128,13 +128,13 @@ void SelectAxisBar::stopButtonRealeased()
 void SelectAxisBar::resetButtonClicked()
 {
 	// 重置按钮按下
-	base::getInstance<Network>().setPlcVariable(rmi::G_RESET, 1);
+	base::getInstance<Network>().setPlcVariable(rmi::G_FRESET, 1);
 }
 
 void SelectAxisBar::resetButtonRealeased()
 {
 	// 重置按钮松开
-	base::getInstance<Network>().setPlcVariable(rmi::G_RESET, 0);
+	base::getInstance<Network>().setPlcVariable(rmi::G_FRESET, 0);
 }
 
 void SelectAxisBar::setValidAxes(const std::vector<ltp::base::Axis> validAxes)
