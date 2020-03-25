@@ -80,8 +80,20 @@
        </item>
        <item>
         <widget class="Line" name="line_2">
+         <property name="minimumSize">
+          <size>
+           <width>1</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>1</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="styleSheet">
-          <string notr="true">color:#C8C8C8;</string>
+          <string notr="true">QFrame{border:none;background:#E6E6E6;}</string>
          </property>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
