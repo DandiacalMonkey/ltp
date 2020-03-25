@@ -35,5 +35,10 @@
         <file>image/folder.png</file>
         <file>image/to_previous.png</file>
         <file>image/to_previous_disabled.png</file>
+        <file>image/teach_command_g114_P1.png</file>
+        <file>image/teach_command_g114_P2.png</file>
+        <file>image/teach_command_g114_P3.png</file>
+        <file>image/teach_command_g00.png</file>
+        <file>image/teach_command_g01.png</file>
     </qresource>
 </RCC>

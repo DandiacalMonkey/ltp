@@ -88,6 +88,7 @@ namespace ltp
 			MACHINING_REMAIN = 30122,//加工余量
 			MECHANICAL_COORDINATE = 30128,//机械坐标基地址
 			MOTOR_LOAD = 30132,//马达负载
+			TEACH_POSITION = 30142,//示教使用坐标
 			PROGRAM_NUMBER = 33500,//程序号
 			CURRENT_PROGRAM_LINE_NUMBER = 33501,//当前程序行号
 			FEED_SPEED = 33563,//进给速度
@@ -98,6 +99,7 @@ namespace ltp
 			JOG_STEPPING_OVERRIDE = 33537,//jog步进倍率
 			RAPID_OVERRIDE = 33555,//快速定位倍率
 			COORDINATE = 33614,//工件坐标系
+			TEACH_MODE = 34641,//示教编程模式，有刀尖坐标和工件坐标
 			SYSTEM_MODE = 50000,//模式
 			FEED_AXIS_VALID = 74100,//轴有效
 			AXIS_ADDRESS = 74112,//轴地址

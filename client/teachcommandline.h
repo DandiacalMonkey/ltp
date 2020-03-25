@@ -2,8 +2,6 @@
 #define LTP_CLIENT_TEACHCOMMANDLINE_H_
 
 #include "teachcommand.h"
-#include "base/systemvariables.hpp"
-#include "remotevariables.hpp"
 
 namespace ltp
 {
@@ -16,13 +14,12 @@ namespace ltp
 			virtual bool checkPoint() throw (RepeatPointException);
 			virtual bool hasPreviousPoint() const;
 			virtual QString getCommand() const;
+			virtual bool canChangeMode() const;
 			virtual void reset();
 
 		private:
 			//线段指令中的指令，如G00、G01
 			const QString kCommand_;
-			//用于获取坐标
-			base::SystemVariables<RemoteVariables>& systemVariables_;
 		};
 	}
 }

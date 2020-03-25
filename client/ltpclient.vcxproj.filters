@@ -338,6 +338,9 @@
     <ClCompile Include="..\base\ltpmath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="teachcommandg114.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ltpclient.h">
@@ -577,6 +580,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\base\ltpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandg114.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,6 +13,21 @@ namespace ltp
 			//定义二维和三维点
 			typedef std::array<double, 2> Point2D;
 			typedef std::array<double, 3> Point3D;
+			//定义直线
+			template <typename Point>
+			struct Line
+			{
+				Point start;
+				Point end;
+			};
+			//定义圆弧
+			template <typename Point>
+			struct Arc
+			{
+				Point start;
+				Point center;
+				Point end;
+			};
 			//容差
 			const double kDistanceTolerance_ = 1e-3;
 			template <typename Point>

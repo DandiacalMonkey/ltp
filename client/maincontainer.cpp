@@ -187,7 +187,7 @@ void MainContainer::initModuleButtonsWidget()
 	// 示教编程操作按钮栏设置
 	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON1, false);
 	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON2, false);
-	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON3, false);
+	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("模式切换")));
 	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("上一点")));
 	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("取消")));
 	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("确定")));
@@ -205,12 +205,18 @@ void ltp::client::MainContainer::teachEditOperation(int module)
 {
 	switch (module)
 	{
+	case base::LEFTBUTTON3:
+		ui.programEditWidget_->modeChange();
+		break;
 	case base::LEFTBUTTON4:
 		ui.programEditWidget_->previousPoint();
+		break;
 	case base::LEFTBUTTON5:
 		ui.programEditWidget_->cancelTeach();
+		break;
 	case base::LEFTBUTTON6:
 		ui.programEditWidget_->checkPoint();
+		break;
 	default:
 		break;
 	}

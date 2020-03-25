@@ -98,6 +98,21 @@ namespace ltp
 				return loads;
 			}
 
+			//获取当前示教坐标
+			std::array<double, AXIS_MAX> teachPosition(int channel) const
+			{
+				//储存结果
+				std::array<double, AXIS_MAX> position;
+				//通道偏移
+				int channelInterval = (channel - 1) * CHANNEL_INTERVAL;
+				//调用宏变量接口获取马达负载
+				for (int i = 0; i < AXIS_MAX; ++i)
+				{
+					position[i] = macroVariable(TEACH_POSITION + i * AXIS_CONTROL_INTERVAL + channelInterval);
+				}
+				return position;
+			}
+
 			std::vector<char> validFeedAxes()
 			{
 				/*有效轴列表*/

@@ -5,8 +5,11 @@
 #include <vector>
 #include <QString>
 #include <QObject>
+#include <QEventLoop>
 #include "base/globals.h"
 #include "base/ltpmath.h"
+#include "base/systemvariables.hpp"
+#include "remotevariables.hpp"
 
 namespace ltp
 {
@@ -31,6 +34,24 @@ namespace ltp
 					return QObject::tr("记录点重复，请移动后重新取点");
 				}
 			};
+			//修改示教模式失败
+			class ChangeTeachModeFail : public TeachCommandException
+			{
+			public:
+				virtual QString hint() const
+				{
+					return QObject::tr("修改示教模式失败");
+				}
+			};
+			//无法修改示教模式
+			class CannotChangeTeachMode : public TeachCommandException
+			{
+			public:
+				virtual QString hint() const
+				{
+					return QObject::tr("当前坐标有变化，请移动到起点或点击取消，再修改模式");
+				}
+			};
 			//生成代码的默认精度
 			static const int kPrecision_ = 4;
 			explicit TeachCommand(const QString& teachTitle, int pointNumber);
@@ -40,15 +61,23 @@ namespace ltp
 			virtual void previousPoint();
 			//是否能退回前一点
 			virtual bool hasPreviousPoint() const = 0;
+			//是否能切换刀尖坐标和绝对坐标
+			virtual bool canChangeMode() const = 0;
+			//进行坐标切换
+			virtual bool changeMode() throw (ChangeTeachModeFail, CannotChangeTeachMode);
 			//获取指令
 			virtual QString getCommand() const = 0;
 			//是否为最后一点
 			virtual bool isLastPoint() const;
 			//重置
 			virtual void reset() = 0;
+			//示教上一点坐标
+			virtual Point previousPointPosition() const;
 			//将输入的轴和坐标转换为指令
+			QString generateCommand(const std::vector<base::Axis> axes,
+				const Point& point, int precision = kPrecision_) const;
 			QString generateCommand(const std::vector<base::Axis> axes, 
-				std::array<double, base::AXIS_MAX> position, int precision = kPrecision_) const;
+				const base::Math::Line<Point>& line, int precision = kPrecision_) const;
 			//获取标题
 			QString teachTitle() const
 			{
@@ -63,6 +92,10 @@ namespace ltp
 			QString hint() const
 			{
 				return hints_.at(points_.size());
+			}
+			QString previousPointLabel() const
+			{
+				return previousPointLabel_.at(points_.size());
 			}
 			//确认是否有重复点
 			template <typename Point>
@@ -85,6 +118,10 @@ namespace ltp
 			const QString kTeachTitle_;
 			//示教最大点数量
 			const int kPointNumber_;
+			//用于获取系统变量
+			base::SystemVariables<RemoteVariables>& systemVariables_;
+			//示教上一点的标签
+			std::vector<QString> previousPointLabel_;
 			//示教示意图路径
 			std::vector<QString> schematicDiagramsPath_;
 			//示教提示
