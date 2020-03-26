@@ -11,7 +11,7 @@ using ltp::client::Application;
 Application::Application(int& argc, char** argv)
 	:QApplication(argc, argv)
 {
-	currentWidget_ = nullptr;			//当前鼠标点击的对象
+	
 }
 
 bool Application::notify(QObject* receiver, QEvent* event)
@@ -57,8 +57,6 @@ bool Application::notify(QObject* receiver, QEvent* event)
 		{			
 			if (nowWidget->inherits("QLineEdit"))				// 当前焦点为QLineEdit，显示虚拟键盘
 			{
-				currentEditType_ = "QLineEdit";
-				currentWidget_ = nowWidget;
 				base::getInstance<base::KeyBoardDialog>().show();
 				base::getInstance<base::KeyBoardDialog>().raise();
 			}
@@ -80,8 +78,6 @@ bool Application::notify(QObject* receiver, QEvent* event)
 			}*/
 			else												// 非输入框焦点，隐藏虚拟键盘
 			{
-				currentWidget_ = nullptr;
-				currentEditType_ = "";
 				base::getInstance<base::KeyBoardDialog>().hide();
 			}
 		}

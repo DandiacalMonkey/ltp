@@ -65,26 +65,16 @@ void MainContainer::leftButtonClicked(int key)
 {
 	// 外设按键切换当前界面
 	auto tempWidget = ui.moduleButtonsWidget_->currentWidget();
-	if (ui.moduleButtonsWidget_->currentIndex() == HOME_BUTTONS_WIDGET)				// 主界面
-	{
-		onModule(key);
-	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == PROCESS_BUTTONS_WIDGET)		// 加工界面
-	{
-		onProcessWidgetModule(key);
-	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == FILEMANAGER_BUTTONS_WIDGET)	// 文件管理界面
-	{
-		onFileWidgetModule(key);
-	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == PROGRAMEDIT_BUTTONS_WIDGET)	// 编辑界面
-	{
-		onProgrameEditWidgetModule(key);
-	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == TEACHEDIT_BUTTONS_WIDGET)	// 示教编辑界面
-	{
-		onProgramTeachEditModule(key);
-	}
+	ModuleButtonsWidget *currentModuleWidget = static_cast<ModuleButtonsWidget*>(tempWidget);
+	currentModuleWidget->setButtonClicked(key);
+}
+
+void MainContainer::returnButtonClicked()
+{
+	// 外设切换返回按钮
+	auto tempWidget = ui.moduleButtonsWidget_->currentWidget();
+	ModuleButtonsWidget *currentModuleWidget = static_cast<ModuleButtonsWidget*>(tempWidget);
+	currentModuleWidget->setReturnButtonClicked();
 }
 
 void ltp::client::MainContainer::teachIsLastPoint(bool isLast)
@@ -95,25 +85,6 @@ void ltp::client::MainContainer::teachIsLastPoint(bool isLast)
 void ltp::client::MainContainer::teachPreviousEnabled(bool enabled)
 {
 	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON4, enabled);
-}
-
-void MainContainer::returnButtonClicked()
-{
-	//TODO：这里要修改，改成直接连接当前界面的返回按钮
-	auto tempWidget = ui.moduleButtonsWidget_->currentWidget();
-	// 主界面、加工界面、文件管理界面、编辑界面、设置界面
-	if (ui.moduleButtonsWidget_->currentIndex() == HOME_BUTTONS_WIDGET ||
-		ui.moduleButtonsWidget_->currentIndex() == PROCESS_BUTTONS_WIDGET ||
-		ui.moduleButtonsWidget_->currentIndex() == FILEMANAGER_BUTTONS_WIDGET ||
-		ui.moduleButtonsWidget_->currentIndex() == PROGRAMEDIT_BUTTONS_WIDGET ||
-		ui.moduleButtonsWidget_->currentIndex() == SET_BUTTONS_WIDGET)				
-	{
-		onHome();					// 返回主页面
-	}
-	else if (ui.moduleButtonsWidget_->currentIndex() == TEACHEDIT_BUTTONS_WIDGET)	// 示教编辑界面
-	{
-		backProgrameModule();		// 返回程序编程界面
-	}
 }
 
 void MainContainer::openEditFile(const QString& localFilePath, const QString& remoteFtpFilePath)

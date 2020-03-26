@@ -9,7 +9,7 @@ using ltp::client::OperationPanel;
 OperationPanel::OperationPanel(QWidget *parent)
 	: QWidget(parent)
 {
-	ui.setupUi(this);
+	ui.setupUi(this); 
 	//自动刷新间隔
 	const int kAutoUpdateInterval = 200;
 	//主动刷新间隔（按钮按下后，需要确认功能是否正常开启）
@@ -24,6 +24,9 @@ OperationPanel::OperationPanel(QWidget *parent)
 	ui.skip_->setButtonPicture((":/LtpClient/image/skip_rest.png"), (":/LtpClient/image/skip_pressed.png"),
 							   (":/LtpClient/image/skip_pressed.png"), (":/LtpClient/image/skip_pressed.png"));
 	ui.skip_->setText(tr("跳  过"));
+	// 进给倍率修改间隔，1档
+	ui.speedFButton_->setIntervalValue(1);
+	ui.speedFButton_->setRange(0, 31);
 	// 进给倍率修改
 	connect(ui.speedFButton_, SIGNAL(valueChanged(int)), this, SLOT(changeFeedRate(int)));
 	// 定时器循环更新
@@ -125,11 +128,13 @@ void OperationPanel::onTimer()
 	ui.speedF_->setText(QString::number(dSpeedF, 'f', 1));
 	// 获取进给速率
 	double dRateF = ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().macroVariable(ltp::base::FEED_RATE);
-	ui.speedFButton_->setValue(dRateF);
+	ui.speedFButton_->setValue(dRateF * 100);
+	// 获取当前档位
+	ui.speedFButton_->getCurrentLevel(base::getInstance<Network>().plcVariable(rmi::F_FOVRD));
 }
 
 void OperationPanel::changeFeedRate(int value)
 {
-	double rate = static_cast<double>(value);
-	ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().setMacroVariable(ltp::base::FEED_RATE, rate);
+	// 修改进给倍率
+	base::getInstance<Network>().setPlcVariable(rmi::G_FOVRD, value);
 }

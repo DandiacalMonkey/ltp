@@ -8,7 +8,7 @@ PlusMinusWidget::PlusMinusWidget(QWidget* parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	this->setValue(100);
+	currentLevel_ = 0;
 	connect(ui.minus_, SIGNAL(clicked()), this, SLOT(minusClicked()));
 	connect(ui.plus_, SIGNAL(clicked()), this, SLOT(plusClicked()));
 }
@@ -26,16 +26,20 @@ void PlusMinusWidget::setValue(int value)
 
 void PlusMinusWidget::plusClicked()
 {
-	// 每次点击“+”按钮，以当前值+1发送信号
-	QString str = ui.valueLabel_->text();
-	int value = str.toInt() + 1;
-	emit valueChanged(value);
+	// 每次点击“+”按钮，以当前值+intervalValue_发送信号
+	int value = currentLevel_ + intervalValue_;
+	if (value >= lowestLevel_ && value <= highestLevel_)
+	{
+		emit valueChanged(value);
+	}
 }
 
 void PlusMinusWidget::minusClicked()
 {
-	// 每次点击“-”按钮，以当前值-1发送信号
-	QString str = ui.valueLabel_->text();
-	int value = str.toInt() - 1;
-	emit valueChanged(value);
-}
+	// 每次点击“-”按钮，以当前值-intervalValue_发送信号
+	int value = currentLevel_ - intervalValue_;
+	if (value >= lowestLevel_ && value <= highestLevel_)
+	{
+		emit valueChanged(value);
+	}
+} 

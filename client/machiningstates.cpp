@@ -28,6 +28,13 @@ MachiningStates::MachiningStates(QObject* parent)
 	connect(&base::getInstance<PhysicalButtonsProcessor>(), SIGNAL(bottomButtonRateClicked(int)), this, SLOT(rateChanged(int)));
 	//ftp传输连接
 	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), &ftpTransmissionManager_, SLOT(connect(const std::string&)));
+	// 右侧按钮start,stop,reset
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStart()), this, SLOT(startButtonClicked()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStop()), this, SLOT(stopButtonClicked()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonReset()), this, SLOT(resetButtonClicked()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStartRealease()), this, SLOT(startButtonRealeased()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStopRealease()), this, SLOT(stopButtonRealeased()));
+	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonResetRealease()), this, SLOT(resetButtonRealeased()));
 	//初始化轴枚举到轴字符映射关系
 	axisEnumAxisCharacterMap_[base::X_AXIS] = 'X';
 	axisEnumAxisCharacterMap_[base::Y_AXIS] = 'Y';
@@ -329,4 +336,40 @@ void MachiningStates::updateAxesInformation()
 	{
 		axesAddress_[axisCharacterToAxisEnum(it->first)] = it->second;
 	}
+}
+
+void MachiningStates::startButtonClicked()
+{
+	// 启动按钮按下
+	base::getInstance<Network>().setPlcVariable(rmi::G_CYCLESTART, 1);
+}
+
+void MachiningStates::startButtonRealeased()
+{
+	// 启动按钮松开
+	base::getInstance<Network>().setPlcVariable(rmi::G_CYCLESTART, 0);
+}
+
+void MachiningStates::stopButtonClicked()
+{
+	// 停止按钮按下
+	base::getInstance<Network>().setPlcVariable(rmi::G_PROGSTOP, 1);
+}
+
+void MachiningStates::stopButtonRealeased()
+{
+	// 停止按钮松开
+	base::getInstance<Network>().setPlcVariable(rmi::G_PROGSTOP, 0);
+}
+
+void MachiningStates::resetButtonClicked()
+{
+	// 重置按钮按下
+	base::getInstance<Network>().setPlcVariable(rmi::G_FRESET, 1);
+}
+
+void MachiningStates::resetButtonRealeased()
+{
+	// 重置按钮松开
+	base::getInstance<Network>().setPlcVariable(rmi::G_FRESET, 0);
 }

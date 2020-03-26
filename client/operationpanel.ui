@@ -39,87 +39,90 @@
     <layout class="QVBoxLayout" name="mainLayout_" stretch="70,0,70,0,70,0,70">
      <item>
       <widget class="QWidget" name="panelButtonsWidget_" native="true">
-       <widget class="QWidget" name="horizontalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>361</width>
-          <height>63</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="panelButtonsLayout_">
-         <property name="spacing">
-          <number>41</number>
-         </property>
-         <property name="leftMargin">
-          <number>20</number>
-         </property>
-         <property name="topMargin">
-          <number>10</number>
-         </property>
-         <property name="rightMargin">
-          <number>102</number>
-         </property>
-         <item>
-          <widget class="ltp::base::PanelButton" name="singleSection_">
-           <property name="minimumSize">
-            <size>
-             <width>52</width>
-             <height>46</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>52</width>
-             <height>46</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="ltp::base::PanelButton" name="handleWheelSimulation_">
-           <property name="minimumSize">
-            <size>
-             <width>52</width>
-             <height>46</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>52</width>
-             <height>46</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="ltp::base::PanelButton" name="skip_">
-           <property name="minimumSize">
-            <size>
-             <width>52</width>
-             <height>46</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>52</width>
-             <height>46</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="ltp::base::PanelButton" name="singleSection_">
+          <property name="minimumSize">
+           <size>
+            <width>52</width>
+            <height>46</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>52</width>
+            <height>46</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="ltp::base::PanelButton" name="handleWheelSimulation_">
+          <property name="minimumSize">
+           <size>
+            <width>52</width>
+            <height>46</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>52</width>
+            <height>46</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="ltp::base::PanelButton" name="skip_">
+          <property name="minimumSize">
+           <size>
+            <width>52</width>
+            <height>46</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>52</width>
+            <height>46</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_2">
+          <property name="minimumSize">
+           <size>
+            <width>52</width>
+            <height>46</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>52</width>
+            <height>46</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border:none;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
      <item>
@@ -134,64 +137,90 @@
      </item>
      <item>
       <widget class="QWidget" name="machiningInformationWidget1_" native="true">
-       <widget class="QWidget" name="horizontalLayoutWidget_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>-10</y>
-          <width>361</width>
-          <height>81</height>
-         </rect>
+       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
+        <property name="spacing">
+         <number>0</number>
         </property>
-        <layout class="QHBoxLayout" name="machiningInformationLayout1_" stretch="20,45,35,90">
-         <item>
-          <widget class="QLabel" name="speedFSymbol_">
-           <property name="styleSheet">
-            <string notr="true">font:Bold 24px Arial;</string>
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="frame">
+          <property name="styleSheet">
+           <string notr="true">border:none;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0">
+           <property name="spacing">
+            <number>6</number>
            </property>
-           <property name="text">
-            <string>F</string>
+           <property name="leftMargin">
+            <number>20</number>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <property name="topMargin">
+            <number>0</number>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="speedF_">
-           <property name="styleSheet">
-            <string notr="true">font:Bold 16px Arial;</string>
+           <property name="rightMargin">
+            <number>10</number>
            </property>
-           <property name="text">
-            <string>0.0</string>
+           <property name="bottomMargin">
+            <number>0</number>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="speedFUnit_">
-           <property name="styleSheet">
-            <string notr="true">font:10px Arial;</string>
-           </property>
-           <property name="text">
-            <string>mm/min</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="ltp::base::PlusMinusWidget" name="speedFButton_" native="true">
-           <property name="minimumSize">
-            <size>
-             <width>140</width>
-             <height>40</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+           <item>
+            <widget class="QLabel" name="speedFSymbol_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 24px Arial;</string>
+             </property>
+             <property name="text">
+              <string>F</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="speedF_">
+             <property name="styleSheet">
+              <string notr="true">font:Bold 16px Arial;</string>
+             </property>
+             <property name="text">
+              <string>0.0</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="speedFUnit_">
+             <property name="styleSheet">
+              <string notr="true">font:10px Arial;</string>
+             </property>
+             <property name="text">
+              <string>mm/min</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="ltp::base::PlusMinusWidget" name="speedFButton_" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>40</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
      <item>
@@ -206,39 +235,29 @@
      </item>
      <item>
       <widget class="QWidget" name="machiningInformationWidget2_" native="true">
-       <widget class="QWidget" name="horizontalLayoutWidget_3">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>-10</y>
-          <width>361</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="machiningInformationLayout2_">
-         <item>
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
      <item>
@@ -253,32 +272,22 @@
      </item>
      <item>
       <widget class="QWidget" name="machiningInformationWidget3_" native="true">
-       <widget class="QWidget" name="horizontalLayoutWidget_4">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>-10</y>
-          <width>361</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="machiningInformationLayout3_">
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
     </layout>

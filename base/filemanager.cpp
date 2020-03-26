@@ -12,7 +12,7 @@ FileManager::FileManager(QWidget *parent)
 	ui.tableWidget_->horizontalHeader()->resizeSection(1, 100);
 	ui.tableWidget_->horizontalHeader()->resizeSection(2, 50);
 	ui.tableWidget_->horizontalHeader()->resizeSection(3, 50);
-	ui.tableWidget_->horizontalHeader()->resizeSection(4, 130);
+	ui.tableWidget_->horizontalHeader()->resizeSection(4, 121);
 
 	// 双击事件
 	connect(ui.tableWidget_, SIGNAL(itemActivated(QTableWidgetItem*)), this, SLOT(openItem(QTableWidgetItem*)));

@@ -18,7 +18,7 @@ FileTableWidget::FileTableWidget(QWidget* parent)
 						 QTableWidget::item{min-height:30px;} \
 						 QTableWidget::item::selected{background:#CDE1F5; color:black;} \
 						 QTableWidget QScrollBar::vertical {margin:16px 0px 16px 0px; background-color:#E6E6E6; border: 0px; width: 16px;} \
-						 QTableWidget QScrollBar::handle:vertical{background:rgba(0,0,0,51);} \
+						 QTableWidget QScrollBar::handle:vertical{background:rgba(0,0,0,51); min-height:20px;} \
 						 QTableWidget QScrollBar::handle:vertical:pressed{background:rgba(0,0,0,153);} \
 						 QTableWidget QScrollBar::add-line:vertical{height:16px;width:16px;subcontrol-position:bottom left;subcontrol-origin: margin; image:url(:/LtpClient/image/bottom.png); background-color:#E6E6E6;} \
 						 QTableWidget QScrollBar::add-line:vertical:pressed{height:16px;width:16px;subcontrol-position:bottom left;subcontrol-origin: margin; image:url(:/LtpClient/image/bottom.png); background-color:rgba(0,0,0,153);} \
