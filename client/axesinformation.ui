@@ -29,15 +29,15 @@
    <string notr="true">background:transparent;
 QFrame{border: 2px solid red;}</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" columnstretch="34,15,60,40,60,40,60,148">
+  <layout class="QGridLayout" name="gridLayout" columnstretch="40,0,80,35,60,35,70,140">
    <property name="leftMargin">
-    <number>30</number>
+    <number>27</number>
    </property>
    <property name="topMargin">
     <number>16</number>
    </property>
    <property name="rightMargin">
-    <number>13</number>
+    <number>16</number>
    </property>
    <property name="horizontalSpacing">
     <number>0</number>

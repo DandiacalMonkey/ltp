@@ -43,6 +43,9 @@ namespace ltp
 			void minusButtonClicked(int);
 			void plusButtonRealeased(int);
 			void minusButtonRealeased(int);
+		private:
+			// 清空选中状态
+			void clearAllChecked();
 		};
 	}
 }

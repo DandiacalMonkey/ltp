@@ -29,7 +29,9 @@ TextEdit::~TextEdit()
 
 void TextEdit::cursorChanged()
 {
-	// 当前行/总函数 label修改
+	// 总行号更新
+	lineTotalNum_ = ui.insideTextEdit_->document()->blockCount();
+	// 当前行/总行数 label修改
 	int currentLine = ui.insideTextEdit_->textCursor().blockNumber() + 1;
 	double percent  = currentLine * 1.0 / lineTotalNum_ * 100;
 	ui.cursorPosition_->setText(QString("%1/%2(%3%)").arg(currentLine).arg(lineTotalNum_).arg(QString::number(percent, 'f', 2)));
@@ -108,7 +110,7 @@ void TextEdit::saveAs(const QString& filePath)
 void TextEdit::removeLine()
 {
 	QTextCursor lineCursor = ui.insideTextEdit_->textCursor();		// 光标所在位置
-	lineCursor.select(QTextCursor::LineUnderCursor);				// 设置为整行选中
+	lineCursor.select(QTextCursor::BlockUnderCursor);				// 设置为整行选中
 	ui.insideTextEdit_->setTextCursor(lineCursor);
 	ui.insideTextEdit_->textCursor().removeSelectedText();			// 选中进行删除操作
 }

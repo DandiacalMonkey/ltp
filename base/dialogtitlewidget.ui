@@ -32,7 +32,9 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QPushButton{border:1px solid #D2D2D2;border-radius:2px;background-image:url(:/LtpClient/image/to_previous.png);background-color:#F5F5F5;background-position:center;}
+QPushButton:!enabled{background-image:url(:/LtpClient/image/to_previous_disabled.png);background-color:#F5F5F5;}
+QPushButton:pressed{background-image:url(:/LtpClient/image/to_previous.png);background-color:#E1EBFF;}</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0">
    <property name="spacing">
