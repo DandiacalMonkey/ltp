@@ -51,11 +51,12 @@
       <PreprocessorDefinitions>UNICODE;WIN32;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_XML_LIB;QT_NETWORK_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork;..\base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <CallingConvention>Cdecl</CallingConvention>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level1</WarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -315,6 +316,10 @@
     <ClCompile Include="teachcommand.cpp" />
     <ClCompile Include="teachcommandg114.cpp" />
     <ClCompile Include="teachcommandline.cpp" />
+    <ClCompile Include="teachcommandplanararc.cpp" />
+    <ClCompile Include="teachcommandpoint.cpp" />
+    <ClCompile Include="teachcommandspatialarc.cpp" />
+    <ClCompile Include="teachcommandspatialcircle.cpp" />
     <ClCompile Include="titlebar.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -347,6 +352,10 @@
     <ClInclude Include="teachcommand.h" />
     <ClInclude Include="teachcommandg114.h" />
     <ClInclude Include="teachcommandline.h" />
+    <ClInclude Include="teachcommandplanararc.h" />
+    <ClInclude Include="teachcommandpoint.h" />
+    <ClInclude Include="teachcommandspatialarc.h" />
+    <ClInclude Include="teachcommandspatialcircle.h" />
     <CustomBuild Include="setwidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing setwidget.h...</Message>
