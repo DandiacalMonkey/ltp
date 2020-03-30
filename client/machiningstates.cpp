@@ -35,21 +35,6 @@ MachiningStates::MachiningStates(QObject* parent)
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStartRealease()), this, SLOT(startButtonRealeased()));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStopRealease()), this, SLOT(stopButtonRealeased()));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonResetRealease()), this, SLOT(resetButtonRealeased()));
-	//初始化轴枚举到轴字符映射关系
-	axisEnumAxisCharacterMap_[base::X_AXIS] = 'X';
-	axisEnumAxisCharacterMap_[base::Y_AXIS] = 'Y';
-	axisEnumAxisCharacterMap_[base::Z_AXIS] = 'Z';
-	axisEnumAxisCharacterMap_[base::A_AXIS] = 'A';
-	axisEnumAxisCharacterMap_[base::B_AXIS] = 'B';
-	axisEnumAxisCharacterMap_[base::C_AXIS] = 'C';
-	axisEnumAxisCharacterMap_[base::U_AXIS] = 'U';
-	axisEnumAxisCharacterMap_[base::V_AXIS] = 'V';
-	axisEnumAxisCharacterMap_[base::W_AXIS] = 'W';
-	//初始化轴字符到轴枚举映射关系
-	for (auto it = axisEnumAxisCharacterMap_.begin(); it != axisEnumAxisCharacterMap_.end(); it++)
-	{
-		axisCharacterAxisEnumMap_[it->second] = it->first;
-	}
 }
 
 MachiningStates::~MachiningStates()
@@ -203,36 +188,6 @@ const std::vector<ltp::base::Axis>& ltp::client::MachiningStates::validAxes() co
 	return validAxes_;
 }
 
-char MachiningStates::axisEnumToAxisCharacter(ltp::base::Axis axisEnum) const
-{
-	return axisEnumAxisCharacterMap_.at(axisEnum);
-}
-
-std::vector<char> ltp::client::MachiningStates::axesEnumToAxesCharacter(const std::vector<base::Axis>& axesEnum) const
-{
-	std::vector<char> result;
-	for (auto it = axesEnum.begin(); it != axesEnum.end(); it++)
-	{
-		result.push_back(axisEnumToAxisCharacter(*it));
-	}
-	return std::move(result);
-}
-
-ltp::base::Axis ltp::client::MachiningStates::axisCharacterToAxisEnum(char axisCharacter) const
-{
-	return axisCharacterAxisEnumMap_.at(axisCharacter);
-}
-
-std::vector<ltp::base::Axis> ltp::client::MachiningStates::axesCharacterToAxesEnum(const std::vector<char>& axesCharacter) const
-{
-	std::vector<base::Axis> result;
-	for (auto it = axesCharacter.begin(); it != axesCharacter.end(); it++)
-	{
-		result.push_back(axisCharacterToAxisEnum(*it));
-	}
-	return std::move(result);
-}
-
 int ltp::client::MachiningStates::axisEnumToAxisAddress(base::Axis axisEnum) const
 {
 	return axesAddress_.at(axisEnum);
@@ -322,7 +277,7 @@ void MachiningStates::updateAxesInformation()
 {
 	auto& systemVariables = base::getInstance<base::SystemVariables<RemoteVariables>>();
 	//控制器上的有效轴
-	auto remoteValidAxes = axesCharacterToAxesEnum(systemVariables.validFeedAxes());
+	auto remoteValidAxes = base::axesCharToAxesEnum(systemVariables.validFeedAxes());
 	//对比有效轴
 	if (validAxes_ != remoteValidAxes)
 	{
@@ -334,7 +289,7 @@ void MachiningStates::updateAxesInformation()
 	axesAddress_.clear();
 	for (auto it = remoteAxesAddress.begin(); it != remoteAxesAddress.end(); it++)
 	{
-		axesAddress_[axisCharacterToAxisEnum(it->first)] = it->second;
+		axesAddress_[base::axisCharToAxisEnum(it->first)] = it->second;
 	}
 }
 

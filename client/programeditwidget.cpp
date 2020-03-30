@@ -62,14 +62,7 @@ ProgramEditWidget::ProgramEditWidget(QWidget *parent)
 	axisInformationArray_[base::W_AXIS].previousPositionValue_ = ui.previousPositionValueW_;
 
 	// 初始隐藏全部坐标信息
-	for (auto iterator = axisInformationArray_.begin(); iterator != axisInformationArray_.end(); iterator++)
-	{
-		iterator->axisName_->hide();
-		iterator->workpieceCoordinateSymbol_->hide();
-		iterator->workpieceCoordinateValue_->hide();
-		iterator->previousPositionSymbol_->hide();
-		iterator->previousPositionValue_->hide();
-	}
+	hideAxisInformation();
 
 	// 根据连接控制器判断需要显示的轴信息
 	connect(&base::getInstance<MachiningStates>(), SIGNAL(validAxesChanged(std::vector<base::Axis>)), this, SLOT(setValidAxes(std::vector<base::Axis>)));
@@ -182,7 +175,10 @@ void ProgramEditWidget::onHint(QString str)
 
 void ProgramEditWidget::setValidAxes(const std::vector<ltp::base::Axis> &validAxes)
 {
-	for (int i = 0; i < validAxes.size(); ++i)			// 对系统轴信息进行显示
+	// 有效轴变化时，先隐藏
+	hideAxisInformation();
+	// 对系统轴信息进行显示
+	for (int i = 0; i < validAxes.size(); ++i)
 	{
 		axisInformationArray_[validAxes[i]].axisName_->show();
 		axisInformationArray_[validAxes[i]].workpieceCoordinateSymbol_->show();
@@ -301,3 +297,16 @@ void ProgramEditWidget::updateTeachInformation()
 	//能否退回上一点
 	emit signalTeachPreviousEnabled(teachCommand_->hasPreviousPoint());
 }
+
+void ProgramEditWidget::hideAxisInformation()
+{
+	for (auto iterator = axisInformationArray_.begin(); iterator != axisInformationArray_.end(); iterator++)
+	{
+		iterator->axisName_->hide();
+		iterator->workpieceCoordinateSymbol_->hide();
+		iterator->workpieceCoordinateValue_->hide();
+		iterator->previousPositionSymbol_->hide();
+		iterator->previousPositionValue_->hide();
+	}
+}
+

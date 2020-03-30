@@ -42,7 +42,7 @@ namespace ltp
 			//上传和下载时使用的文件
 			std::shared_ptr<QFile> file_;
 			//进度框
-			ProgressDialog* progressDialog_;
+			std::shared_ptr<ProgressDialog> progressDialog_;
 
 		private slots:
 			//命令结束

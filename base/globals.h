@@ -2,6 +2,7 @@
 #define LTP_BASE_GLOBALS_H_
 
 #include <functional>
+#include <vector>
 
 namespace ltp
 {
@@ -115,6 +116,10 @@ namespace ltp
 		};
 		//轴枚举转换成轴字符
 		char axisEnumToAxisChar(Axis axisEnum);
+		std::vector<char> axesEnumToAxesChar(const std::vector<base::Axis>& axesEnum);
+		//轴字符转换成轴枚举
+		Axis axisCharToAxisEnum(char axisCharacter);
+		std::vector<base::Axis> axesCharToAxesEnum(const std::vector<char>& axesCharacter);
 		//轴枚举对应圆弧圆心的字符
 		char axisEnumToArcChar(Axis axisEnum);
 	}

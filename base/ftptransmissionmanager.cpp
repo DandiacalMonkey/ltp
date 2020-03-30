@@ -34,8 +34,7 @@ bool FtpTransmissionManager::downloadFile(const QString& remoteFilePath, const Q
 	//启动下载
 	ftp_->get(temp, file_.get());
 	//弹出模态进度框，等待下载完成
-	progressDialog_->exec();
-	return true;
+	return progressDialog_->exec() == QDialog::Accepted;
 }
 
 bool FtpTransmissionManager::uploadFile(const QString& localFilePath, const QString& remoteFilePath)
@@ -50,19 +49,18 @@ bool FtpTransmissionManager::uploadFile(const QString& localFilePath, const QStr
 	QString temp = QString::fromLatin1(QTextCodec::codecForName("gbk")->fromUnicode(remoteFilePath));
 	//启动上传
 	ftp_->put(file_.get(), temp);
-	//弹出模态进度框，等待下载完成
-	progressDialog_->exec();
-	return true;
+	//弹出模态进度框，等待上传完成
+	return progressDialog_->exec() == QDialog::Accepted;
 }
 
 FtpTransmissionManager::FtpTransmissionManager()
 {
-	progressDialog_ = new ProgressDialog();
+	progressDialog_.reset(new ProgressDialog());
 	progressDialog_->setTitleName(tr("加载"));
 	progressDialog_->setContentName(tr("文件加载中..."));
 	progressDialog_->setModal(true);
 
-	QObject::connect(progressDialog_, SIGNAL(siganlCancel()), this, SLOT(cancelDownload()));
+	QObject::connect(progressDialog_.get(), SIGNAL(siganlCancel()), this, SLOT(cancelDownload()));
 }
 
 FtpTransmissionManager::~FtpTransmissionManager()

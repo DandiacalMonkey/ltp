@@ -112,8 +112,7 @@ void SelectAxisBar::setValidAxes(const std::vector<ltp::base::Axis> validAxes)
 	buttonsAxisEnumMap_.clear();
 	for (int i = 0; i < kMaxFeedAxes && i < validAxes.size(); i++)
 	{
-		axisButtons_[i]->setText(QChar(base::getInstance<MachiningStates>().
-			axisEnumToAxisCharacter(validAxes[i])));
+		axisButtons_[i]->setText(QChar(base::axisEnumToAxisChar(validAxes[i])));
 		buttonsAxisEnumMap_[axisButtons_[i]] = validAxes[i];
 		axisButtons_[i]->setEnabled(true);
 	}

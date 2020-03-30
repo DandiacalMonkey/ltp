@@ -40,12 +40,6 @@ namespace ltp
 			base::ErrorLevel errorLevel() const;
 			//获取有效轴
 			const std::vector<base::Axis>& validAxes() const;
-			//将轴枚举转换为轴字符
-			char axisEnumToAxisCharacter(base::Axis axisEnum) const;
-			std::vector<char> axesEnumToAxesCharacter(const std::vector<base::Axis>& axesEnum) const;
-			//将轴字符转换为轴枚举
-			base::Axis axisCharacterToAxisEnum(char axisCharacter) const;
-			std::vector<base::Axis> axesCharacterToAxesEnum(const std::vector<char>& axesCharacter) const;
 			//根据轴枚举获取轴地址
 			int axisEnumToAxisAddress(base::Axis axisEnum) const;
 			//更新正在加工的文件
@@ -86,10 +80,6 @@ namespace ltp
 			std::vector<base::Axis> validAxes_;
 			//更新状态使用的定时器
 			QTimer timer_;
-			//轴枚举到轴字符的映射
-			std::unordered_map<base::Axis, char> axisEnumAxisCharacterMap_;
-			//轴字符到轴枚举的映射
-			std::unordered_map<char, base::Axis> axisCharacterAxisEnumMap_;
 			//轴枚举到轴地址的映射
 			std::unordered_map<base::Axis, int> axesAddress_;
 			//当前加载文件名

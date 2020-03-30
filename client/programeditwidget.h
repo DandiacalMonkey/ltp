@@ -30,7 +30,7 @@ namespace ltp
 				QLabel* previousPositionValue_;
 			};
 			ProgramEditWidget(QWidget *parent = 0);
-			~ProgramEditWidget();  
+			~ProgramEditWidget();
 			void onEditBarModule(int);			// 切换编辑内部模块
 			void closeFile();					// 关闭文件
 			QString getCurrentFileName(){return ui.textEdit_->getCurrentFileName();}	// 获取当前文件名
@@ -60,6 +60,7 @@ namespace ltp
 			void onTeachEdit();				// 示教编辑
 			void onEditTeach();				// 编辑示教
 			void updateTeachInformation();	// 示教操作后，需要更新显示图片等内容
+			void hideAxisInformation();		// 隐藏所有轴信息
 
 		private slots:
 			void setValidAxes(const std::vector<base::Axis> &validAxes);
