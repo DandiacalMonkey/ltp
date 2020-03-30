@@ -72,7 +72,7 @@ void IPLineEdit::textChanged(const QString& text)
 	} 
 	else
 	{
-		hasFinished(false);
+		emit hasFinished(false);
 	}
 
 	//拼接成完整IP地址

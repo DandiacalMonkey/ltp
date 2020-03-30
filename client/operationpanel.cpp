@@ -27,7 +27,7 @@ OperationPanel::OperationPanel(QWidget *parent)
 	// 进给倍率修改
 	connect(ui.speedFButton_, SIGNAL(valueChanged(int)), this, SLOT(changeFeedRate(int)));
 	// 定时器循环更新
-	QTimer *timer_ = new QTimer();
+	QTimer *timer_ = new QTimer(this);
 	connect(timer_, SIGNAL(timeout()), this, SLOT(onTimer()));
 	timer_->start(kAutoUpdateInterval);
 
@@ -130,6 +130,6 @@ void OperationPanel::onTimer()
 
 void OperationPanel::changeFeedRate(int value)
 {
-	double rate = double(value);
+	double rate = static_cast<double>(value);
 	ltp::base::getInstance<ltp::base::SystemVariables<ltp::client::RemoteVariables>>().setMacroVariable(ltp::base::FEED_RATE, rate);
 }

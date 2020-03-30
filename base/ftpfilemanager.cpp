@@ -37,7 +37,6 @@ void ltp::base::FtpFileManager::connectToFtp()
 {
 	// 重连下载器
 	ftpTransmissionManager_.connect(ip_);
-	ip_ = "192.168.6.195";
 	//先尝试断开旧连接
 	if (ftp_)
 	{

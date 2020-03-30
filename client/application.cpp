@@ -62,7 +62,7 @@ bool Application::notify(QObject* receiver, QEvent* event)
 				base::getInstance<base::KeyBoardDialog>().show();
 				base::getInstance<base::KeyBoardDialog>().raise();
 			}
-			else if (nowWidget->parent() != nullptr)
+			/*else if (nowWidget->parent() != nullptr)
 			{
 				if (nowWidget->parent()->inherits("QTextEdit"))	// 当前焦点为QTextEdit，显示虚拟键盘	
 				{
@@ -77,7 +77,7 @@ bool Application::notify(QObject* receiver, QEvent* event)
 					currentEditType_ = "";
 					base::getInstance<base::KeyBoardDialog>().hide();
 				}
-			}
+			}*/
 			else												// 非输入框焦点，隐藏虚拟键盘
 			{
 				currentWidget_ = nullptr;

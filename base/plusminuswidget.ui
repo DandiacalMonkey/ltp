@@ -103,13 +103,13 @@ background:transparent;</string>
     <widget class="QLabel" name="label">
      <property name="minimumSize">
       <size>
-       <width>8</width>
+       <width>10</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>8</width>
+       <width>10</width>
        <height>16777215</height>
       </size>
      </property>

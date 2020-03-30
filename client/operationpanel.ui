@@ -163,7 +163,7 @@
             <string notr="true">font:Bold 16px Arial;</string>
            </property>
            <property name="text">
-            <string>123456.0</string>
+            <string>0.0</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -233,7 +233,7 @@
          <item>
           <widget class="QLabel" name="label_3">
            <property name="text">
-            <string> </string>
+            <string/>
            </property>
           </widget>
          </item>

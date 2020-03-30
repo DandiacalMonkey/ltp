@@ -21,6 +21,7 @@ namespace ltp
 		private:
 			Ui::AxesInformationClass ui;
 			QTimer timer_;
+			void hideAll();
 
 		private slots:
 			void onTimer();

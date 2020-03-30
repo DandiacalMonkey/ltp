@@ -9,8 +9,25 @@ AxesInformation::AxesInformation(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	hideAll();		// 初始将所有轴信息隐藏
 
-	// 初始将所有轴信息隐藏
+	// 根据连接控制器判断需要显示的轴信息
+	connect(&base::getInstance<MachiningStates>(), SIGNAL(validAxesChanged(const std::vector<base::Axis>)), this, SLOT(setValidAxes(const std::vector<base::Axis>)));
+	
+	// 定时器每0.5s更新一次数据
+	QTimer *timer_ = new QTimer();
+	connect(timer_, SIGNAL(timeout()), this, SLOT(onTimer()));
+	timer_->start(500);
+}
+
+AxesInformation::~AxesInformation()
+{
+
+}
+
+void AxesInformation::hideAll()
+{
+	// 所有轴信息隐藏
 	ui.labelAxesA_->hide();
 	ui.machineCoordinateAxesA_->hide();
 	ui.machiningRemainAxesA_->hide();
@@ -20,7 +37,7 @@ AxesInformation::AxesInformation(QWidget *parent)
 	ui.machiningRemainSymbolA_->hide();
 	ui.workpieceCoordinateSymbolA_->hide();
 	ui.lineA_->hide();
-	
+
 	ui.labelAxesB_->hide();
 	ui.machineCoordinateAxesB_->hide();
 	ui.machiningRemainAxesB_->hide();
@@ -100,23 +117,11 @@ AxesInformation::AxesInformation(QWidget *parent)
 	ui.machiningRemainSymbolW_->hide();
 	ui.workpieceCoordinateSymbolW_->hide();
 	ui.lineW_->hide();
-
-	// 根据连接控制器判断需要显示的轴信息
-	connect(&base::getInstance<MachiningStates>(), SIGNAL(validAxesChanged(std::vector<base::Axis>)), this, SLOT(setValidAxes(std::vector<base::Axis>)));
-	
-	// 定时器每0.5s更新一次数据
-	QTimer *timer_ = new QTimer();
-	connect(timer_, SIGNAL(timeout()), this, SLOT(onTimer()));
-	timer_->start(500);
-}
-
-AxesInformation::~AxesInformation()
-{
-
 }
 
 void AxesInformation::setValidAxes(const std::vector<ltp::base::Axis> &validAxes)
 {
+	hideAll();			// 隐藏全部控件
 	for (int i = 0; i < validAxes.size(); ++i)			// 对系统轴信息进行显示
 	{
 		if (validAxes.at(i) == ltp::base::X_AXIS)
@@ -227,6 +232,40 @@ void AxesInformation::setValidAxes(const std::vector<ltp::base::Axis> &validAxes
 			ui.workpieceCoordinateSymbolC_->show();
 			ui.lineC_->show();
 		}
+	}
+
+	// 隐藏最后一个轴的下划线
+	switch (validAxes.at(validAxes.size() - 1))
+	{
+	case ltp::base::X_AXIS:
+		ui.lineX_->hide();
+		break;
+	case ltp::base::Y_AXIS:
+		ui.lineY_->hide();
+		break;
+	case ltp::base::Z_AXIS:
+		ui.lineZ_->hide();
+		break;
+	case ltp::base::A_AXIS:
+		ui.lineA_->hide();
+		break;
+	case ltp::base::B_AXIS:
+		ui.lineB_->hide();
+		break;
+	case ltp::base::C_AXIS:
+		ui.lineC_->hide();
+		break;
+	case ltp::base::U_AXIS:
+		ui.lineU_->hide();
+		break;
+	case ltp::base::V_AXIS:
+		ui.lineV_->hide();
+		break;
+	case ltp::base::W_AXIS:
+		ui.lineW_->hide();
+		break;
+	default:
+		break;
 	}
 }
 
