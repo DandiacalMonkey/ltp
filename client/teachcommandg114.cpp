@@ -25,7 +25,7 @@ bool TeachCommandG114::checkPoint() throw(RepeatPointException)
 	//当前位置
 	auto currentPosition = systemVariables_.teachPosition(1);
 	//如果已经记录过点，需要确认是否有重复点
-	if (hasSamePoint(currentPosition))
+	if (hasSamePoint(currentPosition, base::X_AXIS, base::AXIS_COUNT))
 	{
 		throw RepeatPointException();
 	}
@@ -45,7 +45,8 @@ QString TeachCommandG114::getCommand() const
 	for (int i = 0; i < points_.size(); i++)
 	{
 		result += QString("P%0 ").arg(i + 1);
-		result += generateCommand(base::getInstance<MachiningStates>().validAxes(), points_[i]);
+		result += generateCommand(base::getInstance<MachiningStates>().validAxes(), 
+			points_[i], base::axisEnumToAxisChar);
 	}
 	return result;
 }

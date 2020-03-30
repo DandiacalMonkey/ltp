@@ -116,6 +116,8 @@ namespace ltp
 		};
 		//轴枚举转换成轴字符
 		char axisEnumToAxisChar(Axis axisEnum);
+		//轴枚举对应圆弧圆心的字符
+		char axisEnumToArcChar(Axis axisEnum);
 	}
 }
 

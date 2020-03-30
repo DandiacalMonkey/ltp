@@ -4,6 +4,7 @@
 #include <array>
 #include <cmath>
 #include <algorithm>
+#include <vector>
 
 namespace ltp
 {
@@ -14,35 +15,115 @@ namespace ltp
 			//定义二维和三维点
 			typedef std::array<double, 2> Point2D;
 			typedef std::array<double, 3> Point3D;
+			//矢量和
+			template <int Integer>
+			std::array<double, Integer> operator+(const std::array<double, Integer>& point1, const std::array<double, Integer>& point2)
+			{
+				std::array<double, Integer> result;
+				std::transform(point1.begin(), point1.end(), point2.begin(), std::plus<double>());
+				return result;
+			}
+			//矢量差
+			template <int Integer>
+			std::array<double, Integer> operator-(const std::array<double, Integer>& point1, const std::array<double, Integer>& point2)
+			{
+				std::array<double, Integer> result;
+				std::transform(point1.begin(), point1.end(), point2.begin(), std::minus<double>());
+				return result;
+			}
+			//点乘
+			double operator*(const Point3D& point1, const Point3D& point2);
+			//叉乘
+			Point3D operator^(const Point3D& point1, const Point3D& point2);
 			//定义直线
 			template <typename Point>
 			struct Line
 			{
+				//直线长度
+				typename Point::value_type length()
+				{
+					double sum = 0;
+					for (int i = 0; i < start.size(); i++)
+					{
+						sum += (start[i] - end[i]) * (start[i] - end[i]);
+					}
+					return std::sqrt(sum);
+				}
+				//计算单位向量
+				Point normalize()
+				{
+					//计算模
+					typename Point::value_type tempLength = length();
+					//归一化
+					Point result;
+					for (int i = 0; i < result.size(); i++)
+					{
+						result[i] = (end[i] - start[i]) / tempLength;
+					}
+					return result;
+				}
+				//直线起点
 				Point start;
+				//直线终点
 				Point end;
 			};
 			//定义圆弧
 			template <typename Point>
 			struct Arc
 			{
+				//三点计算圆心
+				static Point calculateCenter(const Point& start, const Point& inArc, const Point& end)
+				{
+					static_assert(false, "仅支持二维");
+				}
+				//半径
+				typename Point::value_type radius()
+				{
+					typename Point::value_type result = 0;
+					for (int i = 0; i < start.size(); i++)
+					{
+						result += (start[i] - center[i]) * (start[i] - center[i]);
+					}
+					return std::sqrt(result);
+				}
+				//起点
 				Point start;
+				//圆心
 				Point center;
+				//终点
 				Point end;
 			};
-			//容差
-			const double kDistanceTolerance_ = 1e-3;
-			template <typename Point>
-			bool isSamePoint(Point point1, Point point2)
+			//平面
+			enum Plane
 			{
-				for (int i = 0; i < point1.size(); i++)
+				NONE_PLANE,
+				XY_PLANE,
+				XZ_PLANE,
+				YZ_PLANE
+			};
+			//距离容差
+			const double kDistanceTolerance_ = 1e-3;
+			//角度容差
+			const double kAngleTolerance_ = 0.1;
+			//计算精度
+			const double kPrecision = 1e-6;
+			//点是否重合，输入坐标的迭代器
+			template <typename Iterator>
+			bool isSamePoint(Iterator start1, Iterator end1, Iterator start2, double tolerance = kDistanceTolerance_)
+			{
+				for (auto it1 = start1, it2 = start2; it1 != end1; it1++, it2++)
 				{
-					if (std::fabs(point1[i] - point2[i]) > kDistanceTolerance_)
+					if (std::fabs(*it1 - *it2) > tolerance)
 					{
 						return false;
 					}
 				}
 				return true;
 			}
+			//点是否位于XY,YZ,XZ平面之一
+			Plane pointsPlane(const std::vector<Point3D>& points, double tolerance = kDistanceTolerance_);
+			//点是否共线
+			bool isCollinear(const std::vector<Point3D>& points, double tolerance = kAngleTolerance_);
 			//点转换
 			template <typename Point, typename Iterator>
 			Point makePoint(Iterator iterator)
@@ -51,12 +132,30 @@ namespace ltp
 				std::copy_n(iterator, point.size(), point.begin());
 				return point;
 			}
+			//平面圆弧，三点计算圆心
+			Point2D Arc<Point2D>::calculateCenter(const Point2D& start, const Point2D& inArc, const Point2D& end)
+			{
+				Point2D::value_type a = 2 * (inArc[0] - start[0]);
+				Point2D::value_type b = 2 * (inArc[1] - start[1]);
+				Point2D::value_type c = inArc[0] * inArc[0] + inArc[1] * inArc[1] - start[0] * start[0] - start[1] * start[1];
+				Point2D::value_type d = 2 * (end[0] - inArc[0]);
+				Point2D::value_type e = 2 * (end[1] - inArc[1]);
+				Point2D::value_type f = end[0] * end[0] + end[1] * end[1] - inArc[0] * inArc[0] - inArc[1] * inArc[1];
+				//除数不为0
+				if (std::abs(b * d - e * a) < kPrecision)
+				{
+					throw std::exception("can not calculate center");
+				}
+				Point2D center = { (b * f - e * c) / (b * d - e * a), (d * c - a * f) / (b * d - e * a) };
+				return center;
+			}
 		};
 	}
 }
 
+using ltp::base::Math::operator+;
+using ltp::base::Math::operator-;
+using ltp::base::Math::operator*;
+using ltp::base::Math::operator^;
 
 #endif // !LTP_BASE_MATH_H_
-
-
-

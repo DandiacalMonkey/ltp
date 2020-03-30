@@ -11,5 +11,11 @@ namespace ltp
 			assert(axisEnum < sizeof(axesChar));
 			return axesChar[axisEnum];
 		}
+		char axisEnumToArcChar(Axis axisEnum)
+		{
+			static char axesChar[] = { 'I', 'J', 'K', 'L', 'P', 'Q', 'E', 'L' };
+			assert(axisEnum < sizeof(axesChar));
+			return axesChar[axisEnum];
+		}
 	}
 }

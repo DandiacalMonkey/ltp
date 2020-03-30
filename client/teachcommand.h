@@ -75,9 +75,12 @@ namespace ltp
 			virtual Point previousPointPosition() const;
 			//将输入的轴和坐标转换为指令
 			QString generateCommand(const std::vector<base::Axis> axes,
-				const Point& point, int precision = kPrecision_) const;
+				const Point& point, const std::function<char(base::Axis)>& axisEnumToChar, 
+				int precision = kPrecision_) const;
 			QString generateCommand(const std::vector<base::Axis> axes, 
-				const base::Math::Line<Point>& line, int precision = kPrecision_) const;
+				const base::Math::Line<Point>& line, 
+				const std::function<char (base::Axis)>& axisEnumToChar,
+				int precision = kPrecision_) const;
 			//获取标题
 			QString teachTitle() const
 			{
@@ -97,21 +100,10 @@ namespace ltp
 			{
 				return previousPointLabel_.at(points_.size());
 			}
-			//确认是否有重复点
-			template <typename Point>
-			bool hasSamePoint(Point point)
-			{
-				//输入点和当前所有点对比，确认是否有重复
-				for (int i = 0; i < points_.size(); i++)
-				{
-					auto tempPoint = base::Math::makePoint<Point>(points_[i].begin());
-					if (base::Math::isSamePoint(point, tempPoint))
-					{
-						return true;
-					}
-				}
-				return false;
-			}
+			//确认是否有重复点，start表示要检测的坐标起始索引，end表示索引的尾后
+			bool hasSamePoint(Point point, int start, int end);
+			//确认轴坐标是否变化，start表示要检测的坐标起始索引，end表示索引的尾后
+			bool isCoordinateChanged(Point point, int start, int end);
 
 		protected:
 			//示教标题

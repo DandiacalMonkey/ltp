@@ -341,6 +341,18 @@
     <ClCompile Include="teachcommandg114.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="teachcommandplanararc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="teachcommandspatialarc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="teachcommandspatialcircle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="teachcommandpoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ltpclient.h">
@@ -583,6 +595,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="teachcommandg114.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandplanararc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandspatialarc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandspatialcircle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandpoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

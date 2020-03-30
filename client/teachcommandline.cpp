@@ -26,11 +26,11 @@ bool TeachCommandLine::checkPoint() throw (RepeatPointException)
 	//当前位置
 	auto currentPosition = systemVariables_.teachPosition(1);
 	//如果已经记录过点，需要确认是否有重复点
-	if (hasSamePoint(currentPosition))
+	if (hasSamePoint(currentPosition, base::X_AXIS, base::AXIS_COUNT))
 	{
 		throw RepeatPointException();
 	}
-	points_.push_back(systemVariables_.teachPosition(1));
+	points_.push_back(currentPosition);
 	return points_.size() == kPointNumber_;
 }
 
@@ -46,14 +46,15 @@ QString TeachCommandLine::getCommand() const
 	result += " ";
 	base::Math::Line<Point> line = { points_[0], points_[1] };
 	result += generateCommand(base::getInstance<MachiningStates>().validAxes(), 
-		line);
+		line, base::axisEnumToAxisChar);
 	return result;
 }
 
 bool ltp::client::TeachCommandLine::canChangeMode() const
 {
 	auto tempPosition = systemVariables_.teachPosition(1);
-	if (points_.size() == 1 && base::Math::isSamePoint(points_[0], tempPosition) == true)
+	if (points_.size() == 1 && 
+		base::Math::isSamePoint(points_[0].begin(), points_[0].end(), tempPosition.cbegin()) == true)
 	{
 		return true;
 	}

@@ -53,7 +53,8 @@
      <widget class="ltp::client::ModuleButtonsWidget" name="processModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="fileManagerModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="programEditModuleButtonsWidget_"/>
-     <widget class="ltp::client::ModuleButtonsWidget" name="teachEditModuleButtonsWidget_"/>
+     <widget class="ltp::client::ModuleButtonsWidget" name="teachEditModuleButtonsWidget1_"/>
+     <widget class="ltp::client::ModuleButtonsWidget" name="teachEditModuleButtonsWidget2_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="setModuleButtonsWidget_"/>
      <widget class="ltp::client::ModuleButtonsWidget" name="teachEditOperationButtonsWidget_"/>
     </widget>

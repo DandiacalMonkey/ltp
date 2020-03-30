@@ -33,6 +33,7 @@ namespace ltp
 
 		private:
 			Ui::MainContainerClass ui;
+			QWidget* lastModuleButtonsWidget_;				// 储存上一次模块菜单，用于返回
 			void initModuleButtonsWidget();					// 初始化左侧按钮模块信息
 
 		signals:
@@ -47,7 +48,8 @@ namespace ltp
 			void onFileWidgetModule(int);					// 切换文件管理模块
 			void onProgrameEditWidgetModule(int);			// 切换编辑模块
 			void onProcessWidgetModule(int);				// 切换加工模块
-			void onProgramTeachEditModule(int);				// 切换示教编辑模块
+			void onProgramTeachEditModule1(int);			// 切换示教编辑模块1
+			void onProgramTeachEditModule2(int);			// 切换示教编辑模块2
 			void backProgrameModule();						// 切回编辑模块
 			void teachEditOperation(int);					// 示教编辑界面操作
 			void backTeachModule();							// 切回示教编程模块选择

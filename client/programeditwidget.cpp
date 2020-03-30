@@ -5,8 +5,6 @@
 #include "base/systemvariables.hpp"
 #include "remotevariables.hpp"
 #include "base/globals.h"
-#include "teachcommandline.h"
-#include "teachcommandg114.h"
 
 using ltp::client::ProgramEditWidget;
 
@@ -266,31 +264,11 @@ void ProgramEditWidget::closeFile()
 	ui.textEdit_->closeFile();
 }
 
-void ProgramEditWidget::onTeachEditModule(int editModule)
+void ProgramEditWidget::onTeachEditModule(std::shared_ptr<ltp::client::TeachCommand> teachCommand)
 {
 	onTeachEdit();
-	switch (editModule)
-	{
-	case base::LEFTBUTTON1:						// G114
-		teachCommand_.reset(new TeachCommandG114());
-		break;
-	case base::LEFTBUTTON2:						// G00
-		teachCommand_.reset(new TeachCommandLine("G00", ":/LtpClient/image/teach_command_g00.png"));
-		ui.teachTitle_->setText(teachCommand_->teachTitle());
-		break;
-	case base::LEFTBUTTON3:						// G01
-		teachCommand_.reset(new TeachCommandLine("G01", ":/LtpClient/image/teach_command_g01.png"));
-		ui.teachTitle_->setText(teachCommand_->teachTitle());
-		break;
-	case base::LEFTBUTTON4:						// G02
-		ui.teachTitle_->setText(QString("G02"));
-		break;
-	case base::LEFTBUTTON5:						// G102
-		ui.teachTitle_->setText(QString("G102"));
-		break;
-	default:
-		break;
-	}
+	teachCommand_ = teachCommand;
+	ui.teachTitle_->setText(teachCommand_->teachTitle());
 	updateTeachInformation();
 }
 

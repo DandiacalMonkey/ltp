@@ -1,4 +1,7 @@
-﻿#include "teachcommand.h"
+﻿#ifndef LTP_CLIENT_TEACHCOMMANDG114_H_
+#define LTP_CLIENT_TEACHCOMMANDG114_H_
+
+#include "teachcommand.h"
 
 namespace ltp
 {
@@ -17,4 +20,4 @@ namespace ltp
 	}
 }
 
-
+#endif // !LTP_CLIENT_TEACHCOMMANDG114_H_

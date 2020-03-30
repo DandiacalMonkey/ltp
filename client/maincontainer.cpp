@@ -3,6 +3,12 @@
 #include "physicalbuttonsprocessor.h"
 #include "network.h"
 #include "machiningstates.h"
+#include "teachcommandline.h"
+#include "teachcommandg114.h"
+#include "teachcommandplanararc.h"
+#include "teachcommandspatialarc.h"
+#include "teachcommandpoint.h"
+#include "teachcommandspatialcircle.h"
 
 using ltp::client::MainContainer;
 
@@ -36,8 +42,10 @@ MainContainer::MainContainer(QWidget* parent)
 	// 编辑界面，左侧按钮切换
 	connect(ui.programEditModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgrameEditWidgetModule(int)));
 	// 示教编辑界面，左侧按钮切换
-	connect(ui.teachEditModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgramTeachEditModule(int)));
-	connect(ui.teachEditModuleButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backProgrameModule()));
+	connect(ui.teachEditModuleButtonsWidget1_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgramTeachEditModule1(int)));
+	connect(ui.teachEditModuleButtonsWidget1_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backProgrameModule()));
+	connect(ui.teachEditModuleButtonsWidget2_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgramTeachEditModule2(int)));
+	connect(ui.teachEditModuleButtonsWidget2_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backProgrameModule()));
 	// 示教编程操作界面
 	connect(ui.teachEditOperationButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(teachEditOperation(int)));
 	connect(ui.teachEditOperationButtonsWidget_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backTeachModule()));
@@ -83,7 +91,7 @@ void MainContainer::leftButtonClicked(int key)
 	}
 	else if (ui.moduleButtonsWidget_->currentIndex() == TEACHEDIT_BUTTONS_WIDGET)	// 示教编辑界面
 	{
-		onProgramTeachEditModule(key);
+		//onProgramTeachEditModule(key);
 	}
 }
 
@@ -168,13 +176,22 @@ void MainContainer::initModuleButtonsWidget()
 	ui.fileManagerModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON6, false);
 
 	// 编辑界面左侧按钮栏设置
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("G114")));
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("快速定位")));
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("直线")));
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("圆弧")));
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("空间圆弧")));
-	ui.teachEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("下一页")));
-	ui.teachEditModuleButtonsWidget_->setCheckableButton(false);
+	ui.teachEditModuleButtonsWidget1_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("G114")));
+	ui.teachEditModuleButtonsWidget1_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("快速定位")));
+	ui.teachEditModuleButtonsWidget1_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("直线")));
+	ui.teachEditModuleButtonsWidget1_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("平面圆弧")));
+	ui.teachEditModuleButtonsWidget1_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("空间圆弧")));
+	ui.teachEditModuleButtonsWidget1_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("下一页")));
+	ui.teachEditModuleButtonsWidget1_->setCheckableButton(false);
+
+	// 编辑界面左侧按钮栏设置
+	ui.teachEditModuleButtonsWidget2_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("点坐标")));
+	ui.teachEditModuleButtonsWidget2_->setCommandButtonName(base::LEFTBUTTON2, QString(tr("空间整圆")));
+	ui.teachEditModuleButtonsWidget2_->setButtonEnabled(base::LEFTBUTTON3, false);
+	ui.teachEditModuleButtonsWidget2_->setButtonEnabled(base::LEFTBUTTON4, false);
+	ui.teachEditModuleButtonsWidget2_->setButtonEnabled(base::LEFTBUTTON5, false);
+	ui.teachEditModuleButtonsWidget2_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("上一页")));
+	ui.teachEditModuleButtonsWidget2_->setCheckableButton(false);
 
 	// 设置界面左侧按钮栏设置
 	ui.setModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("连接设置")));
@@ -226,6 +243,8 @@ void MainContainer::backTeachModule()
 {
 	// 返回示教模块选择
 	onProgrameEditWidgetModule(base::LEFTBUTTON2);
+	// 切换储存的菜单
+	ui.moduleButtonsWidget_->setCurrentWidget(lastModuleButtonsWidget_);
 }
 
 void MainContainer::onProcessWidgetModule(int module)
@@ -254,7 +273,7 @@ void MainContainer::onProgrameEditWidgetModule(int module)
 		ui.moduleButtonsWidget_->setCurrentWidget(ui.programEditModuleButtonsWidget_);
 		break;
 	case base::LEFTBUTTON2:					// 示教编辑
-		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditModuleButtonsWidget_);
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditModuleButtonsWidget1_);
 		ui.programEditWidget_->onEditBarModule(module);
 		break;
 	case base::LEFTBUTTON3:					// 编辑示教
@@ -272,12 +291,67 @@ void MainContainer::onProgrameEditWidgetModule(int module)
 	}
 }
 
-void MainContainer::onProgramTeachEditModule(int module)
+void MainContainer::onProgramTeachEditModule1(int module)
 {
-	// 切换示教操控按钮
-	ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditOperationButtonsWidget_);
-	// 切换编辑模块
-	ui.programEditWidget_->onTeachEditModule(module);
+	//储存指针，用于记录返回时应返回的页面
+	lastModuleButtonsWidget_ = ui.teachEditModuleButtonsWidget1_;
+	switch (module)
+	{
+	case base::LEFTBUTTON1:						// G114
+		ui.programEditWidget_->onTeachEditModule(
+			std::shared_ptr<TeachCommand>(new TeachCommandG114()));
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditOperationButtonsWidget_);
+		break;
+	case base::LEFTBUTTON2:						// G00
+		ui.programEditWidget_->onTeachEditModule(
+			std::shared_ptr<TeachCommand>(new TeachCommandLine("G00", ":/LtpClient/image/teach_command_g00.png")));
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditOperationButtonsWidget_);
+		break;
+	case base::LEFTBUTTON3:						// G01
+		ui.programEditWidget_->onTeachEditModule(
+			std::shared_ptr<TeachCommand>(new TeachCommandLine("G01", ":/LtpClient/image/teach_command_g01.png")));
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditOperationButtonsWidget_);
+		break;
+	case base::LEFTBUTTON4:						// G02,G03
+		ui.programEditWidget_->onTeachEditModule(
+			std::shared_ptr<TeachCommand>(new TeachCommandPlanarArc()));
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditOperationButtonsWidget_);
+		break;
+	case base::LEFTBUTTON5:						// G02.4圆弧
+		ui.programEditWidget_->onTeachEditModule(
+			std::shared_ptr<TeachCommand>(new TeachCommandSpatialArc()));
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditOperationButtonsWidget_);
+		break;
+	case base::LEFTBUTTON6:						// 下一页
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditModuleButtonsWidget2_);
+		break;
+	default:
+		break;
+	}
+}
+
+void MainContainer::onProgramTeachEditModule2(int module)
+{
+	//储存指针，用于记录返回时应返回的页面
+	lastModuleButtonsWidget_ = ui.teachEditModuleButtonsWidget2_;
+	switch (module)
+	{
+	case base::LEFTBUTTON1:						// 点坐标
+		ui.programEditWidget_->onTeachEditModule(
+			std::shared_ptr<TeachCommand>(new TeachCommandPoint()));
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditOperationButtonsWidget_);
+		break;
+	case base::LEFTBUTTON2:						// 空间整圆
+		ui.programEditWidget_->onTeachEditModule(
+			std::shared_ptr<TeachCommand>(new TeachCommandSpatialCircle()));
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditOperationButtonsWidget_);
+		break;
+	case base::LEFTBUTTON6:						// 上一页
+		ui.moduleButtonsWidget_->setCurrentWidget(ui.teachEditModuleButtonsWidget1_);
+		break;
+	default:
+		break;
+	}
 }
 
 void MainContainer::onFileWidgetModule(int module)

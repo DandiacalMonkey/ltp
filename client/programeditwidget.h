@@ -7,6 +7,7 @@
 #include <QTimer>
 #include "base/globals.h"
 #include "ui_programeditwidget.h"
+#include "teachcommand.h"
 
 namespace ltp
 {
@@ -37,13 +38,13 @@ namespace ltp
 			void setRemoteFilePath(const QString& filePath);							// 设定显示的文件名
 
 		public slots:
-			void onOpenFile(QString fileName);		// 打开文件
-			void saveFile();						// 保存文件
-			void onTeachEditModule(int);			// 切换示教编辑模块
-			void modeChange();						// 切换刀尖坐标和工件坐标
-			void checkPoint();						// 记录点，确定
-			void previousPoint();					// 前一点
-			void cancelTeach();						// 取消示教
+			void onOpenFile(QString fileName);											// 打开文件
+			void saveFile();															// 保存文件
+			void onTeachEditModule(std::shared_ptr<TeachCommand> teachCommand);			// 切换示教编辑模块
+			void modeChange();															// 切换刀尖坐标和工件坐标
+			void checkPoint();															// 记录点，确定
+			void previousPoint();														// 前一点
+			void cancelTeach();															// 取消示教
 
 		signals:
 			void signalSaved(QString);
