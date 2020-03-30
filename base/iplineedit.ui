@@ -44,7 +44,7 @@
    <item>
     <widget class="QWidget" name="mainWidget_" native="true">
      <property name="styleSheet">
-      <string notr="true">QWidget#mainWidget_{background:transparent; border:1px solid #D2D2D2;}
+      <string notr="true">QWidget#mainWidget_{background:transparent; border:1px solid #D2D2D2; border-radius:2px;}
 QWidget#mainWidget_:!enabled{background:#F5F5F5;}
 QWidget:!enabled{background:#F5F5F5;}</string>
      </property>

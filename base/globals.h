@@ -111,8 +111,7 @@ namespace ltp
 		{
 			NO_ERROR,
 			WARNNING,
-			ERROR,
-			DISCONNECTED
+			ERROR
 		};
 		//轴枚举转换成轴字符
 		char axisEnumToAxisChar(Axis axisEnum);

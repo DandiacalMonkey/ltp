@@ -25,6 +25,7 @@ LtpClient::LtpClient(QWidget *parent, Qt::WFlags flags)
 	// 网络连接更新
 	connect(&base::getInstance<Network>(), SIGNAL(connected(const std::string&)), ui.titleBar_, SLOT(setConnected()));
 	connect(&base::getInstance<Network>(), SIGNAL(disconnected()), ui.titleBar_, SLOT(setDisconnected()));
+	connect(&base::getInstance<Network>(), SIGNAL(unconnected()), ui.titleBar_, SLOT(setDisconnected()));
 }
 
 LtpClient::~LtpClient()

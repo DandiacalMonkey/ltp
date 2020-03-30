@@ -24,6 +24,7 @@ namespace ltp
 			Ui::TitleBarClass ui;
 			QTimer* updateTimeTimer_;
 			void setConnectState(bool isConnect);				// 设置连接状态
+			base::ErrorLevel lastErrorState_;					// 最后报错状态记录
 
 		private slots:
 			void updateTime();									// 更新时间

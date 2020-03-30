@@ -58,12 +58,6 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonMinusPress(int)), this, SLOT(minusButtonClicked(int)));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonPlusRealease(int)), this, SLOT(plusButtonRealeased(int)));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonMinusRealease(int)), this, SLOT(minusButtonRealeased(int)));
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStart()), this, SLOT(startButtonClicked()));
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStop()), this, SLOT(stopButtonClicked()));
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonReset()), this, SLOT(resetButtonClicked()));
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStartRealease()), this, SLOT(startButtonRealeased()));
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonStopRealease()), this, SLOT(stopButtonRealeased()));
-	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonResetRealease()), this, SLOT(resetButtonRealeased()));
 }
 
 SelectAxisBar::~SelectAxisBar()
@@ -77,6 +71,7 @@ void SelectAxisBar::plusButtonClicked(int key)
 	if (key - base::RIGHTBUTTON1 < base::getInstance<MachiningStates>().validAxes().size())
 	{
 		base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
+		axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
 	}
 }
 
@@ -86,6 +81,7 @@ void SelectAxisBar::minusButtonClicked(int key)
 	if (key - base::RIGHTBUTTON1 < base::getInstance<MachiningStates>().validAxes().size())
 	{
 		base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
+		axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
 	}
 }
 
@@ -93,48 +89,16 @@ void SelectAxisBar::plusButtonRealeased(int key)
 {
 	// jog+按钮松开，将plc移轴位置0
 	base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 0);
-}
+	// 清空选中状态
+	clearAllChecked();
+} 
 
 void SelectAxisBar::minusButtonRealeased(int key)
 {
 	// jog-按钮松开，将plc移轴位置0
 	base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 0);
-}
-
-void SelectAxisBar::startButtonClicked()
-{
-	// 启动按钮按下
-	base::getInstance<Network>().setPlcVariable(rmi::G_CYCLESTART, 1);
-}
-
-void SelectAxisBar::startButtonRealeased()
-{
-	// 启动按钮松开
-	base::getInstance<Network>().setPlcVariable(rmi::G_CYCLESTART, 0);
-}
-
-void SelectAxisBar::stopButtonClicked()
-{
-	// 停止按钮按下
-	base::getInstance<Network>().setPlcVariable(rmi::G_PROGSTOP, 1);
-}
-
-void SelectAxisBar::stopButtonRealeased()
-{
-	// 停止按钮松开
-	base::getInstance<Network>().setPlcVariable(rmi::G_PROGSTOP, 0);
-}
-
-void SelectAxisBar::resetButtonClicked()
-{
-	// 重置按钮按下
-	base::getInstance<Network>().setPlcVariable(rmi::G_FRESET, 1);
-}
-
-void SelectAxisBar::resetButtonRealeased()
-{
-	// 重置按钮松开
-	base::getInstance<Network>().setPlcVariable(rmi::G_FRESET, 0);
+	// 清空选中状态
+	clearAllChecked();
 }
 
 void SelectAxisBar::setValidAxes(const std::vector<ltp::base::Axis> validAxes)
@@ -186,9 +150,9 @@ void SelectAxisBar::updateInformation()
 		for (auto it = buttonsAxisEnumMap_.begin(); it != buttonsAxisEnumMap_.end(); ++it)
 		{
 			//有效轴设置可点按
-			it->first->setEnabled(true);
+			//it->first->setEnabled(true);
 			//清空选中状态
-			it->first->setChecked(false);
+			//it->first->setChecked(false);
 		}
 		ui.modeLabel_->setText(tr("JOG"));
 		//jog倍率显示
@@ -207,5 +171,14 @@ void SelectAxisBar::updateInformation()
 		}
 		ui.modeLabel_->setText("");
 		ui.overrideLabel_->setText("");
+	}
+}
+
+void SelectAxisBar::clearAllChecked()
+{
+	for (auto it = buttonsAxisEnumMap_.begin(); it != buttonsAxisEnumMap_.end(); ++it)
+	{
+		//清空选中状态
+		it->first->setChecked(false);
 	}
 }

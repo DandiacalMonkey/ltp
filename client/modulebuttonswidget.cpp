@@ -144,3 +144,13 @@ void ModuleButtonsWidget::setCheckableButton(bool checked)
 	ui.moduleButton6_->setCheckable(checked);
 	ui.returnButton_->setCheckable(checked);
 }
+
+void ModuleButtonsWidget::setButtonClicked(int id)
+{
+	emit signalButtonClicked(id);
+}
+
+void ModuleButtonsWidget::setReturnButtonClicked()
+{
+	emit signalReturnButtonClicked();
+}

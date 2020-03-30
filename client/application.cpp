@@ -11,7 +11,7 @@ using ltp::client::Application;
 Application::Application(int& argc, char** argv)
 	:QApplication(argc, argv)
 {
-	currentWidget_ = nullptr;			//当前鼠标点击的对象
+	
 }
 
 bool Application::notify(QObject* receiver, QEvent* event)
@@ -22,8 +22,9 @@ bool Application::notify(QObject* receiver, QEvent* event)
 		QKeyEvent* keyEvent = dynamic_cast<QKeyEvent*>(event);		// 转换为键盘事件
 		if (keyEvent->modifiers() == Qt::ControlModifier)
 		{	
-			// 检测输入键值是否为外设键值
-			if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsPressProcessor(keyEvent))
+			// 检测输入键值是否为外设键值, 且屏蔽Qt长按的重复按下事件
+			if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsPressProcessor(keyEvent) &&
+				!keyEvent->isAutoRepeat())
 			{
 				// 执行外设键值对应的函数，发出外设按键信号
 				base::getInstance<PhysicalButtonsProcessor>().getMapPressFunction(keyEvent);
@@ -36,8 +37,9 @@ bool Application::notify(QObject* receiver, QEvent* event)
 		QKeyEvent* keyEvent = dynamic_cast<QKeyEvent*>(event);		// 转换为键盘事件
 		if (keyEvent->modifiers() == Qt::ControlModifier)
 		{	
-			// 检测输入键值是否为外设键值
-			if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsRealeaseProcessor(keyEvent))
+			// 检测输入键值是否为外设键值, 且屏蔽Qt长按的重复松开事件
+			if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsRealeaseProcessor(keyEvent) &&
+				!keyEvent->isAutoRepeat())
 			{
 				// 执行外设键值对应的函数，发出外设按键信号
 				base::getInstance<PhysicalButtonsProcessor>().getMapRealeaseFunction(keyEvent);
@@ -57,8 +59,6 @@ bool Application::notify(QObject* receiver, QEvent* event)
 		{			
 			if (nowWidget->inherits("QLineEdit"))				// 当前焦点为QLineEdit，显示虚拟键盘
 			{
-				currentEditType_ = "QLineEdit";
-				currentWidget_ = nowWidget;
 				base::getInstance<base::KeyBoardDialog>().show();
 				base::getInstance<base::KeyBoardDialog>().raise();
 			}
@@ -80,8 +80,6 @@ bool Application::notify(QObject* receiver, QEvent* event)
 			}*/
 			else												// 非输入框焦点，隐藏虚拟键盘
 			{
-				currentWidget_ = nullptr;
-				currentEditType_ = "";
 				base::getInstance<base::KeyBoardDialog>().hide();
 			}
 		}

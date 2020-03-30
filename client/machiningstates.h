@@ -112,6 +112,13 @@ namespace ltp
 			void modeChanged(int);
 			// 倍率变化
 			void rateChanged(int);
+			// 右侧按钮start,stop,reset
+			void startButtonClicked();
+			void stopButtonClicked();
+			void resetButtonClicked();
+			void startButtonRealeased();
+			void stopButtonRealeased();
+			void resetButtonRealeased();
 		};
 	}
 }
