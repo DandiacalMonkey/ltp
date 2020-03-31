@@ -33,12 +33,10 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 			[this, x]()
 			{
 				base::getInstance<base::SystemVariables<RemoteVariables>>().
-					setPlcVariable(rmi::G_AXIS, buttonsAxisEnumMap_.at(x) + 1);
+					setPlcVariable(rmi::G_HWAXIS, buttonsAxisEnumMap_.at(x) + 1);
 			}, checkDelay,
 			[this]()
 			{
-				base::getInstance<base::SystemVariables<RemoteVariables>>().
-					setPlcVariable(rmi::G_AXIS, 0);
 				updateInformation();
 			});
 	}
@@ -126,7 +124,7 @@ void SelectAxisBar::updateInformation()
 	if (machiningStates.mode() == base::HANDLE)
 	{
 		//当前选中轴的轴地址
-		auto remoteSelectedAxis = systemVariables.plcVariable(rmi::F_AXIS);
+		auto remoteSelectedAxis = systemVariables.plcVariable(rmi::F_HWAXIS);
 		for (auto it = buttonsAxisEnumMap_.begin(); it != buttonsAxisEnumMap_.end(); ++it)
 		{
 			//有效轴设置可点按
