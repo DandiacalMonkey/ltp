@@ -30,7 +30,7 @@ void ProgressDialog::moveDialog(QPoint point)
 void ProgressDialog::closeWindow()
 {
 	// 关闭窗口
-	this->close();
+	this->reject();
 	emit siganlCancel();
 }
 

@@ -86,7 +86,7 @@ bool TextEdit::save()
 	if(!file.open(QFile::WriteOnly | QFile::Text))			// 打开权限
 	{
 		// error报警：无法读取文件
-		emit signalTips(QString(tr("错误：无法读取文件")));
+		emit signalTips(QString(tr("错误：无法写入文件")));
 		return false;
 	}
 
@@ -152,7 +152,7 @@ bool TextEdit::loadFile(const QString& filePath)
 	if(!file.open(QFile::ReadOnly | QFile::Text))
 	{
 		// error报警：无法读取文件
-		emit signalTips(QString(tr("错误：无法读取文件%1").arg(filePath)));
+		emit signalTips(QString(tr("错误：无法读取文件")));
 		return false;
 	}
 
@@ -182,7 +182,7 @@ void TextEdit::openFile(const QString& openFileName)
 	if (openFileName.isNull() || openFileName.isEmpty())		// 文件名是空
 	{
 		//error报警:未能打开文件
-		emit signalTips(QString(tr("错误：未能打开文件%1").arg(openFileName)));
+		emit signalTips(QString(tr("错误：未能打开文件")));
 		return;
 	}
 

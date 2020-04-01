@@ -141,4 +141,6 @@ void FtpTransmissionManager::cancelDownload()
 		file_->close();
 		file_->remove();
 	}
+	//取消下载会导致无法再次下载文件，用重连解决
+	connect(ip_);
 }

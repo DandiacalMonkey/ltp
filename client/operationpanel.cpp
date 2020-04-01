@@ -24,6 +24,9 @@ OperationPanel::OperationPanel(QWidget *parent)
 	ui.skip_->setButtonPicture((":/LtpClient/image/skip_rest.png"), (":/LtpClient/image/skip_pressed.png"),
 							   (":/LtpClient/image/skip_pressed.png"), (":/LtpClient/image/skip_pressed.png"));
 	ui.skip_->setText(tr("跳  过"));
+	ui.wAxis_->setButtonPicture((":/LtpClient/image/w_axis_rest.png"), (":/LtpClient/image/w_axis_pressed.png"),
+							   (":/LtpClient/image/w_axis_pressed.png"), (":/LtpClient/image/w_axis_pressed.png"));
+	ui.wAxis_->setText(tr("W轴"));
 	// 进给倍率修改间隔，1档
 	ui.speedFButton_->setIntervalValue(1);
 	ui.speedFButton_->setRange(0, 31);
@@ -112,6 +115,32 @@ OperationPanel::OperationPanel(QWidget *parent)
 			else
 			{
 				base::getInstance<HintWidgetProxy<HintBar>>().setHint("跳过设定失败");
+			}
+		});
+	// W轴按钮
+	auto wAxis = ui.wAxis_;
+	static unsigned long wAxisValue;
+	ui.wAxis_->setCheckFunction(
+		[wAxis]()
+		{
+			wAxis->setChecked(base::getInstance<Network>().plcVariable(rmi::F_WAXIS) == 1);
+		}, kAutoUpdateInterval);
+	ui.wAxis_->setClickDelayCheck(
+		[wAxis]()
+		{
+			wAxisValue = base::getInstance<Network>().plcVariable(rmi::F_WAXIS);
+			base::getInstance<Network>().setPlcVariable(rmi::G_WAXIS, 1);
+		}, kInitaltiveUpdateInterval,
+		[wAxis]()
+		{
+			base::getInstance<Network>().setPlcVariable(rmi::G_WAXIS, 0);
+			if (base::getInstance<Network>().plcVariable(rmi::F_WAXIS) != wAxisValue)
+			{
+				wAxis->setChecked(wAxisValue == 0);
+			}
+			else
+			{
+				base::getInstance<HintWidgetProxy<HintBar>>().setHint("W轴设定失败");
 			}
 		});
 }

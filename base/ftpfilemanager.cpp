@@ -126,8 +126,11 @@ void FtpFileManager::openItem(QTableWidgetItem* tableItem)
 	else
 	{
 		lastOpenedRemoteFilePath_ = currentPath_ + "/" + name;
-		ftpTransmissionManager_.downloadFile(lastOpenedRemoteFilePath_, editTemporaryFilePath_);
-		emit openFtpFile(editTemporaryFilePath_, lastOpenedRemoteFilePath_);
+		//下载成功时，执行文件打开
+		if (ftpTransmissionManager_.downloadFile(lastOpenedRemoteFilePath_, editTemporaryFilePath_))
+		{
+			emit openFtpFile(editTemporaryFilePath_, lastOpenedRemoteFilePath_);
+		}
 	}
 }
 
