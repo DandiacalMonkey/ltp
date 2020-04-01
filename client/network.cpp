@@ -14,6 +14,10 @@ void ltp::client::Network::connect()
 		connectState_ = CONNECTED;
 		emit connected(host_);
 	}
+	else
+	{
+		emit unconnected();
+	}
 }
 
 void ltp::client::Network::disconnect()

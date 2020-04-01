@@ -61,7 +61,7 @@
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
 QPushButton:checked{background:#0064C8;color:white;}
-
+QPushButton:pressed{background:#0080FF;color:white;}
 
 </string>
        </property>
@@ -89,7 +89,8 @@ QPushButton:checked{background:#0064C8;color:white;}
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;color:white;}</string>
+QPushButton:checked{background:#0064C8;color:white;}
+QPushButton:pressed{background:#0080FF;color:white;}</string>
        </property>
        <property name="text">
         <string/>
@@ -115,7 +116,8 @@ QPushButton:checked{background:#0064C8;color:white;}</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;color:white;}</string>
+QPushButton:checked{background:#0064C8;color:white;}
+QPushButton:pressed{background:#0080FF;color:white;}</string>
        </property>
        <property name="text">
         <string/>
@@ -141,7 +143,8 @@ QPushButton:checked{background:#0064C8;color:white;}</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;color:white;}</string>
+QPushButton:checked{background:#0064C8;color:white;}
+QPushButton:pressed{background:#0080FF;color:white;}</string>
        </property>
        <property name="text">
         <string/>
@@ -173,7 +176,8 @@ QPushButton:checked{background:#0064C8;color:white;}</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;color:white;}</string>
+QPushButton:checked{background:#0064C8;color:white;}
+QPushButton:pressed{background:#0080FF;color:white;}</string>
        </property>
        <property name="text">
         <string/>
@@ -184,7 +188,7 @@ QPushButton:checked{background:#0064C8;color:white;}</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="axisButton6_">
+      <widget class="ltp::base::ClickDelayCheckButton" name="axisButton6_">
        <property name="minimumSize">
         <size>
          <width>40</width>
@@ -199,7 +203,8 @@ QPushButton:checked{background:#0064C8;color:white;}</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{background:transparent;border:0px;font:22px Arial;}
-QPushButton:checked{background:#0064C8;color:white;}</string>
+QPushButton:checked{background:#0064C8;color:white;}
+QPushButton:pressed{background:#0080FF;color:white;}</string>
        </property>
        <property name="text">
         <string/>

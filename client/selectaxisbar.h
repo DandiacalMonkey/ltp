@@ -25,14 +25,12 @@ namespace ltp
 
 		private:
 			//最大显示的进给轴数量
-			static const int kMaxFeedAxes = 5;
+			static const int kMaxFeedAxes = 6;
 			Ui::SelectAxisBarClass ui;
 			//储存进给轴按钮
 			std::array<base::ClickDelayCheckButton*, kMaxFeedAxes> axisButtons_;
 			//按钮到轴枚举的映射
 			std::unordered_map<base::ClickDelayCheckButton*, base::Axis> buttonsAxisEnumMap_;
-			//法向轴按钮
-			QPushButton* normalDirectionAxisButton_;
 			//刷新状态定时器
 			QTimer timer;
 		private slots:

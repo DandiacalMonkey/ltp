@@ -18,8 +18,7 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 	axisButtons_[2] = ui.axisButton3_;
 	axisButtons_[3] = ui.axisButton4_;
 	axisButtons_[4] = ui.axisButton5_;
-	//法向轴
-	normalDirectionAxisButton_ = ui.axisButton6_;
+	axisButtons_[5] = ui.axisButton6_;
 	//按钮初始化
 	const int checkDelay = 50;
 	for (int i = 0; i < axisButtons_.size(); ++i)
@@ -40,7 +39,6 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 				updateInformation();
 			});
 	}
-	normalDirectionAxisButton_->setEnabled(false);
 	//设定有效轴
 	connect(&base::getInstance<MachiningStates>(),
 		SIGNAL(validAxesChanged(const std::vector<base::Axis>&)),
@@ -131,8 +129,8 @@ void SelectAxisBar::updateInformation()
 			it->first->setEnabled(true);
 			//清空选中状态
 			it->first->setChecked(false);
-			//选中当前轴
-			if (it->second + 1 == remoteSelectedAxis)
+			//选中当前轴，W虚拟轴开启时不选中
+			if (it->second + 1 == remoteSelectedAxis && systemVariables.plcVariable(rmi::F_WAXIS) == 0)
 			{
 				it->first->setChecked(true);
 			}
