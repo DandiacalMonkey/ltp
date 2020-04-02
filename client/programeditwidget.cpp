@@ -108,7 +108,7 @@ void ProgramEditWidget::onTimer()
 	auto workpieceCoord = base::getInstance<base::SystemVariables<RemoteVariables>>().teachPosition(1);
 	// 上一点坐标
 	auto previousPoint = teachCommand_->previousPointPosition();
-	for (int i = 0; i < axisInformationArray_.size(); i++)
+	for (size_t i = 0; i < axisInformationArray_.size(); i++)
 	{
 		axisInformationArray_[i].workpieceCoordinateSymbol_->setText((workpieceCoord[i] >= 0) ? "+" : "-");
 		axisInformationArray_[i].workpieceCoordinateValue_->setText(QString::number(fabs(workpieceCoord[i]), 'f', 3));
@@ -178,7 +178,7 @@ void ProgramEditWidget::setValidAxes(const std::vector<ltp::base::Axis> &validAx
 	// 有效轴变化时，先隐藏
 	hideAxisInformation();
 	// 对系统轴信息进行显示
-	for (int i = 0; i < validAxes.size(); ++i)
+	for (size_t i = 0; i < validAxes.size(); ++i)
 	{
 		axisInformationArray_[validAxes[i]].axisName_->show();
 		axisInformationArray_[validAxes[i]].workpieceCoordinateSymbol_->show();

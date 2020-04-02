@@ -68,7 +68,7 @@ bool ltp::client::TeachCommandSpatialArc::checkPoint() throw(RepeatPointExceptio
 		assert(false);
 		break;
 	}
-	return points_.size() == kPointNumber_;
+	return static_cast<int>(points_.size()) == kPointNumber_;
 }
 
 bool ltp::client::TeachCommandSpatialArc::hasPreviousPoint() const
@@ -78,15 +78,12 @@ bool ltp::client::TeachCommandSpatialArc::hasPreviousPoint() const
 
 QString ltp::client::TeachCommandSpatialArc::getCommand() const
 {
-	
-	//中间点
-	auto inArc = base::Math::makePoint<base::Math::Point3D>(points_[1].begin());
 	//生成结果
 	QString result = "G02.4";
 	//终点
-	auto end = base::Math::makePoint<base::Math::Point3D>(points_[2].begin());
 	result += generateCommand(base::getInstance<MachiningStates>().validAxes(),
 		points_[2], base::axisEnumToAxisChar);
+	//中间点
 	result += generateCommand(base::getInstance<MachiningStates>().validAxes(),
 		points_[1], base::axisEnumToArcChar);
 	return result;

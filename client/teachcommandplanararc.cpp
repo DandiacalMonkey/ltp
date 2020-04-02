@@ -75,7 +75,7 @@ bool TeachCommandPlanarArc::checkPoint() throw(RepeatPointException, PlaneError,
 		assert(false);
 		break;
 	}
-	return points_.size() == kPointNumber_;
+	return static_cast<int>(points_.size()) == kPointNumber_;
 }
 
 bool TeachCommandPlanarArc::hasPreviousPoint() const

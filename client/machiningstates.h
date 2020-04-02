@@ -85,7 +85,7 @@ namespace ltp
 			//当前加载文件名
 			QString machiningFilePath_;
 			//当前加载文件在控制器上的最后修改时间
-			unsigned long machiningFileLastModifiedTime_;
+			int machiningFileLastModifiedTime_;
 			//当前加载文件的本地文件名
 			const QString localMachiningFilePath_;
 			//上传和下载文件

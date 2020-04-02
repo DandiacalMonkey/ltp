@@ -104,7 +104,7 @@ bool TextEdit::save()
 
 void TextEdit::saveAs(const QString& filePath)
 {
-
+	Q_UNUSED(filePath);
 }
 
 void TextEdit::removeLine()

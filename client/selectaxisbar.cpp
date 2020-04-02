@@ -21,7 +21,7 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 	axisButtons_[5] = ui.axisButton6_;
 	//按钮初始化
 	const int checkDelay = 50;
-	for (int i = 0; i < axisButtons_.size(); ++i)
+	for (size_t i = 0; i < axisButtons_.size(); ++i)
 	{
 		auto x = axisButtons_.at(i);
 		//默认为disable
@@ -64,7 +64,7 @@ SelectAxisBar::~SelectAxisBar()
 void SelectAxisBar::plusButtonClicked(int key)
 {
 	// 轴选jog+，按键在显示轴范围内有对应，将相应plc置位
-	if (key - base::RIGHTBUTTON1 < base::getInstance<MachiningStates>().validAxes().size())
+	if (key - base::RIGHTBUTTON1 < static_cast<int>(base::getInstance<MachiningStates>().validAxes().size()))
 	{
 		base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
 		axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
@@ -74,7 +74,7 @@ void SelectAxisBar::plusButtonClicked(int key)
 void SelectAxisBar::minusButtonClicked(int key)
 {
 	// 轴选jog-，按键在显示轴范围内有对应，将相应plc置位
-	if (key - base::RIGHTBUTTON1 < base::getInstance<MachiningStates>().validAxes().size())
+	if (key - base::RIGHTBUTTON1 < static_cast<int>(base::getInstance<MachiningStates>().validAxes().size()))
 	{
 		base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
 		axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
@@ -83,6 +83,7 @@ void SelectAxisBar::minusButtonClicked(int key)
 
 void SelectAxisBar::plusButtonRealeased(int key)
 {
+	Q_UNUSED(key);
 	// jog+按钮松开，将plc移轴位置0
 	base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 0);
 	// 清空选中状态
@@ -91,6 +92,7 @@ void SelectAxisBar::plusButtonRealeased(int key)
 
 void SelectAxisBar::minusButtonRealeased(int key)
 {
+	Q_UNUSED(key);
 	// jog-按钮松开，将plc移轴位置0
 	base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 0);
 	// 清空选中状态
@@ -100,13 +102,13 @@ void SelectAxisBar::minusButtonRealeased(int key)
 void SelectAxisBar::setValidAxes(const std::vector<ltp::base::Axis> validAxes)
 {
 	//先将所有按钮无效化
-	for (int i = 0; i < axisButtons_.size(); ++i)
+	for (size_t i = 0; i < axisButtons_.size(); ++i)
 	{
 		axisButtons_[i]->setEnabled(false);
 	}
 	//清空映射内容，需要重建
 	buttonsAxisEnumMap_.clear();
-	for (int i = 0; i < kMaxFeedAxes && i < validAxes.size(); i++)
+	for (int i = 0; i < kMaxFeedAxes && i < static_cast<int>(validAxes.size()); i++)
 	{
 		axisButtons_[i]->setText(QChar(base::axisEnumToAxisChar(validAxes[i])));
 		buttonsAxisEnumMap_[axisButtons_[i]] = validAxes[i];
@@ -130,7 +132,7 @@ void SelectAxisBar::updateInformation()
 			//清空选中状态
 			it->first->setChecked(false);
 			//选中当前轴，W虚拟轴开启时不选中
-			if (it->second + 1 == remoteSelectedAxis && systemVariables.plcVariable(rmi::F_WAXIS) == 0)
+			if (it->second + 1 == static_cast<int>(remoteSelectedAxis) && systemVariables.plcVariable(rmi::F_WAXIS) == 0)
 			{
 				it->first->setChecked(true);
 			}

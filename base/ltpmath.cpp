@@ -5,7 +5,7 @@ using namespace ltp::base::Math;
 double ltp::base::Math::operator*(const Point3D& point1, const Point3D& point2)
 {
 	double result = 0;
-	for (int i = 0; i < point1.size(); i++)
+	for (size_t i = 0; i < point1.size(); i++)
 	{
 		result += point1[i] * point2[i];
 	}
@@ -26,13 +26,13 @@ Plane ltp::base::Math::pointsPlane(const std::vector<Point3D>& points, double to
 	{
 		return NONE_PLANE;
 	}
-	for (int axis = 0; axis < points[0].size(); axis++)
+	for (size_t axis = 0; axis < points[0].size(); axis++)
 	{
 		bool ok = true;
 		//两两计算平面，确定是否同一平面
-		for (int i = 0; i < points.size(); i++)
+		for (size_t i = 0; i < points.size(); i++)
 		{
-			for (int j = i + 1; j < points.size(); j++)
+			for (size_t j = i + 1; j < points.size(); j++)
 			{
 				if (std::abs(points[i][axis] - points[j][axis]) > tolerance)
 				{
@@ -73,15 +73,33 @@ bool ltp::base::Math::isCollinear(const std::vector<Point3D>& points, double tol
 	}
 	//构造点1点2直线
 	base::Math::Line<Point3D> line = { makePoint<Point3D>(points[0].begin()), makePoint<Point3D>(points[1].begin()) };
-	for (int i = 2; i < points.size(); i++)
+	for (size_t i = 2; i < points.size(); i++)
 	{
 		base::Math::Line<Point3D> tempLine = { makePoint<Point3D>(points[0].begin()), makePoint<Point3D>(points[i].begin()) };
 		double dotValue = line.normalize() * tempLine.normalize();
-		if (!(std::abs(dotValue) > 1 - base::Math::kDistanceTolerance_ && 
-			std::abs(dotValue) < 1 + base::Math::kDistanceTolerance_))
+		if (!(std::abs(dotValue) > 1 - tolerance &&
+			std::abs(dotValue) < 1 + tolerance))
 		{
 			return false;
 		}
 	}
 	return true;
+}
+
+template<>
+Point2D Arc<Point2D>::calculateCenter(const Point2D& start, const Point2D& inArc, const Point2D& end)
+{
+	Point2D::value_type a = 2 * (inArc[0] - start[0]);
+	Point2D::value_type b = 2 * (inArc[1] - start[1]);
+	Point2D::value_type c = inArc[0] * inArc[0] + inArc[1] * inArc[1] - start[0] * start[0] - start[1] * start[1];
+	Point2D::value_type d = 2 * (end[0] - inArc[0]);
+	Point2D::value_type e = 2 * (end[1] - inArc[1]);
+	Point2D::value_type f = end[0] * end[0] + end[1] * end[1] - inArc[0] * inArc[0] - inArc[1] * inArc[1];
+	//除数不为0
+	if (std::abs(b * d - e * a) < kPrecision)
+	{
+		throw std::runtime_error("can not calculate center");
+	}
+	Point2D center = { (b * f - e * c) / (b * d - e * a), (d * c - a * f) / (b * d - e * a) };
+	return center;
 }

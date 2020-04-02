@@ -32,9 +32,3 @@ LtpClient::~LtpClient()
 {
 
 }
-
-void LtpClient::setErrorText(std::vector<std::string> errorMessages)
-{
-	// 显示保存信息
-	//ui.titleBar_->setErrorMessages(errorMessages);
-}

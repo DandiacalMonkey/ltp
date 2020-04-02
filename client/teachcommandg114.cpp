@@ -30,7 +30,7 @@ bool TeachCommandG114::checkPoint() throw(RepeatPointException)
 		throw RepeatPointException();
 	}
 	points_.push_back(systemVariables_.teachPosition(1));
-	return points_.size() == kPointNumber_;
+	return static_cast<int>(points_.size()) == kPointNumber_;
 }
 
 bool TeachCommandG114::hasPreviousPoint() const
@@ -42,7 +42,7 @@ QString TeachCommandG114::getCommand() const
 {
 	QString result;
 	result += "G114 ";
-	for (int i = 0; i < points_.size(); i++)
+	for (size_t i = 0; i < points_.size(); i++)
 	{
 		result += QString("P%0 ").arg(i + 1);
 		result += generateCommand(base::getInstance<MachiningStates>().validAxes(), 

@@ -44,7 +44,7 @@ bool ltp::client::TeachCommand::changeMode() throw (ChangeTeachModeFail, CannotC
 
 bool ltp::client::TeachCommand::isLastPoint() const
 {
-	return points_.size() == kPointNumber_ - 1;
+	return static_cast<int>(points_.size()) == kPointNumber_ - 1;
 }
 
 TeachCommand::Point TeachCommand::previousPointPosition() const
@@ -63,12 +63,11 @@ TeachCommand::Point TeachCommand::previousPointPosition() const
 	}
 }
 
-QString ltp::client::TeachCommand::generateCommand(const std::vector<base::Axis> axes, 
+QString ltp::client::TeachCommand::generateCommand(const std::vector<base::Axis>& axes, 
 	const Point& point, const std::function<char(base::Axis)>& axisEnumToChar, int precision) const
 {
 	QString result;
-	double tolerance = std::pow(1.0, -precision);
-	for (int i = 0; i < axes.size(); i++)
+	for (size_t i = 0; i < axes.size(); i++)
 	{
 		result += axisEnumToChar(axes[i]);
 		result += QString::number(point[i], 'f', precision);
@@ -83,13 +82,13 @@ QString ltp::client::TeachCommand::generateCommand(const std::vector<base::Axis>
 	return result;
 }
 
-QString ltp::client::TeachCommand::generateCommand(const std::vector<base::Axis> axes,
+QString ltp::client::TeachCommand::generateCommand(const std::vector<base::Axis>& axes,
 	const base::Math::Line<Point>& line, const std::function<char(base::Axis)>& axisEnumToChar,
 	int precision) const
 {
 	QString result;
 	double tolerance = std::pow(1.0, -precision);
-	for (int i = 0; i < axes.size(); i++)
+	for (size_t i = 0; i < axes.size(); i++)
 	{
 		if (std::fabs(line.start[i] - line.end[i]) >= tolerance)
 		{
@@ -110,7 +109,7 @@ QString ltp::client::TeachCommand::generateCommand(const std::vector<base::Axis>
 bool TeachCommand::hasSamePoint(Point point, int start, int end)
 {
 	//输入点和当前所有点对比，确认是否有重复
-	for (int i = 0; i < points_.size(); i++)
+	for (size_t i = 0; i < points_.size(); i++)
 	{
 		if (base::Math::isSamePoint(points_[i].begin() + start, points_[i].begin() + end, point.begin() + start))
 		{
@@ -123,7 +122,7 @@ bool TeachCommand::hasSamePoint(Point point, int start, int end)
 bool ltp::client::TeachCommand::isCoordinateChanged(Point point, int start, int end)
 {
 	//输入点和当前所有点对比，确认是否坐标有变化
-	for (int i = 0; i < points_.size(); i++)
+	for (size_t i = 0; i < points_.size(); i++)
 	{
 		if (base::Math::isSamePoint(points_[i].begin() + start, points_[i].begin() + end, point.begin() + start) == false)
 		{

@@ -5,8 +5,8 @@
 using ltp::client::TeachCommandLine;
 
 TeachCommandLine::TeachCommandLine(const QString& command, const QString& schematicDiagramPath)
-	: kCommand_(command), 
-	  TeachCommand(command, 2)
+	: TeachCommand(command, 2), 
+	  kCommand_(command)
 {
 	//图例
 	schematicDiagramsPath_.push_back("");
@@ -31,7 +31,7 @@ bool TeachCommandLine::checkPoint() throw (RepeatPointException)
 		throw RepeatPointException();
 	}
 	points_.push_back(currentPosition);
-	return points_.size() == kPointNumber_;
+	return static_cast<int>(points_.size()) == kPointNumber_;
 }
 
 bool TeachCommandLine::hasPreviousPoint() const

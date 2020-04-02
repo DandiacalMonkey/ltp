@@ -349,13 +349,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\base\ltpmath.h" />
-    <ClInclude Include="teachcommand.h" />
-    <ClInclude Include="teachcommandg114.h" />
-    <ClInclude Include="teachcommandline.h" />
-    <ClInclude Include="teachcommandplanararc.h" />
-    <ClInclude Include="teachcommandpoint.h" />
-    <ClInclude Include="teachcommandspatialarc.h" />
-    <ClInclude Include="teachcommandspatialcircle.h" />
     <CustomBuild Include="setwidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing setwidget.h...</Message>

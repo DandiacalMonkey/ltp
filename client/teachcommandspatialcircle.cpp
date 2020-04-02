@@ -58,7 +58,7 @@ bool ltp::client::TeachCommandSpatialCircle::checkPoint() throw(RepeatPointExcep
 		assert(false);
 		break;
 	}
-	return points_.size() == kPointNumber_;
+	return static_cast<int>(points_.size()) == kPointNumber_;
 }
 
 QString ltp::client::TeachCommandSpatialCircle::getCommand() const

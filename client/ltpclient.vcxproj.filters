@@ -326,31 +326,31 @@
     <ClCompile Include="GeneratedFiles\Release\moc_keyboarddialog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="teachcommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="teachcommandline.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\base\ltpmath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\base\globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="teachcommandg114.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="teachcommandplanararc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="teachcommandspatialarc.cpp">
+    <ClCompile Include="teachcommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="teachcommandspatialcircle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="teachcommandg114.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="teachcommandline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="teachcommandplanararc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="teachcommandpoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="teachcommandspatialarc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -585,28 +585,7 @@
     <ClInclude Include="GeneratedFiles\ui_keyboarddialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="teachcommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="teachcommandline.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\base\ltpmath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="teachcommandg114.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="teachcommandplanararc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="teachcommandspatialarc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="teachcommandspatialcircle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="teachcommandpoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

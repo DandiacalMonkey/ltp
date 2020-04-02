@@ -20,8 +20,6 @@ public:
 private:
 	Ui::LtpClientClass ui;
 
-private slots:
-	void setErrorText(std::vector<std::string>);
 };
 }
 }

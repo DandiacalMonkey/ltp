@@ -122,7 +122,7 @@ void AxesInformation::hideAll()
 void AxesInformation::setValidAxes(const std::vector<ltp::base::Axis> &validAxes)
 {
 	hideAll();			// 隐藏全部控件
-	for (int i = 0; i < validAxes.size(); ++i)			// 对系统轴信息进行显示
+	for (size_t i = 0; i < validAxes.size(); ++i)			// 对系统轴信息进行显示
 	{
 		if (validAxes.at(i) == ltp::base::X_AXIS)
 		{

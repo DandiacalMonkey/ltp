@@ -20,9 +20,13 @@ QMAKE_LINK = arm-linux-gnueabihf-gcc
 QMAKE_AR = arm-linux-gnueabihf-ar
 QMAKE_STRIP = arm-linux-gnueabihf-strip
 QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CXXFLAGS += -Wno-literal-suffix
+QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
+QMAKE_CXXFLAGS += -Wall
+QMAKE_CXXFLAGS += -Werror
 MOC_DIR += ./GeneratedFiles/debug
 OBJECTS_DIR += debug
 UI_DIR += ./GeneratedFiles
 RCC_DIR += ./GeneratedFiles
-LIBS += -L. -lstdc++ -lRemoteComm
+LIBS += -L. -lstdc++ -lRemoteComm -lm
 include(ltpclient.pri)

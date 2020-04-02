@@ -74,10 +74,10 @@ namespace ltp
 			//示教上一点坐标
 			virtual Point previousPointPosition() const;
 			//将输入的轴和坐标转换为指令
-			QString generateCommand(const std::vector<base::Axis> axes,
+			QString generateCommand(const std::vector<base::Axis>& axes,
 				const Point& point, const std::function<char(base::Axis)>& axisEnumToChar, 
 				int precision = kPrecision_) const;
-			QString generateCommand(const std::vector<base::Axis> axes, 
+			QString generateCommand(const std::vector<base::Axis>& axes, 
 				const base::Math::Line<Point>& line, 
 				const std::function<char (base::Axis)>& axisEnumToChar,
 				int precision = kPrecision_) const;

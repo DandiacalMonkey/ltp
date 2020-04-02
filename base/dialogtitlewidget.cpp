@@ -30,12 +30,14 @@ void DialogTitleWidget::mousePressEvent(QMouseEvent *event)
 		isMoveFlag_ = true;
 		mousePressPos_ = event->globalPos();
 	}
+	return QWidget::mousePressEvent(event);
 }
 
 void DialogTitleWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	// 鼠标松开代表停止移动
 	isMoveFlag_ = false;
+	return QWidget::mouseReleaseEvent(event);
 }
 
 void DialogTitleWidget::mouseMoveEvent(QMouseEvent *event)

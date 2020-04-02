@@ -21,7 +21,7 @@ bool TeachCommandPoint::checkPoint()
 	// 当前位置
 	auto currentPosition = systemVariables_.teachPosition(1);
 	points_.push_back(currentPosition);
-	return points_.size() == kPointNumber_;
+	return static_cast<int>(points_.size()) == kPointNumber_;
 }
 
 bool TeachCommandPoint::hasPreviousPoint() const

@@ -8,8 +8,6 @@ message("You are running qmake on a generated .pro file. This may not work!")
 
 
 HEADERS += ../base/ltpmath.h \
-    ./teachcommand.h \
-    ./teachcommandline.h \
     ../base/systemvariables.hpp \
     ../common/rmi/globals.h \
     ../common/rmi/RemoteComm.h \
@@ -83,9 +81,14 @@ SOURCES += ../base/buttonprocessor.cpp \
     ./programeditwidget.cpp \
     ./selectaxisbar.cpp \
     ./setwidget.cpp \
-    ./teachcommand.cpp \
+    ./titlebar.cpp \
+    ./teachcommandspatialcircle.cpp \
+    ./teachcommandspatialarc.cpp \
+    ./teachcommandpoint.cpp \
+    ./teachcommandplanararc.cpp \
+    ./teachcommandg114.cpp \
     ./teachcommandline.cpp \
-    ./titlebar.cpp
+    ./teachcommand.cpp
 FORMS += ./ltpclient.ui \
     ./titlebar.ui \
     ./hintbar.ui \

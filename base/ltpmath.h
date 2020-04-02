@@ -5,6 +5,8 @@
 #include <cmath>
 #include <algorithm>
 #include <vector>
+#include <stdexcept>
+#include <type_traits>
 
 namespace ltp
 {
@@ -43,7 +45,7 @@ namespace ltp
 				typename Point::value_type length()
 				{
 					double sum = 0;
-					for (int i = 0; i < start.size(); i++)
+					for (size_t i = 0; i < start.size(); i++)
 					{
 						sum += (start[i] - end[i]) * (start[i] - end[i]);
 					}
@@ -56,7 +58,7 @@ namespace ltp
 					typename Point::value_type tempLength = length();
 					//归一化
 					Point result;
-					for (int i = 0; i < result.size(); i++)
+					for (size_t i = 0; i < result.size(); i++)
 					{
 						result[i] = (end[i] - start[i]) / tempLength;
 					}
@@ -72,15 +74,12 @@ namespace ltp
 			struct Arc
 			{
 				//三点计算圆心
-				static Point calculateCenter(const Point& start, const Point& inArc, const Point& end)
-				{
-					static_assert(false, "仅支持二维");
-				}
+				static Point calculateCenter(const Point& start, const Point& inArc, const Point& end);
 				//半径
 				typename Point::value_type radius()
 				{
 					typename Point::value_type result = 0;
-					for (int i = 0; i < start.size(); i++)
+					for (size_t i = 0; i < start.size(); i++)
 					{
 						result += (start[i] - center[i]) * (start[i] - center[i]);
 					}
@@ -132,23 +131,15 @@ namespace ltp
 				std::copy_n(iterator, point.size(), point.begin());
 				return point;
 			}
-			//平面圆弧，三点计算圆心
-			Point2D Arc<Point2D>::calculateCenter(const Point2D& start, const Point2D& inArc, const Point2D& end)
+			//三点计算圆心
+			template <typename Point>
+			Point Arc<Point>::calculateCenter(const Point& start, const Point& inArc, const Point& end)
 			{
-				Point2D::value_type a = 2 * (inArc[0] - start[0]);
-				Point2D::value_type b = 2 * (inArc[1] - start[1]);
-				Point2D::value_type c = inArc[0] * inArc[0] + inArc[1] * inArc[1] - start[0] * start[0] - start[1] * start[1];
-				Point2D::value_type d = 2 * (end[0] - inArc[0]);
-				Point2D::value_type e = 2 * (end[1] - inArc[1]);
-				Point2D::value_type f = end[0] * end[0] + end[1] * end[1] - inArc[0] * inArc[0] - inArc[1] * inArc[1];
-				//除数不为0
-				if (std::abs(b * d - e * a) < kPrecision)
-				{
-					throw std::exception("can not calculate center");
-				}
-				Point2D center = { (b * f - e * c) / (b * d - e * a), (d * c - a * f) / (b * d - e * a) };
-				return center;
+				static_assert(std::is_same<Point, Point2D>::value, "仅支持二维");
 			}
+			//二维计算圆心的特化
+			template<>
+			Point2D Arc<Point2D>::calculateCenter(const Point2D& start, const Point2D& inArc, const Point2D& end);
 		};
 	}
 }
