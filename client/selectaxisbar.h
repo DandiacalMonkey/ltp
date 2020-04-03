@@ -33,17 +33,22 @@ namespace ltp
 			std::unordered_map<base::ClickDelayCheckButton*, base::Axis> buttonsAxisEnumMap_;
 			//刷新状态定时器
 			QTimer timer;
+
 		private slots:
 			//更新轴选栏状态
 			void updateInformation();
-			// 右侧外设按键响应
+			//右侧外设按键响应
 			void plusButtonClicked(int);
 			void minusButtonClicked(int);
 			void plusButtonRealeased(int);
 			void minusButtonRealeased(int);
+			//模块切换
+			void modeChanged(base::Mode mode);
+
 		private:
-			// 清空选中状态
+			//清空选中状态
 			void clearAllChecked();
+			
 		};
 	}
 }

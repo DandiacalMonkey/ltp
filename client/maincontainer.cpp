@@ -9,6 +9,8 @@
 #include "teachcommandspatialarc.h"
 #include "teachcommandpoint.h"
 #include "teachcommandspatialcircle.h"
+#include "hintwidgetproxy.h"
+#include "hintbar.h"
 
 using ltp::client::MainContainer;
 
@@ -41,6 +43,9 @@ MainContainer::MainContainer(QWidget* parent)
 	connect(ui.processModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProcessWidgetModule(int)));
 	// 编辑界面，左侧按钮切换
 	connect(ui.programEditModuleButtonsWidget_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgrameEditWidgetModule(int)));
+	// 编辑界面，文件是否可执行，可编辑
+	connect(ui.programEditWidget_, SIGNAL(signalFileOpened()), SLOT(editModuleFileEnable()));
+	connect(ui.programEditWidget_, SIGNAL(signalFileClosed()), SLOT(editModuleFileDisable()));
 	// 示教编辑界面，左侧按钮切换
 	connect(ui.teachEditModuleButtonsWidget1_, SIGNAL(signalButtonClicked(int)), this, SLOT(onProgramTeachEditModule1(int)));
 	connect(ui.teachEditModuleButtonsWidget1_, SIGNAL(signalReturnButtonClicked()), this, SLOT(backProgrameModule()));
@@ -63,10 +68,23 @@ MainContainer::~MainContainer()
 
 void MainContainer::openProcessFile(const QString& remoteFtpFilePath)
 {
-	//切换到编辑界面
-	onModule(base::LEFTBUTTON1);
-	//远程加载
-	base::getInstance<MachiningStates>().remoteOpenFtpFile(remoteFtpFilePath);
+	//当前模式，不为自动时报错
+	if (base::getInstance<MachiningStates>().mode() != base::MEMORY)
+	{
+		base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("请切换到自动模式下执行"));
+	}
+	//正在加工中，不能执行文件
+	else if (base::getInstance<MachiningStates>().machiningState() == base::BUSY)
+	{
+		base::getInstance<HintWidgetProxy<HintBar>>().setHint(tr("请先停止加工并复位后再执行"));
+	}
+	else
+	{
+		//切换到加工界面
+		onModule(base::LEFTBUTTON1);
+		//远程加载
+		base::getInstance<MachiningStates>().remoteOpenFtpFile(remoteFtpFilePath);
+	}
 }
 
 void MainContainer::leftButtonClicked(int key)
@@ -93,6 +111,18 @@ void ltp::client::MainContainer::teachIsLastPoint(bool isLast)
 void ltp::client::MainContainer::teachPreviousEnabled(bool enabled)
 {
 	ui.teachEditOperationButtonsWidget_->setButtonEnabled(base::LEFTBUTTON4, enabled);
+}
+
+void ltp::client::MainContainer::editModuleFileEnable()
+{
+	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON2, true);
+	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON5, true);
+}
+
+void ltp::client::MainContainer::editModuleFileDisable()
+{
+	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON2, false);
+	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON5, false);
 }
 
 void MainContainer::openEditFile(const QString& localFilePath, const QString& remoteFtpFilePath)
@@ -133,8 +163,10 @@ void MainContainer::initModuleButtonsWidget()
 	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("编辑示教")));
 	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("执行")));
 	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("关闭")));
+	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON2, false);
 	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON3, false);
 	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON4, false);
+	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON5, false);
 
 	// 文件管理界面左侧按钮栏设置
 	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("用户盘")));

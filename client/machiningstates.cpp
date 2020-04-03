@@ -12,7 +12,7 @@ const QString MachiningStates::ftpRootPath = "/home/Lynuc/Users/NCFiles";
 
 MachiningStates::MachiningStates(QObject* parent)
 	: QObject(parent),
-	mode_(base::CODELESS),
+	mode_(base::UNKNOWN_MODE),
 	machiningState_(base::READY),
 	errorLevel_(base::NO_ERROR),
 	localMachiningFilePath_("./NCFiles/machining_file.nc")
@@ -217,6 +217,7 @@ void MachiningStates::remoteOpenFile(const QString& localFilePath, const QString
 	//远程打开
 	base::getInstance<Network>().openFile(1, remoteFtpFilePath.toUtf8().data());
 }
+
 void ltp::client::MachiningStates::remoteOpenFtpFile(const QString remoteFtpFilePath)
 {
 	//远程打开

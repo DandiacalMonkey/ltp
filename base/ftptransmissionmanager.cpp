@@ -34,6 +34,7 @@ bool FtpTransmissionManager::downloadFile(const QString& remoteFilePath, const Q
 	//启动下载
 	ftp_->get(temp, file_.get());
 	//弹出模态进度框，等待下载完成
+	progressDialog_->setProgressLoad(0, 1);
 	return progressDialog_->exec() == QDialog::Accepted;
 }
 
@@ -50,6 +51,7 @@ bool FtpTransmissionManager::uploadFile(const QString& localFilePath, const QStr
 	//启动上传
 	ftp_->put(file_.get(), temp);
 	//弹出模态进度框，等待上传完成
+	progressDialog_->setProgressLoad(0, 1);
 	return progressDialog_->exec() == QDialog::Accepted;
 }
 

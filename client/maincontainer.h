@@ -57,6 +57,9 @@ namespace ltp
 			void leftButtonClicked(int);					// 左侧外设按钮响应
 			void teachIsLastPoint(bool);					// 示教操作界面当前记录点是否为最后一点
 			void teachPreviousEnabled(bool);				// 示教操作界面前一点按钮是否有效
+			void editModuleFileEnable();					// 编辑界面文件可执行
+			void editModuleFileDisable();					// 编辑界面文件不可执行
+
 		};
 	}
 }

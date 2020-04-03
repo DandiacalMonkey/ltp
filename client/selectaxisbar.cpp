@@ -49,11 +49,13 @@ SelectAxisBar::SelectAxisBar(QWidget* parent)
 	connect(&timer, SIGNAL(timeout()), SLOT(updateInformation()));
 	connect(&base::getInstance<MachiningStates>(),
 		SIGNAL(modeChanged(base::Mode)), SLOT(updateInformation()));
-	// 外设按钮响应
+	//外设按钮响应
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonPlusPress(int)), this, SLOT(plusButtonClicked(int)));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonMinusPress(int)), this, SLOT(minusButtonClicked(int)));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonPlusRealease(int)), this, SLOT(plusButtonRealeased(int)));
 	connect(&base::getInstance<PhysicalButtonsProcessor>(),SIGNAL(rightButtonMinusRealease(int)), this, SLOT(minusButtonRealeased(int)));
+	//模式切换处理
+	connect(&base::getInstance<MachiningStates>(), SIGNAL(modeChanged(base::Mode)), this, SLOT(modeChanged(base::Mode)));
 }
 
 SelectAxisBar::~SelectAxisBar()
@@ -63,21 +65,41 @@ SelectAxisBar::~SelectAxisBar()
 
 void SelectAxisBar::plusButtonClicked(int key)
 {
-	// 轴选jog+，按键在显示轴范围内有对应，将相应plc置位
-	if (key - base::RIGHTBUTTON1 < static_cast<int>(base::getInstance<MachiningStates>().validAxes().size()))
+	auto mode = base::getInstance<MachiningStates>().mode();
+	//JOG模式下执行移动
+	if (mode == base::JOG)
 	{
-		base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
-		axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
+		// 轴选jog+，按键在显示轴范围内有对应，将相应plc置位
+		if (key - base::RIGHTBUTTON1 < static_cast<int>(base::getInstance<MachiningStates>().validAxes().size()))
+		{
+			base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
+			axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
+		}
+	}
+	//手轮模式下切换轴选
+	else if (mode == base::HANDLE)
+	{
+		axisButtons_[key - base::RIGHTBUTTON1]->click();
 	}
 }
 
 void SelectAxisBar::minusButtonClicked(int key)
 {
-	// 轴选jog-，按键在显示轴范围内有对应，将相应plc置位
-	if (key - base::RIGHTBUTTON1 < static_cast<int>(base::getInstance<MachiningStates>().validAxes().size()))
+	auto mode = base::getInstance<MachiningStates>().mode();
+	//JOG模式下执行移动
+	if (mode == base::JOG)
 	{
-		base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
-		axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
+		// 轴选jog-，按键在显示轴范围内有对应，将相应plc置位
+		if (key - base::RIGHTBUTTON1 < static_cast<int>(base::getInstance<MachiningStates>().validAxes().size()))
+		{
+			base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
+			axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
+		}
+	}
+	//手轮模式下切换轴选
+	else if (mode == base::HANDLE)
+	{
+		axisButtons_[key - base::RIGHTBUTTON1]->click();
 	}
 }
 
@@ -97,6 +119,21 @@ void SelectAxisBar::minusButtonRealeased(int key)
 	base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 0);
 	// 清空选中状态
 	clearAllChecked();
+}
+
+void ltp::client::SelectAxisBar::modeChanged(base::Mode mode)
+{
+	//切换到JOG模式，清空按钮选中状态
+	if (mode == base::JOG)
+	{
+		for (auto it = buttonsAxisEnumMap_.begin(); it != buttonsAxisEnumMap_.end(); ++it)
+		{
+			//有效轴设置可点按
+			it->first->setEnabled(true);
+			//清空选中状态
+			it->first->setChecked(false);
+		}
+	}
 }
 
 void SelectAxisBar::setValidAxes(const std::vector<ltp::base::Axis> validAxes)
@@ -144,13 +181,6 @@ void SelectAxisBar::updateInformation()
 	}
 	else if (machiningStates.mode() == base::JOG)
 	{
-		for (auto it = buttonsAxisEnumMap_.begin(); it != buttonsAxisEnumMap_.end(); ++it)
-		{
-			//有效轴设置可点按
-			//it->first->setEnabled(true);
-			//清空选中状态
-			//it->first->setChecked(false);
-		}
 		ui.modeLabel_->setText(tr("JOG"));
 		//jog倍率显示
 		int jogOverride = static_cast<int>(systemVariables.macroVariable(base::JOG_OVERRIDE) * 100);

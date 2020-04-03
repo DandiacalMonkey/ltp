@@ -22,7 +22,7 @@ void PhysicalButtonsProcessor::initKeyMap()
 	keyPressValueSignalMap_.insert(std::make_pair(Qt::Key_0, [this](){emit leftButtonClicked(base::LEFTBUTTON3);}));
 	keyPressValueSignalMap_.insert(std::make_pair(Qt::Key_Z, [this](){emit leftButtonClicked(base::LEFTBUTTON4);}));
 	keyPressValueSignalMap_.insert(std::make_pair(Qt::Key_Comma, [this](){emit leftButtonClicked(base::LEFTBUTTON5);}));
-	keyPressValueSignalMap_.insert(std::make_pair(Qt::Key_Slash, [this](){emit leftButtonClicked(base::LEFTBUTTON6);}));
+	keyPressValueSignalMap_.insert(std::make_pair(Qt::Key_Y, [this](){emit leftButtonClicked(base::LEFTBUTTON6);}));
 	keyPressValueSignalMap_.insert(std::make_pair(Qt::Key_A, [this](){emit rightButtonStop();}));
 	keyPressValueSignalMap_.insert(std::make_pair(Qt::Key_B, [this](){emit rightButtonStart();}));
 	keyPressValueSignalMap_.insert(std::make_pair(Qt::Key_C, [this](){emit rightButtonMinusPress(base::RIGHTBUTTON1);}));

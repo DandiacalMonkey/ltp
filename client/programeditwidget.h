@@ -48,6 +48,8 @@ namespace ltp
 
 		signals:
 			void signalSaved(QString);
+			void signalFileOpened();
+			void signalFileClosed();
 			void signalTeachIsLastPoint(bool);
 			void signalTeachPreviousEnabled(bool);
 
@@ -66,7 +68,6 @@ namespace ltp
 			void setValidAxes(const std::vector<base::Axis> &validAxes);
 			void onHint(QString);
 			void onTimer();
-			void fileClosed();
 
 		};
 	}

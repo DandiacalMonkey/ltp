@@ -89,8 +89,6 @@ ProgramEditWidget::ProgramEditWidget(QWidget *parent)
 	connect(ui.textEdit_, SIGNAL(signalTips(QString)), SLOT(onHint(QString)));
 	// 文件已经保存
 	connect(ui.textEdit_, SIGNAL(signalSaved(QString)), SIGNAL(signalSaved(QString)));
-	// 文件被关闭
-	connect(ui.textEdit_, SIGNAL(signalClosed(QString)), SLOT(fileClosed()));
 
 	// 定时器每0.2s更新一次数据
 	connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimer()));
@@ -129,11 +127,6 @@ void ProgramEditWidget::onTimer()
 	double coord = base::getInstance<base::SystemVariables<RemoteVariables>>().macroVariable(base::COORDINATE);
 	QString str = "G" + QString::number(coord);
 	ui.currentWorkpieceCoordinate_->setText(str);
-}
-
-void ProgramEditWidget::fileClosed()
-{
-	ui.programTitleLabel_->clear();
 }
 
 void ltp::client::ProgramEditWidget::checkPoint()
@@ -248,6 +241,8 @@ void ProgramEditWidget::onOpenFile(QString fileName)
 {
 	// 打开文件
 	ui.textEdit_->openFile(fileName);
+	//文件打开信号
+	emit signalFileOpened();
 }
 
 void ltp::client::ProgramEditWidget::saveFile()
@@ -257,7 +252,12 @@ void ltp::client::ProgramEditWidget::saveFile()
 
 void ProgramEditWidget::closeFile()
 {
+	//关闭文件
 	ui.textEdit_->closeFile();
+	//文件名更新
+	ui.programTitleLabel_->clear();
+	//文件关闭信号
+	emit signalFileClosed();
 }
 
 void ProgramEditWidget::onTeachEditModule(std::shared_ptr<ltp::client::TeachCommand> teachCommand)

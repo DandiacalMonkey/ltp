@@ -41,6 +41,7 @@ namespace ltp
 		//模式枚举
 		enum Mode
 		{
+			UNKNOWN_MODE,
 			CODELESS = 1,
 			MEMORY,
 			REMOTE,

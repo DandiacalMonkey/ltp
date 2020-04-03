@@ -8,6 +8,8 @@
 #include <QAbstractButton>
 #include <QPushButton>
 #include <QDebug>
+#include <QScrollbar>
+#include <QAbstractTextDocumentLayout>
 
 using ltp::base::TextEdit;
 
@@ -65,7 +67,10 @@ void TextEdit::focusLine(int lineNum)
 	selection.format.setBackground(lineColor);
 	selection.format.setProperty(QTextFormat::FullWidthSelection, true);
 	selection.cursor = QTextCursor(block);
-	selection.cursor.clearSelection();
+	ui.insideTextEdit_->setTextCursor(selection.cursor);
+	// 设定当前选中位置位于文本框中央
+	auto position = ui.insideTextEdit_->document()->documentLayout()->blockBoundingRect(block).toRect();
+	ui.insideTextEdit_->verticalScrollBar()->setValue(position.center().y() - ui.insideTextEdit_->height() / 2);
 
 	// 设置的selection作为当前行选中
 	extraSelection.append(selection);
@@ -157,6 +162,12 @@ bool TextEdit::loadFile(const QString& filePath)
 	}
 
 	QFileInfo fileinfo(filePath);
+	if (fileinfo.size() > 1024 * 1024)
+	{	
+		// error报警：文件大小超过1MB, 无法读取文件!
+		emit signalTips(tr("错误：文件大小超过1MB, 无法读取文件!"));
+		return false;
+	}
 	QTextStream in(&file);
 	//控制器上NC文件默认使用gbk
 	in.setCodec(QTextCodec::codecForName("gbk"));
