@@ -24,7 +24,8 @@ namespace ltp
 			void setCommandButtonName(int id, QString name);
 			void setCheckedButton(int id, bool checked);
 			void setExclusive(bool);
-			void setCheckableButton(bool);
+			void setCheckableAllButton(bool);
+			void setCheckableButton(int id, bool checked);
 
 		signals:
 			void signalButtonClicked(int id);

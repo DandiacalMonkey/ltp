@@ -235,38 +235,41 @@ void AxesInformation::setValidAxes(const std::vector<ltp::base::Axis> &validAxes
 	}
 
 	// 隐藏最后一个轴的下划线
-	switch (validAxes.at(validAxes.size() - 1))
+	if (validAxes.size() != 0)
 	{
-	case ltp::base::X_AXIS:
-		ui.lineX_->hide();
-		break;
-	case ltp::base::Y_AXIS:
-		ui.lineY_->hide();
-		break;
-	case ltp::base::Z_AXIS:
-		ui.lineZ_->hide();
-		break;
-	case ltp::base::A_AXIS:
-		ui.lineA_->hide();
-		break;
-	case ltp::base::B_AXIS:
-		ui.lineB_->hide();
-		break;
-	case ltp::base::C_AXIS:
-		ui.lineC_->hide();
-		break;
-	case ltp::base::U_AXIS:
-		ui.lineU_->hide();
-		break;
-	case ltp::base::V_AXIS:
-		ui.lineV_->hide();
-		break;
-	case ltp::base::W_AXIS:
-		ui.lineW_->hide();
-		break;
-	default:
-		break;
-	}
+		switch (validAxes.at(validAxes.size() - 1))
+		{
+		case ltp::base::X_AXIS:
+			ui.lineX_->hide();
+			break;
+		case ltp::base::Y_AXIS:
+			ui.lineY_->hide();
+			break;
+		case ltp::base::Z_AXIS:
+			ui.lineZ_->hide();
+			break;
+		case ltp::base::A_AXIS:
+			ui.lineA_->hide();
+			break;
+		case ltp::base::B_AXIS:
+			ui.lineB_->hide();
+			break;
+		case ltp::base::C_AXIS:
+			ui.lineC_->hide();
+			break;
+		case ltp::base::U_AXIS:
+			ui.lineU_->hide();
+			break;
+		case ltp::base::V_AXIS:
+			ui.lineV_->hide();
+			break;
+		case ltp::base::W_AXIS:
+			ui.lineW_->hide();
+			break;
+		default:
+			break;
+		}
+	}	
 }
 
 void AxesInformation::onTimer()

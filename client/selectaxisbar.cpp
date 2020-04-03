@@ -66,8 +66,20 @@ void SelectAxisBar::plusButtonClicked(int key)
 	// 轴选jog+，按键在显示轴范围内有对应，将相应plc置位
 	if (key - base::RIGHTBUTTON1 < static_cast<int>(base::getInstance<MachiningStates>().validAxes().size()))
 	{
-		base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
-		axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
+		if (base::getInstance<MachiningStates>().mode() == base::HANDLE)
+		{
+			auto x = axisButtons_.at(key - base::RIGHTBUTTON1);
+			// 手轮模式通过plc选中轴选
+			base::getInstance<base::SystemVariables<RemoteVariables>>().
+				setPlcVariable(rmi::G_HWAXIS, buttonsAxisEnumMap_.at(x) + 1);
+		}
+		else if (base::getInstance<MachiningStates>().mode() == base::JOG)
+		{
+			// jog模式
+			clearAllChecked();
+			base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
+			axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
+		}
 	}
 }
 
@@ -76,27 +88,45 @@ void SelectAxisBar::minusButtonClicked(int key)
 	// 轴选jog-，按键在显示轴范围内有对应，将相应plc置位
 	if (key - base::RIGHTBUTTON1 < static_cast<int>(base::getInstance<MachiningStates>().validAxes().size()))
 	{
-		base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
-		axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
+		if (base::getInstance<MachiningStates>().mode() == base::HANDLE)
+		{
+			auto x = axisButtons_.at(key - base::RIGHTBUTTON1);
+			// 手轮模式通过plc选中轴选
+			base::getInstance<base::SystemVariables<RemoteVariables>>().
+				setPlcVariable(rmi::G_HWAXIS, buttonsAxisEnumMap_.at(x) + 1);
+		}
+		else if (base::getInstance<MachiningStates>().mode() == base::JOG)
+		{
+			// jog模式
+			clearAllChecked();
+			base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 1 << base::getInstance<MachiningStates>().validAxes().at(key - base::RIGHTBUTTON1));
+			axisButtons_[key - base::RIGHTBUTTON1]->setChecked(true);
+		}
 	}
 }
 
 void SelectAxisBar::plusButtonRealeased(int key)
 {
 	Q_UNUSED(key);
-	// jog+按钮松开，将plc移轴位置0
-	base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 0);
-	// 清空选中状态
-	clearAllChecked();
+	if (base::getInstance<MachiningStates>().mode() == base::JOG)
+	{
+		// jog+按钮松开，将plc移轴位置0
+		base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 0);
+		// 清空选中状态
+		clearAllChecked();
+	}
 } 
 
 void SelectAxisBar::minusButtonRealeased(int key)
 {
 	Q_UNUSED(key);
-	// jog-按钮松开，将plc移轴位置0
-	base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 0);
-	// 清空选中状态
-	clearAllChecked();
+	if (base::getInstance<MachiningStates>().mode() == base::JOG)
+	{
+		// jog-按钮松开，将plc移轴位置0
+		base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 0);
+		// 清空选中状态
+		clearAllChecked();
+	}	
 }
 
 void SelectAxisBar::setValidAxes(const std::vector<ltp::base::Axis> validAxes)

@@ -124,7 +124,7 @@ void MainContainer::initModuleButtonsWidget()
 	ui.homeModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("设置")));
 	ui.homeModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON5, false);
 	ui.homeModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON6, false);
-	ui.homeModuleButtonsWidget_->setCheckableButton(false);
+	ui.homeModuleButtonsWidget_->setCheckableAllButton(false);
 	ui.homeModuleButtonsWidget_->setReturnButtonEnabled(false);
 
 	// 编辑界面左侧按钮栏设置
@@ -133,6 +133,8 @@ void MainContainer::initModuleButtonsWidget()
 	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON3, QString(tr("编辑示教")));
 	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("执行")));
 	ui.programEditModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("关闭")));
+	ui.programEditModuleButtonsWidget_->setCheckableButton(base::LEFTBUTTON5, false);
+	ui.programEditModuleButtonsWidget_->setCheckableButton(base::LEFTBUTTON6, false);
 	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON3, false);
 	ui.programEditModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON4, false);
 
@@ -140,6 +142,8 @@ void MainContainer::initModuleButtonsWidget()
 	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("用户盘")));
 	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("执行")));
 	ui.fileManagerModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("打开")));
+	ui.fileManagerModuleButtonsWidget_->setCheckableButton(base::LEFTBUTTON5, false);
+	ui.fileManagerModuleButtonsWidget_->setCheckableButton(base::LEFTBUTTON6, false);
 	ui.fileManagerModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON2, false);
 	ui.fileManagerModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON3, false);
 	ui.fileManagerModuleButtonsWidget_->setButtonEnabled(base::LEFTBUTTON4, false);
@@ -153,7 +157,7 @@ void MainContainer::initModuleButtonsWidget()
 	ui.teachEditModuleButtonsWidget1_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("平面圆弧")));
 	ui.teachEditModuleButtonsWidget1_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("空间圆弧")));
 	ui.teachEditModuleButtonsWidget1_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("下一页")));
-	ui.teachEditModuleButtonsWidget1_->setCheckableButton(false);
+	ui.teachEditModuleButtonsWidget1_->setCheckableAllButton(false);
 
 	// 编辑界面左侧按钮栏设置
 	ui.teachEditModuleButtonsWidget2_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("点坐标")));
@@ -162,7 +166,7 @@ void MainContainer::initModuleButtonsWidget()
 	ui.teachEditModuleButtonsWidget2_->setButtonEnabled(base::LEFTBUTTON4, false);
 	ui.teachEditModuleButtonsWidget2_->setButtonEnabled(base::LEFTBUTTON5, false);
 	ui.teachEditModuleButtonsWidget2_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("上一页")));
-	ui.teachEditModuleButtonsWidget2_->setCheckableButton(false);
+	ui.teachEditModuleButtonsWidget2_->setCheckableAllButton(false);
 
 	// 设置界面左侧按钮栏设置
 	ui.setModuleButtonsWidget_->setCommandButtonName(base::LEFTBUTTON1, QString(tr("连接设置")));
@@ -179,7 +183,7 @@ void MainContainer::initModuleButtonsWidget()
 	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON4, QString(tr("上一点")));
 	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON5, QString(tr("取消")));
 	ui.teachEditOperationButtonsWidget_->setCommandButtonName(base::LEFTBUTTON6, QString(tr("确定")));
-	ui.teachEditOperationButtonsWidget_->setCheckableButton(false);
+	ui.teachEditOperationButtonsWidget_->setCheckableAllButton(false);
 }
 
 void MainContainer::backProgrameModule()
