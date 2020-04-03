@@ -57,7 +57,7 @@ bool Application::notify(QObject* receiver, QEvent* event)
 		// 鼠标左键点击，且点击的不是键盘上的控件
 		if (mouseEvent->button() == Qt::LeftButton && !base::getInstance<base::KeyBoardDialog>().isAncestorOf(nowWidget))
 		{			
-			if (nowWidget->inherits("QLineEdit"))				// 当前焦点为QLineEdit，显示虚拟键盘
+			if (nowWidget->inherits("QLineEdit") && nowWidget->isEnabled())				// 当前焦点为QLineEdit，显示虚拟键盘
 			{
 				base::getInstance<base::KeyBoardDialog>().show();
 				base::getInstance<base::KeyBoardDialog>().raise();

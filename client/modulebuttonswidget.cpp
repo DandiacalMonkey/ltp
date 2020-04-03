@@ -20,6 +20,9 @@ ModuleButtonsWidget::ModuleButtonsWidget(QWidget* parent)
 	buttonGroup_->addButton(ui.moduleButton5_, base::LEFTBUTTON5);
 	buttonGroup_->addButton(ui.moduleButton6_, base::LEFTBUTTON6);
 
+	// 返回键
+	ui.returnButton_->setCheckable(false);
+
 	// buttonGroup_信号槽
 	connect(buttonGroup_, SIGNAL(buttonClicked(int)), SIGNAL(signalButtonClicked(int)));
 	connect(buttonGroup_, SIGNAL(buttonPressed(int)), SIGNAL(signalButtonPressed(int)));
@@ -133,7 +136,7 @@ void ModuleButtonsWidget::setExclusive(bool exclusive)
 	ui.moduleButton6_->setAutoExclusive(exclusive);
 }
 
-void ModuleButtonsWidget::setCheckableButton(bool checked)
+void ModuleButtonsWidget::setCheckableAllButton(bool checked)
 {
 	// Checkable设置
 	ui.moduleButton1_->setCheckable(checked);
@@ -142,7 +145,38 @@ void ModuleButtonsWidget::setCheckableButton(bool checked)
 	ui.moduleButton4_->setCheckable(checked);
 	ui.moduleButton5_->setCheckable(checked);
 	ui.moduleButton6_->setCheckable(checked);
-	ui.returnButton_->setCheckable(checked);
+}
+
+void ModuleButtonsWidget::setCheckableButton(int id, bool checked)
+{
+	if (id == base::LEFTBUTTON1)
+	{
+		ui.moduleButton1_->setCheckable(checked);
+	} 
+	else if (id == base::LEFTBUTTON2)
+	{
+		ui.moduleButton2_->setCheckable(checked);
+	}
+	else if (id == base::LEFTBUTTON3)
+	{
+		ui.moduleButton3_->setCheckable(checked);
+	}
+	else if (id == base::LEFTBUTTON4)
+	{
+		ui.moduleButton4_->setChecked(checked);
+	}
+	else if (id == base::LEFTBUTTON5)
+	{
+		ui.moduleButton5_->setCheckable(checked);
+	}
+	else if (id == base::LEFTBUTTON6)
+	{
+		ui.moduleButton6_->setCheckable(checked);
+	}
+	else if (id == base::LEFTRETURNBUTTON)
+	{
+		ui.returnButton_->setCheckable(checked);
+	}
 }
 
 void ModuleButtonsWidget::setButtonClicked(int id)

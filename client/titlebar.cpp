@@ -16,6 +16,7 @@ TitleBar::TitleBar(QWidget *parent)
 	ui.errorMessageLabel_->setText(tr(""));
 	ui.errorMessageLabel_->setStyleSheet("QLabel{background:#F5F5F5;}");
 	lastErrorState_ = base::NO_ERROR;
+	isConnected_	= false;
 
 	updateTimeTimer_ = new QTimer(this);			// 系统时间更新
 	connect(updateTimeTimer_, SIGNAL(timeout()), this, SLOT(updateTime()));
@@ -104,26 +105,29 @@ void TitleBar::setCurrentNCName(const QString &filePath)
 
 void TitleBar::setErrorMessages(ltp::base::ErrorLevel errlevel)
 {
-	switch (errlevel)
+	if (isConnected_)						// 网络连接成功进行错误提示
 	{
-	case base::NO_ERROR:				// 无报错
-		ui.errorMessageLabel_->setText(tr(""));
-		ui.errorMessageLabel_->setStyleSheet("QLabel{background:#F5F5F5;}");
-		break;
-	case base::WARNNING:				// 警告
-		ui.errorMessageLabel_->show();
-		ui.errorMessageLabel_->setText(tr(" 警告！"));
-		ui.errorMessageLabel_->setStyleSheet("QLabel{background:rgb(255, 255, 0); font:14px SIMHEI; color:white;}");
-		break;
-	case base::ERROR:					// 错误
-		ui.errorMessageLabel_->show();
-		ui.errorMessageLabel_->setText(tr(" 错误！"));
-		ui.errorMessageLabel_->setStyleSheet("QLabel{background:rgb(250, 50, 0); font:14px SIMHEI; color:white;}");
-		break;
-	default:
-		break;
-	}
-	lastErrorState_ = errlevel;
+		switch (errlevel)
+		{
+		case base::NO_ERROR:				// 无报错
+			ui.errorMessageLabel_->setText(tr(""));
+			ui.errorMessageLabel_->setStyleSheet("QLabel{background:#F5F5F5;}");
+			break;
+		case base::WARNNING:				// 警告
+			ui.errorMessageLabel_->show();
+			ui.errorMessageLabel_->setText(tr(" 警告！"));
+			ui.errorMessageLabel_->setStyleSheet("QLabel{background:rgb(255, 255, 0); font:14px SIMHEI; color:white;}");
+			break;
+		case base::ERROR:					// 错误
+			ui.errorMessageLabel_->show();
+			ui.errorMessageLabel_->setText(tr(" 错误！"));
+			ui.errorMessageLabel_->setStyleSheet("QLabel{background:rgb(250, 50, 0); font:14px SIMHEI; color:white;}");
+			break;
+		default:
+			break;
+		}
+		lastErrorState_ = errlevel;
+	}	
 }
 
 void TitleBar::setDisconnected()
@@ -133,13 +137,15 @@ void TitleBar::setDisconnected()
 	ui.errorMessageLabel_->show();
 	ui.errorMessageLabel_->setText(tr(" 与控制器连接断开！"));
 	ui.errorMessageLabel_->setStyleSheet("QLabel{background:rgb(255, 190, 10); font:14px SIMHEI; color:black;}");
+	isConnected_ = false;
 }
 
 void TitleBar::setConnected()
 {
 	// 修改连接状态标题，报错信息
 	setConnectState(true);
-	setErrorMessages(lastErrorState_);
+	isConnected_ = true;
+	setErrorMessages(lastErrorState_);	
 }
 
 void TitleBar::setConnectState(bool isConnect)

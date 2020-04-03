@@ -106,19 +106,25 @@ void SelectAxisBar::minusButtonClicked(int key)
 void SelectAxisBar::plusButtonRealeased(int key)
 {
 	Q_UNUSED(key);
-	// jog+按钮松开，将plc移轴位置0
-	base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 0);
-	// 清空选中状态
-	clearAllChecked();
+	if (base::getInstance<MachiningStates>().mode() == base::JOG)
+	{
+		// jog+按钮松开，将plc移轴位置0
+		base::getInstance<Network>().setPlcVariable(rmi::G_JMPLUS, 0);
+		// 清空选中状态
+		clearAllChecked();
+	}
 } 
 
 void SelectAxisBar::minusButtonRealeased(int key)
 {
 	Q_UNUSED(key);
-	// jog-按钮松开，将plc移轴位置0
-	base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 0);
-	// 清空选中状态
-	clearAllChecked();
+	if (base::getInstance<MachiningStates>().mode() == base::JOG)
+	{
+		// jog-按钮松开，将plc移轴位置0
+		base::getInstance<Network>().setPlcVariable(rmi::G_JMMINUS, 0);
+		// 清空选中状态
+		clearAllChecked();
+	}	
 }
 
 void ltp::client::SelectAxisBar::modeChanged(base::Mode mode)
