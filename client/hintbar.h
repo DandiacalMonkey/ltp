@@ -1,7 +1,9 @@
 ﻿#ifndef LTP_CLIENT_HINTBAR_H_
 #define LTP_CLIENT_HINTBAR_H_
 
-#include <QtGui/QWidget>
+#include <QWidget>
+#include <QTime>
+#include <QTimer>
 #include "ui_hintbar.h"
 
 namespace ltp
@@ -18,13 +20,21 @@ public:
 
 public slots:
 	//设定要显示的提示
-	void setHint(const QString& hint)
-	{
-		ui.hintLabel_->setText(hint);
-	}
+	void setHint(const QString& hint);
 
 private:
+	//提示保留最长时间
+	static const int kHintSurvivalSeconds_ = 10;
 	Ui::HintBarClass ui;
+	//提示设定的时间点
+	QTime hintTime_;
+	//定时清空提示信息
+	QTimer hintClearTimer_;
+
+private slots:
+	//定时清空提示信息
+	void hintClear();
+
 };
 }
 }

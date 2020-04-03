@@ -157,7 +157,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="1" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolX_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -183,7 +183,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="1" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolX_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -209,7 +209,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="1" column="5">
     <widget class="QLabel" name="machiningRemainSymbolX_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -268,7 +268,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="3" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolY_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -294,7 +294,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="3" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolY_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -320,7 +320,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="3" column="5">
     <widget class="QLabel" name="machiningRemainSymbolY_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -373,7 +373,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="5" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolZ_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -399,7 +399,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="5" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolZ_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -425,7 +425,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="5" column="5">
     <widget class="QLabel" name="machiningRemainSymbolZ_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -478,7 +478,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="7" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolA_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -504,7 +504,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="7" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolA_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -530,7 +530,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="7" column="5">
     <widget class="QLabel" name="machiningRemainSymbolA_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -583,7 +583,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="9" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolB_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -609,7 +609,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="9" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolB_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -635,7 +635,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="9" column="5">
     <widget class="QLabel" name="machiningRemainSymbolB_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -688,7 +688,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="11" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolC_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -714,7 +714,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="11" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolC_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -740,7 +740,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="11" column="5">
     <widget class="QLabel" name="machiningRemainSymbolC_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -793,7 +793,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="13" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolU_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -819,7 +819,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="13" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolU_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -845,7 +845,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="13" column="5">
     <widget class="QLabel" name="machiningRemainSymbolU_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -898,7 +898,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="15" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolV_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -924,7 +924,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="15" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolV_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -950,7 +950,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="15" column="5">
     <widget class="QLabel" name="machiningRemainSymbolV_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -1003,7 +1003,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="17" column="1">
     <widget class="QLabel" name="machineCoordinateSymbolW_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -1029,7 +1029,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="17" column="3">
     <widget class="QLabel" name="workpieceCoordinateSymbolW_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>
@@ -1055,7 +1055,7 @@ QFrame{border: 2px solid red;}</string>
    <item row="17" column="5">
     <widget class="QLabel" name="machiningRemainSymbolW_">
      <property name="styleSheet">
-      <string notr="true">font:Bold 18px Arial;</string>
+      <string notr="true">font:Bold 18px SIMHEI;</string>
      </property>
      <property name="text">
       <string>-</string>

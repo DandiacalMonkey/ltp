@@ -1,7 +1,7 @@
 ﻿#include "teachcommandspatialcircle.h"
 #include <cassert>
 
-bool ltp::client::TeachCommandSpatialCircle::checkPoint() throw(RepeatPointException, PointCollinear, PointCollinear)
+bool ltp::client::TeachCommandSpatialCircle::checkPoint() throw(RepeatPointException, RevolvingAxisPositionChanged, PointCollinear)
 {
 	auto tempPosition = systemVariables_.teachPosition(1);
 	switch (points_.size())
@@ -22,7 +22,7 @@ bool ltp::client::TeachCommandSpatialCircle::checkPoint() throw(RepeatPointExcep
 		//旋转轴坐标是否变化
 		if (isCoordinateChanged(tempPosition, base::A_AXIS, base::U_AXIS) == true)
 		{
-			throw PointCollinear();
+			throw RevolvingAxisPositionChanged();
 		}
 		//写入当前点
 		points_.push_back(tempPosition);
@@ -48,7 +48,7 @@ bool ltp::client::TeachCommandSpatialCircle::checkPoint() throw(RepeatPointExcep
 		//旋转轴坐标是否变化
 		if (isCoordinateChanged(tempPosition, base::A_AXIS, base::U_AXIS) == true)
 		{
-			throw PointCollinear();
+			throw RevolvingAxisPositionChanged();
 		}
 		//写入当前点
 		points_.push_back(tempPosition);
@@ -63,5 +63,16 @@ bool ltp::client::TeachCommandSpatialCircle::checkPoint() throw(RepeatPointExcep
 
 QString ltp::client::TeachCommandSpatialCircle::getCommand() const
 {
-	return TeachCommandSpatialArc::getCommand() + " R1";
+	//生成结果
+	QString result = "G02.4 ";
+	//空间整圆只需要写XYZ轴
+	std::vector<base::Axis> tempAxes;
+	tempAxes.push_back(base::X_AXIS);
+	tempAxes.push_back(base::Y_AXIS);
+	tempAxes.push_back(base::Z_AXIS);
+	//终点
+	result += generateCommand(tempAxes, points_[2], base::axisEnumToAxisChar) + " ";
+	//中间点
+	result += generateCommand(tempAxes, points_[1], base::axisEnumToArcChar);
+	return result + " R1";
 }

@@ -588,5 +588,26 @@
     <ClInclude Include="..\base\ltpmath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="teachcommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandg114.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandplanararc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandpoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandspatialarc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="teachcommandspatialcircle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

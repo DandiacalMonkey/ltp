@@ -79,10 +79,10 @@ bool ltp::client::TeachCommandSpatialArc::hasPreviousPoint() const
 QString ltp::client::TeachCommandSpatialArc::getCommand() const
 {
 	//生成结果
-	QString result = "G02.4";
+	QString result = "G02.4 ";
 	//终点
 	result += generateCommand(base::getInstance<MachiningStates>().validAxes(),
-		points_[2], base::axisEnumToAxisChar);
+		points_[2], base::axisEnumToAxisChar) + " ";
 	//中间点
 	result += generateCommand(base::getInstance<MachiningStates>().validAxes(),
 		points_[1], base::axisEnumToArcChar);

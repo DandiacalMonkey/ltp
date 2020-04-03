@@ -85,6 +85,7 @@ namespace ltp
 		{
 			AXIS_CONTROL_INTERVAL = 50,//轴控制数据的间隔
 			AXIS_SETTING_INTERVAL = 100,//轴设定数据的间隔
+			FEED_SPEED = 30037,//进给速度
 			WORKPIECE_COORDINATE = 30118,//工件坐标基地址
 			MACHINING_REMAIN = 30122,//加工余量
 			MECHANICAL_COORDINATE = 30128,//机械坐标基地址
@@ -92,7 +93,6 @@ namespace ltp
 			TEACH_POSITION = 30142,//示教使用坐标
 			PROGRAM_NUMBER = 33500,//程序号
 			CURRENT_PROGRAM_LINE_NUMBER = 33501,//当前程序行号
-			FEED_SPEED = 33563,//进给速度
 			FEED_RATE = 33554,//进给倍率
 			HANDWHEEL_OVERRIDE = 33517,//手轮倍率
 			SPINDLE_OVERRIDE = 33518,//主轴倍率

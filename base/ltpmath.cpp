@@ -72,13 +72,14 @@ bool ltp::base::Math::isCollinear(const std::vector<Point3D>& points, double tol
 		return false;
 	}
 	//构造点1点2直线
-	base::Math::Line<Point3D> line = { makePoint<Point3D>(points[0].begin()), makePoint<Point3D>(points[1].begin()) };
+	base::Math::Line<Point3D> line = { points[0], points[1] };
 	for (size_t i = 2; i < points.size(); i++)
 	{
-		base::Math::Line<Point3D> tempLine = { makePoint<Point3D>(points[0].begin()), makePoint<Point3D>(points[i].begin()) };
+		base::Math::Line<Point3D> tempLine = { points[0], points[i] };
+		//得到cos值
 		double dotValue = line.normalize() * tempLine.normalize();
-		if (!(std::abs(dotValue) > 1 - tolerance &&
-			std::abs(dotValue) < 1 + tolerance))
+		//小角度时，sinθ ≈ θ，计算sin值，和容差比较
+		if (std::sqrt(std::abs(1 - dotValue * dotValue)) > tolerance)
 		{
 			return false;
 		}

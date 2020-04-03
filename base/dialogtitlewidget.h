@@ -24,9 +24,9 @@ namespace ltp
 			QPoint mousePressPos_;			// 鼠标按下位置
 
 		protected:
-			void mousePressEvent(QMouseEvent *e);
-			void mouseReleaseEvent(QMouseEvent *e);
-			void mouseMoveEvent(QMouseEvent *e);
+			void mousePressEvent(QMouseEvent *event);
+			void mouseReleaseEvent(QMouseEvent *event);
+			void mouseMoveEvent(QMouseEvent *event);
 
 		signals:
 			void signalClose();				// close按钮按下信号

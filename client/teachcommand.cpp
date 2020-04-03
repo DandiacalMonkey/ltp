@@ -87,7 +87,7 @@ QString ltp::client::TeachCommand::generateCommand(const std::vector<base::Axis>
 	int precision) const
 {
 	QString result;
-	double tolerance = std::pow(1.0, -precision);
+	double tolerance = std::pow(10.0, -precision);
 	for (size_t i = 0; i < axes.size(); i++)
 	{
 		if (std::fabs(line.start[i] - line.end[i]) >= tolerance)

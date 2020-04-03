@@ -102,8 +102,8 @@ namespace ltp
 			};
 			//距离容差
 			const double kDistanceTolerance_ = 1e-3;
-			//角度容差
-			const double kAngleTolerance_ = 0.1;
+			//弧度度容差
+			const double kRadianTolerance_ = 0.01;
 			//计算精度
 			const double kPrecision = 1e-6;
 			//点是否重合，输入坐标的迭代器
@@ -122,7 +122,7 @@ namespace ltp
 			//点是否位于XY,YZ,XZ平面之一
 			Plane pointsPlane(const std::vector<Point3D>& points, double tolerance = kDistanceTolerance_);
 			//点是否共线
-			bool isCollinear(const std::vector<Point3D>& points, double tolerance = kAngleTolerance_);
+			bool isCollinear(const std::vector<Point3D>& points, double tolerance = kRadianTolerance_);
 			//点转换
 			template <typename Point, typename Iterator>
 			Point makePoint(Iterator iterator)

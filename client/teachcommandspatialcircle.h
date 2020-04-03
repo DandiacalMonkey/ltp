@@ -10,7 +10,7 @@ namespace ltp
 		{
 		public:
 			//整圆示教不允许旋转轴变化
-			class rotate : public TeachCommandException
+			class RevolvingAxisPositionChanged: public TeachCommandException
 			{
 			public:
 				virtual QString hint() const
@@ -18,7 +18,7 @@ namespace ltp
 					return QObject::tr("旋转坐标发生了变化，无法示教空间整圆");
 				}
 			};
-			virtual bool checkPoint() throw (RepeatPointException, PointCollinear, PointCollinear);
+			virtual bool checkPoint() throw (RepeatPointException, RevolvingAxisPositionChanged, PointCollinear);
 			virtual QString getCommand() const;
 		};
 	}

@@ -41,10 +41,10 @@ bool TeachCommandG114::hasPreviousPoint() const
 QString TeachCommandG114::getCommand() const
 {
 	QString result;
-	result += "G114 ";
+	result += "G114";
 	for (size_t i = 0; i < points_.size(); i++)
 	{
-		result += QString("P%0 ").arg(i + 1);
+		result += QString(" P%0 ").arg(i + 1);
 		result += generateCommand(base::getInstance<MachiningStates>().validAxes(), 
 			points_[i], base::axisEnumToAxisChar);
 	}

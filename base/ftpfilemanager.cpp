@@ -246,6 +246,10 @@ void FtpFileManager::addToList(const QUrlInfo& urlInfo)
 	{
 		suffix = "";
 	}
+	else
+	{
+		suffix = suffix.mid(1);
+	}
 
 	if (urlInfo.isDir() == false)				// 不是目录文件，获取文件大小
 	{
