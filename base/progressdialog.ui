@@ -13,9 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true"/>
-  </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
     <number>0</number>
@@ -26,8 +23,7 @@
    <item>
     <widget class="QWidget" name="mainwidget_" native="true">
      <property name="styleSheet">
-      <string notr="true">QWidget#mainwidget_{background:white; border:1px solid #B4B4B4;}
-</string>
+      <string notr="true">QWidget#mainwidget_{background:white; border:1px solid #B4B4B4;}</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout" stretch="30,0,146,0,44">
       <property name="spacing">
@@ -41,8 +37,20 @@
       </item>
       <item>
        <widget class="Line" name="line_3">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
         <property name="styleSheet">
-         <string notr="true">border-bottom: 1px solid #D2D2D2;</string>
+         <string notr="true">QFrame{border:none;background:#D2D2D2;}</string>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -86,7 +94,7 @@
             <string notr="true">font:14px SIMHEI;</string>
            </property>
            <property name="text">
-            <string>TextLabel</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -131,8 +139,20 @@ QProgressBar::chunk{background-color:#0064C8;}</string>
       </item>
       <item>
        <widget class="Line" name="line_2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
         <property name="styleSheet">
-         <string notr="true">border-bottom: 1px solid #D2D2D2;</string>
+         <string notr="true">QFrame{border:none;background:#D2D2D2;}</string>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -142,7 +162,7 @@ QProgressBar::chunk{background-color:#0064C8;}</string>
       <item>
        <widget class="QWidget" name="bottomWidget_" native="true">
         <property name="styleSheet">
-         <string notr="true">background:#F5F5F5;</string>
+         <string notr="true">#bottomWidget_{background:#F5F5F5;}</string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
@@ -165,9 +185,6 @@ QProgressBar::chunk{background-color:#0064C8;}</string>
              <width>86</width>
              <height>24</height>
             </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
            </property>
            <property name="text">
             <string>取消</string>

@@ -26,7 +26,7 @@ OperationPanel::OperationPanel(QWidget *parent)
 	ui.skip_->setText(tr("跳  过"));
 	ui.wAxis_->setButtonPicture((":/LtpClient/image/w_axis_rest.png"), (":/LtpClient/image/w_axis_pressed.png"),
 							   (":/LtpClient/image/w_axis_pressed.png"), (":/LtpClient/image/w_axis_pressed.png"));
-	ui.wAxis_->setText(tr("W轴"));
+	ui.wAxis_->setText(tr("W  轴"));
 	// 进给倍率修改间隔，1档
 	ui.speedFButton_->setIntervalValue(1);
 	ui.speedFButton_->setRange(0, 31);

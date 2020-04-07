@@ -16,7 +16,7 @@ namespace ltp
 			TextEdit(QWidget *parent = 0);
 			~TextEdit();  
 			QString getCurrentFileName();			// 获取当前打开文件名
-			void checkModified();					// 检查文件是否修改
+			
 			//设置不可编辑
 			void setReadOnly(bool readOnly)
 			{
@@ -28,9 +28,14 @@ namespace ltp
 			void insertPlainText(const QString& text);	// 插入文字
 
 		private:
+			enum SaveFile
+			{
+				Yes,
+				No,
+				Cancel
+			};
 			bool loadFile(const QString& filePath);	// 加载文件
-
-		private:
+			SaveFile checkModified();				// 检查文件是否修改
 			Ui::TextEditClass ui;
 			QString fileName_;						// 当前文件名
 			QString filePath_;						// 当前文件名(含路径)
@@ -50,8 +55,8 @@ namespace ltp
 			void cutText();							// 剪切 
 			void recoverText();						// 撤销
 			void repealText();						// 恢复
-			void openFile(const QString& filePath);	// 打开文件
-			void closeFile();						// 关闭文件
+			bool openFile(const QString& filePath);	// 打开文件
+			bool closeFile();						// 关闭文件
 
 		signals:
 			void signalTips(QString);

@@ -32,14 +32,13 @@ namespace ltp
 			ProgramEditWidget(QWidget *parent = 0);
 			~ProgramEditWidget();
 			void onEditBarModule(int);			// 切换编辑内部模块
-			void closeFile();					// 关闭文件
+			bool closeFile();					// 关闭文件
 			QString getCurrentFileName(){return ui.textEdit_->getCurrentFileName();}	// 获取当前文件名
-			void checkCurrentFileModified(){ui.textEdit_->checkModified();}				// 检查文件是否修改
 			void setRemoteFilePath(const QString& filePath);							// 设定显示的文件名
 
 		public slots:
-			void onOpenFile(QString fileName);											// 打开文件
-			void saveFile();															// 保存文件
+			bool onOpenFile(QString fileName);											// 打开文件
+			bool saveFile();															// 保存文件
 			void onTeachEditModule(std::shared_ptr<TeachCommand> teachCommand);			// 切换示教编辑模块
 			void modeChange();															// 切换刀尖坐标和工件坐标
 			void checkPoint();															// 记录点，确定

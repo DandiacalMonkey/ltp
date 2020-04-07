@@ -19,7 +19,7 @@ LtpClient::LtpClient(QWidget *parent, Qt::WFlags flags)
 	// 加工状态更新
 	connect(&base::getInstance<MachiningStates>(), SIGNAL(machiningStateChanged(base::MachiningState)), ui.titleBar_, SLOT(setMachiningState(base::MachiningState)));
 	// 报错信息更新
-	connect(&base::getInstance<MachiningStates>(), SIGNAL(errorLevelChanged(base::ErrorLevel)), ui.titleBar_, SLOT(setErrorMessages(base::ErrorLevel)));
+	connect(&base::getInstance<MachiningStates>(), SIGNAL(errorLevelChanged(base::ErrorLevel)), ui.titleBar_, SLOT(setErrorLevel(base::ErrorLevel)));
 	// 文件名更新
 	connect(&base::getInstance<MachiningStates>(), SIGNAL(machiningFileChanged(const QString&)), ui.titleBar_, SLOT(setCurrentNCName(QString)));
 	// 网络连接更新

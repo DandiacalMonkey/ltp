@@ -237,27 +237,35 @@ void ltp::client::ProgramEditWidget::setRemoteFilePath(const QString& filePath)
 	ui.programTitleLabel_->setText(tempPath + filePath);
 }
 
-void ProgramEditWidget::onOpenFile(QString fileName)
+bool ProgramEditWidget::onOpenFile(QString fileName)
 {
 	// 打开文件
-	ui.textEdit_->openFile(fileName);
-	//文件打开信号
-	emit signalFileOpened();
+	auto result = ui.textEdit_->openFile(fileName);
+	if (result == true)
+	{
+		//文件打开信号
+		emit signalFileOpened();
+	}
+	return result;
 }
 
-void ltp::client::ProgramEditWidget::saveFile()
+bool ltp::client::ProgramEditWidget::saveFile()
 {
-	ui.textEdit_->save();
+	return ui.textEdit_->save();
 }
 
-void ProgramEditWidget::closeFile()
+bool ProgramEditWidget::closeFile()
 {
 	//关闭文件
-	ui.textEdit_->closeFile();
-	//文件名更新
-	ui.programTitleLabel_->clear();
-	//文件关闭信号
-	emit signalFileClosed();
+	auto result = ui.textEdit_->closeFile();
+	if (result == true)
+	{
+		//文件名更新
+		ui.programTitleLabel_->clear();
+		//文件关闭信号
+		emit signalFileClosed();
+	}
+	return result;	
 }
 
 void ProgramEditWidget::onTeachEditModule(std::shared_ptr<ltp::client::TeachCommand> teachCommand)

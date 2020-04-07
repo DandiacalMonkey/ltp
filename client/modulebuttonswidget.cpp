@@ -181,10 +181,10 @@ void ModuleButtonsWidget::setCheckableButton(int id, bool checked)
 
 void ModuleButtonsWidget::setButtonClicked(int id)
 {
-	emit signalButtonClicked(id);
+	buttonGroup_->button(id)->click();
 }
 
 void ModuleButtonsWidget::setReturnButtonClicked()
 {
-	emit signalReturnButtonClicked();
+	ui.returnButton_->click();
 }

@@ -4,12 +4,12 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QTextStream>
-#include <QMessageBox>
 #include <QAbstractButton>
 #include <QPushButton>
 #include <QDebug>
 #include <QScrollbar>
 #include <QAbstractTextDocumentLayout>
+#include "base/messagebox.h"
 
 using ltp::base::TextEdit;
 
@@ -185,19 +185,28 @@ bool TextEdit::loadFile(const QString& filePath)
 	return true;
 }
 
-void TextEdit::openFile(const QString& openFileName)
+bool TextEdit::openFile(const QString& openFileName)
 {
 	// 检查是否修改
-	checkModified();
+	auto result = checkModified();
+	if (result == Yes)
+	{
+		save();
+	}
+	else if (result == Cancel)
+	{
+		return false;
+	}
 
 	if (openFileName.isNull() || openFileName.isEmpty())		// 文件名是空
 	{
 		//error报警:未能打开文件
 		emit signalTips(QString(tr("错误：未能打开文件")));
-		return;
+		return false;
 	}
 
 	loadFile(openFileName);
+	return true;
 }
 
 QString TextEdit::getCurrentFileName()
@@ -205,10 +214,18 @@ QString TextEdit::getCurrentFileName()
 	return fileName_;
 }
 
-void TextEdit::closeFile()
+bool TextEdit::closeFile()
 {
 	// 检查是否修改
-	checkModified();
+	auto result = checkModified();
+	if (result == Yes)
+	{
+		save();
+	}
+	else if (result == Cancel)
+	{
+		return false;
+	}
 	//文件关闭信号
 	emit signalClosed(filePath_);
 	// 清除当前文件名
@@ -216,27 +233,35 @@ void TextEdit::closeFile()
 	filePath_.clear();
 	// 清空文件显示
 	ui.insideTextEdit_->clear();
+	return true;
 }
 
-void TextEdit::checkModified()
+TextEdit::SaveFile TextEdit::checkModified()
 {
 	if(ui.insideTextEdit_->document()->isModified())		// 当前文件修改了
 	{
 		// 提示是否保存
-		QMessageBox box;
-		box.addButton(QObject::tr("是"), QMessageBox::YesRole);
-		QAbstractButton *btnNo = box.addButton(QObject::tr("否"), QMessageBox::NoRole);
-		//box.addButton(QObject::tr("否"), QMessageBox::NoRole);
-		box.setWindowTitle(QObject::tr("提示"));
-		box.setIcon(QMessageBox::Warning);
-		box.setText(tr("当前文件尚未保存，是否保存？"));
+		MessageBox box;
+		box.setTitleName(QObject::tr("提示"));
+		QPushButton* confirmButton = box.addButton(tr("确定"), QMessageBox::YesRole);
+		QPushButton* noButton = box.addButton(tr("否"), QMessageBox::NoRole);
+		QPushButton* cancelButton = box.addButton(tr("取消"), QMessageBox::RejectRole);
+		box.setContentWidget(std::shared_ptr<QWidget>(new QLabel(tr("当前文件尚未保存，是否保存？"))));
 		box.exec();
-		if (box.clickedButton() == btnNo)
+		if (box.clickedButton() == confirmButton)
 		{
-			return;
+			return Yes;
 		}
-		save();
+		else if (box.clickedButton() == noButton)
+		{
+			return No;
+		}
+		else
+		{
+			return Cancel;
+		}
 	}
+	return No;
 }
 
 void ltp::base::TextEdit::gotoLineBegin()

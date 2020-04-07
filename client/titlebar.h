@@ -33,7 +33,8 @@ namespace ltp
 			void setModuleName(const QString &name);			// 设置模块信息
 			void setMachiningState(base::MachiningState state);	// 设置加工状态
 			void setCurrentNCName(const QString &filePath);		// 设置当前加工文件
-			void setErrorMessages(base::ErrorLevel errlevel);	// 设置报错信息
+			void updateErrorMessages();// 根据当前连接状态和报错等级更新报错信息
+			void setErrorLevel(base::ErrorLevel errorLevel);	// 设置报错等级
 			void setConnected();								// 网络连接成功
 			void setDisconnected();								// 网络连接失败
 		};

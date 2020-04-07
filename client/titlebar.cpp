@@ -103,11 +103,11 @@ void TitleBar::setCurrentNCName(const QString &filePath)
 	ui.currentNCNameLabel_->setText(filePath.mid(filePath.lastIndexOf("/") + 1));
 }
 
-void TitleBar::setErrorMessages(ltp::base::ErrorLevel errlevel)
+void TitleBar::updateErrorMessages()
 {
 	if (isConnected_)						// 网络连接成功进行错误提示
 	{
-		switch (errlevel)
+		switch (lastErrorState_)
 		{
 		case base::NO_ERROR:				// 无报错
 			ui.errorMessageLabel_->setText(tr(""));
@@ -126,18 +126,28 @@ void TitleBar::setErrorMessages(ltp::base::ErrorLevel errlevel)
 		default:
 			break;
 		}
-		lastErrorState_ = errlevel;
-	}	
+	}
+	else
+	{
+		ui.errorMessageLabel_->show();
+		ui.errorMessageLabel_->setText(tr(" 与控制器连接断开！"));
+		ui.errorMessageLabel_->setStyleSheet("QLabel{background:rgb(255, 190, 10); font:14px SIMHEI; color:black;}");
+	}
+}
+
+void TitleBar::setErrorLevel(ltp::base::ErrorLevel errorLevel)
+{
+	// 更新报错等级
+	lastErrorState_ = errorLevel;
+	updateErrorMessages();
 }
 
 void TitleBar::setDisconnected()
 {
 	// 修改未连接状态标题，报错信息
 	setConnectState(false);
-	ui.errorMessageLabel_->show();
-	ui.errorMessageLabel_->setText(tr(" 与控制器连接断开！"));
-	ui.errorMessageLabel_->setStyleSheet("QLabel{background:rgb(255, 190, 10); font:14px SIMHEI; color:black;}");
 	isConnected_ = false;
+	updateErrorMessages();
 }
 
 void TitleBar::setConnected()
@@ -145,7 +155,7 @@ void TitleBar::setConnected()
 	// 修改连接状态标题，报错信息
 	setConnectState(true);
 	isConnected_ = true;
-	setErrorMessages(lastErrorState_);	
+	updateErrorMessages();
 }
 
 void TitleBar::setConnectState(bool isConnect)
