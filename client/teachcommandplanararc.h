@@ -28,7 +28,7 @@ namespace ltp
 				}
 			};
 			TeachCommandPlanarArc();
-			virtual bool checkPoint() throw (RepeatPointException, PlaneError, PointCollinear);
+			virtual bool checkPoint();
 			virtual bool hasPreviousPoint() const;
 			virtual QString getCommand() const;
 			virtual bool canChangeMode() const;

@@ -7,7 +7,7 @@
 #include <QAbstractButton>
 #include <QPushButton>
 #include <QDebug>
-#include <QScrollbar>
+#include <QScrollBar>
 #include <QAbstractTextDocumentLayout>
 #include "base/messagebox.h"
 
@@ -256,7 +256,7 @@ TextEdit::SaveFile TextEdit::checkModified()
 		{
 			return No;
 		}
-		else
+		else if (box.clickedButton() == cancelButton || box.clickedButton() == nullptr)
 		{
 			return Cancel;
 		}

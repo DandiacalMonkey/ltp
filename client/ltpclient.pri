@@ -8,6 +8,13 @@ message("You are running qmake on a generated .pro file. This may not work!")
 
 
 HEADERS += ../base/ltpmath.h \
+    ./teachcommand.h \
+    ./teachcommandg114.h \
+    ./teachcommandline.h \
+    ./teachcommandplanararc.h \
+    ./teachcommandpoint.h \
+    ./teachcommandspatialarc.h \
+    ./teachcommandspatialcircle.h \
     ../base/systemvariables.hpp \
     ../common/rmi/globals.h \
     ../common/rmi/RemoteComm.h \
@@ -16,6 +23,7 @@ HEADERS += ../base/ltpmath.h \
     ../base/singleton.hpp \
     ./hintwidgetproxy.h \
     ./ltpclient.h \
+    ../base/messagebox.h \
     ./setwidget.h \
     ../base/filetablewidget.h \
     ../base/clickdelaycheckbutton.h \
@@ -60,6 +68,7 @@ SOURCES += ../base/buttonprocessor.cpp \
     ../base/keybutton.cpp \
     ../base/loadbar.cpp \
     ../base/ltpmath.cpp \
+    ../base/messagebox.cpp \
     ../base/modulebuttons.cpp \
     ../base/panelbutton.cpp \
     ../base/plusminuswidget.cpp \
@@ -81,14 +90,14 @@ SOURCES += ../base/buttonprocessor.cpp \
     ./programeditwidget.cpp \
     ./selectaxisbar.cpp \
     ./setwidget.cpp \
-    ./titlebar.cpp \
-    ./teachcommandspatialcircle.cpp \
-    ./teachcommandspatialarc.cpp \
-    ./teachcommandpoint.cpp \
-    ./teachcommandplanararc.cpp \
+    ./teachcommand.cpp \
     ./teachcommandg114.cpp \
     ./teachcommandline.cpp \
-    ./teachcommand.cpp
+    ./teachcommandplanararc.cpp \
+    ./teachcommandpoint.cpp \
+    ./teachcommandspatialarc.cpp \
+    ./teachcommandspatialcircle.cpp \
+    ./titlebar.cpp
 FORMS += ./ltpclient.ui \
     ./titlebar.ui \
     ./hintbar.ui \
@@ -106,5 +115,6 @@ FORMS += ./ltpclient.ui \
     ../base/progressdialog.ui \
     ../base/iplineedit.ui \
     ../base/dialogtitlewidget.ui \
-    ../base/keyboarddialog.ui
+    ../base/keyboarddialog.ui \
+    ../base/messagebox.ui
 RESOURCES += ltpclient.qrc

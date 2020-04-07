@@ -23,7 +23,7 @@ TeachCommandPlanarArc::TeachCommandPlanarArc()
 	reset();
 }
 
-bool TeachCommandPlanarArc::checkPoint() throw(RepeatPointException, PlaneError, PointCollinear)
+bool TeachCommandPlanarArc::checkPoint()
 {
 	auto tempPosition = systemVariables_.teachPosition(1);
 	switch (points_.size())

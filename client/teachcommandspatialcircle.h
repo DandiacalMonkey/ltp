@@ -18,7 +18,7 @@ namespace ltp
 					return QObject::tr("旋转坐标发生了变化，无法示教空间整圆");
 				}
 			};
-			virtual bool checkPoint() throw (RepeatPointException, RevolvingAxisPositionChanged, PointCollinear);
+			virtual bool checkPoint();
 			virtual QString getCommand() const;
 		};
 	}

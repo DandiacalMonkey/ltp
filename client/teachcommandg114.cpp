@@ -20,7 +20,7 @@ TeachCommandG114::TeachCommandG114()
 	previousPointLabel_.push_back(QObject::tr("P2"));
 }
 
-bool TeachCommandG114::checkPoint() throw(RepeatPointException)
+bool TeachCommandG114::checkPoint()
 {
 	//当前位置
 	auto currentPosition = systemVariables_.teachPosition(1);
