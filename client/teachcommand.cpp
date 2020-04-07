@@ -16,7 +16,7 @@ void ltp::client::TeachCommand::previousPoint()
 	points_.pop_back();
 }
 
-bool ltp::client::TeachCommand::changeMode() throw (ChangeTeachModeFail, CannotChangeTeachMode)
+bool ltp::client::TeachCommand::changeMode()
 {
 	if (canChangeMode() == true)
 	{

@@ -64,7 +64,7 @@ namespace ltp
 			//是否能切换刀尖坐标和绝对坐标
 			virtual bool canChangeMode() const = 0;
 			//进行坐标切换
-			virtual bool changeMode() throw (ChangeTeachModeFail, CannotChangeTeachMode);
+			virtual bool changeMode();
 			//获取指令
 			virtual QString getCommand() const = 0;
 			//是否为最后一点

@@ -21,7 +21,7 @@ TeachCommandLine::TeachCommandLine(const QString& command, const QString& schema
 	reset();
 }
 
-bool TeachCommandLine::checkPoint() throw (RepeatPointException)
+bool TeachCommandLine::checkPoint()
 {
 	//当前位置
 	auto currentPosition = systemVariables_.teachPosition(1);

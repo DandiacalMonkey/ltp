@@ -21,7 +21,7 @@ ltp::client::TeachCommandSpatialArc::TeachCommandSpatialArc()
 	reset();
 }
 
-bool ltp::client::TeachCommandSpatialArc::checkPoint() throw(RepeatPointException, PointCollinear)
+bool ltp::client::TeachCommandSpatialArc::checkPoint()
 {
 	auto tempPosition = systemVariables_.teachPosition(1);
 	switch (points_.size())

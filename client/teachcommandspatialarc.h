@@ -20,7 +20,7 @@ namespace ltp
 				}
 			};
 			TeachCommandSpatialArc();
-			virtual bool checkPoint() throw (RepeatPointException, PointCollinear);
+			virtual bool checkPoint();
 			virtual bool hasPreviousPoint() const;
 			virtual QString getCommand() const;
 			virtual bool canChangeMode() const;

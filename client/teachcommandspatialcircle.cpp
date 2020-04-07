@@ -1,7 +1,7 @@
 ﻿#include "teachcommandspatialcircle.h"
 #include <cassert>
 
-bool ltp::client::TeachCommandSpatialCircle::checkPoint() throw(RepeatPointException, RevolvingAxisPositionChanged, PointCollinear)
+bool ltp::client::TeachCommandSpatialCircle::checkPoint()
 {
 	auto tempPosition = systemVariables_.teachPosition(1);
 	switch (points_.size())
