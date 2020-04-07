@@ -30,6 +30,11 @@ bool Application::notify(QObject* receiver, QEvent* event)
 				base::getInstance<PhysicalButtonsProcessor>().getMapPressFunction(keyEvent);
 				return true;
 			}
+			else if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsPressProcessor(keyEvent) &&
+				keyEvent->isAutoRepeat())
+			{
+				return true;
+			}
 		}
 	}
 	else if (event->type() == QEvent::KeyRelease)			// 键盘松开
@@ -43,6 +48,11 @@ bool Application::notify(QObject* receiver, QEvent* event)
 			{
 				// 执行外设键值对应的函数，发出外设按键信号
 				base::getInstance<PhysicalButtonsProcessor>().getMapRealeaseFunction(keyEvent);
+				return true;
+			}
+			else if (base::getInstance<PhysicalButtonsProcessor>().isPhysicalButtonsRealeaseProcessor(keyEvent) &&
+				keyEvent->isAutoRepeat())
+			{
 				return true;
 			}
 		}
